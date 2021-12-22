@@ -27,7 +27,7 @@ class ProtocolVersion {
         patch = Int(strArr[2]) ?? 0;
     }
 }
-class GetPeersResult {
+public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();
    // var peerList:[OnePeer] = [];
     var peers:PeerMap = PeerMap();

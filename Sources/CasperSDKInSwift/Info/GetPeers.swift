@@ -21,7 +21,7 @@ class GetPeers  {
         var getPeerResult:GetPeersResult = GetPeersResult();
         let methodStr : String = "info_get_peers";
         do {
-            let json = try await CasperSDKInSwift.handleRequest(method: methodStr)
+            let json = try await HttpHandler.handleRequest(method: methodStr)
             if let id = json["id"] as? Int {
                 print("id back:\(id)")
             } else {
