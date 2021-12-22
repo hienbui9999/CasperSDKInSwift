@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct PeerEntry {
+public class PeerEntry {
     var nodeID:String = "";
     var address:String = "";
     public func getNodeId()->String {
@@ -17,13 +17,13 @@ struct PeerEntry {
     }
 }
 //in rust it is a VectorMap
-struct PeerMap {
+public class PeerMap {
     var peerEntryList : [PeerEntry] = [];
     public func getPeerEntryList()->[PeerEntry] {
         return peerEntryList;
     }
 }
-class ProtocolVersion {
+public class ProtocolVersion {
     var protocolString = "";
     var major:Int = 1;
     var minor:Int = 0;
