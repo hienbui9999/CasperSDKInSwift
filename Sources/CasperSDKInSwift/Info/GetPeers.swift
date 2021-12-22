@@ -28,12 +28,12 @@ class GetPeers  {
                 print("cant get id")
             }
             if let jsonCPR = json["jsonrpc"] as? String {
-                print("jsonCPR:\(jsonCPR)")
+              //  print("jsonCPR:\(jsonCPR)")
             } else {
                 print("can get json CPR")
             }
             if let result = json["result"] as? [String:Any] {
-                print("---result:\(result)")
+               // print("---result:\(result)")
                 if let api_version = result["api_version"] as? String {
                     print("Api _version:\(api_version)")
                     var protocolVersion:ProtocolVersion = ProtocolVersion();
