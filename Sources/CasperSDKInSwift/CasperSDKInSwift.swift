@@ -1,4 +1,21 @@
-public struct CasperSDKInSwift {
+
+import Foundation
+
+let CASPER_ID : Int32 = 1;
+let methodURL:String = "http://65.21.227.180:7777/rpc";
+
+enum GetStateRootHashError: Error {
+    case invalidURL
+    case parseError
+    case methodNotFound
+}
+enum CasperMethodError:Error {
+    case invalidURL
+    case parseError
+    case methodNotFound
+}
+
+public class CasperSDKInSwift {
     //public private(set) var text = "Hello, World!"
 
     public init() {
@@ -6,5 +23,31 @@ public struct CasperSDKInSwift {
     public func getStateRootHash() {
         let getState:GetStateRootHash = GetStateRootHash();
         getState.handle_request();
+    }
+    @available(iOS 15.0.0, *)
+    static func handleRequest(method:String) async throws->[String:Any] {
+        guard let url = URL(string: methodURL) else {
+            throw GetStateRootHashError.invalidURL
+        }
+        let parameters = ["id": CASPER_ID, "method": method,"jsonrpc":"2.0","params":"[]"] as [String : Any]
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let (data, _) = try await URLSession.shared.data(for:request)
+        do {
+            //create json object from data
+            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                 return json
+            }
+        } catch {
+            throw CasperMethodError.methodNotFound
+        }
+        throw CasperMethodError.parseError
     }
 }
