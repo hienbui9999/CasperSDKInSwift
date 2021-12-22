@@ -35,6 +35,9 @@ class ProtocolVersion {
         minor = Int(strArr[1]) ?? 0;
         patch = Int(strArr[2]) ?? 0;
     }
+    public func getProtocolString()->String {
+        return protocolString;
+    }
 }
 public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();
