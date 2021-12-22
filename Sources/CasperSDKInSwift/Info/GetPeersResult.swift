@@ -9,10 +9,19 @@ import Foundation
 struct PeerEntry {
     var nodeID:String = "";
     var address:String = "";
+    public func getNodeId()->String {
+        return nodeID;
+    }
+    public func getAddress()->String {
+        return address
+    }
 }
 //in rust it is a VectorMap
 struct PeerMap {
     var peerEntryList : [PeerEntry] = [];
+    public func getPeerEntryList()->[PeerEntry] {
+        return peerEntryList;
+    }
 }
 class ProtocolVersion {
     var protocolString = "";
@@ -31,4 +40,10 @@ public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();
    // var peerList:[OnePeer] = [];
     var peers:PeerMap = PeerMap();
+    public func getProtocolVersion()->ProtocolVersion {
+        return self.protocolVersion;
+    }
+    public func getPeerMap()->PeerMap {
+        return self.peers;
+    }
 }
