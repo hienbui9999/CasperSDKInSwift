@@ -6,6 +6,9 @@
 //
 
 import Foundation
+//THIS SHOULD BE COMMENT LATER
+let CASPER_ID : Int32 = 1;
+let methodURL:String = "http://65.21.227.180:7777/rpc";
 class HttpHandler {
     @available(iOS 15.0.0, *)
     static func handleRequest(method:String) async throws->[String:Any] {

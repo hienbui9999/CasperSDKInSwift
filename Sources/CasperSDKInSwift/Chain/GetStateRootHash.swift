@@ -32,6 +32,7 @@ class GetStateRootHash {
     //aaDEBC4Fdb8F01d96e452136470919506cF3f08d182d92B3258Eec3d72295D16
     //aaDEBC4Fdb8F01d96e452136470919506cF3f08d182d92B3258Eec3d72295D16
     //9D386a6F60B4905EeBDd6a8c57B353869cbA9353D0a5F3D71309A0D445D5952C;
+    
     func handle_request() {
         print("Handle Request started to call for GetStateRootHash1")
         let parameters = ["id": 1, "method": methodStr,"params":"[\"Hash\": \"37918dF9Cc553352d5fFC019B67CFD43e131BfA353ece9688C51D114Ae103968;\"]","jsonrpc":"2.0"] as [String : Any]
