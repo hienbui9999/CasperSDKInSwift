@@ -35,7 +35,7 @@ public class CasperSDKInSwift {
                 params = "[\"block_hash\":\"\(blockHash)\"]"
             }
             let json = try await handleRequestExtends(method:methodStr,params: params);
-          //  print("json back:\(json)")
+            print("json back:\(json)")
             if let error = json["error"] as? AnyObject {
                 if let code = error["code"] as? Int32 {
                     print("error code:\(code)")
@@ -77,6 +77,7 @@ public class CasperSDKInSwift {
     public func handleRequestExtends(method:String,params:String="[]") async throws->[String:Any] {
       //  print("Param:\(params)")
         guard let url = URL(string: methodURL) else {
+           // print("ERROR URL")
             throw CasperMethodError.invalidURL
         }
         let parameters = ["id": CASPER_ID, "method": method,"jsonrpc":"2.0","params":params] as [String : Any]
@@ -111,5 +112,5 @@ public class CasperSDKInSwift {
             throw CasperMethodError.invalidURL;
         }
     }
-   
+    
 }
