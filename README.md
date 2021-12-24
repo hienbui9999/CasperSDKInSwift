@@ -8,7 +8,7 @@ Swift sdk library for interacting with a CSPR node.
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 ## How To: Install ?
-
+In Xcode project, add CasperSDK as 
 
 
 ## How To: Query a node ?
