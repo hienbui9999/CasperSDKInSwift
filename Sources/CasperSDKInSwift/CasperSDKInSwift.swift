@@ -13,7 +13,8 @@ enum CasperMethodError:Error {
     case invalidURL
     case parseError
     case methodNotFound
-    case Unknown
+    case unknown
+    case getDataBackError
 }
 
 public class CasperSDKInSwift {
@@ -35,7 +36,7 @@ public class CasperSDKInSwift {
                 params = "[\"block_hash\":\"\(blockHash)\"]"
             }
             let json = try await handleRequestExtends(method:methodStr,params: params);
-            print("json back:\(json)")
+            //print("json back:\(json)")
             if let error = json["error"] as? AnyObject {
                 if let code = error["code"] as? Int32 {
                     print("error code:\(code)")
@@ -62,22 +63,23 @@ public class CasperSDKInSwift {
                     return state_root_hash
                 } else {
                  //   print("Error get state root hash")
-                    throw GetStateRootHashError.invalidURL
+                    throw GetStateRootHashError.parseError
                 }
             } else {
                 //print("error get json result")
-                throw GetStateRootHashError.invalidURL
+                throw GetStateRootHashError.parseError
             }
         } catch {
-            print("ERROR GET STATE ROOT HASH 2")
+            //print("ERROR GET STATE ROOT HASH 2")
             throw CasperMethodError.invalidURL
         }
+        throw CasperMethodError.unknown
     }
     @available(iOS 15.0.0, *)
     public func handleRequestExtends(method:String,params:String="[]") async throws->[String:Any] {
       //  print("Param:\(params)")
         guard let url = URL(string: methodURL) else {
-           // print("ERROR URL")
+            print("ERROR URL")
             throw CasperMethodError.invalidURL
         }
         let parameters = ["id": CASPER_ID, "method": method,"jsonrpc":"2.0","params":params] as [String : Any]
@@ -97,9 +99,9 @@ public class CasperSDKInSwift {
                  return json
             }
         } catch {
-            throw CasperMethodError.Unknown
+            throw CasperMethodError.getDataBackError
         }
-        throw CasperMethodError.Unknown
+        throw CasperMethodError.getDataBackError
     }
     @available(iOS 15.0.0, *)
     public func getPeers() async throws -> GetPeersResult {
