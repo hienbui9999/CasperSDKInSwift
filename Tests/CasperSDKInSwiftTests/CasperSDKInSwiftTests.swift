@@ -9,7 +9,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         // results.
        // XCTAssertEqual(CasperSDKInSwift().text, "Hello, World!")
         //MAKE INSTANCE OF CASPER SWIFT SDK
-        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180:7777/rpc",port:7777);
+        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
         do {
             //TEST CALL chain_get_state_root_hash WITH BLOCK_HASH PARAMETER SENDING TO REQUEST
             let blockHash:String = "4F271045c649FA282eB569fc06eb84654D9065b4682293e4e30a03c319ECc2E9";

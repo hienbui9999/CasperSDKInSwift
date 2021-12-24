@@ -26,8 +26,8 @@ public class CasperSDK {
     public func setMethodUrl(url:String) {
         methodURL = url;
     }
-    public init(url:String="http://65.21.227.180:7777/rpc",port:UInt32=7777) {
-        self.methodURL = url;
+    public init(url:String="http://65.21.227.180",port:UInt32=7777) {
+        self.methodURL = url + ":" + String(port) + "/rpc";
         self.port = port
     }
     @available(iOS 15.0.0, *)
