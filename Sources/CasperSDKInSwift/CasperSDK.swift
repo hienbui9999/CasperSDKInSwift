@@ -21,7 +21,7 @@ public class CasperSDK {
     //public private(set) var text = "Hello, World!"
     
     let CASPER_ID : Int32 = 1;
-    var methodURL:String = "http://65.21.227.180:7777/rpc";
+    var methodURL:String = "http://65.21.227.180";
     var port:UInt32 = 7777;
     public func setMethodUrl(url:String) {
         methodURL = url;
@@ -31,12 +31,15 @@ public class CasperSDK {
         self.port = port
     }
     @available(iOS 15.0.0, *)
-    public func getStateRootHash(blockHash:String = "") async throws->String {
+    public func getStateRootHash(blockHash:String = "",height:UInt64 = 0) async throws->String {
         let methodStr : String = "chain_get_state_root_hash";
         do {
             var params = "[]"
             if blockHash != "" {
                 params = "[\"block_hash\":\"\(blockHash)\"]"
+            } else if height != 0 {
+               // params = "[0:{height:\(height)}]"
+                params = "[0:{\"Height\" : \(height)}]"
             }
             let json = try await handleRequest(method:methodStr,params: params);
             //print("json back:\(json)")
@@ -76,16 +79,18 @@ public class CasperSDK {
             //print("ERROR GET STATE ROOT HASH 2")
             throw CasperMethodError.invalidURL
         }
-        throw CasperMethodError.unknown
+       // throw CasperMethodError.unknown
     }
     @available(iOS 15.0.0, *)
     public func handleRequest(method:String,params:String="[]") async throws->[String:Any] {
-      //  print("Param:\(params)")
+        print("Param:\(params)")
         guard let url = URL(string: methodURL) else {
-            print("ERROR URL")
+          //  print("ERROR URL")
             throw CasperMethodError.invalidURL
         }
         let parameters = ["id": CASPER_ID, "method": method,"jsonrpc":"2.0","params":params] as [String : Any]
+        //let parameters = ["id": CASPER_ID, "method": "chain_get_state_root_hash","jsonrpc":"2.0","params":"[0:{\"Height\" : 411589}]"] as [String : Any]
+
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             do {

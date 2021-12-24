@@ -12,9 +12,17 @@ final class CasperSDKInSwiftTests: XCTestCase {
         let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
         do {
             //TEST CALL chain_get_state_root_hash WITH BLOCK_HASH PARAMETER SENDING TO REQUEST
-            let blockHash:String = "4F271045c649FA282eB569fc06eb84654D9065b4682293e4e30a03c319ECc2E9";
+            let blockHash:String = "83B6A3573FEc1E86f511561148FEc3053f8Fb15ff0BbF61573A4bD6a79a8aaa5";
             let stateRootHash = try await casperSDK.getStateRootHash(blockHash:blockHash);
             print("TEST-------------chain_get_state_root_hash with block hash param in sending request, VALUE BACK:\(stateRootHash)")
+        } catch {
+            print("TEST-------------Error chain_get_state_root_hash:\(error)")
+        }
+        do {
+            //TEST CALL chain_get_state_root_hash WITH BLOCK_HEIGHT PARAMETER SENDING TO REQUEST
+            let blockHeight:UInt64 = 411903;
+            let stateRootHash = try await casperSDK.getStateRootHash(blockHash:"",height: blockHeight);
+            print("TEST-------------chain_get_state_root_hash with block height param in sending request, VALUE BACK:\(stateRootHash)")
         } catch {
             print("TEST-------------Error chain_get_state_root_hash:\(error)")
         }
