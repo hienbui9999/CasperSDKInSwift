@@ -17,25 +17,28 @@ enum CasperMethodError:Error {
     case getDataBackError
 }
 
-public class CasperSDKInSwift {
+public class CasperSDK {
     //public private(set) var text = "Hello, World!"
     
     let CASPER_ID : Int32 = 1;
     var methodURL:String = "http://65.21.227.180:7777/rpc";
+    var port:UInt32 = 7777;
     public func setMethodUrl(url:String) {
         methodURL = url;
     }
-    public init() {
+    public init(url:String,port:UInt32) {
+        self.methodURL = url;
+        self.port = port
     }
     @available(iOS 15.0.0, *)
-    public func getStateRootHashExtends(blockHash:String = "") async throws->String {
+    public func getStateRootHash(blockHash:String = "") async throws->String {
         let methodStr : String = "chain_get_state_root_hash";
         do {
             var params = "[]"
             if blockHash != "" {
                 params = "[\"block_hash\":\"\(blockHash)\"]"
             }
-            let json = try await handleRequestExtends(method:methodStr,params: params);
+            let json = try await handleRequest(method:methodStr,params: params);
             //print("json back:\(json)")
             if let error = json["error"] as? AnyObject {
                 if let code = error["code"] as? Int32 {
@@ -76,7 +79,7 @@ public class CasperSDKInSwift {
         throw CasperMethodError.unknown
     }
     @available(iOS 15.0.0, *)
-    public func handleRequestExtends(method:String,params:String="[]") async throws->[String:Any] {
+    public func handleRequest(method:String,params:String="[]") async throws->[String:Any] {
       //  print("Param:\(params)")
         guard let url = URL(string: methodURL) else {
             print("ERROR URL")
