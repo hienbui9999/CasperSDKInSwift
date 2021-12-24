@@ -8,8 +8,12 @@ Swift sdk library for interacting with a CSPR node.
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 ## How To: Install ?
-In Xcode project, add CasperSDK as 
-
+For Xcode
+In Project Targets select the project General setting, Scroll to “Frameworks, Libraries, and Embedded Content”, choose “+”, then “Add Other…”, then “Add Package Dependency”, parse the link “https://github.com/hienbui9999/CasperSDKInSwift” to “Search or Enter package URL” search box, then press the “Add package” button.
+Now you can call the Casper RPC methods through the CasperSDK class.
+Just put 
+import CasperSDKInSwift
+at the beginning of the file to refer for CasperSDK instance and call the method request
 
 ## How To: Query a node ?
 
@@ -24,7 +28,7 @@ Note: The above url and port hold good for local nctl based nodes. Refer to this
 Once we have the instance of `CasperSDK`, any implemented query method can be executed on it. For example if we want to get information about the state root hash, use the following code snippet:
 
 ```swift
-        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180:7777/rpc",port:7777);
+        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
         do {
             //TEST CALL chain_get_state_root_hash WITH BLOCK_HASH PARAMETER SENDING TO REQUEST
             let blockHash:String = "4F271045c649FA282eB569fc06eb84654D9065b4682293e4e30a03c319ECc2E9";
