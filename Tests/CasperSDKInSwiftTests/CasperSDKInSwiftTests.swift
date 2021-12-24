@@ -18,9 +18,14 @@ final class CasperSDKInSwiftTests: XCTestCase {
         } catch {
             print("TEST-------------Error chain_get_state_root_hash:\(error)")
         }
-        //TEST CALL chain_get_state_root_hash WITH NO BLOCK_HASH PARAMETER SENDING TO REQUEST
-        let stateRootHashNoParam = try await casperSDK.getStateRootHash();
-        print("TEST-------------chain_get_state_root_hash with no param in sending request VALUE BACK:\(stateRootHashNoParam)")
+        do {
+            //TEST CALL chain_get_state_root_hash WITH NO BLOCK_HASH PARAMETER SENDING TO REQUEST
+            let stateRootHashNoParam = try await casperSDK.getStateRootHash();
+            print("TEST-------------chain_get_state_root_hash with no param in sending request VALUE BACK:\(stateRootHashNoParam)")
+        }
+        catch {
+            print("TEST-------------Error chain_get_state_root_hash:\(error)")
+        }
         //TEST CALL chain_get_state_root_hash to invalid url
         print("TEST-------------chain_get_state_root_hash call fake url to casper rpc.....")
         casperSDK.setMethodUrl(url: "https://www.google.com/")

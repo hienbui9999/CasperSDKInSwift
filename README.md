@@ -1,14 +1,15 @@
-# CasperSDKInSwift
 
 # casper-swift-sdk
 
-Swift 5.0 sdk library for interacting with a CSPR node.
+Swift sdk library for interacting with a CSPR node.
 
 ## What is casper-swift-sdk ?
 
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 ## How To: Install ?
+
+
 
 ## How To: Query a node ?
 
@@ -30,5 +31,14 @@ Once we have the instance of `CasperSDK`, any implemented query method can be ex
             let stateRootHash = try await casperSDK.getStateRootHash(blockHash:blockHash);
             print("TEST-------------chain_get_state_root_hash with block hash param in sending request, VALUE BACK:\(stateRootHash)")
         } catch {
+            print("TEST-------------Error chain_get_state_root_hash:\(error)")
+        }
+
+        do {
+            //TEST CALL chain_get_state_root_hash WITH NO BLOCK_HASH PARAMETER SENDING TO REQUEST
+            let stateRootHashNoParam = try await casperSDK.getStateRootHash();
+            print("TEST-------------chain_get_state_root_hash with no param in sending request VALUE BACK:\(stateRootHashNoParam)")
+        }
+        catch {
             print("TEST-------------Error chain_get_state_root_hash:\(error)")
         }
