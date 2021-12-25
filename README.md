@@ -28,7 +28,7 @@ Note: The above url and port hold good for local nctl based nodes. Refer to this
 Once we have the instance of `CasperSDK`, any implemented query method can be executed on it. For example if we want to get information about the state root hash, use the following code snippet (The code below test several scenarios for calling method with different parameters):
 
 ```swift
-                let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
+        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
         var blockHash:String = "5d9F29103ba85e04358Ced6d504D201d9A32ffB7789Dc1B0E426d500CEDfdBCA";
         var blockHeight:UInt64 = 10;
         do {
