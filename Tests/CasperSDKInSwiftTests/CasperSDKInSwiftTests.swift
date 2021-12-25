@@ -75,7 +75,6 @@ final class CasperSDKInSwiftTests: XCTestCase {
         } catch {
             print("TEST WITH chain_get_state_root_hash------------- with block hash =\(blockHash) in sending request,-------------Error:\(error)")
         }
-
         do {
             print("-------------------------------***********************************-------------------------------")
             print("-------------------------------TEST WITH info_get_peer-------------------------------")
