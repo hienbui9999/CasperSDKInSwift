@@ -15,24 +15,66 @@
  */
 
 import Foundation
+enum GetStateRootHashError: Error {
+    case invalidURL
+    case parseError
+    case methodNotFound
+    case blockNotFound
+    case blockHeightError
+}
 class GetStateRootHash {
-    let methodStr : String = "chain_get_state_root_hash";// "chain_get_state_root_hash"
+    @available(iOS 15.0.0, *)
+    public static func getStateRootHash(params:Any)async throws -> String {
+        let methodStr : String = "chain_get_state_root_hash";
+        do {
+            let json = try await HttpHandler.handleRequest(method:methodStr,params: params);
+           // print("json back:\(json)")
+            if let error = json["error"] as? AnyObject {
+                if let code = error["code"] as? Int32 {
+                  //  print("error code:\(code)")
+                    if code == -32700 {
+                        throw GetStateRootHashError.parseError;
+                    } else if code == -32601 {
+                        throw GetStateRootHashError.methodNotFound
+                    } else if code == -32001 {
+                        throw GetStateRootHashError.blockNotFound
+                    } else {
+                        throw GetStateRootHashError.invalidURL
+                    }
+                }
+                if let message = error["message"] as? String {
+                  //  print("message:\(message)")
+                } else {
+                    //print("Can not show message in error")
+                }
+            }
+            if let result = json["result"] as? AnyObject {
+                if let api_version = result["api_version"] as? String {
+                   // print("----IN ASYNC Api_version:\(api_version)")
+                } else {
+                  //  print("Can not get api_version in result")
+                }
+                if let state_root_hash = result["state_root_hash"] as? String{
+                  //  print("-----IN ASYNC stateRootHash:\(state_root_hash)")
+                    return state_root_hash
+                } else {
+                 //   print("Error get state root hash")
+                    throw GetStateRootHashError.parseError
+                }
+            } else {
+                //print("error get json result")
+                throw GetStateRootHashError.parseError
+            }
+        } catch {
+           // print("GetStateRootHash - getStateRootHash function called, ERROR GET STATE ROOT HASH 2: \(error)")
+            throw error
+        }
+       // throw CasperMethodError.unknown
+    }
+    //let methodStr : String = "chain_get_state_root_hash";// "chain_get_state_root_hash"
     //let methodURL : String = "http://3.136.227.9:7777/rpc";//
-    //836e0D3B8F6ba91e7B11EC9501FEc39150728777A72CF3B93555754DD7B77DFd;
-    //836e0D3B8F6ba91e7B11EC9501FEc39150728777A72CF3B93555754DD7B77DFd;
-    let methodURL : String = "http://65.21.227.180:7777/rpc";
-   // var getStateRootHashResult:GetStateRootHashResult = GetStateRootHashResult();
-    //fdggfa623841478381D78C769636582305efdgd724f561d7314B4daED19A3EA6373Dd778
-    //state_root_hash back:
-    //1b0e70c9c78873867E317b184Ce1723162d6956fad9E8e4b1897D6f505c5e496
-    //37918dF9Cc553352d5fFC019B67CFD43e131BfA353ece9688C51D114Ae103968
-    //37918dF9Cc553352d5fFC019B67CFD43e131BfA353ece9688C51D114Ae103968
-    //b34810C053B385260C5F2D7e3235DEFDC726b0B6E009ED96B44C5E3451f0e993
-    //aaDEBC4Fdb8F01d96e452136470919506cF3f08d182d92B3258Eec3d72295D16;
-    //aaDEBC4Fdb8F01d96e452136470919506cF3f08d182d92B3258Eec3d72295D16
-    //aaDEBC4Fdb8F01d96e452136470919506cF3f08d182d92B3258Eec3d72295D16
-    //9D386a6F60B4905EeBDd6a8c57B353869cbA9353D0a5F3D71309A0D445D5952C;
-    
+  //  let methodURL : String = "http://65.21.227.180:7777/rpc";
+    /*
     func handle_request() {
         print("Handle Request started to call for GetStateRootHash1")
         let parameters = ["id": 1, "method": methodStr,"params":"[\"Hash\": \"37918dF9Cc553352d5fFC019B67CFD43e131BfA353ece9688C51D114Ae103968;\"]","jsonrpc":"2.0"] as [String : Any]
@@ -101,5 +143,5 @@ class GetStateRootHash {
             })
             task.resume()
       
-    }
+    }*/
 }

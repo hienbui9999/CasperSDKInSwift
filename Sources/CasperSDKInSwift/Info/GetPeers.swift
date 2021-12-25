@@ -21,9 +21,10 @@ class GetPeers  {
         var getPeerResult:GetPeersResult = GetPeersResult();
         let methodStr : String = "info_get_peers";
         do {
-            let json = try await HttpHandler.handleRequest(method: methodStr)
+            //let json = try await HttpHandler.handleRequest2(calling_method: methodStr)
+            let json = try await HttpHandler.handleRequest(method: methodStr, params: "[]")
             if let id = json["id"] as? Int {
-                print("id back:\(id)")
+               // print("id back:\(id)")
             } else {
                 print("cant get id")
             }
@@ -35,7 +36,7 @@ class GetPeers  {
             if let result = json["result"] as? [String:Any] {
                // print("---result:\(result)")
                 if let api_version = result["api_version"] as? String {
-                    print("Api _version:\(api_version)")
+                   // print("Api _version:\(api_version)")
                     var protocolVersion:ProtocolVersion = ProtocolVersion();
                     protocolVersion.protocolString = api_version;
                     protocolVersion.serialize();
@@ -49,9 +50,9 @@ class GetPeers  {
                     for peer in peers {
                         counter += 1;
                         if let node_id = peer["node_id"] as? String {
-                            print("counter:\(counter), node_id:\(node_id)")
+                            //print("counter:\(counter), node_id:\(node_id)")
                             if let address = peer["address"] as? String {
-                                print("Address:\(address)")
+                               // print("Address:\(address)")
                                 var onePeerEntry : PeerEntry = PeerEntry();
                                 onePeerEntry.address = address;
                                 onePeerEntry.nodeID = node_id;
