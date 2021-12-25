@@ -34,15 +34,15 @@ final class CasperSDKInSwiftTests: XCTestCase {
         }
         do {
             print("TEST 3 TEST 3 TEST 3 - WITH NO PARAMS")
-            //TEST CALL chain_get_state_root_hash WITH NO BLOCK_HASH PARAMETER SENDING TO REQUEST
+            //TEST CALL chain_get_state_root_hash WITH NO PARAMETER SENDING TO REQUEST
             let stateRootHashNoParam = try await casperSDK.getStateRootHash();
             print("TEST-------------chain_get_state_root_hash with no param in sending request VALUE BACK:\(stateRootHashNoParam)")
         }
         catch {
             print("TEST-------------Error chain_get_state_root_hash:\(error)")
         }
-        //TEST CALL chain_get_state_root_hash to invalid url
-        print("TEST 4 TEST 4 TEST 4 - WITH FAKE URL, example ")
+        //TEST CALL chain_get_state_root_hash WITH INVALID URL
+        print("TEST 4 TEST 4 TEST 4 - WITH FAKE URL, example  https://www.google.com/")
         print("TEST-------------chain_get_state_root_hash call fake url to casper rpc.....")
         casperSDK.setMethodUrl(url: "https://www.google.com/")
       //  casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
@@ -58,7 +58,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
         do {
             print("TEST 5 TEST 5 TEST 5 - WITH FAKE BLOCK_HASH AS PARAMS")
-            //TEST CALL chain_get_state_root_hash WITH BLOCK_HASH PARAMETER SENDING TO REQUEST
+            //TEST CALL chain_get_state_root_hash WITH WRONG BLOCK_HASH PARAMETER SENDING TO REQUEST
             blockHash = "61b2b477130E444192420fD621aCCAaD00e9db2bCecEc72171B769580d02dCE6"
             let stateRootHash = try await casperSDK.getStateRootHash(blockHash:blockHash);
             print("TEST WITH chain_get_state_root_hash------------- with block hash =\(blockHash) in sending request, ---------VALUE BACK:\(stateRootHash)")
@@ -68,8 +68,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         do {
             print("TEST 6 TEST 6 TEST 6 - WITH WRONG BLOCK_HEIGHT AS PARAMS")
             blockHeight = 12340204920492949
-            //TEST CALL chain_get_state_root_hash WITH BLOCK_HASH PARAMETER SENDING TO REQUEST
-            //blockHash = "61b2b477130E444192420fD621aCCAaD00e9db2bCecEc72171B769580d02dCE6"
+            //TEST CALL chain_get_state_root_hash WITH WRONG BLOCK_HEIGHT PARAMETER SENDING TO REQUEST
             let stateRootHash = try await casperSDK.getStateRootHash(blockHash:"",height: blockHeight);
             print("TEST WITH chain_get_state_root_hash------------- with block hash =\(blockHash) in sending request, ---------VALUE BACK:\(stateRootHash)")
         } catch {
