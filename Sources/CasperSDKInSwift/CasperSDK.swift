@@ -73,8 +73,27 @@ public class CasperSDK {
             return getPeersResult;
         } catch {
             //print("Error")
-            throw CasperMethodError.invalidURL;
+            throw error;
         }
     }
-    
+    public func getDeploy() async throws -> GetDeployResult {
+        let getDeploy:GetDeploy = GetDeploy();
+        do {
+            let getDeployResult = try await getDeploy.getDeploy()
+            return getDeployResult;
+        } catch {
+            print("Error get Deploy: \(error)")
+            throw error
+        }
+    }
+    public func getStatus() async throws -> GetStatusResult {
+        let getStatus : GetStatus = GetStatus();
+        do {
+            let getStatusResult : GetStatusResult = try await getStatus.getStatus();
+            return getStatusResult;
+        } catch {
+            print("Error get Status:\(error)")
+            throw error
+        }
+    }
 }

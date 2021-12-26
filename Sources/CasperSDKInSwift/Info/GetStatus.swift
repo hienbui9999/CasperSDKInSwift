@@ -51,6 +51,16 @@ import Foundation
 struct GetStatus:RpcWithoutParams,RpcWithoutParamsExt {
     let methodStr : String = "info_get_status"
     let methodURL : String = "http://65.21.227.180:7777/rpc"
+    public func getStatus() async throws ->GetStatusResult {
+        do {
+            let statusResult = try await HttpHandler.handleRequest(method: methodStr, params: "[]")
+            print("getStatus back:\(statusResult)")
+            let ret:GetStatusResult = GetStatusResult();
+            return ret
+        } catch {
+            throw error
+        }
+    }
     func handle_request () {
         //var ret : GetPeersResult = GetPeersResult();
         let parameters = ["id": 1, "method": methodStr,"params":"[]","jsonrpc":"2.0"] as [String : Any]

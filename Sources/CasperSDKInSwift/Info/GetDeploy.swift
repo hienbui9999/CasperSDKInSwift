@@ -16,9 +16,55 @@
  */
 
 import Foundation
-struct GetDeploy:RpcWithParams,RpcWithParamsExt {
+
+class GetDeploy {
     let methodStr : String = "info_get_deploy"
     let methodURL : String = "http://65.21.227.180:7777/rpc"
+    public func getDeploy() async throws -> GetDeployResult{
+        //var getPeerResult:GetPeersResult = GetPeersResult();
+        let getDeploy:GetDeployResult = GetDeployResult();
+        let methodStr : String = "info_get_deploy";
+        do {
+            //let json = try await HttpHandler.handleRequest2(calling_method: methodStr)
+            let param = ["deploy_hash":"5D2B9FD4B752043a3982b57DF3ca24f2F807926E504D34F746e3F41E8898eDb3"] as [String:String]
+            let json = try await HttpHandler.handleRequest(method: methodStr, params: param)
+            if let error = json["error"] as? AnyObject {
+                if let code = error["code"] as? Int32 {
+                  //  print("error code:\(code)")
+                    if code == -32700 {
+                        throw GetStateRootHashError.parseError;
+                    } else if code == -32601 {
+                        throw GetStateRootHashError.methodNotFound
+                    } else if code == -32001 {
+                        throw GetStateRootHashError.blockNotFound
+                    } else {
+                        throw GetStateRootHashError.invalidURL
+                    }
+                }
+                if let message = error["message"] as? String {
+                    print("message:\(message)")
+                } else {
+                    print("Can not show message in error")
+                }
+            }
+            if let id = json["id"] as? Int {
+                print("id back:\(id)")
+            } else {
+                print("cant get id")
+            }
+            if let api_version = json["api_version"] as? String {
+                print("api_version:\(api_version)")
+            } else {
+                print("can get json api_version")
+            }
+            if let result = json["result"] as? [String:Any] {
+                print("---result get deploy:\(result)")
+            }
+        } catch {
+            throw error;
+        }
+        return getDeploy;
+    }
     func handle_request() {
         let parameters = ["id": 1, "method": methodStr,"params":"[]","jsonrpc":"2.0"] as [String : Any]
             //create the url with URL

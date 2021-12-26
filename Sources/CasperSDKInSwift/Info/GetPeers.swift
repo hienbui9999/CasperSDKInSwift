@@ -8,12 +8,7 @@
 
 import Foundation
 
-struct GetDeployParams {
-    
-}
-struct GetDeployResult {
-    
-}
+
 class GetPeers  {
     //method to send: info_get_peers
     @available(iOS 15.0.0, *)

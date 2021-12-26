@@ -9,11 +9,13 @@ final class CasperSDKInSwiftTests: XCTestCase {
         // results.
        // XCTAssertEqual(CasperSDKInSwift().text, "Hello, World!")
         //MAKE INSTANCE OF CASPER SWIFT SDK
+        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
+        /*
         print("-------------------------------***********************************-------------------------------")
         print("-------------------------------TEST WITH chain_get_state_root_hash-------------------------------")
         print("-------------------------------***********************************-------------------------------")
 
-        let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
+        
         var blockHash:String = "5d9F29103ba85e04358Ced6d504D201d9A32ffB7789Dc1B0E426d500CEDfdBCA";
         var blockHeight:UInt64 = 10;
         do {
@@ -91,7 +93,25 @@ final class CasperSDKInSwiftTests: XCTestCase {
             }
         } catch {
             print("TEST-------------Error info_get_peer:\(error)")
+        }*/
+        /*do {
+            print("-------------------------------***********************************-------------------------------")
+            print("-------------------------------TEST WITH info_get_deploy-------------------------------")
+            print("-------------------------------***********************************-------------------------------")
+            let getDeploy = try await casperSDK.getDeploy();
+        } catch {
+            print("TEST-------------Error info_get_peer:\(error)")
+        }*/
+        do {
+            print("-------------------------------***********************************-------------------------------")
+            print("-------------------------------TEST WITH info_get_status-------------------------------")
+            print("-------------------------------***********************************-------------------------------")
+            let getStatus = try await casperSDK.getStatus();
+        } catch {
+            print("TEST-------------Error info_get_status:\(error)")
         }
+        
+        
        /* print("TEST WITH CALLING TO WRONG NO WORKING URL")
         casperSDK.setMethodUrl(url: "https://1.2.3.4:7777/rpc")
         if casperSDK.methodURL.isValidURL {
