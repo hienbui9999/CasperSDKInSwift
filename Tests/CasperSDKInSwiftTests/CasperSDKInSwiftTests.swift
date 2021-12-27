@@ -5,11 +5,8 @@ final class CasperSDKInSwiftTests: XCTestCase {
     @available(iOS 15.0.0, *)
     func testExample() async throws {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
         //MAKE INSTANCE OF CASPER SWIFT SDK
         let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
-        
         print("-------------------------------***********************************-------------------------------")
         print("-------------------------------TEST WITH chain_get_state_root_hash-------------------------------")
         print("-------------------------------***********************************-------------------------------")
@@ -134,17 +131,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         }
         print("--------------------------DONE WITH TEST PEER---------------------------")
         
-       /* print("TEST WITH CALLING TO WRONG NO WORKING URL")
-        casperSDK.setMethodUrl(url: "https://1.2.3.4:7777/rpc")
-        if casperSDK.methodURL.isValidURL {
-            print("url is valid")
-        } else {
-            print("url is not valid")
-        }
-        do {
-            let stateRootHashNoParam2 = try await casperSDK.getStateRootHashExtends();
-        } catch {
-            print("Error to url")
-        }*/
+        //SET THE URL BACK TO GOOD
+        casperSDK.setMethodUrl(url: "http://65.21.227.180",port:7777);
     }
 }
