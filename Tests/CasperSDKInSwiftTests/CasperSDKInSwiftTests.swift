@@ -7,7 +7,10 @@ final class CasperSDKInSwiftTests: XCTestCase {
         // This is an example of a functional test case.
         //MAKE INSTANCE OF CASPER SWIFT SDK
         let casperSDK:CasperSDK = CasperSDK(url:"http://65.21.227.180",port:7777);
-        
+        //you can set the method URL to this
+        //casperSDK.setMethodUrl(url: "http://65.21.227.180",port:7777);
+        //or to this
+        //casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
         print("-------------------------------***********************************-------------------------------")
         print("-------------------------------TEST WITH chain_get_state_root_hash-------------------------------")
         print("-------------------------------***********************************-------------------------------")
