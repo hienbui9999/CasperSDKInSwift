@@ -101,4 +101,14 @@ public class CasperSDK {
             throw error
         }
     }
+    public func getBlock() async throws -> GetBlockResult {
+        let getBlock : GetBlock = GetBlock();
+        do {
+            let getBlockResult : GetBlockResult = try await getBlock.getBlock();
+            return getBlockResult;
+        } catch {
+            print("Error get Status:\(error)")
+            throw error
+        }
+    }
 }

@@ -38,6 +38,9 @@ public class ProtocolVersion {
     public func getProtocolString()->String {
         return protocolString;
     }
+    public func setProtolString(str:String) {
+        protocolString = str;
+    }
 }
 public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();
