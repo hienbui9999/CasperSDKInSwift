@@ -12,12 +12,12 @@ import Foundation
 class GetPeers  {
     //method to send: info_get_peers
     @available(iOS 15.0.0, *)
-    public func getPeers2() async throws -> GetPeersResult {
+    public func getPeers() async throws -> GetPeersResult {
         var getPeerResult:GetPeersResult = GetPeersResult();
         let methodStr : String = "info_get_peers";
         do {
-            //let json = try await HttpHandler.handleRequest2(calling_method: methodStr)
             let json = try await HttpHandler.handleRequest(method: methodStr, params: "[]")
+          //  print("Json back:\(json)")
             if let id = json["id"] as? Int {
                // print("id back:\(id)")
             } else {
@@ -64,14 +64,14 @@ class GetPeers  {
                   //  print("PEERS: \(peers)")
                 } else {
                     print("Can not get peers")
-                    throw CasperMethodError.methodNotFound
+                    throw CasperMethodError.parseError
                 }
             } else {
                 print("result NOT GET")
-                throw CasperMethodError.methodNotFound
+                throw CasperMethodError.parseError
             }
         } catch {
-            throw CasperMethodError.parseError
+            throw error
         }
     }
     

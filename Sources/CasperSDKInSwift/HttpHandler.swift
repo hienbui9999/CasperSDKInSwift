@@ -22,13 +22,10 @@ class HttpHandler {
     static var methodURL:String = "http://65.21.227.180";
     @available(iOS 15.0.0, *)
     public static func handleRequest(method:String,params:Any) async throws->[String:Any] {
-       // print("Param in HTTP_HANDLER-----:\(params)")
-       // HttpHandler.methodURL = "https://node-clarity-testnet.make.services/rpc"
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
         }
         let json2: [String: Any] = ["id": CASPER_ID, "method": method,"jsonrpc":"2.0","params":params] as [String:Any]
-        //print("parameters json 2:\(json2)")
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             do {
@@ -40,12 +37,11 @@ class HttpHandler {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         let (data, _) = try await URLSession.shared.data(for:request)
         do {
-            //create json object from data
             if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                  return json
             }
         } catch {
-           // print("HTTP REQUEST CALLED, databack error:\(error)")
+          //  print("HTTP REQUEST CALLED, databack error:\(error)")
             throw CasperMethodError.invalidURL
         }
         throw CasperMethodError.invalidURL

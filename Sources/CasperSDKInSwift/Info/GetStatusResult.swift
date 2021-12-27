@@ -21,4 +21,7 @@ public class GetStatusResult {
     public var peers:PeerMap = PeerMap();
     public var nextUpgrade:String = "";//"<null>";
     public var ourPublicSigningKey :String = "01cd807fb41345d8dD5A61da7991e1468173acbEE53920E4DFe0D28Cb8825AC664";//a hash
+    public var roundLength:String = "32s 768ms";
+    public var startingStateRootHash:String = "E2218B6BdB8137A178f242E9DE24ef5Db06af7925E8E4C65Fa82D41Df38F4576";
+    public var upTime : String = "15days 14h 45m 44s 205ms";
 }

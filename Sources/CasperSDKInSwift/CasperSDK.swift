@@ -23,6 +23,11 @@ public class CasperSDK {
         methodURL = url;
         HttpHandler.methodURL = methodURL;
     }
+    public func setMethodUrl(url:String,port:UInt32 = 7777) {
+        self.methodURL = url + ":" + String(port) + "/rpc";
+        HttpHandler.methodURL = methodURL;
+    }
+    
     public init(url:String="http://65.21.227.180",port:UInt32=7777) {
         self.methodURL = url + ":" + String(port) + "/rpc";
         self.port = port
@@ -69,7 +74,7 @@ public class CasperSDK {
     public func getPeers() async throws -> GetPeersResult {
         let getPeers:GetPeers = GetPeers();
         do {
-            let getPeersResult = try  await  getPeers.getPeers2()
+            let getPeersResult = try  await  getPeers.getPeers()
             return getPeersResult;
         } catch {
             //print("Error")
