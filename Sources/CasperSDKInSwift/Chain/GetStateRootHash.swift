@@ -22,8 +22,10 @@ enum GetStateRootHashError: Error {
     case blockNotFound
     case blockHeightError
 }
+@available(macOS 12.0.0, *)
+@available(iOS 15.0.0, *)
+
 class GetStateRootHash {
-    @available(iOS 15.0.0, *)
     public static func getStateRootHash(params:Any)async throws -> String {
         let methodStr : String = "chain_get_state_root_hash";
         do {

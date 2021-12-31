@@ -17,16 +17,21 @@
 
 import Foundation
 
+//https://testnet.cspr.live/deploy/5D2B9FD4B752043a3982b57DF3ca24f2F807926E504D34F746e3F41E8898eDb3
+
 class GetDeploy {
     let methodStr : String = "info_get_deploy"
     let methodURL : String = "http://65.21.227.180:7777/rpc"
-    public func getDeploy() async throws -> GetDeployResult{
+    public func getDeploy(deployHash:String="") async throws -> GetDeployResult{
         //var getPeerResult:GetPeersResult = GetPeersResult();
         let getDeploy:GetDeployResult = GetDeployResult();
         let methodStr : String = "info_get_deploy";
         do {
             //let json = try await HttpHandler.handleRequest2(calling_method: methodStr)
-            let param = ["deploy_hash":"5D2B9FD4B752043a3982b57DF3ca24f2F807926E504D34F746e3F41E8898eDb3"] as [String:String]
+            var param = ["":"[]"] as [String:String]
+            if deployHash != "" {
+                param = ["deploy_hash":"5D2B9FD4B752043a3982b57DF3ca24f2F807926E504D34F746e3F41E8898eDb3"] as [String:String]
+            }
             let json = try await HttpHandler.handleRequest(method: methodStr, params: param)
             if let error = json["error"] as? AnyObject {
                 if let code = error["code"] as? Int32 {
@@ -54,11 +59,75 @@ class GetDeploy {
             }
             if let api_version = json["api_version"] as? String {
                 print("api_version:\(api_version)")
+                getDeploy.apiVersion = api_version;
             } else {
                 print("can get json api_version")
             }
             if let result = json["result"] as? [String:Any] {
-                print("---result get deploy:\(result)")
+                //print("---result get deploy:\(result)")
+                if let executionResult = result["execution_results"] {
+                    print("executionResult:\(executionResult)")
+                }
+                if let deploy = result["deploy"] as? [String:Any] {
+                   // print("deploy:\(deploy)")
+                    //GET APPROVALS
+                    if let approvals = deploy["approvals"] as? [AnyObject] {
+                        let totalApproval = approvals.count
+                        print("total approval:\(totalApproval)")
+                        for approval in approvals {
+                            let oneApproval:DeployApprovalItem = DeployApprovalItem();
+                            if let signature = approval["signature"] as? String {
+                                if let signer = approval["signer"] as? String {
+                                    oneApproval.signature = signature;
+                                    oneApproval.signer = signer
+                                    print("deploy signer:\(signer), signature:\(signature)")
+                                }
+                            }
+                            getDeploy.deploy.approvals.append(oneApproval);
+                        }
+                    }
+                    //END OF GETTING APPROVALS
+                    //GET HASH
+                    if let hash = deploy["hash"] as? String {
+                        print("deploy - hash:\(hash)")
+                        getDeploy.deploy.hash = hash;
+                    }
+                    //END OF GETTING HASH
+                    //GET HEADER
+                    if let header = deploy["header"] as? [String:Any] {//7 items
+                        if let account = header["account"] as? String {//1
+                            print("deploy header account:\(account)")
+                            getDeploy.deploy.header.account = account;
+                        }
+                        if let bodyHash = header["body_hash"] as? String {//2
+                            print("deploy header body_hash:\(bodyHash)")
+                            getDeploy.deploy.header.bodyHash = bodyHash;
+                        }
+                        if let chainName = header["chain_name"] as? String {//3
+                            print("deploy header chain_name:\(chainName)")
+                            getDeploy.deploy.header.chainName = chainName;
+                        }
+                        if let gasPrice = header["gas_price"] as? UInt64 {//4
+                            print("deploy header gas_price:\(gasPrice)")
+                            getDeploy.deploy.header.gasPrice = gasPrice;
+                        }
+                        if let timeStamp = header["timestamp"] as? String {//5
+                            print("deploy header timestamp:\(timeStamp)");
+                            getDeploy.deploy.header.timeStamp = timeStamp;
+                        }
+                        if let ttl = header["ttl"] as? String {//6
+                            print("deploy header ttl:\(ttl)");
+                            getDeploy.deploy.header.ttl = ttl;
+                        }
+                        if let dependencies = header["dependencies"] as? [String] {
+                            for dependency in dependencies {
+                                print("deploy header dependency:\(dependency)")
+                                getDeploy.deploy.header.dependencies.append(dependency)
+                            }
+                        }
+                    }
+                    //END OF GETTING HEADER
+                }
             }
         } catch {
             throw error;

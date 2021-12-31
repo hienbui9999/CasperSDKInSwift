@@ -81,10 +81,10 @@ public class CasperSDK {
             throw error;
         }
     }
-    public func getDeploy() async throws -> GetDeployResult {
+    public func getDeploy(deployHash:String) async throws -> GetDeployResult {
         let getDeploy:GetDeploy = GetDeploy();
         do {
-            let getDeployResult = try await getDeploy.getDeploy()
+            let getDeployResult = try await getDeploy.getDeploy(deployHash:deployHash)
             return getDeployResult;
         } catch {
             print("Error get Deploy: \(error)")
@@ -101,14 +101,27 @@ public class CasperSDK {
             throw error
         }
     }
-    public func getBlock() async throws -> GetBlockResult {
+    public func getBlock(blockHash:String="") async throws -> GetBlockResult {
+        print("blockHash:\(blockHash)")
         let getBlock : GetBlock = GetBlock();
-        do {
-            let getBlockResult : GetBlockResult = try await getBlock.getBlock();
-            return getBlockResult;
-        } catch {
-            print("Error get Status:\(error)")
-            throw error
+        if blockHash != "" {
+            do {
+                let jsonParams : [[String:Any]] = [["Hash":blockHash]] as [[String:Any]];
+//                let jsonParams : [[String:Any]] = [["Height":height]] as [[String:Any]];
+                let getBlockResult : GetBlockResult = try await getBlock.getBlock(params: jsonParams);
+                return getBlockResult;
+            } catch {
+                print("In CasperSDK, Error get state root hash:\(error)")
+                throw error
+            }
+        } else {
+            do {
+                let getBlockResult : GetBlockResult = try await getBlock.getBlock(params: "[]");
+                return getBlockResult;
+            } catch {
+                print("Error get Status:\(error)")
+                throw error
+            }
         }
     }
 }

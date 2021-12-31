@@ -11,6 +11,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         //casperSDK.setMethodUrl(url: "http://65.21.227.180",port:7777);
         //or to this
         //casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
+        
         print("-------------------------------***********************************-------------------------------")
         print("-------------------------------TEST WITH chain_get_state_root_hash-------------------------------")
         print("-------------------------------***********************************-------------------------------")
@@ -137,6 +138,31 @@ final class CasperSDKInSwiftTests: XCTestCase {
         
         //SET THE URL BACK TO GOOD
         casperSDK.setMethodUrl(url: "http://65.21.227.180",port:7777);
-       
+        
+        
+        
+        /*
+        
+        //TEST WITH info_get_status
+       do {
+         //  let getStatusResult:GetStatusResult = try await casperSDK.getStatus()
+       }
+       catch {
+           print("Error:\(error)")
+       }
+       //TEST WITH chain_get_block
+       do {
+        //   let getBlock:GetBlockResult = try await casperSDK.getBlock(blockHash: "96cc35D79bA8c9961A7E7573FFAc9eA5ABdeB167500206B7fe67D7BB843325cD")
+       }
+       catch {
+           print("Error:\(error)")
+       }
+        //TEST WITH info_get_deploy
+        do {
+            let deploy:GetDeployResult = try await casperSDK.getDeploy(deployHash: "5D2B9FD4B752043a3982b57DF3ca24f2F807926E504D34F746e3F41E8898eDb3")
+        } catch {
+            print("Error:\(error)")
+        }
+         */
     }
 }

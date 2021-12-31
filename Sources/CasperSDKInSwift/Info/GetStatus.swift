@@ -48,9 +48,12 @@ uptime = "14h 8m 48s 929ms";
  
  */
 import Foundation
+
 struct GetStatus {
     let methodStr : String = "info_get_status"
     //let methodURL : String = "http://65.21.227.180:7777/rpc"
+    @available(macOS 12.0.0, *)
+    @available(iOS 15.0.0, *)
     public func getStatus() async throws ->GetStatusResult {
         let getStatusResult:GetStatusResult = GetStatusResult();
         do {

@@ -6,46 +6,44 @@
 //
 
 import Foundation
-enum CLType : Int {
-    case BOOL               = 0
-    case I32                = 1
-    case I64                = 2
-    case U8                 = 3
-    case U32                = 4
-    case U64                = 5
-    case U128               = 6
-    case U256               = 7
-    case U512               = 8
+public enum CLType {
+    case BOOL
+    case I32
+    case I64
+    case U8
+    case U32
+    case U64
+    case U128
+    case U256
+    case U512
     /** singleton value without additional semantics */
-    case CLName_UNIT        = 9
+    case CLName_UNIT
     /** e.g. "Hello, World!" */
-    case CLName_STRING      = 10
+    case CLName_STRING
     /** global state key */
-    case CLName_KEY         = 11
+    case CLName_KEY
     /** unforgeable reference */
-    case CLName_UREF        = 12
+    case CLName_UREF
     /** optional value of the given type Option(CLType) */
-    case CLName_OPTION      = 13
+    indirect case CLName_OPTION(CLType)
     /** List of values of the given type (e.g. Vec in rust). List(CLType) */
-    case CLName_LIST        = 14
+    indirect case CLName_LIST(CLType)
     /** Byte array prefixed with U32 length (FixedList) */
-    case CLName_BYTE_ARRAY  = 15
+    indirect case CLName_FIXED_LIST(CLType,UInt32)
     /** co-product of the the given types; one variant meaning success, the other failure */
-    case CLName_RESULT      = 16
+    indirect case CLName_RESULT(CLType,CLType)
     /** Map(CLType, CLType), // key-value association where keys and values have the given types */
-    case CLName_MAP         = 17
+    indirect case CLName_MAP(CLType,CLType)
     /** Tuple1(CLType) single value of the given type */
-    case CLName_TUPLE_1     = 18
+    indirect case CLName_TUPLE_1(CLType)
     /** Tuple2(CLType, CLType), // pair consisting of elements of the given types */
-    case CLName_TUPLE_2     = 19
+    indirect case CLName_TUPLE_2(CLType,CLType)
     /** Tuple3(CLType, CLType, CLType), // triple consisting of elements of the given types */
-    case CLName_TUPLE_3     = 20
+    indirect case CLName_TUPLE_3(CLType,CLType,CLType)
     /** Indicates the type is not known */
-    case CLName_ANY         = 21
+    case CLName_ANY
     /** NO DEF IN SPEC https://docs.casperlabs.io/en/latest/implementation/serialization-standard.html */
-    case CLName_PUBLIC_KEY  = 22
-   
-    
+    case CLName_PUBLIC_KEY
 }
 class CLTypeClass {
     private var clType:Int32 = 0;
