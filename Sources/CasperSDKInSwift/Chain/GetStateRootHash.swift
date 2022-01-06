@@ -1,6 +1,10 @@
-//  Created by Hien on 09/12/2021.
-//method call document in rust
-//https://docs.rs/casper-node/latest/casper_node/rpcs/chain/struct.GetStateRootHash.html
+
+/**
+  * Retrieves a state root hash at a given block
+  *
+  * @param blockHash or blockHeight or []
+  * @return state_root_hash_String
+  */
 
 import Foundation
 enum GetStateRootHashError: Error {

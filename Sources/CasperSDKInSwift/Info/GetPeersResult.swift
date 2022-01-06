@@ -1,11 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Hien on 22/12/2021.
-//
-
 import Foundation
+
 public class PeerEntry {
     var nodeID:String = "";
     var address:String = "";
@@ -16,13 +10,14 @@ public class PeerEntry {
         return address
     }
 }
-//in rust it is a VectorMap
+
 public class PeerMap {
     var peerEntryList : [PeerEntry] = [];
     public func getPeerEntryList()->[PeerEntry] {
         return peerEntryList;
     }
 }
+
 public class ProtocolVersion {
     var protocolString = "";
     var major:Int = 1;
@@ -42,9 +37,9 @@ public class ProtocolVersion {
         protocolString = str;
     }
 }
+
 public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();
-   // var peerList:[OnePeer] = [];
     var peers:PeerMap = PeerMap();
     public func getProtocolVersion()->ProtocolVersion {
         return self.protocolVersion;

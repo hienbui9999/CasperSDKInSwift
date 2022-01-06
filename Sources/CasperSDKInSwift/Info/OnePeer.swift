@@ -1,11 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Hien on 24/12/2021.
-//
-
 import Foundation
+
 class OnePeer {
     var id: String {
         get {

@@ -1,19 +1,14 @@
-//  Created by Hien on 09/12/2021.
-//Method call document in Rust
-//https://docs.rs/casper-node/latest/casper_node/rpcs/info/struct.GetPeers.html
+/**
+   * get peers list
+   *
+   * @return : List[PeerEntry]
+   */
 import Foundation
+
 class GetPeers  {
     public static func getPeers(from:[String:Any]) throws -> GetPeersResult {
         do {
             var getPeerResult:GetPeersResult = GetPeersResult();
-            if let id = from["id"] as? Int {
-
-            } else {
-            }
-            if let jsonCPR = from["jsonrpc"] as? String {
-                
-            } else {
-            }
             if let result = from["result"] as? [String:Any] {
                 if let api_version = result["api_version"] as? String {
                     let protocolVersion:ProtocolVersion = ProtocolVersion();
