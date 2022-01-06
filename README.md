@@ -56,9 +56,10 @@ Once we have the instance of `CasperSDK`, any implemented query method can be ex
 
 ```swift
         //Make instance of Casper Swift SDK with the predefined URL for sending POST request
-        let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
+        //let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
         //You can change to URL for sending POST request by running this code, with the specific url like this
-        //casperSDK.setMethodUrl(url: "http://65.21.227.180:7777/rpc");
+        casperSDK.setMethodUrl(url: "http://65.21.227.180:7777/rpc");
+        casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
         
         //THIS IS TEST FOR CALLING METHOD chain_info_get_state_root_hash
         //instantiate the parameter object for calling method
@@ -92,3 +93,4 @@ Once we have the instance of `CasperSDK`, any implemented query method can be ex
         } catch {
             throw error
         }
+```
