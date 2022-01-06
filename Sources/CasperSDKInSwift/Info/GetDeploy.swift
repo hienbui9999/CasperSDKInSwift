@@ -24,7 +24,7 @@ class GetDeploy {
         let methodStr : String = "info_get_deploy";
         do {
             //let json = try await HttpHandler.handleRequest(method: methodStr, params: param)
-            if let error = json["error"] as? AnyObject {
+            if let error = json["error"] as AnyObject? {
                 if let code = error["code"] as? Int32 {
                     if code == -32700 {
                         throw GetStateRootHashError.parseError;
@@ -50,21 +50,18 @@ class GetDeploy {
             if let result = json["result"] as? [String:Any] {
               
                 if let executionResult = result["execution_results"] {
-                  //  print("executionResult:\(executionResult)")
+                  
                 }
                 if let deployStrBack = result["deploy"] as? [String:Any] {
-                   // print("deploy:\(deploy)")
                     //GET APPROVALS
                     if let approvals = deployStrBack["approvals"] as? [AnyObject] {
                         let totalApproval = approvals.count
-                        print("total approval:\(totalApproval)")
                         for approval in approvals {
                             let oneApproval:DeployApprovalItem = DeployApprovalItem();
                             if let signature = approval["signature"] as? String {
                                 if let signer = approval["signer"] as? String {
                                     oneApproval.signature = signature;
                                     oneApproval.signer = signer
-                                    print("deploy signer:\(signer), signature:\(signature)")
                                 }
                             }
                             getDeploy.deploy.approvals.append(oneApproval);
@@ -73,7 +70,6 @@ class GetDeploy {
                     //END OF GETTING APPROVALS
                     //GET HASH
                     if let hash = deployStrBack["hash"] as? String {
-                        print("deploy - hash:\(hash)")
                         getDeploy.deploy.hash = hash;
                     }
                     //END OF GETTING HASH
@@ -117,13 +113,11 @@ class GetDeploy {
                         getDeploy.deploy.payment = getExecutableDeployItem(from: payment);
                     }
                     //END OF GETTING PAYMENT
-                    print("------------------------------------------------------------GETTING SESSION")
                     //GET SESSION
                     if let session = deployStrBack["session"] as? [String:Any] {
                         getDeploy.deploy.session = getExecutableDeployItem(from: session);
                     }
                     //END OF GETTING SESSION
-                    print("------------------------------------------------------------GETTING EXECUTION RESULT")
                     //GET EXECUTION RESULT
                     let executionResult = getExecutionResult(from: result);
                     //END OF GETTING EXECUTION RESULT

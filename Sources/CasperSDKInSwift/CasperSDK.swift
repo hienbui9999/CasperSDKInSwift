@@ -20,9 +20,8 @@ enum CasperMethodCall:String {
     case stateGetBalance                = "state_get_balance"
     case stateGetAuctionInfo            = "state_get_auction_info"
 }
-
+let CASPER_ID : Int32 = 1;
 public class CasperSDK {
-    let CASPER_ID : Int32 = 1;
     var methodURL:String = "http://65.21.227.180:7777/rpc";
     var methodCall:CasperMethodCall = .chainGetStateRootHash;
     var httpHandler:HttpHandler = HttpHandler();
@@ -53,7 +52,7 @@ public class CasperSDK {
                 throw error
             }
         }
-        if let blockHeight = getStateRootHashParam.blockHeight {
+        else if let blockHeight = getStateRootHashParam.blockHeight {
             do {
                 let jsonParams : [[String:Any]] = [["Height":blockHeight]] as [[String:Any]];
                 try httpHandler.handleRequest(method: methodCall, params: jsonParams)
@@ -69,25 +68,6 @@ public class CasperSDK {
                 throw error
             }
         }
-        //TEST FOR GET PEER
-        httpHandler.methodCall = .infoGetPeer
-        do {
-            let jsonParams :String = "[]"
-            try httpHandler.handleRequest(method: methodCall, params: jsonParams)
-        } catch {
-            throw error
-        }
+       
     }
-   /*
-    public func getPeers() throws -> GetPeersResult {
-        let getPeers:GetPeers = GetPeers();
-        do {
-            let getPeersResult = getPeers.getPeers()
-            return getPeersResult;
-        } catch {
-            //print("Error")
-            throw error;
-        }
-    }*/
-    
 }

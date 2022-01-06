@@ -1,18 +1,6 @@
-//
-//  GetStateRootHash.swift
-//  SampleRPCCall1
-//
 //  Created by Hien on 09/12/2021.
-//
+//method call document in rust
 //https://docs.rs/casper-node/latest/casper_node/rpcs/chain/struct.GetStateRootHash.html
-
-//DATA BACK LIKE THIS
-/*
- ["result": {
-     "api_version" = "1.4.3";
-     "state_root_hash" = 1b0e70c9c78873867E317b184Ce1723162d6956fad9E8e4b1897D6f505c5e496;
- }, "id": 1, "jsonrpc": 2.0]
- */
 
 import Foundation
 enum GetStateRootHashError: Error {

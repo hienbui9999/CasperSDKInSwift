@@ -9,7 +9,7 @@ class GetBlock {
     
     let methodStr : String = "chain_get_block"
     public static func getBlock(from:[String:Any]) throws -> GetBlockResult {
-        var getBlockResult : GetBlockResult = GetBlockResult();
+        let getBlockResult : GetBlockResult = GetBlockResult();
         do {
             if let id = from["id"] as? Int {
                 print("id back:\(id)")
@@ -29,7 +29,7 @@ class GetBlock {
                     print("cant get api_version")
                 }
                 if let block = result["block"] as? [String:Any] {
-                    var getBlock:Block = Block();
+                    let getBlock:Block = Block();
                     getBlockResult.block = getBlock;
                     
                     //GET BLOCK HASH
@@ -39,7 +39,7 @@ class GetBlock {
                     }//END OF GETTING BLOCK HASH
                     //START GETTING HEADER
                     if let blockHeader = block["header"] as? [String:Any] {//10 items
-                        var getBlockHeader : BlockHeader = BlockHeader();
+                        let getBlockHeader : BlockHeader = BlockHeader();
                         getBlockResult.block.header = getBlockHeader;
                         if let accumulatedSeed = blockHeader["accumulated_seed"] as? String {//1
                             getBlockHeader.accumulatedSeed = accumulatedSeed;
@@ -78,11 +78,11 @@ class GetBlock {
                         }
                         //era_end // 2 items
                         if let eraEnd = blockHeader["era_end"] as? [String:Any] {//2 items
-                            var getEraEnd:EraEnd = EraEnd();
+                            let getEraEnd:EraEnd = EraEnd();
                             getBlockHeader.eraEnd = getEraEnd;
                             //item 1: era_report
                             if let eraReport = eraEnd["era_report"] as? [String:Any] {//3 items
-                                var getEraReport:EraReport = EraReport();
+                                let getEraReport:EraReport = EraReport();
                                 getEraEnd.eraReport = getEraReport;
                                 //equivocators
                                 if let equivocators = eraReport["equivocators"] as? [String] { // a list of equivocators
@@ -109,7 +109,7 @@ class GetBlock {
                                     for reward in rewards {
                                         if let amount = reward["amount"] as? UInt64 {
                                             if let validator = reward["validator"] as? String {
-                                                var rewardItem : RewardItem = RewardItem();
+                                                let rewardItem : RewardItem = RewardItem();
                                                 rewardItem.amount = amount;
                                                 rewardItem.validator = validator;
                                                 getEraReport.rewards.append(rewardItem);
@@ -124,7 +124,7 @@ class GetBlock {
                             //item 2: next_era_validator_weights
                             if let nextEraValidatorWeights = eraEnd["next_era_validator_weights"] as? [AnyObject] {
                                 //var
-                                for nevw in nextEraValidatorWeights {
+                                for _ in nextEraValidatorWeights {
                                     
                                 }
                             }
@@ -133,7 +133,7 @@ class GetBlock {
                     //END OF GETTING HEADER
                     //START GETTING BLOCK BODY
                     if let blockBody = block["body"] as? [String:Any] {
-                        var getBlockBody:BlockBody = BlockBody();
+                        let getBlockBody:BlockBody = BlockBody();
                         getBlock.body = getBlockBody;
                         //GET DEPLOY HASH LIST
                         if let deployHashes = blockBody["deploy_hashes"] as? [String]{
@@ -141,7 +141,7 @@ class GetBlock {
                             print("total Deploy Hash:\(totalDeployHash)")
                             for deployHash in deployHashes {
                                 print("deployHash:\(deployHash)")
-                                getBlockBody.deployHash.append(deployHash as! String)
+                                getBlockBody.deployHash.append(deployHash)
                             }
                         }
                         //GET TRANSFER HASH LIST
@@ -181,6 +181,9 @@ class GetBlock {
                     //END OF GETTING PROOFS
                 }
             }
+            else {
+                throw CasperMethodError.parseError
+           }
         } catch {
             print("error get block : \(error)")
         }
