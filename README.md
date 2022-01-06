@@ -12,22 +12,34 @@ From terminal
 Go to the SKD root folder.
 
 - Build command in terminal, type this in terminal
+
 swift build
 
 - Test command in terminal, type this in terminal
+
 swift test
+
 For a full build,test on the SKD, run the following command
 
 swift package clean
+
 swift build
+
 swift test
 
+
 For Xcode
+
 In Project Targets select the project General setting, Scroll to “Frameworks, Libraries, and Embedded Content”, choose “+”, then “Add Other…”, then “Add Package Dependency”, parse the link “https://github.com/hienbui9999/CasperSDKInSwift” to “Search or Enter package URL” search box, then press the “Add package” button.
+
 Now you can call the Casper RPC methods through the CasperSDK class.
+
 Just put 
+
 import CasperSDKInSwift
+
 at the beginning of the file to refer for CasperSDK instance and call the method request
+
 
 ## How To: Query a node ?
 
