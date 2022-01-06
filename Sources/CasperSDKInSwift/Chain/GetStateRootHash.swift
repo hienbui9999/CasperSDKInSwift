@@ -1,4 +1,3 @@
-
 /**
   * Retrieves a state root hash at a given block
   *

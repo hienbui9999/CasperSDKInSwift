@@ -1,7 +1,7 @@
 /**
    * get peers list
    *
-   * @return : List[PeerEntry]
+   * @return : List[PeerEntry], wrapped in GetPeersResult object
    */
 import Foundation
 

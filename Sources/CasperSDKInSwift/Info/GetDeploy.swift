@@ -1,4 +1,5 @@
 import Foundation
+
 class GetDeploy {
     let methodStr : String = "info_get_deploy"
     let methodURL : String = "http://65.21.227.180:7777/rpc"
