@@ -8,7 +8,7 @@ Swift sdk library for interacting with a CSPR node.
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 
-##Build and test from terminal 
+## Build and test from terminal 
 
 Go to the SKD root folder.
 
@@ -35,9 +35,9 @@ In Project Targets select the project General setting, Scroll to “Frameworks, 
 
 Now you can call the Casper RPC methods through the CasperSDK class.
 
-Just put 
+Just put the following code
 
-import CasperSDKInSwift
+"import CasperSDKInSwift"
 
 at the beginning of the file to refer for CasperSDK instance and call the method request
 
