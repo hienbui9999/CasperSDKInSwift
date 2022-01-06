@@ -7,6 +7,7 @@
   */
 
 import Foundation
+
 enum GetStateRootHashError: Error {
     case invalidURL
     case parseError

@@ -1,5 +1,5 @@
-
 import Foundation
+
 class GetBlockTransfers:RpcWithOptionalParams {
     let methodStr : String = "chain_get_block_transfers"
     let methodURL : String = "http://65.21.227.180:7777/rpc"

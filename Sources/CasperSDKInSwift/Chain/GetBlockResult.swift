@@ -1,8 +1,3 @@
-
-//
-//  Created by Hien on 27/12/2021.
-//
-
 import Foundation
 
 public class NextEraValidatorWeightsItem {

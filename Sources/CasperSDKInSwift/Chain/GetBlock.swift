@@ -1,8 +1,5 @@
-//
-//  Created by Hien on 11/12/2021.
-//
-
 import Foundation
+
 class GetBlock {
     let methodStr : String = "chain_get_block"
     public static func getBlock(from:[String:Any]) throws -> GetBlockResult {
