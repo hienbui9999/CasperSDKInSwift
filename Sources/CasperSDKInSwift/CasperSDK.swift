@@ -33,6 +33,7 @@ public class CasperSDK {
         self.methodURL = url;
         HttpHandler.methodURL = methodURL;
     }
+    //call for method info_get_peers
     public func getPeers() throws {
         methodCall = .infoGetPeer
         httpHandler.methodCall = .infoGetPeer
@@ -42,32 +43,36 @@ public class CasperSDK {
             throw error
         }
     }
+    //call for method info_get_state_root_hash
     public func getStateRootHash(getStateRootHashParam:GetStateRootHashParam) throws {
-       methodCall = .chainGetStateRootHash
+        methodCall = .chainGetStateRootHash
+        let defaultParams:String = "[]"
+        var jsonParams:[[String:Any]]?
+        //check if the params is the block_hash
         if let blockHash = getStateRootHashParam.blockHash {
-            let jsonParams : [[String:Any]] = [["Hash":blockHash]] as [[String:Any]];
+            if blockHash != "" {
+                jsonParams = [["Hash":blockHash]] as [[String:Any]];
+            }
+        }
+        //check if the param is the block_height
+        if let blockHeight = getStateRootHashParam.blockHeight {
+            if blockHeight != 0 {
+                jsonParams = [["Height":blockHeight]] as [[String:Any]];
+            }
+        }
+        //if get state root hash with params such as block_hash or height
+        if let jp = jsonParams{
             do {
-                try httpHandler.handleRequest(method: methodCall, params: jsonParams)
+                try httpHandler.handleRequest(method: methodCall, params: jp)
+            } catch {
+                throw error
+            }
+        } else { // if get state root hash without any params, then use the default param with value []
+            do {
+                try httpHandler.handleRequest(method: methodCall, params: defaultParams)
             } catch {
                 throw error
             }
         }
-        else if let blockHeight = getStateRootHashParam.blockHeight {
-            do {
-                let jsonParams : [[String:Any]] = [["Height":blockHeight]] as [[String:Any]];
-                try httpHandler.handleRequest(method: methodCall, params: jsonParams)
-            } catch {
-                throw error
-            }
-        }
-        else {
-            do {
-                let jsonParams :String = "[]"
-                try httpHandler.handleRequest(method: methodCall, params: jsonParams)
-            } catch {
-                throw error
-            }
-        }
-       
     }
 }

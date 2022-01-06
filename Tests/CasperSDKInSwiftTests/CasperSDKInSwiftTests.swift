@@ -15,6 +15,9 @@ final class CasperSDKInSwiftTests: XCTestCase {
         do {
             getStateRootHashParam.blockHash = "0BFbA69919eE66BA9b58faf843D95924d9C10927d5ac84df1F633381AE58aB71"
             try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
+            //for ther state_root_hash back, refer to HttpHandler file with method handleRequest, in the call
+            //let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
+            //you can print the result back at that place
         } catch {
             throw error
         }
@@ -23,6 +26,9 @@ final class CasperSDKInSwiftTests: XCTestCase {
             getStateRootHashParam.blockHeight = 405903
             getStateRootHashParam.blockHash = ""
             try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
+            //for ther state_root_hash back, refer to HttpHandler file with method handleRequest, in the call
+            //let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
+            //you can print the result back at that place
         } catch {
             throw error
         }
@@ -31,12 +37,18 @@ final class CasperSDKInSwiftTests: XCTestCase {
             getStateRootHashParam.blockHeight = 0
             getStateRootHashParam.blockHash = ""
             try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
+            //for ther state_root_hash back, refer to HttpHandler file with method handleRequest, in the call
+            //let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
+            //you can print the result back at that place
         } catch {
             throw error
         }
         //THIS IS TEST FOR CALLING METHOD info_get_peers
         do {
             try casperSDK.getPeers()
+            //for a list of peers back, refer to HttpHandler file with method handleRequest, in the call
+            //let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
+            //you can print the result back at that place
         } catch {
             throw error
         }
