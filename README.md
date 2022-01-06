@@ -52,12 +52,16 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 To query a node, use the CasperSDK as the entry point. Instantiate CasperSDK using the `url` and `port` of the node
 
 ```swift
-let casperSdk:CasperSKD = CasperSdk("http://0.0.0.0:11101");
+let casperSdk:CasperSKD = CasperSDK("http://0.0.0.0:11101");
 ```
 
-Note: The above url and port hold good for local nctl based nodes. Refer to this [page](https://caspernetwork.readthedocs.io/en/latest/dapp-dev-guide/setup-nctl.html) on how to set it up. If you want to test against a real node use `http://65.21.227.180` as the url and `7777` as the port.
+Note: The above url and port hold good for local nctl based nodes. Refer to this [page](https://caspernetwork.readthedocs.io/en/latest/dapp-dev-guide/setup-nctl.html) on how to set it up. If you want to test against a real node use `http://65.21.227.180` as the url and `7777` as the port. In this case, instantiate the CasperSKD like this:
 
-Once we have the instance of `CasperSDK`, any implemented query method can be executed on it. For example if we want to get information about the state root hash, use the following code snippet (The code below test several scenarios for calling method with different parameters):
+```swift
+let casperSdk:CasperSKD = CasperSDK("http://65.21.227.180:7777/rpc");
+```
+
+Once we have the instance of `CasperSDK`, any implemented query method can be executed on it. For example if we want to get information about the state root hash or get peers, use the following code snippet (The code below test several scenarios for calling method with different parameters):
 
 ```swift
         //Make instance of Casper Swift SDK with the predefined URL for sending POST request
