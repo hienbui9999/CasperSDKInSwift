@@ -8,7 +8,9 @@ Swift sdk library for interacting with a CSPR node.
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 ## How To: Install ?
-From terminal 
+
+###From terminal 
+
 Go to the SKD root folder.
 
 - Build command in terminal, type this in terminal
@@ -28,7 +30,7 @@ swift build
 swift test
 
 
-For Xcode
+### From Xcode IDE
 
 In Project Targets select the project General setting, Scroll to “Frameworks, Libraries, and Embedded Content”, choose “+”, then “Add Other…”, then “Add Package Dependency”, parse the link “https://github.com/hienbui9999/CasperSDKInSwift” to “Search or Enter package URL” search box, then press the “Add package” button.
 
