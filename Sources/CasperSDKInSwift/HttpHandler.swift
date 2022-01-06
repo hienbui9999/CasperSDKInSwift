@@ -39,7 +39,6 @@ class HttpHandler:XCTestCase {
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             //this is the json data back when sending request to the method url
             if let responseJSON = responseJSON as? [String: Any] {
-                expectation.fulfill()
                 if self.methodCall == .chainGetStateRootHash {
                     do {
                         let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
@@ -66,7 +65,7 @@ class HttpHandler:XCTestCase {
                         NSLog("Total peers:\(getPeer.getPeerMap().getPeerEntryList().count)\n")
                         NSLog("First peerAddress:\(firstPeer!.getAddress())\n")
                         NSLog("First peerID:\(firstPeer!.getNodeId())\n")
-                        
+
                         /* Uncomment this for showing the getPeer results - a list of PeerEntry*/
                         /*
                         
@@ -83,8 +82,10 @@ class HttpHandler:XCTestCase {
                     } catch {
                 
                     }
+                    
                 }
             }
+            expectation.fulfill()
         }
         task.resume()
         self.waitForExpectations(timeout: 15, handler: nil)
