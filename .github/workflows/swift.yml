@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Clean
+    - name: Clean package
       run: swift package clean
     - name: Build
       run: swift build -v
