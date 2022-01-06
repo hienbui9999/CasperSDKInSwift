@@ -22,54 +22,36 @@ enum GetStateRootHashError: Error {
     case blockNotFound
     case blockHeightError
 }
-@available(macOS 12.0.0, *)
-@available(iOS 15.0.0, *)
-
+public class GetStateRootHashParam{
+    public var blockHash:String?
+    public var blockHeight:UInt64?
+}
 class GetStateRootHash {
-    public static func getStateRootHash(params:Any)async throws -> String {
-        let methodStr : String = "chain_get_state_root_hash";
-        do {
-            let json = try await HttpHandler.handleRequest(method:methodStr,params: params);
-            if let error = json["error"] as? AnyObject {
-                if let code = error["code"] as? Int32 {
-                  //  print("error code:\(code)")
-                    if code == -32700 {
-                        throw GetStateRootHashError.parseError;
-                    } else if code == -32601 {
-                        throw GetStateRootHashError.methodNotFound
-                    } else if code == -32001 {
-                        throw GetStateRootHashError.blockNotFound
-                    } else {
-                        throw GetStateRootHashError.invalidURL
-                    }
-                }
-                if let message = error["message"] as? String {
-                  //  print("message:\(message)")
+    public static func getStateRootHash(from:[String:Any]) throws ->String {
+        if let error = from["error"] as AnyObject? {
+            if let code = error["code"] as? Int32 {
+                if code == -32700 {
+                    throw GetStateRootHashError.parseError;
+                } else if code == -32601 {
+                    throw GetStateRootHashError.methodNotFound
+                } else if code == -32001 {
+                    throw GetStateRootHashError.blockNotFound
                 } else {
-                    //print("Can not show message in error")
+                    throw GetStateRootHashError.invalidURL
                 }
             }
-            if let result = json["result"] as? AnyObject {
-                if let api_version = result["api_version"] as? String {
-                   // print("----IN ASYNC Api_version:\(api_version)")
-                } else {
-                  //  print("Can not get api_version in result")
-                }
-                if let state_root_hash = result["state_root_hash"] as? String{
-                  //  print("-----IN ASYNC stateRootHash:\(state_root_hash)")
-                    return state_root_hash
-                } else {
-                 //   print("Error get state root hash")
-                    throw GetStateRootHashError.parseError
-                }
+        }
+        if let result = from["result"] as AnyObject? {
+            if let _ = result["api_version"] as? String {
             } else {
-                //print("error get json result")
+            }
+            if let state_root_hash = result["state_root_hash"] as? String{
+                return state_root_hash
+            } else {
                 throw GetStateRootHashError.parseError
             }
-        } catch {
-           // print("GetStateRootHash - getStateRootHash function called, ERROR GET STATE ROOT HASH 2: \(error)")
-            throw error
+        } else {
+            throw GetStateRootHashError.parseError
         }
-       // throw CasperMethodError.unknown
     }
 }

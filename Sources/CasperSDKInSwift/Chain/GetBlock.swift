@@ -15,22 +15,20 @@ class GetBlock {
     //use this link for test https://testnet.cspr.live/block/96cc35D79bA8c9961A7E7573FFAc9eA5ABdeB167500206B7fe67D7BB843325cD
     
     let methodStr : String = "chain_get_block"
-    public func getBlock(params:Any) async throws -> GetBlockResult {
+    public static func getBlock(from:[String:Any]) throws -> GetBlockResult {
         var getBlockResult : GetBlockResult = GetBlockResult();
         do {
-            let json = try await HttpHandler.handleRequest(method: methodStr, params: params)
-            print("json back:\(json)")
-            if let id = json["id"] as? Int {
+            if let id = from["id"] as? Int {
                 print("id back:\(id)")
             } else {
                 print("cant get id")
             }
-            if let jsonCPR = json["jsonrpc"] as? String {
+            if let jsonCPR = from["jsonrpc"] as? String {
                 print("jsonCPR:\(jsonCPR)")
             } else {
                 print("can get json CPR")
             }
-            if let result = json["result"] as? [String:Any] {
+            if let result = from["result"] as? [String:Any] {
                 if let apiVersion = result["api_version"] as? String {
                     print("api_version back:\(apiVersion)")
                     getBlockResult.apiVersion = apiVersion

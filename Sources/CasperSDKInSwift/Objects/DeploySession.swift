@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 public class DeploySessionTransferArgWrapper {
     public var amount:String = "";//amount
     public var argItem:DeployArgItem = DeployArgItem();
@@ -20,3 +20,4 @@ public class DeploySessionTransfer {
 public class DeploySession {
     public var transfer:DeploySessionTransfer = DeploySessionTransfer();
 }
+*/

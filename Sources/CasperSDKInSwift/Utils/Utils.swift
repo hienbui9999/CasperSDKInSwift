@@ -32,6 +32,9 @@ enum DictionaryIdentifier {
     case Dictionary
 }
 class Utils {
+    
+    
+    
     func hand_request(url:String,method:String){
         let parameters = ["id": 1, "method": method,"params":"[]","jsonrpc":"2.0"] as [String : Any]
             //create the url with URL
