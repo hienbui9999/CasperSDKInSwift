@@ -10,7 +10,7 @@ SDK  to streamline the 3rd party Swift client integration processes. Such 3rd pa
 ## System requirement
 
 
-The SDK use Swift 5.0 and support device running IOS from 10.0, MacOS from 14.4.4, WatchOS from 5.3, tvOS from 12.3
+The SDK use Swift 5.0 and support device running IOS from 10.0, MacOS from 10.4.4, WatchOS from 5.3, tvOS from 12.3
 
 
 ## Build and test from terminal 
