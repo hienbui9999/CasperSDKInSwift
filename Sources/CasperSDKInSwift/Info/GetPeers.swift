@@ -1,8 +1,3 @@
-/**
-   * get peers list
-   *
-   * @return : List[PeerEntry], wrapped in GetPeersResult object
-   */
 import Foundation
 
 class GetPeers  {

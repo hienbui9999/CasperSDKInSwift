@@ -1,10 +1,3 @@
-/**
-  * Retrieves a state root hash at a given block
-  *
-  * @param blockHash or blockHeight or []
-  * @return state_root_hash_String
-  */
-
 import Foundation
 
 enum GetStateRootHashError: Error {
