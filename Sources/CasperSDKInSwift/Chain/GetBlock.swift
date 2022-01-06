@@ -1,14 +1,7 @@
 //
-//  GetBlock.swift
-//  SampleRPCCall1
-//
 //  Created by Hien on 11/12/2021.
 //
 //https://docs.rs/casper-node/latest/casper_node/rpcs/chain/struct.GetBlock.html
-//DATA BACK
-/*
- 
- */
 
 import Foundation
 class GetBlock {
@@ -194,49 +187,3 @@ class GetBlock {
         return getBlockResult;
     }
 }
-/*
- Data back
- 
- ["jsonrpc": 2.0, "result": {
-     "api_version" = "1.4.3";
-     block =     {
-         body =         {
-             "deploy_hashes" =             (
-                 1dd9D8BB08676751AbEd8fa9cdabD8aB18413E16aa64a61D6058Ee9896dC8f5b
-             );
-             proposer = 01D949A3a1963DB686607a00862f79B76CEB185FC134d0AeEDb686F1C151f4ae54;
-             "transfer_hashes" =             (
-             );
-         };
-         hash = f575666F156346402E8F865468329575da8396A0F84654337F9e2FD12d740B36;
-         header =         {
-             "accumulated_seed" = f3712f4FE4af5705de18227D594b7096ae64b12947097Ef772EDF4F1d0C942f1;
-             "body_hash" = dE744E615B5f0FbB6691a54Ef7836e9bd1dF93aC8DDDDF2c5f04B7546d4C1415;
-             "era_end" = "<null>";
-             "era_id" = 2950;
-             height = 366634;
-             "parent_hash" = C078B02114E5cF4ca628F13FC14FbE4991ebdEA0851349D091f08796CeBCcf84;
-             "protocol_version" = "1.4.3";
-             "random_bit" = 1;
-             "state_root_hash" = e40feD6eCcC9c21FD65dEB6a0155802B566D7b5DA8d441d188f18932Ee8fa83C;
-             timestamp = "2021-12-11T11:07:18.400Z";
-         };
-         proofs =         (
-                         {
-                 "public_key" = 0101a458aa2b551C5a49E56326f9BB298bb308E1bAbC875647AE0290c42f13FeAc;
-                 signature = 01Fe40957abFf56bBEd3e6B433DE43E4CebADB13aA9C8b2669014aa50C0F7bE7FFe6fEa7301425d4A4cDE51Ad5CA809E5fE09D8e8fb4E50e34704363d721B1D10a;
-             },
-                         {
-                 "public_key" = 0102112A711eb3beE9043ebf036FbDfd4482f0e37d1A65627E09922943713973f8;
-                 signature = 0121f88660dB74a0265dB648fd6dc87db658149A90148Dc3EafD59E9A5aD1c918F1c8e29AE6acDc8Cb10E396c895f62afEd0cc84c4C88dfE2f17B1C968D83Bf00A;
-             },
-                      
-                         {
-                 "public_key" = 01f340df2c32F25391e8F7924A99E93caB3A6F230ff7aF1CaCbfC070772cbeBD94;
-                 signature = 01F2083606a748076fBE5Eb617f9a0629d74CA8f0E804349A5A9B9266e6b5D7AbC98Ebc74cD8Db878E82c8fcf560c228667C752769F58dcca9dC1AAB885bf46206;
-             }
-         );
-     };
- }, "id": 1]
-
- */

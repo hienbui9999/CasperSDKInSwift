@@ -1,17 +1,8 @@
-//
-//  GetEraInfoBySwitchBlock.swift
-//  SampleRPCCall1
-//
+
 //  Created by Hien on 11/12/2021.
 //
 //https://docs.rs/casper-node/latest/casper_node/rpcs/chain/struct.GetEraInfoBySwitchBlock.html
-//DATA BACK
-/*
- ["result": {
-     "api_version" = "1.4.3";
-     "era_summary" = "<null>";
- }, "jsonrpc": 2.0, "id": 1]
- */
+
 import Foundation
 class GetEraInfoBySwitchBlock {
     let methodStr : String = "chain_get_era_info_by_switch_block"
@@ -48,7 +39,7 @@ class GetEraInfoBySwitchBlock {
                 do {
                     //create json object from data
                     if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                        print("JSON BACK:\(json)")
+                       
                     }
                 } catch let error {
                     print(error.localizedDescription)

@@ -8,6 +8,8 @@ Swift sdk library for interacting with a CSPR node.
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
 ## How To: Install ?
+Build command in terminal
+swift build
 For Xcode
 In Project Targets select the project General setting, Scroll to “Frameworks, Libraries, and Embedded Content”, choose “+”, then “Add Other…”, then “Add Package Dependency”, parse the link “https://github.com/hienbui9999/CasperSDKInSwift” to “Search or Enter package URL” search box, then press the “Add package” button.
 Now you can call the Casper RPC methods through the CasperSDK class.
