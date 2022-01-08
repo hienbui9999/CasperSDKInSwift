@@ -49,38 +49,26 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 ## How To: Query a node ?
 
-To query a node, use the CasperSDK as the entry point. Instantiate CasperSDK using the `url` and `port` of the node
+To query a node, use the CasperSDK as the entry point. Instantiate CasperSDK with the address for calling Casper method, like this:
 
 ```swift
-let casperSdk:CasperSKD = CasperSDK("http://0.0.0.0:11101");
-```
-
-Note: The above url and port hold good for local nctl based nodes. Refer to this [page](https://caspernetwork.readthedocs.io/en/latest/dapp-dev-guide/setup-nctl.html) on how to set it up. If you want to test against a real node use `http://65.21.227.180` as the url and `7777` as the port. In this case, instantiate the CasperSKD like this:
-
-```swift
-let casperSdk:CasperSKD = CasperSDK("http://65.21.227.180:7777/rpc");
+let casperSdk:CasperSKD = CasperSDK(url:"http://65.21.227.180:7777/rpc");
 ```
 
 Once we have the instance of `CasperSDK`, any implemented query method can be executed on it. For example if we want to get information about the state root hash or get peers, use the following code snippet (The code below test several scenarios for calling method with different parameters):
 
 ```swift
-        //Make instance of Casper Swift SDK with the predefined URL for sending POST request
-        //let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
-        //You can change to URL for sending POST request by running this code, with the specific url like this
-        casperSDK.setMethodUrl(url: "http://65.21.227.180:7777/rpc");
-        casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc");
-        
-        //THIS IS TEST FOR CALLING METHOD chain_info_get_state_root_hash
-        //instantiate the parameter object for calling method
+        let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
+        //chain_info_get_state_root_hash
         let getStateRootHashParam:GetStateRootHashParam = GetStateRootHashParam();
-        //TEST 1: CALLING METHOD WITH BLOCK HASH AS PARAMS
+        //TEST 1: send block hash as param
         do {
             getStateRootHashParam.blockHash = "0BFbA69919eE66BA9b58faf843D95924d9C10927d5ac84df1F633381AE58aB71"
             try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
         } catch {
             throw error
         }
-        //TEST 2: CALLING METHOD WITH BLOCK HEIGHT AS PARAMS
+        //TEST 2: send block height as param
         do {
             getStateRootHashParam.blockHeight = 405903
             getStateRootHashParam.blockHash = ""
@@ -88,7 +76,7 @@ Once we have the instance of `CasperSDK`, any implemented query method can be ex
         } catch {
             throw error
         }
-        //TEST 3: CALLING METHOD WITH PARAMS SET TO []
+        //TEST 3: no param
         do {
             getStateRootHashParam.blockHeight = 0
             getStateRootHashParam.blockHash = ""
@@ -96,7 +84,7 @@ Once we have the instance of `CasperSDK`, any implemented query method can be ex
         } catch {
             throw error
         }
-        //THIS IS TEST FOR CALLING METHOD info_get_peers
+        //info_get_peers
         do {
             try casperSDK.getPeers()
         } catch {
