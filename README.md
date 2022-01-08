@@ -49,7 +49,7 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 ## How To: Query a node ?
 
-To query a node, use the CasperSDK as the entry point. Instantiate CasperSDK with the address for calling Casper method, like this:
+To query a node, use the CasperSDK as the entry point. Instantiate CasperSDK with the URL address for calling Casper method, like this:
 
 ```swift
 let casperSdk:CasperSKD = CasperSDK(url:"http://65.21.227.180:7777/rpc");
