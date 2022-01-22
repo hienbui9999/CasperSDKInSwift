@@ -22,58 +22,6 @@ public enum Transform {
     case NONE
 }
 public class TransformHelper {
-    public static func printMe(transform:Transform) {
-        switch transform {
-        case .Identity:
-            print("Transform type is Identity")
-        case .WriteCLValue(let cLValue):
-            print("Transform type is WriteCLValue, value for cLValue:")
-        case .WriteAccount(let accountHash):
-            print("in print me, WriteAccount, accountHash:\(accountHash.value)")
-        case .WriteContractWasm:
-            print("Transform type is WriteContractWasm")
-        case .WriteContract:
-            print("Transform type is WriteContract")
-        case .WriteContractPackage:
-            print("Transform type is WriteContractPackage")
-        case .WriteDeployInfo(let deployInfo):
-            print("Transform type is WriteDeployInfo")
-        case .WriteEraInfo(let eraInfo):
-            print("Transform type is EraInfo")
-        case .WriteTransfer(let transfer):
-            print("Transform type is WriteTransfer")
-        case .WriteBid(let bid):
-            print("Transform type is bid")
-        case .WriteWithdraw(let listWithDraws):
-            print("Transform type is WriteWithdraw")
-            var counter:Int = 0;
-            for draw in listWithDraws {
-                counter += 1;
-                print("withdraw number \(counter) amount:\(draw.amount), bonding_purse:\(draw.bonding_purse.value)")
-            }
-        case .AddInt32(let int32):
-            print("Transform type is AddInt32")
-        case .AddUInt64(let uInt64):
-            print("Transform type is AddInt64")
-        case .AddUInt128(let u128Class):
-            print("Transform type is AddUInt128")
-        case .AddUInt256(let u256Class):
-            print("Transform type is AddUInt256")
-        case .AddUInt512(let u512Class):
-            print("Transform type is AddUInt512")
-        case .AddKeys(let listAddKeys):
-            print("Transform type is AddKeys, total NamedKey:\(listAddKeys.count)")
-            var counter:Int = 0;
-            for listAddKey in listAddKeys {
-                counter += 1;
-                print("NamedKey number \(counter) key is:\(listAddKey.key), name:\(listAddKey.name)")
-            }
-        case .Failure(let string):
-            print("Transform type is Failure")
-        case .NONE:
-            print("Transform type is NONE")
-        }
-    }
     public static func getTransform(from:[String:Any])-> Transform {
         var retValue:Transform = .NONE
         if let transformType = from["transform"] as? String {
@@ -182,9 +130,6 @@ public class TransformHelper {
                 retValue = .WriteCLValue(clValue)
             }
         }
-        
-        
-        TransformHelper.printMe(transform: retValue)
         return retValue;
     }
 }
