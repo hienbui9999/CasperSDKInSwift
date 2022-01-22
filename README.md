@@ -160,7 +160,7 @@ Retrieves Transfert List within a block.
 
 call parameters :
 
-- block_identifier, and enum type which can be either BlockHash or BlockHeight (defined at this page https://docs.rs/casper-node/latest/casper_node/rpcs/chain/enum.BlockIdentifier.html)
+- block_identifier, and enum type which can be either BlockHash or BlockHeight 
 
 Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
@@ -250,7 +250,7 @@ Retrieves a StoredValue object.
 
 Here is some example of getting different kinds of StoredValue
 
-   #### 1. A contract :
+   #### 1. StoredValue as Contract :
 
 call parameters :
 
@@ -268,7 +268,7 @@ do {
 }
 ```
 
-  #### 2. An account  :
+  #### 2. StoredValue as account  :
 
 call parameters :
 
@@ -285,7 +285,7 @@ do {
     throw error
 }
 ```
-  #### 3. A transfer  :
+  #### 3. StoredValue as transfer  :
 
 call parameters :
 
@@ -303,7 +303,7 @@ do {
 }
 ```
 
-  #### 4. A DeployInfo  :
+  #### 4. StoredValue as DeployInfo  :
 
 call parameters :
 
@@ -321,7 +321,7 @@ do {
 }
 ```
 
-  #### 5. A Bid  :
+  #### 5. StoredValue as Bid  :
 
 call parameters :
 
@@ -341,7 +341,7 @@ do {
 }
 ```
 
-  #### 6. A Withdraw  :
+  #### 6. StoredValue as Withdraw  :
 
 call parameters :
 
@@ -371,8 +371,11 @@ call parameters :
 - dictionary_identifier (which an enum type defined in this page https://docs.rs/casper-node/latest/casper_node/rpcs/state/enum.DictionaryIdentifier.html) - there can be 4 possible kinds of value for parameters:
 
  1 - AccountNamedKey
+ 
  2 - ContractNamedKey
+ 
  3 - URef
+ 
  4 - Dictionary
 
 Call specification in detail for each type: 
@@ -453,7 +456,7 @@ do {
 Retrieves an AutionState object.
 
 call parameters :
-- block_identifier, and enum type which can be either BlockHash or BlockHeight (defined at this page https://docs.rs/casper-node/latest/casper_node/rpcs/chain/enum.BlockIdentifier.html)
+- block_identifier, and enum type which can be either BlockHash or BlockHeight 
 
 Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
