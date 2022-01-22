@@ -9,7 +9,6 @@ public class JsonExecutionResult {
             for executionResult in executionResults{
                 let retJER : JsonExecutionResult  = JsonExecutionResult();
                 if let blockHash = executionResult["block_hash"] as? String{
-                    print("Block hash:\(blockHash)")
                     retJER.blockHash = blockHash;
                 }
                 if let ercJson = executionResult["result"] as? [String:Any] {

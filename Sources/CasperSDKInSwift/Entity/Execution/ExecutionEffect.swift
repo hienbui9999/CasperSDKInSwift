@@ -16,9 +16,7 @@ public class ExecutionEffect {
         if let transforms = from["transforms"] as? [[String:AnyObject]] {
             let totalTransform = transforms.count;
             var counter:UInt = 0;
-            print("Total transform:\(totalTransform)")
             for transform in transforms {
-                print("get transform number :\(counter)")
                 let transformObj:TransformEntry = TransformEntry.getTransformEntry(from:transform)
                 counter += 1
             }

@@ -6,7 +6,6 @@ public class TransformEntry {
     public static func getTransformEntry(from:[String:Any])->TransformEntry {
         let transformEntry:TransformEntry = TransformEntry();
         if let key = from["key"] as? String {
-            print("Key:\(key)")
             transformEntry.key = key;
         }
         transformEntry.transform = TransformHelper.getTransform(from: from);
