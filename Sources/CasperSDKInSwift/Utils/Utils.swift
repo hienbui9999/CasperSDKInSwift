@@ -25,12 +25,7 @@ import Foundation
      Dictionary(String),
  }
  */
-enum DictionaryIdentifier {
-    case AccountNamedKey
-    case  ContractNamedKey
-    case URef
-    case Dictionary
-}
+
 class Utils {
     
     
