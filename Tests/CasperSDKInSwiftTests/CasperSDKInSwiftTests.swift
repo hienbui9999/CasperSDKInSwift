@@ -151,12 +151,12 @@ final class CasperSDKInSwiftTests: XCTestCase {
         //11.Test for state_get_auction_info
         
         do {
-            //if fail block hash, latest block data will be used
+            
             //let block_identifier:BlockIdentifier = .Height(473576)
             let block_identifier:BlockIdentifier = .Hash("cb8dab9f455538bc6cedb217a6234faeece8ce32c94d053b5b770450290b3a30")
             try casperSDK.getAuctionInfo(input: block_identifier)
         } catch {
-            
+            throw error
         }
     }
 }
