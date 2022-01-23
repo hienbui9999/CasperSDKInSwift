@@ -164,7 +164,7 @@ call parameters :
 
 - block_identifier, and enum type which can be either BlockHash or BlockHeight 
 
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
+Call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
 ``` swift
 do {
@@ -175,7 +175,7 @@ do {
 }
 ```
 
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+Call by BlockHeight, you can change the BlockHeight in the .Height() parameter
 
 ``` swift
 do {
@@ -194,7 +194,7 @@ call parameters :
 
 - block_identifier, and enum type which can be either BlockHash or BlockHeight
 
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
+Call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
 ``` swift
 do {
@@ -205,7 +205,7 @@ do {
 }
 ```
 
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+Call by BlockHeight, you can change the BlockHeight in the .Height() parameter
 
 ``` swift
 do {
@@ -224,7 +224,7 @@ call parameters :
 
 - switch  block (last block within an era) hash, which is a block_identifier, and enum type which can be either BlockHash or BlockHeight
 
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+Call by BlockHeight, you can change the BlockHeight in the .Height() parameter
 
 ``` swift
 do {
@@ -235,7 +235,7 @@ do {
 }
 ```
 
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
+Call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
 ``` swift
 do {
@@ -460,7 +460,7 @@ Retrieves an AutionState object.
 call parameters :
 - block_identifier, and enum type which can be either BlockHash or BlockHeight 
 
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
+Call by BlockHash, you can change the BlockHash in the .Hash("") parameter
 
 ``` swift
 do {
@@ -470,7 +470,7 @@ do {
     
 }
 ```
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+Call by BlockHeight, you can change the BlockHeight in the .Height() parameter
 
 ``` swift
 do {
