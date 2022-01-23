@@ -1,14 +1,5 @@
 import Foundation
-/*public class GetEraInfoBySwitchBlockResult {
-    public var apiVersion:String?
-    public var dictionaryKey:String?
-    public var storedValue:StoredValue?
-    public var merkleProof:String?
-}
-class GetEraUtil{
-    
-}*/
-//1 result with block height: 441855
+
 class GetEraInfoBySwitchBlock {
     public static func getResult(from:[String:Any]) throws -> GetEraInfoResult {
         let retResult:GetEraInfoResult = GetEraInfoResult();

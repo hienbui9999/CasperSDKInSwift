@@ -1,11 +1,5 @@
-//
-//  ProtocolAll.swift
-//  SampleRPCCall1
-//
-//  Created by Hien on 09/12/2021.
-//
-
 import Foundation
+
 protocol RpcWithParams {
     
 }

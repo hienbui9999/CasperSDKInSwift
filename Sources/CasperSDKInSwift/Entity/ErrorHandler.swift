@@ -5,10 +5,8 @@ public enum ErrorCode:Error {
 }
 public class ErrorHandler {
     public static func getError2(from:[String:Any]) -> ErrorCode {
-        print("get error from:\(from)")
         var ret:ErrorCode = .NONE
         if let result = from["error"] as? [String:Any] {
-            print("Result:\(result)")
             var errorCode:Int?
             var errorMessage:String?
             if let code = result["code"] as? Int {
@@ -25,9 +23,7 @@ public class ErrorHandler {
         return .NONE
     }
     public static func getError(from:[String:Any]) -> CasperMethodError {
-        print("get error from:\(from)")
         if let result = from["error"] as? [String:Any] {
-            print("Result:\(result)")
             if let code = result["code"] as? Int {
                 if code == -32005 {
                     return CasperMethodError.parseError

@@ -9,41 +9,6 @@ enum GetStateRootHashError: Error {
 }
 public class GetStateRootHashParam{
     public var block_identifier:BlockIdentifier = .None
-    //public var blockHash:String?
-    //public var blockHeight:UInt64?
-    /*public func toJsonData()->Data {
-        var hasParam:Bool = false
-        var objParam:[String:Any] = [:]
-        if block_identifier blockHash != nil {
-            if blockHash != "" {
-                objParam = ["block_identifier":["Hash":blockHash]]
-                hasParam = true
-            }
-        }
-        if blockHeight != nil {
-            if blockHeight! >= 0 {
-                objParam = ["block_identifier":["Height":blockHeight]]
-                hasParam = true
-            }
-        }
-        var obj:[String:Any]!
-        if hasParam {
-            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":"chain_get_state_root_hash","params":objParam]
-        } else {
-            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":"chain_get_state_root_hash","params":"[]"]
-        }
-        let encode = JSONEncoder()
-        encode.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
-            print(String(data: jsonData, encoding: .utf8)!)
-            return jsonData
-        }
-        catch {
-            print("Error:\(error)")
-        }
-        return Data()
-    }*/
 }
 class GetStateRootHash {
     public static func getStateRootHash(from:[String:Any]) throws ->String {

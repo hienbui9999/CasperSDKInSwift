@@ -49,7 +49,9 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 ## Flow of processing:
 
 Instantiate one instance of the CasperSKD, which is defined in file "CasperSDK.swift". In the test section of this project we instantiate it from "CasperSDKInSwiftTests.swift" file and set parameter and call the methods from this file.
+
 The call for each method will then send POST request and get data back from server, this process is done in "HttpHandler" file.
+
 For processing the data back from server (as Json format), base on which method call, the corresponding class and functions will be call to catch and put data in proper data structure, which started from this code line "if self.methodCall == .chainGetStateRootHash {" in "HttpHandler" file.
 
 # Usage examples 

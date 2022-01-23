@@ -3,16 +3,6 @@ import Foundation
 public class JsonEraValidators {
     public var era_id:UInt64=0
     public var validator_weights:[ValidatorWeight] = [ValidatorWeight]()
-    public func printMe() {
-        print("-----JsonEraValidators-----")
-        print("era_id:\(era_id)")
-        print("total validator_weights:\(validator_weights.count)")
-        for vw in validator_weights {
-            vw.printMe()
-        }
-        print("-----JsonEraValidators END -----")
-
-    }
     public static func fromJsonToEraValidator(from:[String:Any])->JsonEraValidators {
         let ret : JsonEraValidators = JsonEraValidators();
         if let from1 = from as? [String:Any] {

@@ -27,65 +27,6 @@ public enum CLType {
     case NONE
 }
 public class CLTypeHelper {
-    public static func printMe(clType:CLType) {
-        switch clType {
-        case .Bool:
-            print("CLTYPE - Bool")
-        case .I32:
-            print("CLTYPE - I32")
-        case .I64:
-            print("CLTYPE - I64")
-        case .U8:
-            print("CLTYPE - U8")
-        case .U32:
-            print("CLTYPE - U32")
-        case .U64:
-            print("CLTYPE - U64")
-        case .U128:
-            print("CLTYPE - U128")
-        case .U256:
-            print("CLTYPE - U256")
-        case .U512:
-            print("CLTYPE - U512")
-        case .Unit:
-            print("CLTYPE - Unit")
-        case .String:
-            print("CLTYPE - String")
-        case .Key:
-            print("CLTYPE - Key")
-        case .URef:
-            print("CLTYPE - URef")
-        case .PublicKey:
-            print("CLTYPE - Publick key")
-        case .BytesArray(let uInt32):
-            print("CLTYPE - Byte Array, value uInt32:\(uInt32)")
-        case .Result(let cLType1, let cLType2):
-            print("CLTYPE - Result, cltype1:\(cLType1), clType2:\(cLType2)")
-            CLTypeHelper.printMe(clType: cLType1)
-            CLTypeHelper.printMe(clType: cLType2)
-        case .Option(let cLType):
-            print("CLTYPE - Option, clType:\(cLType)")
-        case .List(let cLType):
-            print("CLTYPE - List, cltype:\(cLType)")
-            CLTypeHelper.printMe(clType: cLType)
-        case .Map(let cLType1, let cLType2):
-            print("CLTYPE - Map,clType1:\(cLType1), clType2:\(cLType2)")
-            CLTypeHelper.printMe(clType: cLType1)
-            CLTypeHelper.printMe(clType: cLType2)
-        case .Tuple1(let cLType):
-            print("CLTYPE - Tuple1, cLType:\(cLType)")
-        case .Tuple2(let cLType1, let cLType2):
-            print("CLTYPE - Tuple2, cLType:\(cLType1), clType2:\(cLType2)")
-        case .Tuple3(let cLType1, let cLType2, let cLType3):
-            print("CLTYPE - Tuple3, cLType1:\(cLType1), clType2:\(cLType2),cLType3:\(cLType3)")
-        case .CLAny:
-            print("CLTYPE - CLAny")
-        case .NONE:
-            print("CLTYPE - NONE")
-        default:
-            break
-        }
-    }
     public static func jsonToCLType(from:AnyObject,keyStr:String = "cl_type")-> CLType {
         var ret :CLType = .NONE
         if let clTypeWrapper = from[keyStr] as? String {
@@ -97,7 +38,7 @@ public class CLTypeHelper {
         }
         return ret;
     }
-    //ommit  let clJson = from["cl_type"] as AnyObject, get the value of from["cl_type"] as input
+    
     public static func jsonToCLTypePrimitive(from:AnyObject,keyStr:String="cl_type") -> CLType {
         var clType : CLType = .NONE
         //primitive type
@@ -165,13 +106,10 @@ public class CLTypeHelper {
                 return .List(clType)
             }
         }
-       //for ByteArray
         if let byteArray = from["ByteArray"] as? UInt32 {
             return .BytesArray(byteArray)
         }
-        //FOR MAP TYPE
         if let mapCLType = from["Map"] as? AnyObject {
-//            print("Parse for Map to get CLType, json:\(mapCLType)")
             if !(mapCLType is NSNull) {
                 let keyCLType = CLTypeHelper.jsonToCLType(from: mapCLType,keyStr: "key")
                 let valueCLType = CLTypeHelper.jsonToCLType(from: mapCLType,keyStr: "value")
@@ -179,7 +117,6 @@ public class CLTypeHelper {
             }
         }
         
-        //FOR TUPLE1 TYPE
         if let tuple1CLType = from["Tuple1"] as? [AnyObject] {
             var tuple1:CLType?
             var counter : Int = 0;
@@ -191,7 +128,6 @@ public class CLTypeHelper {
             return .Tuple1(tuple1!)
         }
         
-        //FOR TUPLE2 TYPE
         if let tuple2CLType = from["Tuple2"] as? [AnyObject] {
             var tuple1:CLType?
             var tuple2:CLType?
@@ -207,7 +143,6 @@ public class CLTypeHelper {
             return .Tuple2(tuple1!, tuple2!)
         }
         
-        //FOR TUPLE3 TYPE
         if let tuple3CLType = from["Tuple3"] as? [AnyObject] {
             if !(tuple3CLType is NSNull) {
                 var tuple1:CLType?
@@ -227,7 +162,7 @@ public class CLTypeHelper {
                 return .Tuple3(tuple1!, tuple2!,tuple3!)
             }
         }
-        //FOR OPTION
+        
         if let optionCLType = from["Option"] as? String {
             clType = CLTypeHelper.stringToCLTypePrimitive(input: optionCLType)
             return .Option(clType)
@@ -241,8 +176,6 @@ public class CLTypeHelper {
             if !(resultCLType is NSNull) {
                 let okCLType = CLTypeHelper.jsonToCLType(from: resultCLType,keyStr: "ok")
                 let errCLType = CLTypeHelper.jsonToCLType(from: resultCLType,keyStr: "err")
-                CLTypeHelper.printMe(clType: okCLType)
-                CLTypeHelper.printMe(clType: errCLType)
                 return .Result(okCLType, errCLType)
             } else {
                 NSLog("parse result cltype error")

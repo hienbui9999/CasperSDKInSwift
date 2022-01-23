@@ -11,33 +11,26 @@ public class DeployHeader {
     
     public static func getDeployHeader(from:[String:Any])->DeployHeader {
         let retDeploy:DeployHeader = DeployHeader();
-        if let account = from["account"] as? String {//1
-            print("deploy header account:\(account)")
+        if let account = from["account"] as? String {
             retDeploy.account = account;
         }
-        if let bodyHash = from["body_hash"] as? String {//2
-            print("deploy header body_hash:\(bodyHash)")
+        if let bodyHash = from["body_hash"] as? String {
            retDeploy.body_hash = bodyHash;
         }
-        if let chainName = from["chain_name"] as? String {//3
-            print("deploy header chain_name:\(chainName)")
+        if let chainName = from["chain_name"] as? String {
             retDeploy.chain_name = chainName;
         }
-        if let gasPrice = from["gas_price"] as? UInt64 {//4
-            print("deploy header gas_price:\(gasPrice)")
+        if let gasPrice = from["gas_price"] as? UInt64 {
             retDeploy.gas_price = gasPrice;
         }
-        if let timeStamp = from["timestamp"] as? String {//5
-            print("deploy header timestamp:\(timeStamp)");
+        if let timeStamp = from["timestamp"] as? String {
             retDeploy.timestamp = timeStamp;
         }
-        if let ttl = from["ttl"] as? String {//6
-            print("deploy header ttl:\(ttl)");
+        if let ttl = from["ttl"] as? String {
             retDeploy.ttl = ttl;
         }
         if let dependencies = from["dependencies"] as? [String] {
             for dependency in dependencies {
-                print("deploy header dependency:\(dependency)")
                 retDeploy.dependencies.append(dependency)
             }
         }

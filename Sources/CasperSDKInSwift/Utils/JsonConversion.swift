@@ -132,7 +132,7 @@ public class JsonConversion {
             return jsonData
         }
         catch {
-            print("Error:\(error)")
+            NSLog("Error:\(error)")
         }
         return Data()
         
@@ -164,37 +164,15 @@ public class JsonConversion {
             return jsonData
         }
         catch {
-            print("Error:\(error)")
+            NSLog("Error:\(error)")
         }
         return Data()
     }
     public static func fromGetBalanceParamsToJson(input:GetBalanceParams)->[String] {
         var retJson:[String] = [String]()
-        //let param1 = ["state_root_hash":input.state_root_hash] as [String:Any]
-       // let param2 = ["purse_uref":input.purse_uref] as [String:Any]
         retJson.append(input.state_root_hash)
         retJson.append(input.purse_uref)
         return retJson
     }
-    /* public static func toJson3()->String {
-         let g:GetDictionaryItemParams2 = GetDictionaryItemParams2()
-         var ank:AccountNamedKey = AccountNamedKey();
-         var ankC:AccountNamedKeyContainer = AccountNamedKeyContainer();
-         ank.key = "account-hash-ad7e091267d82c3b9ed1987cb780a005a550e6b3d1ca333b743e2dba70680877"
-         ank.dictionary_name = "dict_name"
-         ank.dictionary_item_key = "abc_name"
-         g.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
-         ankC.AccountNamedKey = ank
-         g.dictionary_identifier = ankC
-         let encode = JSONEncoder()
-         encode.outputFormatting = .prettyPrinted
-         let data = try! encode.encode(g)
-         
-         print(String(data: data, encoding: .utf8)!)
-         var retStr = String(data:data,encoding: .utf8)!
-         retStr = retStr.replacingOccurrences(of: "\\", with: "", options: NSString.CompareOptions.literal, range: nil)
-         retStr = retStr.replacingOccurrences(of: "\\n", with: "", options: NSString.CompareOptions.literal, range: nil)
-         print("------retStr:\(retStr)")
-         return retStr
-     }*/
+   
 }

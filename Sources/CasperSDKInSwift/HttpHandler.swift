@@ -16,7 +16,7 @@ class HttpHandler:XCTestCase {
         let expectation = self.expectation(description: "Getting json data from casper")
         let task = URLSession.shared.dataTask(with: request)  { data, response, error in
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                NSLog(error?.localizedDescription ?? "No data")
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
@@ -171,7 +171,7 @@ class HttpHandler:XCTestCase {
                         NSLog("GetBalanceResult, merkle_proof length:\(getBalanceResult.merkle_proof.count)")
                         XCTAssert(getBalanceResult.merkle_proof.count > 1000)
                     } catch {
-                        print("Error got:\(error)")
+                        NSLog("Error got:\(error)")
                     }
                 } else if self.methodCall == .stateGetAuctionInfo {
                     do {
@@ -198,7 +198,7 @@ class HttpHandler:XCTestCase {
                         }
                         
                     } catch  {
-                        print("Error got:\(error)")
+                        NSLog("Error :\(error)")
                     }
                 }
             }

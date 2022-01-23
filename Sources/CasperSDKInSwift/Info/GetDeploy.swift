@@ -45,7 +45,6 @@ class GetDeploy {
                         getDeploy.deploy.header =  DeployHeader.getDeployHeader(from: header)
                     }
                     if let paymentJson = deployJson["payment"] as? [String:Any] {
-                       // print("payment:\(payment)")
                         getDeploy.deploy.payment = ExecutableDeployItemHelper.getExecutableDeployItem(from: paymentJson);
                     }
                     if let sessionJson = deployJson["session"] as? [String:Any] {

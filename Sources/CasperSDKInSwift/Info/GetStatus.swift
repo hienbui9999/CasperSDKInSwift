@@ -53,7 +53,6 @@ public class GetStatus {
                 }
            
                 if let nextUpgradeResult = result["next_upgrade"]  as? [String:Any] {
-                    print("NextUpgrade:\(nextUpgradeResult)")
                     let nextUpgrade:NextUpgrade = NextUpgrade();
                     if let activationPoint = nextUpgradeResult["activation_point"] as? Int {
                         nextUpgrade.activation_point = activationPoint;

@@ -3,6 +3,7 @@ import Foundation
 public class JsonExecutionResult {
     public var blockHash:String = ""
     public var result:ExecutionResult = .None
+    
     public static func getExecutionResult(from:[String:Any]) -> [JsonExecutionResult] {
         var retValue:[JsonExecutionResult] = [JsonExecutionResult]();
         if let executionResults = from["execution_results"] as? [AnyObject] {

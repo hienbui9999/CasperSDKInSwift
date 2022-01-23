@@ -241,7 +241,6 @@ public class CLValue {
             break;
         case .Option(let cLType):
             let ret = CLValue.getCLValueWrapperDirect(from: from, clType: cLType)
-            CLValue.printParsed(parsed: ret)
             return .OptionWrapper(ret)
             break;
         case .List(let cLTypeInList):
@@ -338,102 +337,7 @@ public class CLValue {
         }
         return .NONE
     }
-   
-    public static func printParsed(parsed:CLValueWrapper) {
-        switch parsed {
-        case .Bool(let bool):
-            print("parsed bool:\(bool)")
-        case .I32(let int32):
-            print("parsed I32:\(int32)")
-        case .I64(let int64):
-            print("parsed I64:\(int64)")
-        case .U8(let uInt8):
-            print("parsed U8:\(uInt8)")
-        case .U32(let uInt32):
-            print("parsed U32:\(uInt32)")
-        case .U64(let uInt64):
-            print("parsed U64:\(uInt64)")
-        case .U128(let u128Class):
-            print("parsed type U128, value:\(u128Class.valueInStr)")
-        case .U256(let u256Class):
-            print("parsed type U256,value:\(u256Class.valueInStr)")
-        case .U512(let u512Class):
-            print("parsed type U512: value: \(u512Class.valueInStr)")
-        case .Unit(let string):
-            print("parsed type Unit, value:\(string)")
-        case .String(let string):
-            print("parsed type String, value:\(string)")
-        case .Key(let string):
-            print("parsed type Key, value:\(string)")
-        case .URef(let string):
-            print("parsed type URef,value:\(string)")
-        case .PublicKey(let string):
-            print("parsed type PublicKey,value:\(string)")
-        case .BytesArray(let uInt32):
-            print("parsed type BytesArray,value:\(uInt32)")
-        case .OptionWrapper(let cLValueWrapper):
-            print("parsed OptionalWrapper")
-            CLValue.printParsed(parsed: cLValueWrapper)
-        case .ListWrapper(let array):
-            print("parsed ListWrapper, print for each element")
-            var counter:Int = 0;
-            for element in array {
-                print("Print for list element number \(counter):")
-                CLValue.printParsed(parsed: element)
-                counter += 1
-            }
-            
-        case .ResultWrapper(let resultType, let cLValueWrapper):
-            print("parsed ResultWrapper")
-            if resultType == "Ok" {
-                print("OK:")
-                CLValue.printParsed(parsed: cLValueWrapper)
-            } else {
-                print("Err:")
-                CLValue.printParsed(parsed: cLValueWrapper)
-            }
-        case .MapWrapper(let cLValueWrapper1, let cLValueWrapper2):
-            print("parsed MapWrapper")
-            let totalE:Int = cLValueWrapper1.count
-            if totalE == 0 {
-                print("CLVALUE - Map is empty")
-                break
-                //return .MapWrapper(CLValueWrapper.NONE, CLValueWrapper.NONE)
-            }
-            for i in 0 ... totalE-1 {
-                print("Key:")
-                CLValue.printParsed(parsed: cLValueWrapper1[i])
-                print("Value:")
-                CLValue.printParsed(parsed: cLValueWrapper2[i])
-            }
-            print("done for map")
-        case .Tuple1Wrapper(let cLValueWrapper):
-            print("Tuple1Wrapper")
-            break;
-        case .Tuple2Wrapper(let cLValueWrapper1, let cLValueWrapper2):
-            print("Tuple2Wrapper, value 1:")
-            CLValue.printParsed(parsed: cLValueWrapper1)
-            print("Tuple2Wrapper, value 2:")
-            CLValue.printParsed(parsed: cLValueWrapper2)
-            break;
-        case .Tuple3Wrapper(let cLValueWrapper1, let cLValueWrapper2, let cLValueWrapper3):
-            print("Tuple3Wrapper, value 1:")
-            CLValue.printParsed(parsed: cLValueWrapper1)
-            print("Tuple3Wrapper, value 2:")
-            CLValue.printParsed(parsed: cLValueWrapper2)
-            print("Tuple3Wrapper, value 3:")
-            CLValue.printParsed(parsed: cLValueWrapper3)
-            print("Tuple3Wrapper")
-            break;
-        case .AnyCLValue(let string):
-            print("AnyCLValue:\(string)")
-            break;
-        case .NULL:
-            print("null")
-        case .NONE:
-            print("None")
-        }
-    }
+
     public static func getCLValue(from:[String:Any]) -> CLValue {
         let clValue:CLValue = CLValue();
         if let bytes = from["bytes"] as? String {

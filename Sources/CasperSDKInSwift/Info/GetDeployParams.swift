@@ -12,7 +12,7 @@ public class GetDeployParams {
             return jsonData
         }
         catch {
-            print("Error:\(error)")
+            NSLog("Error:\(error)")
         }
         return Data()
     }
