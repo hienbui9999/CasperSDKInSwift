@@ -70,7 +70,7 @@ public class JsonConversion {
         return retJson
        
     }
-    public static func fromBlockIdentifierToJsonData(input:BlockIdentifier,method:CasperMethodCall) -> Data {
+    /*public static func fromBlockIdentifierToJsonData(input:BlockIdentifier,method:CasperMethodCall) -> Data {
         var objParams:[[String:Any]]?;
         switch input{
         case .Hash(let hash):
@@ -96,7 +96,7 @@ public class JsonConversion {
         }
         return Data()
         
-    }
+    }*/
     public static func generatePostDataNoParam(method: CasperMethodCall) -> Data {
         let  obj:[String:Any] = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":"[]"]
        let encode = JSONEncoder()
@@ -109,7 +109,7 @@ public class JsonConversion {
        }
         return Data()
     }
-    public static func fromBlockIdentifierToJsonData2(input:BlockIdentifier,method:CasperMethodCall)->Data {
+    public static func fromBlockIdentifierToJsonData(input:BlockIdentifier,method:CasperMethodCall)->Data {
         var objParams:[String:Any]?;
         var obj:[String:Any]!
         switch input{

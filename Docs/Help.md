@@ -26,11 +26,11 @@ This is the documentation for the following methods call for Casper RPC
 
 ## Flow of processing:
 
-Instantiate one instance of the CasperSKD, which is defined in file "CasperSDK.swift". In the test section of this project we instantiate it from "CasperSDKInSwiftTests.swift" file and set parameter and call the methods from this file.
+Instantiate one instance of the CasperSKD, which is defined in file "CasperSDK.swift". 
 
 The call for each method will then send POST request and get data back from server, this process is done in "HttpHandler" file.
 
-For processing the data back from server (as Json format), base on which method call, the corresponding class and functions will be call to catch and put data in proper data structure, which started from this code line "if self.methodCall == .chainGetStateRootHash {" in "HttpHandler" file.
+For processing the data back from server (as Json format), base on which method call, the corresponding class and functions will be call to catch and put data in proper data structure.
 
 # Classes and methods in detail 
 
@@ -38,407 +38,354 @@ For processing the data back from server (as Json format), base on which method 
 
 ### I. Get State Root Hash  
 
-Retrieves  the state root hash String. There are 3 cases for calling this method
+#### 1. Method declaration
 
-1 - call method without any param
-
-2 - call method with BlockHash param
-
-3 - call method with BlockHeight param
-
-``` swift
-let getStateRootHashParam:GetStateRootHashParam = GetStateRootHashParam();
-do {
-    try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
-} catch {
-    throw error
-}
+```swift
+        public func getStateRootHash(getStateRootHashParam:GetStateRootHashParam)
 ```
 
-2 - call method with BlockHash param - You can test with other block_hash by replacing the below hash in .Hash("") parameter
+#### 2. Input: GetStateRootHashParam object, which consist of a BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) or None (if send method without any parameter to get the latest state_root_hash)
 
-``` swift
-do {
-    getStateRootHashParam.block_identifier = .Hash("20e6cf8001a9456e9e202f0923393b1f551470934683800f62d11c1685d4710d")
-    try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
-} catch {
-    throw error
-}
+#### 3. Method flow detail:
+
+- input getStateRootHashParam of type GetStateRootHashParam will be used to make json data for post method 
+
+```swift
+let data = JsonConversion.fromBlockIdentifierToJsonData(input: getStateRootHashParam.block_identifier, method: .chainGetStateRootHash)
 ```
 
-3 - call method with BlockHeight param - You can test with other block Height by replacing the below Height in the .Height() parameter
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
 
-``` swift
-do {
-    getStateRootHashParam.block_identifier = .Height(473861)
-    try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
-} catch {
-    throw error
-}
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
 ```
+
+In the handleRequest function the state root hash is retrieved by running this code line
+
+```swift
+let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
+```
+
 
 ### II. Get network peers list  
 
-Retrieves  a list of Peers.
+#### 1. Method declaration
 
-``` swift
-       
-do {
-    try casperSDK.getPeers()
-} catch {
-    throw error
-}
+```swift
+public func getPeers()
 ```
+
+#### 2. Input: None
+
+#### 3. Method flow detail:
+
+- Call to  httpHandler object of HttpHandler class.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the peer list is retrieved by running this code line
+
+```swift
+let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
+```
+
 
 ### III. Get Deploy
 
-Retrieves a Deploy object.
+#### 1. Method declaration
 
-call parameters :
-- deploy hash
+```swift
+public func getDeploy(getDeployParam:GetDeployParams)
+```
 
-``` swift
-do {
-      let getDeployParam:GetDeployParams = GetDeployParams();
-      getDeployParam.deploy_hash = "1b6a2f1a67bc087babe46455f4c6e7775528999fd3a37dbcba5b438f439abda2";
-      try casperSDK.getDeploy(getDeployParam: getDeployParam)
-} catch {
-    throw error
-  }
+#### 2. Input: GetDeployParams object, which consist of a deploy_hash string 
+
+#### 3. Method flow detail:
+
+- input getDeployParam of type GetDeployParams will be used to make json data for post method 
+
+```swift
+let params = getDeployParam.toJsonData()
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetDeployResult is retrieved by running this code line
+
+```swift
+let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJSON)
 ```
 
 ###  IV. Get Node Status
 
-Retrieves a NodeStatus object.
+#### 1. Method declaration
 
-``` swift
-do {
-    try casperSDK.getStatus()
-} catch {
-    throw error
-}
+```swift
+public func getStatus()
 ```
+
+#### 2. Input: None
+
+#### 3. Method flow detail:
+
+- Call to  httpHandler object of HttpHandler class.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetStatusResult is retrieved by running this code line
+
+```swift
+let getStatusResult:GetStatusResult = try GetStatus.getStatus(from:responseJSON)
+```
+
 ### V. Get BlockTransfers
 
-Retrieves Transfert List within a block.
+#### 1. Method declaration
 
-call parameters :
-
-- block_identifier, and enum type which can be either BlockHash or BlockHeight 
-
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
-
-``` swift
-do {
-    let block_identifier : BlockIdentifier = .Hash("ae173969cb6ce3c99439c81e5b803c15797a8559796d980daa99f52beb7192e3")
-    try casperSDK.getBlockTransfers(input: block_identifier)
-}  catch {
-    throw error
-}
+```swift
+public func getBlockTransfers(input:BlockIdentifier)
 ```
 
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
 
-``` swift
-do {
-    let block_identifier  : BlockIdentifier = .Height(448471)
-    try casperSDK.getBlockTransfers(input: block_identifier)
-}  catch {
-    throw error
-}
+#### 3. Method flow detail:
+
+- input of type BlockIdentifier will be used to make json data for post method 
+
+```swift
+let jsonData = JsonConversion.fromBlockIdentifierToJsonData(input:input,method: .chainGetBlockTransfer)
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetBlockTransfersResult is retrieved by running this code line
+
+```swift
+let getBlockTransferResult:GetBlockTransfersResult = try GetBlockTransfers.getResult(from: responseJSON)
 ```
 
 ### VI. Get Block 
 
-Retrieves a Block object.
+#### 1. Method declaration
 
-call parameters :
-
-- block_identifier, and enum type which can be either BlockHash or BlockHeight
-
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
-
-``` swift
-do {
-    let block_identifier2 : BlockIdentifier = .Hash("830fd58dd08189981d7535fc9de0606bc789b2c8ef2af895ebce5ffc23c4530e")
-    try casperSDK.getBlock(input: block_identifier2)
-}  catch {
-    throw error
-}
+```swift
+public func getBlock(input:BlockIdentifier)
 ```
 
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
+#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
 
-``` swift
-do {
-    let block_identifier:BlockIdentifier = .Height(449797)
-    try casperSDK.getBlock(input: block_identifier)
-}  catch {
-    throw error
-}
+#### 3. Method flow detail:
+
+- input of type BlockIdentifier will be used to make json data for post method 
+
+```swift
+let jsonData = JsonConversion.fromBlockIdentifierToJsonData(input: input, method: .chainGetBlock)
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetBlockResult is retrieved by running this code line
+
+```swift
+let getBlockResult:GetBlockResult = try GetBlock.getBlock(from: responseJSON)
 ```
 
 ### VII. Get EraInfo By Switch Block 
 
-Retrieves an EraSummury object.
+#### 1. Method declaration
 
-call parameters :
-
-- switch  block (last block within an era) hash, which is a block_identifier, and enum type which can be either BlockHash or BlockHeight
-
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
-
-``` swift
-do {
-    let block_identifier:BlockIdentifier = .Height(441636)
-    try casperSDK.getEraBySwitchBlock(input: block_identifier)
-} catch {
-    throw error
-}
+```swift
+public func getEraBySwitchBlock(input:BlockIdentifier)
 ```
 
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
+#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
 
-``` swift
-do {
-    let block_identifier:BlockIdentifier = .Hash("83a86ba2d753d85cdd974cf2bb0f6cb5d446f00c2f7f89b5a5e4fef208b19fcc")
-    try casperSDK.getEraBySwitchBlock(input: block_identifier)
-} catch {
-    throw error
-}
+#### 3. Method flow detail:
+
+- input of type BlockIdentifier will be used to make json data for post method 
+
+```swift
+let params = JsonConversion.fromBlockIdentifierToJsonData(input: input, method: .chainGetEraInfoBySwitchBlock)
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetEraInfoResult is retrieved by running this code line
+
+```swift
+let eraResult:GetEraInfoResult = try GetEraInfoBySwitchBlock.getResult(from: responseJSON)
 ```
 
 ### VIII. Get StateItem
 
-Retrieves a StoredValue object.
+#### 1. Method declaration
 
-Here is some example of getting different kinds of StoredValue
+```swift
+    public func getItem(input:GetItemParams)
+```
 
-   #### 1. StoredValue as Contract :
+#### 2. Input: GetItemParams which is defined as
 
-call parameters :
-
-- state root hash
-- contract hash
-
-``` swift
-do {
-    let getStateItemParam:GetItemParams = GetItemParams();
-    getStateItemParam.state_root_hash = "83f6dca28102ecf1cf79d2e32172044b2eacf527e47a8781cead3850d01e6328"
-    getStateItemParam.key = "hash-b36478fa545160796de902e61ac504b33bc14624eea245a9df525b4d92d150bc"
-    try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
+```swift
+ public class GetItemParams {
+    public var state_root_hash:String?
+    public var key:String?
+    public var path:[String]?
 }
 ```
 
-  #### 2. StoredValue as account  :
+#### 3. Method flow detail:
 
-call parameters :
+- input of type GetItemParams will be used to make json data for post method 
 
-- state root hash
-- account hash
-
-``` swift
-do {
-    let getStateItemParam:GetItemParams = GetItemParams();
-    getStateItemParam.state_root_hash = "b31f42523b6799d6d403a3119596c958abf2cdba31066322f01e5fa38ef999aa"
-    getStateItemParam.key = "account-hash-ff2ae80f71c1ffcac4921100a21b67ddecf59a30fb86eb6979f47c8838b3b7d3"   
-    try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
-}
-```
-  #### 3. StoredValue as transfer  :
-
-call parameters :
-
-- state root hash
-- transfer hash
-
-``` swift
-do {
-    let getStateItemParam:GetItemParams = GetItemParams();
-   // getStateItemParam.state_root_hash = "1416302b2c637647e2fe8c0b9f7ee815582cc7a323af5823313ff8a8684c8cf8"
-   // getStateItemParam.key = "transfer-8218fa8c55c19264e977bf2bae9f5889082aee4d2c4eaf9642478173c37d1ed4"
-         try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
-}
+```swift
+let params = JsonConversion.fromGetStateItemToJsonData(input:input)
 ```
 
-  #### 4. StoredValue as DeployInfo  :
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
 
-call parameters :
-
-- state root hash
-- deploy info hash
-
-``` swift
-do {
-    let getStateItemParam:GetItemParams = GetItemParams();
-    getStateItemParam.state_root_hash = "1416302b2c637647e2fe8c0b9f7ee815582cc7a323af5823313ff8a8684c8cf8"
-    getStateItemParam.key = "deploy-a49c06f9b2adf02812a7b2fdcad08804a2ce4896ffec7c06c920d417e7e39cfe"
-    try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
-}
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
 ```
 
-  #### 5. StoredValue as Bid  :
+In the handleRequest function the GetItemResult is retrieved by running this code line
 
-call parameters :
-
-- state root hash
-- bid hash
-This example call the main net
-
-``` swift
-do {
-    casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
-    let getStateItemParam:GetItemParams = GetItemParams();
-    getStateItemParam.state_root_hash = "647C28545316E913969B032Cf506d5D242e0F857061E70Fb3DF55980611ace86"
-    getStateItemParam.key = "bid-24b6D5Aabb8F0AC17D272763A405E9CECa9166B75B745Cf200695E172857c2dD"
-     try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
-}
-```
-
-  #### 6. StoredValue as Withdraw  :
-
-call parameters :
-
-- state root hash
-- withdraw hash
-This example call the test net
-
-``` swift
-do {
-    casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
-    let getStateItemParam:GetItemParams = GetItemParams();
-    getStateItemParam.state_root_hash = "d360e2755f7cee816cce3f0eeb2000dfa03113769743ae5481816f3983d5f228"
-    getStateItemParam.key = "withdraw-df067278a61946b1b1f784d16e28336ae79f48cf692b13f6e40af9c7eadb2fb1"
-     try casperSDK.getItem(input: getStateItemParam)
-} catch {
-    throw error
-}
+```swift
+let getStateItemResult: GetItemResult =  GetItem.getItem(from:responseJSON)
 ```
 
 ### IX. Get DictionaryItem
 
-Retrieves a CLValue object.
+#### 1. Method declaration
 
-call parameters :
+```swift
+public func getDictionaryItem(from:GetDictionaryItemParams)
+```
 
-- state root hash
-- dictionary_identifier (which an enum type defined in this page https://docs.rs/casper-node/latest/casper_node/rpcs/state/enum.DictionaryIdentifier.html) - there can be 4 possible kinds of value for parameters:
+#### 2. Input: GetDictionaryItemParams which is defined as
 
- 1 - AccountNamedKey
- 
- 2 - ContractNamedKey
- 
- 3 - URef
- 
- 4 - Dictionary
-
-Call specification in detail for each type: 
-
-  #### 1. dictionary_identifier  parameter as  AccountNamedKey:
-
-``` swift
- do {
-     let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
-     getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
-     getDic.dictionary_identifier = DictionaryIdentifier.AccountNamedKey(key: "account-hash-ad7e091267d82c3b9ed1987cb780a005a550e6b3d1ca333b743e2dba70680877", dictionary_name: "dict_name", dictionary_item_key: "abc_name")
-         try casperSDK.getDictionaryItem(from: getDic)
- }  catch {
-     throw error
- }
- ```
- 
-   #### 2. dictionary_identifier  parameter as  ContractNamedKey:
-
-``` swift
- do {
-     let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
-     getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
-     getDic.dictionary_identifier = DictionaryIdentifier.ContractNamedKey(key: "hash-d5308670dc1583f49a516306a3eb719abe0ba51651cb08e606fcfc1f9b9134cf", dictionary_name: "dictname", dictionary_item_key: "abcname")
-    try casperSDK.getDictionaryItem(from: getDic)
- }  catch {
-     throw error
- }
- ```
- 
-   #### 3. dictionary_identifier  parameter as  URef:
-
-``` swift
- do {
-     let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
-     getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
-     getDic.dictionary_identifier = DictionaryIdentifier.URef(seed_uref: "uref-30074a46a79b2d80cff437594d2422383f6c754de453b732448cc711b9f7e129-007", dictionary_item_key: "abc_name")
-             try casperSDK.getDictionaryItem(from: getDic)
- }  catch {
-     throw error
- }
- ```
- 
-   #### 4. dictionary_identifier  parameter as  Dictionary:
-
-``` swift
- do {
-     let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
-     getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
-     getDic.dictionary_identifier = DictionaryIdentifier.Dictionary( "dictionary-5d3e90f064798d54e5e53643c4fce0cbb1024aadcad1586cc4b7c1358a530373")
- }  catch {
-     throw error
- }
- ```
-### X. Get Balance
-
-Retrieves the balances(in motes) of an account
-
-call parameters :
-
-- state root hash
-- account uref hash
-
-
-``` swift
-        
-do {
-    let getBP : GetBalanceParams = GetBalanceParams();
-    getBP.state_root_hash = "8b463b56f2d124f43e7c157e602e31d5d2d5009659de7f1e79afbd238cbaa189";
-    getBP.purse_uref = "uref-be1dc0fd639a3255c1e3e5e2aa699df66171e40fa9450688c5d718b470e057c6-007";
-    try casperSDK.getStateBalance(input: getBP)
-}  catch {
-    throw error
-}
- ```
- ### XI. Get current auction state
-
-Retrieves an AutionState object.
-
-call parameters :
-- block_identifier, and enum type which can be either BlockHash or BlockHeight 
-
-Here is the call by BlockHash, you can change the BlockHash in the .Hash("") parameter
-
-``` swift
-do {
-    let block_identifier:BlockIdentifier = .Hash("cb8dab9f455538bc6cedb217a6234faeece8ce32c94d053b5b770450290b3a30")
-    try casperSDK.getAuctionInfo(input: block_identifier)
-} catch {
-    
+```swift
+public class GetDictionaryItemParams : Codable {
+    var state_root_hash:String!;
+    var dictionary_identifier: DictionaryIdentifier!;
 }
 ```
-Here is the call by BlockHeight, you can change the BlockHeight in the .Height() parameter
 
-``` swift
-do {
-    let block_identifier:BlockIdentifier = .Height(473576)
-    try casperSDK.getAuctionInfo(input: block_identifier)
-} catch {
-    
+in which DictionaryIdentifier is an enum defined as
+
+```swift
+public enum DictionaryIdentifier : Codable {
+    case AccountNamedKey(key:String,dictionary_name:String,dictionary_item_key:String)
+    case ContractNamedKey(key:String,dictionary_name:String,dictionary_item_key:String)
+    case URef(seed_uref:String,dictionary_item_key:String)
+    case Dictionary(String)
 }
+```
+
+#### 3. Method flow detail:
+
+- input of type GetDictionaryItemParams will be used to make json data for post method 
+
+```swift
+let jsonData = try from.toJsonData() // from is the GetDictionaryItemParams object
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: data)
+```
+
+In the handleRequest function the GetDictionaryItemResult is retrieved by running this code line
+
+```swift
+let getDictionaryItemResult : GetDictionaryItemResult = try GetDictionaryItemResult.getResult(from: responseJSON)
+```
+
+### X. Get Balance
+
+#### 1. Method declaration
+
+```swift
+public func getStateBalance(input:GetBalanceParams)
+```
+
+#### 2. Input: GetBalanceParams which is defined as
+
+```swift
+ public class GetBalanceParams {
+    public var state_root_hash:String = ""
+    public var purse_uref:String = ""
+}
+```
+
+#### 3. Method flow detail:
+
+- input of type GetBalanceParams will be used to make json data for post method 
+
+```swift
+let jsonData = JsonConversion.fromGetBalanceParamsToJsonData(input: input)
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: jsonData)
+```
+
+In the handleRequest function the GetBalanceResult is retrieved by running this code line
+
+```swift
+let getBalanceResult:GetBalanceResult = try GetBalance.getStateBalanceFromJson(from: responseJSON)
+```
+
+ ### XI. Get current auction state
+ 
+ 
+#### 1. Method declaration
+
+```swift
+public func getAuctionInfo(input:BlockIdentifier)
+```
+
+#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+
+#### 3. Method flow detail:
+
+- input of type BlockIdentifier will be used to make json data for post method 
+
+```swift
+let paramJsonData = JsonConversion.fromBlockIdentifierToJsonData(input: input, method: .stateGetAuctionInfo)
+```
+
+- Then json data will be sent to the  httpHandler object of HttpHandler class with the method call and json data just generated.
+
+```swift
+httpHandler.handleRequest(method: methodCall, params: jsonData)
+```
+
+In the handleRequest function the GetBalanceResult is retrieved by running this code line
+
+```swift
+let getAuctionInfo:GetAuctionInfoResult = try GetAuctionInfo.getAuctionInfo(from: responseJSON)
 ```

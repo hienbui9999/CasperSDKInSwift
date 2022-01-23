@@ -45,7 +45,7 @@ public class CasperSDK {
     }
     
     public func getStateRootHash(getStateRootHashParam:GetStateRootHashParam) throws {
-        let data = JsonConversion.fromBlockIdentifierToJsonData2(input: getStateRootHashParam.block_identifier, method: .chainGetStateRootHash)
+        let data = JsonConversion.fromBlockIdentifierToJsonData(input: getStateRootHashParam.block_identifier, method: .chainGetStateRootHash)
         do {
             try httpHandler.handleRequest(method: methodCall, params: data)
         } catch {
@@ -143,12 +143,12 @@ public class CasperSDK {
         methodCall = .stateGetBalance
         httpHandler.methodCall = .stateGetBalance
         do {
-            let paramJsonData = JsonConversion.fromGetBalanceParamsToJsonData(input: input)
-            try httpHandler.handleRequest(method: methodCall, params: paramJsonData)
+            let jsonData = JsonConversion.fromGetBalanceParamsToJsonData(input: input)
+            try httpHandler.handleRequest(method: methodCall, params: jsonData)
         } catch {
             throw error
         }
-    }
+    } 
     public func getAuctionInfo(input:BlockIdentifier) throws {
         methodCall = .stateGetAuctionInfo
         httpHandler.methodCall = .stateGetAuctionInfo
