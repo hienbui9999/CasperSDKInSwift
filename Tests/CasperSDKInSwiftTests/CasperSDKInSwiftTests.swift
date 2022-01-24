@@ -37,7 +37,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
         //-----------------------------------------------------------------------------
         //3. Test for info_get_deploy
         do {
-             let deployHash:String = "AaB4aa0C14a37Bc9386020609aa1CabaD895c3E2E104d877B936C6Ffa2302268";
+             let deployHash:String = "aaa_AaB4aa0C14a37Bc9386020609aa1CabaD895c3E2E104d877B936C6Ffa2302268";
               let getDeployParam:GetDeployParams = GetDeployParams();
               getDeployParam.deploy_hash = deployHash;
               try casperSDK.getDeploy(getDeployParam: getDeployParam)

@@ -46,15 +46,12 @@ class HttpHandler:XCTestCase {
                 } else if self.methodCall == .infoGetDeploy {
                     do {
                         let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJSON)
-                        //getDeployResult.deploy.printMe()
                         XCTAssert(getDeployResult.deploy.hash.count==64)
                         XCTAssert(getDeployResult.deploy.header.body_hash.count == 64)
                         NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
                         NSLog("Total deploy approvals:\(getDeployResult.deploy.approvals.count)")
                         NSLog("Payment:\(getDeployResult.deploy.payment)")
                         NSLog("Session:\(getDeployResult.deploy.session)")
-                        //if getDeployResult.deploy.payment.
-                        
                     }
                     catch {
                         NSLog("Error:\(error)")

@@ -1,5 +1,5 @@
 
-# casper-swift-sdk manual on class and methods
+# casper-swift-sdk manual on classes and methods
 This is the documentation for the following methods call for Casper RPC
 
 1) chain_get_state_root_hash
@@ -24,13 +24,6 @@ This is the documentation for the following methods call for Casper RPC
 
 11) state_get_auction_info
 
-## Flow of processing:
-
-Instantiate one instance of the CasperSKD, which is defined in file "CasperSDK.swift". 
-
-The call for each method will then send POST request and get data back from server, this process is done in "HttpHandler" file.
-
-For processing the data back from server (as Json format), base on which method call, the corresponding class and functions will be call to catch and put data in proper data structure.
 
 # Classes and methods in detail 
 

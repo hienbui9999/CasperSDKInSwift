@@ -480,3 +480,9 @@ do {
     
 }
 ```
+
+
+# More for classes and methods
+
+
+* [List of classes and methods](./Docs/Help.md)
