@@ -69,9 +69,9 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 -  [Get Dictionary Item](./Docs/Help.md#ix-get-dictionaryitem)
 
-- *[Get Balance](./Docs/Help.md#x-get-balance)
+-  [Get Balance](./Docs/Help.md#x-get-balance)
 
-- *[Get Current Auction State] (./Docs/Help.md#x-get-balance)
+-  [Get Current Auction State](./Docs/Help.md#x-get-balance)
 
 ## Flow of processing:
 
