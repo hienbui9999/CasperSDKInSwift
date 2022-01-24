@@ -51,7 +51,27 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 * [List of classes and methods](./Docs/Help.md)
 
+- * [Get State Root Hash] (./Docs/Help.md#i-get-state-root-hash)
 
+- * [Get Peer List] (./Docs/Help.md#ii-get-network-peers-list)
+
+- * [Get Deploy] (./Docs/Help.md#iii-get-deploy)
+
+- *[Get Node Status] (./Docs/Help.md#iv-get-node-status)
+
+- *[Get Block Transfer] (./Docs/Help.md#v-get-blocktransfers)
+
+- *[Get Block] (./Docs/Help.md#vi-get-block)
+
+- *[Get EraInfo By Switch Block] (./Docs/Help.md#vii-get-erainfo-by-switch-block)
+
+- *[Get State Item] (./Docs/Help.md#viii-get-stateitem)
+
+- *[Get Dictionary Item] (./Docs/Help.md#ix-get-dictionaryitem)
+
+- *[Get Balance] (./Docs/Help.md#x-get-balance)
+
+- *[Get Current Auction State] (./Docs/Help.md#x-get-balance)
 
 ## Flow of processing:
 
