@@ -28,6 +28,7 @@ class HttpHandler:XCTestCase {
                         NSLog("StateRootHash: %@\n", stateRootHash)
                     }
                     catch {
+                        NSLog("Error:\(error)")
                     }
                  } else if self.methodCall == .infoGetPeer {
                     do {
