@@ -3,7 +3,9 @@ import XCTest
 
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
+        
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
+        //casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
         //-----------------------------------------------------------------------------
         //1. Test for chain_info_get_state_root_hash
         let getStateRootHashParam:GetStateRootHashParam = GetStateRootHashParam();
@@ -35,6 +37,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
             throw error
         }
         //-----------------------------------------------------------------------------
+        
         //3. Test for info_get_deploy
         do {
              let deployHash:String = "AaB4aa0C14a37Bc9386020609aa1CabaD895c3E2E104d877B936C6Ffa2302268";

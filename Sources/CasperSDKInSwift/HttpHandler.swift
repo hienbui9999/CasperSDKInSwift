@@ -144,7 +144,7 @@ class HttpHandler:XCTestCase {
                     }
                 } else if self.methodCall == .stateGetItem {
                     do {
-                        let getStateItemResult: GetItemResult =  GetItem.getItem(from:responseJSON)
+                        let getStateItemResult: GetItemResult =  try GetItem.getItem(from:responseJSON)
                         self.XCTAssertForStoredValue(methodCall: "state_get_item", value: getStateItemResult.stored_value)
                         NSLog("StateGetItem merkle_proof length:\(getStateItemResult.merkle_proof.count)")
                         XCTAssert(getStateItemResult.merkle_proof!.count>1000)

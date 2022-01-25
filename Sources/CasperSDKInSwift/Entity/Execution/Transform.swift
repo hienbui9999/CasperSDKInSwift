@@ -84,6 +84,7 @@ public class TransformHelper {
                     for (key,value) in delegators {
                         counter += 1;
                         let oneD = Delegator.jsonToDelegator(from: value as! [String:Any])
+                        retBid.delegators[key] = Delegator()
                         retBid.delegators[key] = oneD
                     }
                 }

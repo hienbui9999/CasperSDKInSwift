@@ -51,6 +51,7 @@ class GetDeploy {
                         getDeploy.deploy.session = ExecutableDeployItemHelper.getExecutableDeployItem(from: sessionJson);
                     }
                     let executionResult = JsonExecutionResult.getExecutionResult(from: resultJson);
+                    getDeploy.execution_results = executionResult
                 }
             }
         } catch {
