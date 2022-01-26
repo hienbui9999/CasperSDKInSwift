@@ -43,13 +43,13 @@ Input: GetStateRootHashParam object, which consist of a BlockIdentifier enum obj
 
 Base on the input, the folowing output is possible:
 
-- input: Hash(block_hash) with correct block_hash of a block, output: the state root hash of the block with the specific hash of the input
+- Input: Hash(block_hash) with correct block_hash of a block, Output: the state root hash of the block with the specific hash of the input
 
-- input: Hash(block_hash) with wrong block_hash or non-exist block_hash, output: the state root hash of the latest block
+- Input: Hash(block_hash) with wrong block_hash or non-exist block_hash, Output: the state root hash of the latest block
 
-- input: Height(block_height) with correct block_height, output: the state root hash of the block with the specific height of the input 
+- Input: Height(block_height) with correct block_height, Output: the state root hash of the block with the specific height of the input 
 
-- input: Height(block_height) with wrong block_height, such as the value is too big: Error is thrown of type: block not found.
+- Input: Height(block_height) with wrong block_height, such as the value is too big, Output: A block not found Error is thrown.
 
 #### 3. Method flow detail:
 
