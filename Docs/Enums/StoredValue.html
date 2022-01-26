@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StoredValue Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Enum/StoredValue" class="dashAnchor"></a>
+    <a title="StoredValue Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        StoredValue Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Account.html">Account</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountHash.html">AccountHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:16CasperSDKInSwift15AccountNamedKeyC">AccountNamedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountNamedKeyContainer.html">AccountNamedKeyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ActionThresholds.html">ActionThresholds</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AssociatedKey.html">AssociatedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuctionState.html">AuctionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bid.html">Bid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BlockHash.html">BlockHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Bytes.html">Bytes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CLTypeHelper.html">CLTypeHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CLValue.html">CLValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CasperSDK.html">CasperSDK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Contract.html">Contract</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContractPackage.html">ContractPackage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContractVersion.html">ContractVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Delegator.html">Delegator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Delegator2.html">Delegator2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Deploy.html">Deploy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployApprovalItem.html">DeployApprovalItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployArgs.html">DeployArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployHash.html">DeployHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployHeader.html">DeployHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployInfo.html">DeployInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployModuleByte.html">DeployModuleByte</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeployStoredContractByHash.html">DeployStoredContractByHash</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Digest.html">Digest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EntryPoint.html">EntryPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraID.html">EraID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraInfo.html">EraInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EraSummary.html">EraSummary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ErrorHandler.html">ErrorHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExecutableDeployItemHelper.html">ExecutableDeployItemHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExecutionEffect.html">ExecutionEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetAuctionInfo.html">GetAuctionInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetAuctionInfoResult.html">GetAuctionInfoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBalanceParams.html">GetBalanceParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBalanceResult.html">GetBalanceResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBlockResult.html">GetBlockResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBlockTransfers.html">GetBlockTransfers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBlockTransfersParams.html">GetBlockTransfersParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetBlockTransfersResult.html">GetBlockTransfersResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetDeployParams.html">GetDeployParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetDeployResult.html">GetDeployResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetDictionaryItemParams.html">GetDictionaryItemParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetDictionaryItemParams2.html">GetDictionaryItemParams2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetEraInfoResult.html">GetEraInfoResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetItemParams.html">GetItemParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetItemResult.html">GetItemResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetPeersResult.html">GetPeersResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetStateRootHashParam.html">GetStateRootHashParam</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetStatus.html">GetStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetStatusResult.html">GetStatusResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Groups.html">Groups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonBid.html">JsonBid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonBids.html">JsonBids</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonBlock.html">JsonBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonBlockBody.html">JsonBlockBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonBlockHeader.html">JsonBlockHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonConversion.html">JsonConversion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonDelegator.html">JsonDelegator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonEraEnd.html">JsonEraEnd</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonEraReport.html">JsonEraReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonEraValidators.html">JsonEraValidators</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonExecutionResult.html">JsonExecutionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:16CasperSDKInSwift9JsonParamC">JsonParam</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:16CasperSDKInSwift10JsonParam2C">JsonParam2</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JsonProof.html">JsonProof</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MinimalBlockInfo.html">MinimalBlockInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedArg.html">NamedArg</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NamedKey.html">NamedKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NextUpgrade.html">NextUpgrade</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PeerEntry.html">PeerEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PeerMap.html">PeerMap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ProtocolVersion.html">ProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PublicKey.html">PublicKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reward.html">Reward</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StoredValueHelper.html">StoredValueHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Transfer.html">Transfer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransferAddr.html">TransferAddr</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransformEntry.html">TransformEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TransformHelper.html">TransformHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/U128Class.html">U128Class</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/U256Class.html">U256Class</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/U512Class.html">U512Class</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/URef.html">URef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnbondingPurse.html">UnbondingPurse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Validator.html">Validator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ValidatorWeight.html">ValidatorWeight</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VestingSchedule.html">VestingSchedule</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BlockIdentifier.html">BlockIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CLType.html">CLType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CLValueWrapper.html">CLValueWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CasperMethodCall.html">CasperMethodCall</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CasperMethodCallError.html">CasperMethodCallError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CasperMethodError.html">CasperMethodError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DictionaryIdentifier.html">DictionaryIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ErrorCode.html">ErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ExecutableDeployItem.html">ExecutableDeployItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ExecutionResult.html">ExecutionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OpKind.html">OpKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StoredValue.html">StoredValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>StoredValue</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">StoredValue</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO7CLValueyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/CLValue(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO7CLValueyAcaDCcACmF">CLValue(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/CLValue.html">CLValue</a></span><span class="p">(</span><span class="kt"><a href="../Classes/CLValue.html">CLValue</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO7AccountyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/Account(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO7AccountyAcaDCcACmF">Account(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">(</span><span class="kt"><a href="../Classes/Account.html">Account</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO12ContractWasmyACSScACmF"></a>
+                    <a name="//apple_ref/swift/Element/ContractWasm(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO12ContractWasmyACSScACmF">ContractWasm(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">ContractWasm</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO8ContractyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/Contract(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO8ContractyAcaDCcACmF">Contract(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/Contract.html">Contract</a></span><span class="p">(</span><span class="kt"><a href="../Classes/Contract.html">Contract</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO15ContractPackageyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/ContractPackage(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO15ContractPackageyAcaDCcACmF">ContractPackage(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/ContractPackage.html">ContractPackage</a></span><span class="p">(</span><span class="kt"><a href="../Classes/ContractPackage.html">ContractPackage</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO8TransferyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/Transfer(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO8TransferyAcaDCcACmF">Transfer(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/Transfer.html">Transfer</a></span><span class="p">(</span><span class="kt"><a href="../Classes/Transfer.html">Transfer</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO10DeployInfoyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/DeployInfo(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO10DeployInfoyAcaDCcACmF">DeployInfo(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/DeployInfo.html">DeployInfo</a></span><span class="p">(</span><span class="kt"><a href="../Classes/DeployInfo.html">DeployInfo</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO7EraInfoyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/EraInfo(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO7EraInfoyAcaDCcACmF">EraInfo(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/EraInfo.html">EraInfo</a></span><span class="p">(</span><span class="kt"><a href="../Classes/EraInfo.html">EraInfo</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO3BidyAcaDCcACmF"></a>
+                    <a name="//apple_ref/swift/Element/Bid(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO3BidyAcaDCcACmF">Bid(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt"><a href="../Classes/Bid.html">Bid</a></span><span class="p">(</span><span class="kt"><a href="../Classes/Bid.html">Bid</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO8WithdrawyACSayAA14UnbondingPurseCGcACmF"></a>
+                    <a name="//apple_ref/swift/Element/Withdraw(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO8WithdrawyACSayAA14UnbondingPurseCGcACmF">Withdraw(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">Withdraw</span><span class="p">([</span><span class="kt"><a href="../Classes/UnbondingPurse.html">UnbondingPurse</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift11StoredValueO4NoneyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/None" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift11StoredValueO4NoneyA2CmF">None</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="kt">None</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-01-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
