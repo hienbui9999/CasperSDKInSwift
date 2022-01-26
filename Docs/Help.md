@@ -37,7 +37,19 @@ This is the documentation for the following methods call for Casper RPC
         public func getStateRootHash(getStateRootHashParam:GetStateRootHashParam)
 ```
 
-#### 2. Input: GetStateRootHashParam object, which consist of a BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) or None (if send method without any parameter to get the latest state_root_hash)
+#### 2. Input & Output: 
+
+Input: GetStateRootHashParam object, which consist of a BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) or None (if send method without any parameter to get the latest state_root_hash)
+
+Base on the input, the folowing output is possible:
+
+- input: Hash(block_hash) with correct block_hash of a block, output: the state root hash of the block with the specific hash of the input
+
+- input: Hash(block_hash) with wrong block_hash or non-exist block_hash, output: the state root hash of the latest block
+
+- input: Height(block_height) with correct block_height, output: the state root hash of the block with the specific height of the input 
+
+- input: Height(block_height) with wrong block_height, such as the value is too big: Error is thrown of type: block not found.
 
 #### 3. Method flow detail:
 
@@ -59,7 +71,6 @@ In the handleRequest function the state root hash is retrieved by running this c
 let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
 ```
 
-
 ### II. Get network peers list  
 
 #### 1. Method declaration
@@ -68,7 +79,12 @@ let stateRootHash = try GetStateRootHash.getStateRootHash(from: responseJSON);
 public func getPeers()
 ```
 
-#### 2. Input: None
+#### 2. Input & Output: 
+
+- Input: None
+
+- Output: List of peer defined in class GetPeersResult, which contain a list of PeerEntry - a class contain of nodeId and address.
+
 
 #### 3. Method flow detail:
 
@@ -84,6 +100,15 @@ In the handleRequest function the peer list is retrieved by running this code li
 let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
 ```
 
+You can then retrieve all the peer through the getPeer object (of class GetPeersResult), for example this following code log out all retrieved peer
+
+```swift
+let peerEntries:[PeerEntry] = getPeer.getPeerMap().getPeerEntryList()
+for peerEntry in peerEntries {
+    NSLog("Peer address:\(peerEntry.address)")
+    NSLog("Peer id:\(peerEntry.nodeID)")
+}
+```
 
 ### III. Get Deploy
 
@@ -93,7 +118,11 @@ let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
 public func getDeploy(getDeployParam:GetDeployParams)
 ```
 
-#### 2. Input: GetDeployParams object, which consist of a deploy_hash string 
+#### 2. Input & Output: 
+
+- Input: GetDeployParams object, which consist of a deploy_hash string 
+
+- Output: The GetDeployResult class object, which represent all information the deploy should contain.
 
 #### 3. Method flow detail:
 
@@ -115,6 +144,45 @@ In the handleRequest function the GetDeployResult is retrieved by running this c
 let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJSON)
 ```
 
+You can retrieve all information of the deploy through object getDeployResult (of class GetDeployResult).
+The following code Log some of the information:
+
+```swift
+NSLog("Total deploy approvals:\(getDeployResult.deploy.approvals.count)")
+NSLog("Payment:\(getDeployResult.deploy.payment)")
+NSLog("Session:\(getDeployResult.deploy.session)")
+NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
+if(getDeployResult.execution_results.count>0) {
+    NSLog("ExecutionResult block_hash:\(getDeployResult.execution_results.first!.block_hash)")
+    NSLog("ExecutionResult:\(getDeployResult.execution_results.first!.result)")
+    switch getDeployResult.execution_results.first!.result {
+    case .Success(effect: let retEffect, transfers: let retTransfers, cost: let retCost):
+        NSLog("ExecutionResult Success with cost:\(retCost.valueInStr)")
+        NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
+        NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
+        NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
+        if retEffect.transforms.count > 0  {
+            let firstTranformEntry:TransformEntry = retEffect.transforms.first!
+            NSLog("First TransformEntry key:\(firstTranformEntry.key)")
+        }
+        break
+    case .Failure(effect: let retEffect, transfers: let retTransfers, cost: let retCost, error_message: let retErrorMessage):
+        NSLog("ExecutionResult Failure with cost:\(retCost.valueInStr) and error message:\(retErrorMessage)")
+        NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
+        NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
+        NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
+        if retEffect.transforms.count > 0  {
+            let firstTranformEntry:TransformEntry = retEffect.transforms.first!
+            NSLog("First TransformEntry key:\(firstTranformEntry.key)")
+        }
+        break;
+    default:
+        break;
+    }
+}
+```
+
+
 ###  IV. Get Node Status
 
 #### 1. Method declaration
@@ -123,7 +191,11 @@ let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJS
 public func getStatus()
 ```
 
-#### 2. Input: None
+#### 2. Input & Output
+
+- Input: None
+
+- Output: GetStatusResult object, which contain all information of a node status
 
 #### 3. Method flow detail:
 
@@ -139,6 +211,12 @@ In the handleRequest function the GetStatusResult is retrieved by running this c
 let getStatusResult:GetStatusResult = try GetStatus.getStatus(from:responseJSON)
 ```
 
+You can then get the state root hash or peer entry list by taking the following attribute of the returning object: 
+
+- getStatusResult.starting_state_root_hash for the state root hash
+                        
+- getStatusResult.peers.getPeerEntryList() for the peer entry list
+
 ### V. Get BlockTransfers
 
 #### 1. Method declaration
@@ -147,7 +225,11 @@ let getStatusResult:GetStatusResult = try GetStatus.getStatus(from:responseJSON)
 public func getBlockTransfers(input:BlockIdentifier)
 ```
 
-#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+#### 2. Input & Output: 
+
+- Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+
+- Output: GetBlockTransfersResult object, which contain all information of block transfer
 
 #### 3. Method flow detail:
 
@@ -169,6 +251,15 @@ In the handleRequest function the GetBlockTransfersResult is retrieved by runnin
 let getBlockTransferResult:GetBlockTransfersResult = try GetBlockTransfers.getResult(from: responseJSON)
 ```
 
+You can then get the information of the GetBlockTransfersResult by using the following properties:
+
+- getBlockTransferResult.api_version
+
+- getBlockTransferResult.block_hash
+
+- getBlockTransferResult.transfers
+
+
 ### VI. Get Block 
 
 #### 1. Method declaration
@@ -177,7 +268,11 @@ let getBlockTransferResult:GetBlockTransfersResult = try GetBlockTransfers.getRe
 public func getBlock(input:BlockIdentifier)
 ```
 
-#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+#### 2. Input & Output: 
+
+- Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+
+- Output: GetBlockResult object, which contain all information of a block
 
 #### 3. Method flow detail:
 
@@ -199,6 +294,19 @@ In the handleRequest function the GetBlockResult is retrieved by running this co
 let getBlockResult:GetBlockResult = try GetBlock.getBlock(from: responseJSON)
 ```
 
+From this you can get the block information by using the following properties:
+
+    - getBlockResult.apiVersion
+    
+    - getBlockResult.block.hash
+
+    - getBlockResult.block.header
+
+    - getBlockResult.block.body
+
+    - getBlockResult.block.proofs
+     
+
 ### VII. Get EraInfo By Switch Block 
 
 #### 1. Method declaration
@@ -207,7 +315,11 @@ let getBlockResult:GetBlockResult = try GetBlock.getBlock(from: responseJSON)
 public func getEraBySwitchBlock(input:BlockIdentifier)
 ```
 
-#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+#### 2. Input & Output: 
+
+- Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+
+- Output: GetEraInfoResult object 
 
 #### 3. Method flow detail:
 
@@ -229,6 +341,21 @@ In the handleRequest function the GetEraInfoResult is retrieved by running this 
 let eraResult:GetEraInfoResult = try GetEraInfoBySwitchBlock.getResult(from: responseJSON)
 ```
 
+You can then retrieve information such as:
+
+- eraResult.api_version
+
+- eraResult.era_summary.block_hash
+
+- eraResult.era_summary.era_id
+
+- eraResult.era_summary.stored_value
+
+- eraResult.era_summary.state_root_hash
+
+- eraResult.era_summary.merkle_proof
+
+
 ### VIII. Get StateItem
 
 #### 1. Method declaration
@@ -237,7 +364,9 @@ let eraResult:GetEraInfoResult = try GetEraInfoBySwitchBlock.getResult(from: res
     public func getItem(input:GetItemParams)
 ```
 
-#### 2. Input: GetItemParams which is defined as
+#### 2. Input & Output: GetItemParams which is defined as
+
+- Input: 
 
 ```swift
  public class GetItemParams {
@@ -246,6 +375,8 @@ let eraResult:GetEraInfoResult = try GetEraInfoBySwitchBlock.getResult(from: res
     public var path:[String]?
 }
 ```
+
+Output: GetItemResult object
 
 #### 3. Method flow detail:
 
@@ -267,6 +398,15 @@ In the handleRequest function the GetItemResult is retrieved by running this cod
 let getStateItemResult: GetItemResult =  GetItem.getItem(from:responseJSON)
 ```
 
+You can then retrieve information such as:
+
+- getStateItemResult.api_version
+
+- getStateItemResult.stored_value
+
+- getStateItemResult.merkle_proof
+ 
+
 ### IX. Get DictionaryItem
 
 #### 1. Method declaration
@@ -275,7 +415,9 @@ let getStateItemResult: GetItemResult =  GetItem.getItem(from:responseJSON)
 public func getDictionaryItem(from:GetDictionaryItemParams)
 ```
 
-#### 2. Input: GetDictionaryItemParams which is defined as
+#### 2. Input & Output: GetDictionaryItemParams which is defined as
+
+- Input: 
 
 ```swift
 public class GetDictionaryItemParams : Codable {
@@ -294,6 +436,9 @@ public enum DictionaryIdentifier : Codable {
     case Dictionary(String)
 }
 ```
+
+- Output: GetDictionaryItemResult object
+
 
 #### 3. Method flow detail:
 
@@ -315,6 +460,17 @@ In the handleRequest function the GetDictionaryItemResult is retrieved by runnin
 let getDictionaryItemResult : GetDictionaryItemResult = try GetDictionaryItemResult.getResult(from: responseJSON)
 ```
 
+You can then retrieve information such as:
+
+- getDictionaryItemResult.api_version
+
+- getDictionaryItemResult.dictionary_key
+
+- getDictionaryItemResult.stored_value
+
+- getDictionaryItemResult.merkle_proof
+
+
 ### X. Get Balance
 
 #### 1. Method declaration
@@ -323,7 +479,9 @@ let getDictionaryItemResult : GetDictionaryItemResult = try GetDictionaryItemRes
 public func getStateBalance(input:GetBalanceParams)
 ```
 
-#### 2. Input: GetBalanceParams which is defined as
+#### 2. Input & Output : 
+
+- Input: GetBalanceParams which is defined as
 
 ```swift
  public class GetBalanceParams {
@@ -331,6 +489,8 @@ public func getStateBalance(input:GetBalanceParams)
     public var purse_uref:String = ""
 }
 ```
+
+- Output: GetBalanceResult object
 
 #### 3. Method flow detail:
 
@@ -352,8 +512,16 @@ In the handleRequest function the GetBalanceResult is retrieved by running this 
 let getBalanceResult:GetBalanceResult = try GetBalance.getStateBalanceFromJson(from: responseJSON)
 ```
 
+You can then retrieve information such as:
+
+- getBalanceResult.api_version
+
+- getBalanceResult.balance_value
+
+- getBalanceResult.merkle_proof
+
+
  ### XI. Get current auction state
- 
  
 #### 1. Method declaration
 
@@ -361,7 +529,11 @@ let getBalanceResult:GetBalanceResult = try GetBalance.getStateBalanceFromJson(f
 public func getAuctionInfo(input:BlockIdentifier)
 ```
 
-#### 2. Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+#### 2. Input & Output:
+
+- Input: BlockIdentifier enum object, with value of either .Hash(String) or Height(UInt64) 
+
+- Output: GetAuctionInfoResult object
 
 #### 3. Method flow detail:
 
@@ -382,3 +554,13 @@ In the handleRequest function the GetBalanceResult is retrieved by running this 
 ```swift
 let getAuctionInfo:GetAuctionInfoResult = try GetAuctionInfo.getAuctionInfo(from: responseJSON)
 ```
+
+You can then retrieve information such as:
+
+- getAuctionInfo.api_version
+
+- getAuctionInfo.auction_state.state_root_hash
+
+- getAuctionInfo.auction_state.block_height
+
+- getAuctionInfo.auction_state.era_validators

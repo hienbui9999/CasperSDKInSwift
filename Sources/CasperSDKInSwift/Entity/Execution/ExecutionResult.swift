@@ -1,8 +1,8 @@
 import Foundation
 
 public enum ExecutionResult {
-    case Failure(ExecutionEffect,[TransferAddr], U512Class,String)
-    case Success(ExecutionEffect,[TransferAddr],U512Class);
+    case Failure(effect:ExecutionEffect,transfers:[TransferAddr], cost:U512Class,error_message:String)
+    case Success(effect:ExecutionEffect,transfers:[TransferAddr],cost:U512Class);
     case None
 }
 public class ExecutionResultHelper {
@@ -31,7 +31,7 @@ public class ExecutionResultHelper {
             if let effect = success["effect"] as? [String:Any] {
                 executionEffect = ExecutionEffect.getExecutionEffect(from: effect);
             }
-            return .Success(executionEffect, transferAddresses, retCost)
+            return .Success(effect:executionEffect, transfers:transferAddresses, cost:retCost)
         } else  if let failure = from["Failure"] as? [String:Any] {
             var retCost:U512Class = U512Class();
             var transferAddresses:[TransferAddr] = [TransferAddr]()
@@ -55,7 +55,7 @@ public class ExecutionResultHelper {
             if let effect = failure["effect"] as? [String:Any] {
                 executionEffect = ExecutionEffect.getExecutionEffect(from: effect);
             }
-            return .Failure(executionEffect, transferAddresses, retCost, errorMessage)
+            return .Failure(effect:executionEffect,transfers: transferAddresses, cost:retCost, error_message:errorMessage)
         }
         return retExecutionResult;
     }

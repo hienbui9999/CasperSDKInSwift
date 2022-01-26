@@ -19,9 +19,6 @@ class GetDeploy {
                 if let api_version = resultJson["api_version"] as? String {
                     getDeploy.api_version = ProtocolVersion.strToProtocol(from: api_version)
                 }
-                if let executionResult = resultJson["execution_results"] {
-                  
-                }
                 if let deployJson = resultJson["deploy"] as? [String:Any] {
                     if let approvals = deployJson["approvals"] as? [AnyObject] {
                         let totalApproval = approvals.count

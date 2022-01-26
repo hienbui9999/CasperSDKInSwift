@@ -1,7 +1,7 @@
 import Foundation
 
 public class JsonExecutionResult {
-    public var blockHash:String = ""
+    public var block_hash:String = ""
     public var result:ExecutionResult = .None
     
     public static func getExecutionResult(from:[String:Any]) -> [JsonExecutionResult] {
@@ -10,7 +10,7 @@ public class JsonExecutionResult {
             for executionResult in executionResults{
                 let retJER : JsonExecutionResult  = JsonExecutionResult();
                 if let blockHash = executionResult["block_hash"] as? String{
-                    retJER.blockHash = blockHash;
+                    retJER.block_hash = blockHash;
                 }
                 if let ercJson = executionResult["result"] as? [String:Any] {
                     let result = ExecutionResultHelper.getExecutionResult(from: ercJson)

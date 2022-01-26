@@ -35,12 +35,13 @@ class HttpHandler:XCTestCase {
                         let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
                         //This is for testing result back, comment this if you don't want to make test
                         XCTAssert(!getPeer.getPeerMap().getPeerEntryList().isEmpty)
-                        let firstPeer = getPeer.getPeerMap().getPeerEntryList().first
-                        XCTAssert(!firstPeer!.getAddress().isEmpty)
-                        XCTAssert(!firstPeer!.getNodeId().isEmpty)
                         NSLog("Total peers:\(getPeer.getPeerMap().getPeerEntryList().count)\n")
-                        NSLog("First peerAddress:\(firstPeer!.getAddress())\n")
-                        NSLog("First peerID:\(firstPeer!.getNodeId())\n")
+                        if let firstPeer = getPeer.getPeerMap().getPeerEntryList().first {
+                            XCTAssert(!firstPeer.getAddress().isEmpty)
+                            XCTAssert(!firstPeer.getNodeId().isEmpty)
+                            NSLog("First peerAddress:\(firstPeer.getAddress())\n")
+                            NSLog("First peerID:\(firstPeer.getNodeId())\n")
+                        }
                    } catch {
                        
                    }
@@ -49,10 +50,38 @@ class HttpHandler:XCTestCase {
                         let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJSON)
                         XCTAssert(getDeployResult.deploy.hash.count==64)
                         XCTAssert(getDeployResult.deploy.header.body_hash.count == 64)
-                        NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
                         NSLog("Total deploy approvals:\(getDeployResult.deploy.approvals.count)")
                         NSLog("Payment:\(getDeployResult.deploy.payment)")
                         NSLog("Session:\(getDeployResult.deploy.session)")
+                        NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
+                        if(getDeployResult.execution_results.count>0) {
+                            NSLog("ExecutionResult block_hash:\(getDeployResult.execution_results.first!.block_hash)")
+                            NSLog("ExecutionResult:\(getDeployResult.execution_results.first!.result)")
+                            switch getDeployResult.execution_results.first!.result {
+                            case .Success(effect: let retEffect, transfers: let retTransfers, cost: let retCost):
+                                NSLog("ExecutionResult Success with cost:\(retCost.valueInStr)")
+                                NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
+                                NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
+                                NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
+                                if retEffect.transforms.count > 0  {
+                                    let firstTranformEntry:TransformEntry = retEffect.transforms.first!
+                                    NSLog("First TransformEntry key:\(firstTranformEntry.key)")
+                                }
+                                break
+                            case .Failure(effect: let retEffect, transfers: let retTransfers, cost: let retCost, error_message: let retErrorMessage):
+                                NSLog("ExecutionResult Failure with cost:\(retCost.valueInStr) and error message:\(retErrorMessage)")
+                                NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
+                                NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
+                                NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
+                                if retEffect.transforms.count > 0  {
+                                    let firstTranformEntry:TransformEntry = retEffect.transforms.first!
+                                    NSLog("First TransformEntry key:\(firstTranformEntry.key)")
+                                }
+                                break;
+                            default:
+                                break;
+                            }
+                        }
                     }
                     catch {
                         NSLog("Error:\(error)")

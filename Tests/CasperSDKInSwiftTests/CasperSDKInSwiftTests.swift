@@ -3,7 +3,6 @@ import XCTest
 
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
-        
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
         //casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
         //-----------------------------------------------------------------------------
