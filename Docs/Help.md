@@ -100,7 +100,7 @@ In the handleRequest function the peer list is retrieved by running this code li
 let getPeer:GetPeersResult = try GetPeers.getPeers(from: responseJSON)
 ```
 
-You can then retrieve all the peer through the getPeer object (of class GetPeersResult), for example this following code log out all retrieved peer
+You can then retrieve all the peer through the getPeer object (of class GetPeersResult), for example this following code log out all retrieved peers:
 
 ```swift
 let peerEntries:[PeerEntry] = getPeer.getPeerMap().getPeerEntryList()
