@@ -144,43 +144,32 @@ In the handleRequest function the GetDeployResult is retrieved by running this c
 let getDeployResult : GetDeployResult = try GetDeploy.getDeploy(from: responseJSON)
 ```
 
-You can retrieve all information of the deploy through object getDeployResult (of class GetDeployResult).
-The following code Log some of the information:
+You can then retrieve information such as:
 
-```swift
-NSLog("Total deploy approvals:\(getDeployResult.deploy.approvals.count)")
-NSLog("Payment:\(getDeployResult.deploy.payment)")
-NSLog("Session:\(getDeployResult.deploy.session)")
-NSLog("Total JsonExecutionResult:\(getDeployResult.execution_results.count)")
-if(getDeployResult.execution_results.count>0) {
-    NSLog("ExecutionResult block_hash:\(getDeployResult.execution_results.first!.block_hash)")
-    NSLog("ExecutionResult:\(getDeployResult.execution_results.first!.result)")
-    switch getDeployResult.execution_results.first!.result {
-    case .Success(effect: let retEffect, transfers: let retTransfers, cost: let retCost):
-        NSLog("ExecutionResult Success with cost:\(retCost.valueInStr)")
-        NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
-        NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
-        NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
-        if retEffect.transforms.count > 0  {
-            let firstTranformEntry:TransformEntry = retEffect.transforms.first!
-            NSLog("First TransformEntry key:\(firstTranformEntry.key)")
-        }
-        break
-    case .Failure(effect: let retEffect, transfers: let retTransfers, cost: let retCost, error_message: let retErrorMessage):
-        NSLog("ExecutionResult Failure with cost:\(retCost.valueInStr) and error message:\(retErrorMessage)")
-        NSLog("ExecutionResult total Transfer:\(retTransfers.count)")
-        NSLog("ExecutionResult Effect, total Transform:\(retEffect.transforms.count)")
-        NSLog("ExecutionResult Effect, total Operation:\(retEffect.operations.count)")
-        if retEffect.transforms.count > 0  {
-            let firstTranformEntry:TransformEntry = retEffect.transforms.first!
-            NSLog("First TransformEntry key:\(firstTranformEntry.key)")
-        }
-        break;
-    default:
-        break;
-    }
-}
-```
+- getDeployResult.api_version
+
+- getDeployResult.deploy
+
+- getDeployResult.execution_results
+
+In which from getDeployResult.deploy you can retrieve information such as:
+
+-  getDeployResult.deploy.hash
+
+- getDeployResult.deploy.header
+
+- getDeployResult.deploy.payment
+
+- getDeployResult.deploy.session
+
+- getDeployResult.deploy.approvals
+
+
+From getDeployResult.execution_results you can retrieve information such as:
+
+- getDeployResult.execution_results.first.block_hash
+
+- getDeployResult.execution_results.first.result
 
 
 ###  IV. Get Node Status
@@ -216,6 +205,7 @@ You can then get the state root hash or peer entry list by taking the following 
 - getStatusResult.starting_state_root_hash for the state root hash
                         
 - getStatusResult.peers.getPeerEntryList() for the peer entry list
+
 
 ### V. Get BlockTransfers
 
@@ -296,15 +286,15 @@ let getBlockResult:GetBlockResult = try GetBlock.getBlock(from: responseJSON)
 
 From this you can get the block information by using the following properties:
 
-    - getBlockResult.apiVersion
-    
-    - getBlockResult.block.hash
+- getBlockResult.apiVersion
 
-    - getBlockResult.block.header
+- getBlockResult.block.hash
 
-    - getBlockResult.block.body
+- getBlockResult.block.header
 
-    - getBlockResult.block.proofs
+- getBlockResult.block.body
+
+- getBlockResult.block.proofs
      
 
 ### VII. Get EraInfo By Switch Block 
