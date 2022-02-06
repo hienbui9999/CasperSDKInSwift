@@ -12,7 +12,7 @@ public class GetAuctionInfo {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "state_get_auction_info")
             }
         }
         let ret:GetAuctionInfoResult = GetAuctionInfoResult();

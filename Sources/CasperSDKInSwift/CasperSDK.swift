@@ -12,7 +12,7 @@ public enum CasperMethodError:Error {
 }
 
 public enum CasperMethodCallError:Error {
-    case CasperError(code:Int,message:String)
+    case CasperError(code:Int,message:String,methodCall:String)
     case None
 }
 
@@ -28,6 +28,7 @@ public enum CasperMethodCall:String {
     case stateGetDictionaryItem         = "state_get_dictionary_item"
     case stateGetBalance                = "state_get_balance"
     case stateGetAuctionInfo            = "state_get_auction_info"
+    case putDeploy                      = "account_put_deploy"
 }
 let CASPER_ID : Int32 = 1;
 let CASPER_RPC_VERSION:String = "2.0"
@@ -155,6 +156,17 @@ public class CasperSDK {
         do {
             let paramJsonData = JsonConversion.fromBlockIdentifierToJsonData(input: input, method: .stateGetAuctionInfo)
             try httpHandler.handleRequest(method: methodCall, params: paramJsonData)
+        } catch {
+            throw error
+        }
+    }
+    //M4 put deploy
+    public func putDeploy(input:Deploy) throws {
+        methodCall = .putDeploy
+        httpHandler.methodCall = .putDeploy
+        do  {
+            //let data = DeployUtil.fromDeployToJson(deploy:input)
+           // try httpHandler.handleRequest(method: methodCall, params: data, httpMethod: "PUT")
         } catch {
             throw error
         }

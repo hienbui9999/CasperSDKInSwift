@@ -12,7 +12,7 @@ class GetDeploy {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "info_get_deploy")
             }
           
             if let resultJson = from["result"] as? [String:Any] {

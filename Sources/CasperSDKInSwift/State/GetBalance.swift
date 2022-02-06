@@ -11,7 +11,7 @@ class GetBalance {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "state_get_balance")
             }
             let ret:GetBalanceResult = GetBalanceResult();
             if let result = from["result"] as? [String:Any] {

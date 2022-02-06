@@ -28,6 +28,15 @@ final class CasperSDKInSwiftTests: XCTestCase {
         } catch {
             throw error
         }
+        //TEST 4: get state_root_hash with block_height as param but block_height too big
+        //This will throw an Error of following content:
+        //Error:CasperError(code: -32001, message: "block not known", methodCall: "chain_get_state_root_hash")
+        do {
+            getStateRootHashParam.block_identifier = .Height(473861000)
+            try casperSDK.getStateRootHash(getStateRootHashParam: getStateRootHashParam)
+        } catch {
+            throw error
+        }
         //-----------------------------------------------------------------------------
         //2. Test for info_get_peers
         do {
@@ -38,8 +47,19 @@ final class CasperSDKInSwiftTests: XCTestCase {
         //-----------------------------------------------------------------------------
         
         //3. Test for info_get_deploy
+        //3.1. Test for existing deployHash
         do {
              let deployHash:String = "AaB4aa0C14a37Bc9386020609aa1CabaD895c3E2E104d877B936C6Ffa2302268";
+              let getDeployParam:GetDeployParams = GetDeployParams();
+              getDeployParam.deploy_hash = deployHash;
+              try casperSDK.getDeploy(getDeployParam: getDeployParam)
+        } catch {
+            throw error
+          }
+        //3.1. Test for fake (non-existing) deployHash - this will throw an Error of following content
+        //CasperError(code: -32602, message: "Invalid params", methodCall: "info_get_deploy")
+        do {
+             let deployHash:String = "11B4aa0C14a37Bc9386020609aa1CabaD895c3E2E104d877B936C6Ffa2302268";
               let getDeployParam:GetDeployParams = GetDeployParams();
               getDeployParam.deploy_hash = deployHash;
               try casperSDK.getDeploy(getDeployParam: getDeployParam)
@@ -55,39 +75,101 @@ final class CasperSDKInSwiftTests: XCTestCase {
         }
        
         //5.Test for chain_get_block_transfers
+        //5.1 get block transfer by block height
         do {
-            //uncomment this if you want to get by block Height
-            //let block_identifier  : BlockIdentifier = .Height(448471)
-            //try casperSDK.getBlockTransfers(input: block_identifier2)
-            
-            let block_identifier2 : BlockIdentifier = .Hash("ae173969cb6ce3c99439c81e5b803c15797a8559796d980daa99f52beb7192e3")
-            try casperSDK.getBlockTransfers(input: block_identifier2)
+            let block_identifier  : BlockIdentifier = .Height(448471)
+            try casperSDK.getBlockTransfers(input: block_identifier)
+        }  catch {
+            throw error
+        }
+        //5.2 get block transfer by block hash
+        do {
+            let block_identifier : BlockIdentifier = .Hash("ae173969cb6ce3c99439c81e5b803c15797a8559796d980daa99f52beb7192e3")
+            try casperSDK.getBlockTransfers(input: block_identifier)
+        }  catch {
+            throw error
+        }
+        //5.3 get block transfer by block height but block height too big, will throw an Error of following content:
+        //Error:CasperError(code: -32001, message: "block not known", methodCall: "chain_get_block_transfers")
+        do {
+            let block_identifier  : BlockIdentifier = .Height(4484710000)
+            try casperSDK.getBlockTransfers(input: block_identifier)
+        }  catch {
+            throw error
+        }
+        //5.4 get block transfer by fake block hash (non-existing block hash)
+        //latest block transfer hash is returned
+        do {
+            let block_identifier : BlockIdentifier = .Hash("FFEAE393969cb6ce3c99439c81e5b803c15797a8559796d980daa99FFE2beb7192e3")
+            try casperSDK.getBlockTransfers(input: block_identifier)
         }  catch {
             throw error
         }
         //6.Test for chain_get_block
+        
+        //6.1. get block with block hash
         do {
-            //uncomment this if you want to get by block Height
-            //let block_identifier:BlockIdentifier = .Height(449797)
-            //try casperSDK.getBlock(input: block_identifier)
-             
             let block_identifier2 : BlockIdentifier = .Hash("830fd58dd08189981d7535fc9de0606bc789b2c8ef2af895ebce5ffc23c4530e")
             try casperSDK.getBlock(input: block_identifier2)
         }  catch {
             throw error
         }
-        
+        //6.2. get block with block height
+        do {
+            let block_identifier:BlockIdentifier = .Height(449797)
+            try casperSDK.getBlock(input: block_identifier)
+        }  catch {
+            throw error
+        }
+        //6.3. get block with fake block hash (non-existing block hash)
+        //latest block is returned
+        do {
+            let block_identifier2 : BlockIdentifier = .Hash("FFCC0fd58dd08189981d7535fc9de0606bc789b2c8ef2af895ebce5ffc23c4530e")
+            try casperSDK.getBlock(input: block_identifier2)
+        }  catch {
+            throw error
+        }
+        //6.4. get block with too big block height (non-existing block height), an Error with following content will be thrown
+        //Error:CasperError(code: -32001, message: "block not known", methodCall: "chain_get_block")
+        do {
+            let block_identifier:BlockIdentifier = .Height(44979700000)
+            try casperSDK.getBlock(input: block_identifier)
+        }  catch {
+            throw error
+        }
         //7.Test for chain_get_era_info_by_switch_block
+        //7.1. get era by block height
         do {
             let block_identifier:BlockIdentifier = .Height(441636)
             try casperSDK.getEraBySwitchBlock(input: block_identifier)
         } catch {
             throw error
         }
-         
+        //7.2. get era by block hash
+        do {
+            let block_identifier:BlockIdentifier = .Hash("449a2570d5b8c4480565d05bfa17e3cd4249fcf6570132a4f8031fbc24cffb71")
+            try casperSDK.getEraBySwitchBlock(input: block_identifier)
+        } catch {
+            throw error
+        }
+        //7.3. get era by too big block height (non-existing block height), an Error with the following content will be thrown
+        //Error:CasperError(code: -32001, message: "block not known", methodCall: "chain_get_era_info_by_switch_block")
+        do {
+            let block_identifier:BlockIdentifier = .Height(4416360000)
+            try casperSDK.getEraBySwitchBlock(input: block_identifier)
+        } catch {
+            throw error
+        }
+        //7.4. get era by fake block hash (non-existing block hash), an Error with the following content will be thrown
+        //Error:CasperError(code: -32001, message: "block not known", methodCall: "chain_get_block")
+        do {
+            let block_identifier:BlockIdentifier = .Hash("FFGG2570d5b8c4480565d05bfa17e3cd4249fcf6570132a4f8031fbc24cffb71")
+            try casperSDK.getEraBySwitchBlock(input: block_identifier)
+        } catch {
+            throw error
+        }
         //8.Test for state_get_item
         do {
-            
             let getStateItemParam:GetItemParams = GetItemParams();
             
             //Some alternative calls with different parameters to get different StoredValue back
@@ -118,11 +200,41 @@ final class CasperSDKInSwiftTests: XCTestCase {
             getStateItemParam.state_root_hash = "d360e2755f7cee816cce3f0eeb2000dfa03113769743ae5481816f3983d5f228"
             getStateItemParam.key = "withdraw-df067278a61946b1b1f784d16e28336ae79f48cf692b13f6e40af9c7eadb2fb1"
             try casperSDK.getItem(input: getStateItemParam)
-            
+        } catch {
+            throw error
+        }
+        //8.2. use fake state_root_hash, an Error with the following content will be thrown
+        //Error:CasperError(code: -32602, message: "Invalid params", methodCall: "state_get_item")
+        do {
+            let getStateItemParam:GetItemParams = GetItemParams();
+            getStateItemParam.state_root_hash = "MMM0e2755f7cee816cce3f0eeb2000dfa03113769743ae5481816f3983d5f228"
+            getStateItemParam.key = "withdraw-df067278a61946b1b1f784d16e28336ae79f48cf692b13f6e40af9c7eadb2fb1"
+            try casperSDK.getItem(input: getStateItemParam)
+        } catch {
+            throw error
+        }
+        //8.3. use fake key, an Error with the following content will be thrown
+        //Error:CasperError(code: -32002, message: "failed to parse key: withdraw-key from string error: Invalid byte `b\'f\'`, at index 1.", methodCall: "state_get_item")
+        do {
+            let getStateItemParam:GetItemParams = GetItemParams();
+            getStateItemParam.state_root_hash = "d360e2755f7cee816cce3f0eeb2000dfa03113769743ae5481816f3983d5f228"
+            getStateItemParam.key = "withdraw-DF167278a61946b1b1f784d16e28336ae79f48cf692b13f6e40af9c7eadb2fb1"
+            try casperSDK.getItem(input: getStateItemParam)
+        } catch {
+            throw error
+        }
+        //8.4. use fake key without prefix, an Error with the following content will be thrown
+        //Error:CasperError(code: -32002, message: "failed to parse key: unknown prefix for key", methodCall: "state_get_item")
+        do {
+            let getStateItemParam:GetItemParams = GetItemParams();
+            getStateItemParam.state_root_hash = "d360e2755f7cee816cce3f0eeb2000dfa03113769743ae5481816f3983d5f228"
+            getStateItemParam.key = "dEf067278a61946b1b1f784d16e28336ae79f48cf692b13f6e40af9c7eadb2fb1"
+            try casperSDK.getItem(input: getStateItemParam)
         } catch {
             throw error
         }
         //9.Test for state_get_dictionary_item
+        //9.1. test with correct parameter
          do {
              let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
              getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
@@ -138,9 +250,18 @@ final class CasperSDKInSwiftTests: XCTestCase {
          }  catch {
              throw error
          }
-         
+        //9.2. test with fake dictionary_identifier, an Error with the following content will be thrown
+        //Error:CasperError(code: -32002, message: "Failed to parse key", methodCall: "state_get_dictionary_item")
+        do {
+            let getDic : GetDictionaryItemParams = GetDictionaryItemParams();
+            getDic.state_root_hash = "146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8";
+            getDic.dictionary_identifier = DictionaryIdentifier.AccountNamedKey(key: "account-hash-AAFF091267d82c3b9ed1987cb780a005a550e6b3d1ca333b743e2dba70680877", dictionary_name: "dict_name", dictionary_item_key: "abc_name")
+             try casperSDK.getDictionaryItem(from: getDic)
+        }  catch {
+            throw error
+        }
         //10.Test for state_get_balance
-        
+        //10.1. test with correct parameter
         do {
             let getBP : GetBalanceParams = GetBalanceParams();
             getBP.state_root_hash = "8b463b56f2d124f43e7c157e602e31d5d2d5009659de7f1e79afbd238cbaa189";
@@ -149,13 +270,43 @@ final class CasperSDKInSwiftTests: XCTestCase {
         }  catch {
             throw error
         }
-        
-        //11.Test for state_get_auction_info
-        
+        //10.2. test with fake purse_uref, an Error with the following content will be thrown
+        //CasperError(code: -32005, message: "failed to parse purse_uref: Hex(InvalidByte { index: 0, byte: 102 })", methodCall: "state_get_balance")
         do {
-            
-            //let block_identifier:BlockIdentifier = .Height(473576)
+            let getBP : GetBalanceParams = GetBalanceParams();
+            getBP.state_root_hash = "8b463b56f2d124f43e7c157e602e31d5d2d5009659de7f1e79afbd238cbaa189";
+            getBP.purse_uref = "uref-FF1dc0fd639a3255c1e3e5e2aa699df66171e40fa9450688c5d718b470e057c6-007";
+            try casperSDK.getStateBalance(input: getBP)
+        }  catch {
+            throw error
+        }
+        //11.Test for state_get_auction_info
+        //11.1 test with correct block hash parameter
+        do {
             let block_identifier:BlockIdentifier = .Hash("cb8dab9f455538bc6cedb217a6234faeece8ce32c94d053b5b770450290b3a30")
+            try casperSDK.getAuctionInfo(input: block_identifier)
+        } catch {
+            throw error
+        }
+        //11.2 test with correct block height parameter
+        do {
+            let block_identifier:BlockIdentifier = .Height(473576)
+            try casperSDK.getAuctionInfo(input: block_identifier)
+        } catch {
+            throw error
+        }
+        //11.3 test with fake block hash (non-existing block hash) parameter, auction info for latest block is returned
+        do {
+            let block_identifier:BlockIdentifier = .Hash("FF8Eab9f455538bc6cedb217a6234faeece8ce32c94d053b5b770450290b3a30")
+            try casperSDK.getAuctionInfo(input: block_identifier)
+        } catch {
+            throw error
+        }
+        //11.4 test with too big block height (non-existing block height) parameter
+        //an Error with the following content will be thrown
+        //CasperError(code: -32001, message: "get-auction-info failed to get specified block", methodCall: "state_get_auction_info")
+        do {
+            let block_identifier:BlockIdentifier = .Height(4735760000)
             try casperSDK.getAuctionInfo(input: block_identifier)
         } catch {
             throw error

@@ -12,17 +12,17 @@ public class GetStateRootHashParam{
 }
 class GetStateRootHash {
     public static func getStateRootHash(from:[String:Any]) throws ->String {
-        if let error = from["error"] as AnyObject? {
-            if let code = error["code"] as? Int32 {
-                if code == -32700 {
-                    throw GetStateRootHashError.parseError;
-                } else if code == -32601 {
-                    throw GetStateRootHashError.methodNotFound
-                } else if code == -32001 {
-                    throw GetStateRootHashError.blockNotFound
-                } else {
-                    throw GetStateRootHashError.invalidURL
+        do {
+            if let error = from["error"] as AnyObject? {
+                var code:Int!
+                var message:String!
+                if let code1 = error["code"] as? Int {
+                    code = code1
                 }
+                if let message1 = error["message"] as? String {
+                    message = message1
+                }
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_state_root_hash")
             }
         }
         if let result = from["result"] as AnyObject? {

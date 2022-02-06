@@ -16,7 +16,7 @@ class GetDictionaryItemResult {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "state_get_dictionary_item")
             }
             let ret:GetDictionaryItemResult = GetDictionaryItemResult()
             if let result = from["result"] as? [String:Any] {

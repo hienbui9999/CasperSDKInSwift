@@ -4,12 +4,12 @@ class HttpHandler:XCTestCase {
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
     
-    public func handleRequest(method:CasperMethodCall,params:Data) throws {
+    public func handleRequest(method:CasperMethodCall,params:Data,httpMethod:String="POST") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
         }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = httpMethod
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = params

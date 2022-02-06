@@ -2,8 +2,6 @@ import Foundation
 
 public class GetBlockTransfers {
     public static func getResult(from:[String:Any]) throws -> GetBlockTransfersResult {
-        
-        let ret : GetBlockTransfersResult = GetBlockTransfersResult();
         do {
             if let error = from["error"] as AnyObject? {
                 var code:Int!
@@ -14,9 +12,9 @@ public class GetBlockTransfers {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_block_transfers")
             }
-          
+            let ret : GetBlockTransfersResult = GetBlockTransfersResult();
             if let result = from["result"] as? [String:Any] {
                 if let api_version = result["api_version"] as? String {
                     ret.api_version = ProtocolVersion.strToProtocol(from: api_version)

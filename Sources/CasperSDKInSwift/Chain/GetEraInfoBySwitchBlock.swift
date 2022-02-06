@@ -11,7 +11,7 @@ class GetEraInfoBySwitchBlock {
             if let message1 = error["message"] as? String {
                 message = message1
             }
-            throw CasperMethodCallError.CasperError(code: code, message: message)
+            throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_era_info_by_switch_block")
         }
         let retResult:GetEraInfoResult = GetEraInfoResult();
         if let resultJson = from["result"] as? [String:Any] {

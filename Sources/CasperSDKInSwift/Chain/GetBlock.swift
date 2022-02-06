@@ -3,7 +3,6 @@ import Foundation
 class GetBlock {
     
     public static func getBlock(from:[String:Any]) throws -> GetBlockResult {
-        let getBlockResult : GetBlockResult = GetBlockResult();
         do {
             if let error = from["error"] as AnyObject? {
                 var code:Int!
@@ -14,9 +13,11 @@ class GetBlock {
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message)
+                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_block")
             }
-            
+        }
+        do {
+            let getBlockResult : GetBlockResult = GetBlockResult();
             if let result = from["result"] as? [String:Any] {
                 if let apiVersion = result["api_version"] as? String {
                     getBlockResult.apiVersion = apiVersion
@@ -42,12 +43,14 @@ class GetBlock {
                         getBlock.proofs = JsonProof.getJsonProofs(jsonProofs: proofs)
                     }
                 }
+                return getBlockResult;
             }
             else {
                 throw CasperMethodError.parseError
            }
         } catch {
+            throw CasperMethodError.parseError
         }
-        return getBlockResult;
+        
     }
 }
