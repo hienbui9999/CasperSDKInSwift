@@ -45,10 +45,6 @@ public class ExecutableDeployItemSerializaton {
                 NSLog("Error serialize NameArgs \(error)")
             }
         }
-        //let argsSerializeSize:UInt32 = UInt32(argStr.count/2)
-       // let prefixSize = CLTypeSerializeHelper.UInt32Serialize(input: argsSerializeSize)
-        //concatenate with the U32 Serialize of the arg serialize size in bytes
-       // argStr = prefixSize + argStr
         return argStr
     }
     public static func serialize(from:ExecutableDeployItem)->String {

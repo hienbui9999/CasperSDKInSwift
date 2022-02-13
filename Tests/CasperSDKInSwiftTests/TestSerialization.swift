@@ -103,7 +103,6 @@ final class TestSerialization: XCTestCase {
             let key1 : CLValueWrapper = .Key("account-hash-d0bc9cA1353597c4004B8F881b397a89c1779004F5E547e04b57c2e7967c6269")
             do {
                 let keySerialize = try CLTypeSerializeHelper.CLValueSerialize(input: key1)
-                print("keySerialize:\(keySerialize)")
                 XCTAssert(keySerialize == "00d0bc9cA1353597c4004B8F881b397a89c1779004F5E547e04b57c2e7967c6269")
             } catch {
                 throw CasperError.invalidNumber
@@ -111,20 +110,86 @@ final class TestSerialization: XCTestCase {
             //test for URef
             //test for PublicKey
             //test for Option
+            
             //test for List
+            //List of 3 U32 numbers
+            let item1:CLValueWrapper = .U32(1)
+            let item2:CLValueWrapper = .U32(2)
+            let item3:CLValueWrapper = .U32(3)
+            let clValue:CLValueWrapper = .ListWrapper([item1,item2,item3])
+            do {
+                let clValueSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: clValue)
+                XCTAssert(clValueSerialization=="03000000010000000200000003000000")
+            } catch {
+                
+            }
+            
+            //List of 3 String
+            let listStr1:CLValueWrapper = .String("Hello, World!")
+            let listStr2:CLValueWrapper = .String("Bonjour le monde")
+            let listStr3:CLValueWrapper = .String("Hola Mundo")
+            let clValueStringList:CLValueWrapper = .ListWrapper([listStr1,listStr2,listStr3])
+            do {
+                let clStringListSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: clValueStringList)
+                XCTAssert(clStringListSerialization=="030000000d00000048656c6c6f2c20576f726c642110000000426f6e6a6f7572206c65206d6f6e64650a000000486f6c61204d756e646f")
+            } catch {
+                
+            }
             //test for ByteArray
             let ba:CLValueWrapper = .BytesArray("006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc")
             do {
-                let baSerialize = try CLTypeSerializeHelper.CLValueSerialize(input: ba, withPrefix0x: false)
-                XCTAssert(baSerialize == "006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc")
+                let baSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: ba, withPrefix0x: false)
+                XCTAssert(baSerialization == "006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc")
             } catch {
                 throw CasperError.invalidNumber
             }
             //test for Result
+            //Result ok
+            let resultCLValue : CLValueWrapper = .ResultWrapper("Ok", .U64(314))
+            do {
+                let resultCLValueSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: resultCLValue)
+                XCTAssert(resultCLValueSerialization=="013a01000000000000")
+            } catch {
+                
+            }
+            //Result err
+            let resultErrCLValue : CLValueWrapper = .ResultWrapper("Err", .String("Uh oh"))
+            do {
+                let resultCLValueErrSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: resultErrCLValue)
+                XCTAssert(resultCLValueErrSerialization=="00050000005568206f68")
+            } catch {
+                
+            }
             //test for Tuple1
+            let tuple1CLValue : CLValueWrapper = .Tuple1Wrapper(.String("Hello, World!"))
+            let tuple2CLValue : CLValueWrapper = .Tuple1Wrapper(.U32(1))
+            let tuple3CLValue : CLValueWrapper = .Tuple1Wrapper(.Bool(true))
+            do {
+                let tuple1Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple1CLValue)
+                XCTAssert(tuple1Serialization == "0d00000048656c6c6f2c20576f726c6421")
+                let tuple2Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple2CLValue)
+                XCTAssert(tuple2Serialization == "01000000")
+                let tuple3Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple3CLValue)
+                XCTAssert(tuple3Serialization == "01")
+            } catch {
+                
+            }
             //test for Tuple2
+            do {
+                let tupleType2 : CLValueWrapper = .Tuple2Wrapper(tuple1CLValue, tuple2CLValue)
+                let tupleType2Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tupleType2)
+                XCTAssert(tupleType2Serialization == "0d00000048656c6c6f2c20576f726c642101000000")
+            } catch {
+                
+            }
             //test for Tuple3
-            
+            do {
+                let tupleType3 : CLValueWrapper = .Tuple3Wrapper(tuple2CLValue, tuple1CLValue, tuple3CLValue)
+                let tupleType3Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tupleType3)
+                XCTAssert(tupleType3Serialization == "010000000d00000048656c6c6f2c20576f726c642101")
+            } catch {
+                
+            }
         } catch {
             
         }
