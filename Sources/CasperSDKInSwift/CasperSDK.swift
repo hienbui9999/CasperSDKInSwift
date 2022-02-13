@@ -1,6 +1,9 @@
 
 import Foundation
-
+public enum CasperError:Error {
+    case invalidNumber
+    case NONE
+}
 public enum CasperMethodError:Error {
     case invalidURL
     case invalidParams

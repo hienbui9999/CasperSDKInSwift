@@ -8,7 +8,7 @@ public class DeployHeader {
     public var timestamp:String = "";
     public var ttl:String = "";
     public var dependencies:[String] = [String]();
-    
+
     public static func getDeployHeader(from:[String:Any])->DeployHeader {
         let retDeploy:DeployHeader = DeployHeader();
         if let account = from["account"] as? String {
