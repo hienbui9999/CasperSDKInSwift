@@ -18,6 +18,7 @@ public enum CLValueWrapper {
     case BytesArray(String)
     indirect case OptionWrapper(CLValueWrapper)
     indirect case ListWrapper([CLValueWrapper])
+    indirect case FixedListWrapper([CLValueWrapper])
     indirect case ResultWrapper(String,CLValueWrapper)
     indirect case MapWrapper([CLValueWrapper],[CLValueWrapper])
     indirect case Tuple1Wrapper(CLValueWrapper)

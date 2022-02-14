@@ -124,13 +124,20 @@ final class TestCLValueSerialization: XCTestCase {
             XCTAssert(publicKeySerialization == "01394476bd8202887ac0e42ae9d8f96d7e02d81cc204533506f1fd199e95b1fd2b")
            
             //test for Option
-            
+            //Option None
             let optionNone:CLValueWrapper = .OptionWrapper(.NONE)
             let optionNoneSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: optionNone)
             XCTAssert(optionNoneSerialization=="00")
+            
+            //Option with value U32
             let option:CLValueWrapper = .OptionWrapper(.U32(10))
             let optionSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: option)
             XCTAssert(optionSerialization == "010a000000")
+            
+            //Option with value String("Hello, World!")
+            let optionString:CLValueWrapper = .OptionWrapper(.String("Hello, World!"))
+            let optionStringSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: optionString)
+            XCTAssert(optionStringSerialization == "010d00000048656c6c6f2c20576f726c6421")
             
             //test for List
             //List of 3 U32 numbers
@@ -149,10 +156,26 @@ final class TestCLValueSerialization: XCTestCase {
             let clValueStringList:CLValueWrapper = .ListWrapper([listStr1,listStr2,listStr3])
             let clStringListSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: clValueStringList)
             XCTAssert(clStringListSerialization=="030000000d00000048656c6c6f2c20576f726c642110000000426f6e6a6f7572206c65206d6f6e64650a000000486f6c61204d756e646f")
+            //Test for FixedList
+            //FixedList of 3 U32 numbers
+            let fitem1:CLValueWrapper = .U32(1)
+            let fitem2:CLValueWrapper = .U32(2)
+            let fitem3:CLValueWrapper = .U32(3)
+            let fclValue:CLValueWrapper = .FixedListWrapper([fitem1,fitem2,fitem3])
             
+            let fclValueSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: fclValue)
+            XCTAssert(fclValueSerialization=="010000000200000003000000")
+            
+            //FixedList of 3 String
+            let flistStr1:CLValueWrapper = .String("Hello, World!")
+            let flistStr2:CLValueWrapper = .String("Bonjour le monde")
+            let flistStr3:CLValueWrapper = .String("Hola Mundo")
+            let fclValueStringList:CLValueWrapper = .FixedListWrapper([flistStr1,flistStr2,flistStr3])
+            let fclStringListSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: fclValueStringList)
+            XCTAssert(fclStringListSerialization=="0d00000048656c6c6f2c20576f726c642110000000426f6e6a6f7572206c65206d6f6e64650a000000486f6c61204d756e646f")
             //test for ByteArray
             let ba:CLValueWrapper = .BytesArray("006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc")
-            let baSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: ba, withPrefix0x: false)
+            let baSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: ba)
             XCTAssert(baSerialization == "006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc")
            
             //test for Result

@@ -153,7 +153,7 @@ public class CLTypeSerializeHelper {
                     throw CasperError.invalidNumber
                 }
             }
-            break
+            
         case .ListWrapper(let array):
             let arraySize:UInt32 = UInt32(array.count)
             var result = CLTypeSerializeHelper.UInt32Serialize(input: arraySize)
@@ -166,7 +166,19 @@ public class CLTypeSerializeHelper {
             } catch {
                 throw CasperError.invalidNumber
             }
-            break
+            
+        case .FixedListWrapper(let array):
+            var result = ""
+            do {
+                for e in array {
+                    let ret = try CLTypeSerializeHelper.CLValueSerialize(input: e,withPrefix0x: false)
+                    result = result + ret
+                }
+                return result
+            } catch {
+                throw CasperError.invalidNumber
+            }
+            
         case .ResultWrapper(let string, let cLValueWrapper):
             var result = ""
             if string == "Ok" {
@@ -196,10 +208,10 @@ public class CLTypeSerializeHelper {
                     throw CasperError.invalidNumber
                 }
             }
-            break
+            
         case .MapWrapper(let array1, let array2):
             return ""
-            break
+            
         case .Tuple1Wrapper(let cLValueWrapper):
             do {
                 var ret = "0x"
@@ -211,7 +223,7 @@ public class CLTypeSerializeHelper {
             } catch {
                 throw CasperError.invalidNumber
             }
-            break
+            
         case .Tuple2Wrapper(let cLValueWrapper1, let cLValueWrapper2):
             do {
                 var ret = "0x"
@@ -224,7 +236,7 @@ public class CLTypeSerializeHelper {
             } catch {
                 throw CasperError.invalidNumber
             }
-            break
+            
         case .Tuple3Wrapper(let cLValueWrapper1, let cLValueWrapper2, let cLValueWrapper3):
             do {
                 var ret = "0x"
@@ -238,7 +250,7 @@ public class CLTypeSerializeHelper {
             } catch {
                 throw CasperError.invalidNumber
             }
-            break
+            
         case .AnyCLValue(let anyObject):
             //non-serializable object
             break
