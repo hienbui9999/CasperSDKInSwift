@@ -3,7 +3,7 @@ import XCTest
 
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
-        let ts: TestSerialization = TestSerialization()
+        let ts: TestCLValueSerialization = TestCLValueSerialization()
         do {
             try ts.testAll()
         } catch {

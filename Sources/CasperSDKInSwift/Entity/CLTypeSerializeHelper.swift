@@ -107,7 +107,13 @@ public class CLTypeSerializeHelper {
                 return "01" + elements[1]
             } else if string.contains("uref-") {
                 let elements = string.components(separatedBy: "-")
-                return "02" + elements[1]
+                if elements.count < 2 {
+                    return ""
+                } else {
+                    let result = elements[1]
+                    let accessRight:String = String(elements[2].suffix(2))
+                    return "02" + result + accessRight
+                }
             }
             break;
         case .URef(let string):
@@ -137,7 +143,11 @@ public class CLTypeSerializeHelper {
             default:
                 do {
                     var ret = try CLTypeSerializeHelper.CLValueSerialize(input: cLValueWrapper,withPrefix0x:false)
-                    ret = "0x01" + ret
+                    if withPrefix0x {
+                        ret = "0x01" + ret
+                    } else {
+                        ret = "01" + ret
+                    }
                     return ret
                 } catch {
                     throw CasperError.invalidNumber
@@ -510,9 +520,6 @@ public class CLTypeSerializeHelper {
         return result
     }
     public static func UnitSerialize()->String {
-        return ""
-    }
-    public static func OptionSerialize()->String{
         return ""
     }
     
