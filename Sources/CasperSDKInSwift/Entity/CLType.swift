@@ -19,6 +19,7 @@ public enum CLType {
     indirect case Result(CLType,CLType)
     indirect case Option(CLType)
     indirect case List(CLType)
+    indirect case FixedList(CLType)
     indirect case Map(CLType,CLType)
     indirect case Tuple1(CLType)
     indirect case Tuple2(CLType,CLType)

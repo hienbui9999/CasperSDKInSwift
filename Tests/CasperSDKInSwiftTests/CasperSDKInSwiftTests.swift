@@ -3,9 +3,15 @@ import XCTest
 
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
-        let ts: TestCLValueSerialization = TestCLValueSerialization()
+        let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()
         do {
-            try ts.testAll()
+            try testCLTypeSerialization.testAll()
+        } catch {
+            NSLog("Error test serialization:\(error)")
+        }
+        let testCLValueSerialization: TestCLValueSerialization = TestCLValueSerialization()
+        do {
+            try testCLValueSerialization.testAll()
         } catch {
             NSLog("Error test serialization:\(error)")
         }
