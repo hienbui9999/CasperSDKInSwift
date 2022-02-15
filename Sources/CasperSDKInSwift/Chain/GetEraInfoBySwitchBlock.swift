@@ -1,6 +1,14 @@
 import Foundation
-
+/**
+ class represent the GetEraInfoBySwitchBlock
+ */
 class GetEraInfoBySwitchBlock {
+    /**
+     Get GetEraInfoResult from Json string
+     - Parameter : a Json String represent the GetEraInfoResult object
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Returns: GetEraInfoResult object
+     */
     public static func getResult(from:[String:Any]) throws -> GetEraInfoResult {
         if let error = from["error"] as AnyObject? {
             var code:Int!

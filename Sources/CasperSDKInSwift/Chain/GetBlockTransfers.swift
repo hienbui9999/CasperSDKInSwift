@@ -1,6 +1,14 @@
 import Foundation
-
+/**
+ class represent the GetBlockTransfers
+ */
 public class GetBlockTransfers {
+    /**
+     Get GetBlockTransfersResult from Json string
+     - Parameter : a Json String represent the GetBlockTransfersResult object
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Returns: GetBlockTransfersResult object
+     */
     public static func getResult(from:[String:Any]) throws -> GetBlockTransfersResult {
         do {
             if let error = from["error"] as AnyObject? {

@@ -1,16 +1,21 @@
 import Foundation
-
-enum GetStateRootHashError: Error {
-    case invalidURL
-    case parseError
-    case methodNotFound
-    case blockNotFound
-    case blockHeightError
-}
+/**
+ class represent the GetStateRootHashParam
+ */
 public class GetStateRootHashParam{
+    ///The block identifier for getting GetBlockTransfersResult
     public var block_identifier:BlockIdentifier = .None
 }
+/**
+ class represent the GetStateRootHash
+ */
 class GetStateRootHash {
+    /**
+     Get state root hash from Json string
+     - Parameter : a Json String represent the state root hash
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Returns: state root hash string
+     */
     public static func getStateRootHash(from:[String:Any]) throws ->String {
         do {
             if let error = from["error"] as AnyObject? {
@@ -32,10 +37,11 @@ class GetStateRootHash {
             if let state_root_hash = result["state_root_hash"] as? String{
                 return state_root_hash
             } else {
-                throw GetStateRootHashError.parseError
+                NSLog("Error get state root hash")
             }
         } else {
-            throw GetStateRootHashError.parseError
+            NSLog("Error get state root hash")
         }
+        return ""
     }
 }
