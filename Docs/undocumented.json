@@ -295,114 +295,16 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockResult.swift",
-      "line": 3,
-      "symbol": "GetBlockResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockResult.swift",
-      "line": 4,
-      "symbol": "GetBlockResult.apiVersion",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockResult.swift",
-      "line": 5,
-      "symbol": "GetBlockResult.block",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfers.swift",
-      "line": 3,
-      "symbol": "GetBlockTransfers",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfers.swift",
-      "line": 4,
-      "symbol": "GetBlockTransfers.getResult(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersParams.swift",
-      "line": 3,
-      "symbol": "GetBlockTransfersParams",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersParams.swift",
-      "line": 4,
-      "symbol": "GetBlockTransfersParams.block_identifier",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersResult.swift",
-      "line": 2,
-      "symbol": "GetBlockTransfersResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersResult.swift",
-      "line": 3,
-      "symbol": "GetBlockTransfersResult.api_version",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersResult.swift",
-      "line": 4,
+      "line": 9,
       "symbol": "GetBlockTransfersResult.block_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersResult.swift",
-      "line": 5,
-      "symbol": "GetBlockTransfersResult.transfers",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetEraInfoResult.swift",
-      "line": 3,
-      "symbol": "GetEraInfoResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetEraInfoResult.swift",
-      "line": 4,
-      "symbol": "GetEraInfoResult.api_version",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetEraInfoResult.swift",
-      "line": 5,
-      "symbol": "GetEraInfoResult.era_summary",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetStateRootHash.swift",
-      "line": 10,
-      "symbol": "GetStateRootHashParam",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetStateRootHash.swift",
       "line": 11,
-      "symbol": "GetStateRootHashParam.block_identifier",
+      "symbol": "GetBlockTransfersResult.transfers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
