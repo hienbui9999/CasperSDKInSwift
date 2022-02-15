@@ -39,8 +39,11 @@ public enum CLValueWrapper {
  - parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType
  */
 public class CLValue {
+    ///the serialization of CLValue
     public var bytes:String = ""
+    ///The CLType of the CLValue
     public var cl_type:CLType = .NONE
+    ///The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper
     public var parsed:CLValueWrapper = .NONE
     /**
      Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter
