@@ -407,76 +407,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 2,
-      "symbol": "DeploySerialization",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 3,
-      "symbol": "DeploySerialization.serialize(fromDeploy:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 13,
-      "symbol": "DeployHeaderSerialization",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 14,
-      "symbol": "DeployHeaderSerialization.serialize(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 28,
-      "symbol": "ExecutableDeployItemSerializaton",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 29,
-      "symbol": "ExecutableDeployItemSerializaton.NameArgListSerialize(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 50,
-      "symbol": "ExecutableDeployItemSerializaton.serialize(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 105,
-      "symbol": "DeployApprovalSerialization",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 106,
-      "symbol": "DeployApprovalSerialization.serialize(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/DomainSerialization/DeploySerialization.swift",
-      "line": 118,
-      "symbol": "ExecutionSerialization",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Account.swift",
       "line": 2,
       "symbol": "Account",
@@ -1163,160 +1093,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 3,
-      "symbol": "CLTypeSerializeHelper",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 4,
-      "symbol": "CLTypeSerializeHelper.CLTypeSerialize(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 62,
-      "symbol": "CLTypeSerializeHelper.CLValueSerialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 252,
-      "symbol": "CLTypeSerializeHelper.BoolSerialize(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 260,
-      "symbol": "CLTypeSerializeHelper.Int32Serialize(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 269,
-      "symbol": "CLTypeSerializeHelper.Int64Serialize(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 278,
-      "symbol": "CLTypeSerializeHelper.UInt8Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 286,
-      "symbol": "CLTypeSerializeHelper.UInt8SerializeRaw(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 290,
-      "symbol": "CLTypeSerializeHelper.UInt32Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 299,
-      "symbol": "CLTypeSerializeHelper.UInt64Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 302,
-      "symbol": "CLTypeSerializeHelper.divideBy16(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 335,
-      "symbol": "CLTypeSerializeHelper.from10To16(input:lowerCase:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 382,
-      "symbol": "CLTypeSerializeHelper.U512Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 390,
-      "symbol": "CLTypeSerializeHelper.U256Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 398,
-      "symbol": "CLTypeSerializeHelper.U128Serialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 406,
-      "symbol": "CLTypeSerializeHelper.BigNumberSerialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 415,
-      "symbol": "CLTypeSerializeHelper.SmallNumberSerialize(input:numBytes:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 421,
-      "symbol": "CLTypeSerializeHelper.NumberSerialize(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 455,
-      "symbol": "CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input:numBytes:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 483,
-      "symbol": "CLTypeSerializeHelper.fromBigToLittleEdian(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 512,
-      "symbol": "CLTypeSerializeHelper.StringSerialize(input:withPrefix0x:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLTypeSerializeHelper.swift",
-      "line": 522,
-      "symbol": "CLTypeSerializeHelper.UnitSerialize()",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 3,
       "symbol": "CLValueWrapper",
@@ -1445,125 +1221,132 @@
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 21,
-      "symbol": "CLValueWrapper.ResultWrapper(_:_:)",
+      "symbol": "CLValueWrapper.FixedListWrapper(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 22,
-      "symbol": "CLValueWrapper.MapWrapper(_:_:)",
+      "symbol": "CLValueWrapper.ResultWrapper(_:_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 23,
-      "symbol": "CLValueWrapper.Tuple1Wrapper(_:)",
+      "symbol": "CLValueWrapper.MapWrapper(_:_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 24,
-      "symbol": "CLValueWrapper.Tuple2Wrapper(_:_:)",
+      "symbol": "CLValueWrapper.Tuple1Wrapper(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 25,
-      "symbol": "CLValueWrapper.Tuple3Wrapper(_:_:_:)",
+      "symbol": "CLValueWrapper.Tuple2Wrapper(_:_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 26,
-      "symbol": "CLValueWrapper.AnyCLValue(_:)",
+      "symbol": "CLValueWrapper.Tuple3Wrapper(_:_:_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 27,
-      "symbol": "CLValueWrapper.NULL",
+      "symbol": "CLValueWrapper.AnyCLValue(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 28,
+      "symbol": "CLValueWrapper.NULL",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
+      "line": 29,
       "symbol": "CLValueWrapper.NONE",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 30,
+      "line": 31,
       "symbol": "CLValue",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "CLValue.bytes",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 32,
+      "line": 33,
       "symbol": "CLValue.cl_type",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 33,
+      "line": 34,
       "symbol": "CLValue.parsed",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 34,
+      "line": 35,
       "symbol": "CLValue.getCLValueWrapperDirect(from:clType:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 44,
+      "line": 45,
       "symbol": "CLValue.getCLValueWrapper(from:clType:keyStr:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 59,
+      "line": 60,
       "symbol": "CLValue.getCLValueWrapperPrimitiveFromRaw(input:clType:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 128,
+      "line": 129,
       "symbol": "CLValue.getCLValueWrapperPrimitive(from:clType:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 226,
+      "line": 227,
       "symbol": "CLValue.getCLValueWrapperCompound(from:clType:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 341,
+      "line": 342,
       "symbol": "CLValue.getCLValue(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
@@ -1787,21 +1570,21 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
-      "line": 17,
+      "line": 11,
       "symbol": "DeployApprovalItem",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
-      "line": 18,
+      "line": 12,
       "symbol": "DeployApprovalItem.signature",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
-      "line": 19,
+      "line": 13,
       "symbol": "DeployApprovalItem.signer",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -3687,6 +3470,41 @@
       "line": 182,
       "symbol": "DeployArgs.argsDesc",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
+      "line": 356,
+      "symbol": "CLTypeSerializeHelper.divideBy16(input:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
+      "line": 389,
+      "symbol": "CLTypeSerializeHelper.from10To16(input:lowerCase:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
+      "line": 493,
+      "symbol": "CLTypeSerializeHelper.SmallNumberSerialize(input:numBytes:withPrefix0x:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
+      "line": 538,
+      "symbol": "CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input:numBytes:withPrefix0x:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
+      "line": 566,
+      "symbol": "CLTypeSerializeHelper.fromBigToLittleEdian(input:withPrefix0x:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {

@@ -16,7 +16,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (0% documented)</p>
+        <p><a href="index.html"> Docs</a> (4% documented)</p>
         <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -159,9 +159,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ExecutionResultHelper.html">ExecutionResultHelper</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes.html#/s:16CasperSDKInSwift22ExecutionSerializationC">ExecutionSerialization</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/GetAuctionInfo.html">GetAuctionInfo</a>
@@ -443,6 +440,14 @@
 <p>&ldquo;import CasperSDKInSwift&rdquo;</p>
 
 <p>at the beginning of the file to refer for CasperSDK instance and call the method request</p>
+<h1 id='information-for-cltype-clvalue-and-serialization' class='heading'>Information for CLType, CLValue and Serialization</h1>
+
+<ul>
+<li><p><a href="./Docs/Help.md#cltype">CLType</a></p></li>
+<li><p><a href="./Docs/Help.md#clvalue">CLValue</a></p></li>
+<li><p><a href="./Docs/Help.md#casper-domain-specific-objects">Casper Domain Specific Objects</a></p></li>
+<li><p><a href="./Docs/Help.md#serialization">Serialization</a></p></li>
+</ul>
 <h1 id='documentation-for-classes-and-methods' class='heading'>Documentation for classes and methods</h1>
 
 <ul>
@@ -476,7 +481,7 @@
 <p>You can change the method url by running this code line</p>
 <pre class="highlight swift"><code><span class="n">casperSDK</span><span class="o">.</span><span class="nf">setMethodUrl</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://node-clarity-mainnet.make.services/rpc"</span><span class="p">)</span>
 </code></pre>
-<h2 id='rpc-calls' class='heading'>RPC Calls</h2>
+<h2 id='m2-rpc-calls' class='heading'>M2: RPC Calls</h2>
 <h3 id='i-get-state-root-hash' class='heading'>I. Get State Root Hash</h3>
 
 <p>Retrieves  the state root hash String. There are 3 cases for calling this method</p>
@@ -858,11 +863,51 @@ This example call the test net</li>
 
 <span class="p">}</span>
 </code></pre>
+<h2 id='cltype-primitives-casper-domain-specific-objects-serialization' class='heading'>CLType primitives, Casper Domain Specific Objects, Serialization</h2>
+<h3 id='cltype-primitives' class='heading'>CLType primitives:</h3>
+
+<p>Are built with Swift enumeration type, which consisted of all the value described in this page:</p>
+
+<p><a href="https://docs.rs/casper-types/1.4.6/casper_types/enum.CLType.html">https://docs.rs/casper-types/1.4.6/casper_types/enum.CLType.html</a></p>
+<h3 id='clvalue' class='heading'>CLValue</h3>
+
+<p>Is the value corresponding to the CLType. In Swift it is built with enumeration type also, with two attributes: CLType and the value of CLType</p>
+<h3 id='casper-domain-specific-objects' class='heading'>Casper Domain Specific Objects:</h3>
+
+<p>Are built with corresponding Swift classes, and in Entity folder</p>
+<h3 id='serialization' class='heading'>Serialization</h3>
+
+<p>The serialization for CLType, CLValue and Deploy (which consists of Deploy Header, Deploy Session, Deploy Payment, Approvals) is implemented based on the document at this address: <a href="https://casper.network/docs/design/serialization-standard#serialization-standard-state-keys">https://casper.network/docs/design/serialization-standard#serialization-standard-state-keys</a></p>
+
+<p>For CLType and CLValue, the serialization is done within class CLTypeSerializeHelper, which consists of two main methods:</p>
+
+<ul>
+<li><p>CLTypeSerialize is for CLType serialization</p></li>
+<li><p>CLValueSerialize is for CLValue serialization</p></li>
+</ul>
+
+<p>For Deploy and Deploy related objects (Deploy Header, Deploy Session, Deploy Payment, Approvals) is done within file DeploySerialization.swift, in which there are classes for the serialization work</p>
+
+<ul>
+<li><p>DeploySerialization class is for Deploy Serialization</p></li>
+<li><p>DeployHeaderSerialization class is for Deploy Header Serialization</p></li>
+<li><p>ExecutableDeployItemSerializaton class is for Session and Payment Serialization</p></li>
+<li><p>DeployApprovalSerialization class is for Approval Serialization</p></li>
+</ul>
+
+<p>For detail information please refer to this:</p>
+
+<ul>
+<li><p><a href="./Docs/Help.md#cltype">CLType</a></p></li>
+<li><p><a href="./Docs/Help.md#clvalue">CLValue</a></p></li>
+<li><p><a href="./Docs/Help.md#casper-domain-specific-objects">Casper Domain Specific Objects</a></p></li>
+<li><p><a href="./Docs/Help.md#serialization">Serialization</a></p></li>
+</ul>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-14)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

@@ -647,6 +647,53 @@ If CLValueWrapper has the value of .ListWrapper([UInt32(1),UInt32(2),UInt32(3)])
 
 Are built with corresponding Swift classes, and in Entity folder
 
+For example Deploy class is declared as:
+
+```swift
+public class Deploy {
+    public var hash:String = "";
+    public var approvals:[DeployApprovalItem] = [DeployApprovalItem]();
+    public var header:DeployHeader = DeployHeader();
+    public var payment:ExecutableDeployItem?;
+    public var session:ExecutableDeployItem?;
+}
+```
+The DeployHeader is declared as:
+
+```swift
+public class DeployHeader {
+    public var account:String = "";
+    public var body_hash:String = "";
+    public var chain_name:String = "";
+    public var gas_price:UInt64 = 0;
+    public var timestamp:String = "";
+    public var ttl:String = "";
+    public var dependencies:[String] = [String]();
+}
+```
+
+payment and session in Deploy are of type ExecutableDeployItem, which an enumeration type, declared as:
+
+```swift
+public enum ExecutableDeployItem {
+    case ModuleBytes (module_bytes:Bytes, args: RuntimeArgs)
+    case StoredContractByHash(hash:String,entry_point:String,args:RuntimeArgs)
+    case StoredContractByName(name:String,entry_point:String,args:RuntimeArgs)
+    case StoredVersionedContractByHash (hash:String,version:UInt32?,entry_point:String,args:RuntimeArgs)
+    case StoredVersionedContractByName(name:String,version:UInt32?,entry_point:String,args:RuntimeArgs)
+    case Transfer(args:RuntimeArgs)
+    case NONE
+}
+```
+DeployApprovalItem class is declared as: 
+
+```swift
+public class DeployApprovalItem {
+    public var signature:String = "";
+    public var signer:String = "";
+}
+```
+
 ### Serialization
 
 The serialization for CLType, CLValue and Deploy (which consists of Deploy Header, Deploy Session, Deploy Payment, Approvals) is implemented based on the document at this address: https://casper.network/docs/design/serialization-standard#serialization-standard-state-keys

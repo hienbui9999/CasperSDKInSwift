@@ -1,5 +1,14 @@
 import Foundation
+/**
+ class for Deploy serialization
+ */
 public class DeploySerialization {
+    /**
+     Serialize for Deploy
+     - Parameter : a deploy object
+     - Returns: String represent the serialization of the deploy of the input, with the rule of making serialization like this:
+     deployHeader.Serialization + hash + payment.Serialization + session.Serialization + approvals.Serialization
+     */
     public static func serialize(fromDeploy:Deploy)->String {
         var retStr:String = ""
         retStr = DeployHeaderSerialization.serialize(from: fromDeploy.header)
@@ -10,7 +19,15 @@ public class DeploySerialization {
         return retStr
     }
 }
+/**
+ class for Deploy Header  serialization
+ */
 public class DeployHeaderSerialization {
+    /**
+     Serialize for DeployHeader
+     - Parameter : a deploy header object
+     - Returns: String represent the serialization of the deploy header
+     */
     public static func serialize(from:DeployHeader) -> String {
         var retStr =  from.account +  CLTypeSerializeHelper.UInt64Serialize(input:Utils.dateStrToMilisecond(dateStr:from.timestamp)) + CLTypeSerializeHelper.UInt64Serialize(input: Utils.ttlToMilisecond(ttl: from.ttl)) + CLTypeSerializeHelper.UInt64Serialize(input: from.gas_price) + from.body_hash
         var depStr = CLTypeSerializeHelper.UInt32Serialize(input: UInt32(from.dependencies.count))
@@ -25,7 +42,15 @@ public class DeployHeaderSerialization {
         return retStr
     }
 }
+/**
+ class for ExecutableDeployItem  serialization
+ */
 public class ExecutableDeployItemSerializaton {
+    /**
+     Serialize for NamedArg list
+     - Parameter : NamedArg list
+     - Returns: String represent the serialization of the NamedArg list
+     */
     public static func NameArgListSerialize(from:[NamedArg])->String {
         //if the args list is empty then just return the U32Serialize(0), which is 00000000
         if from.count == 0 {
@@ -47,6 +72,11 @@ public class ExecutableDeployItemSerializaton {
         }
         return argStr
     }
+    /**
+     Serialize for ExecutableDeployItem
+     - Parameter : ExecutableDeployItem object
+     - Returns: String represent the serialization of the ExecutableDeployItem
+     */
     public static func serialize(from:ExecutableDeployItem)->String {
         switch from {
         case .ModuleBytes(let module_bytes, let args):
@@ -102,7 +132,16 @@ public class ExecutableDeployItemSerializaton {
         }
     }
 }
+/**
+ class for Approval serialization
+ */
+
 public class DeployApprovalSerialization {
+    /**
+     Serialize for DeployApprovalItem list
+     - Parameter : DeployApprovalItem list
+     - Returns: String represent the serialization of the DeployApprovalItem list
+     */
     public static func serialize(from:[DeployApprovalItem])->String {
         let totalApproval = from.count
         if totalApproval == 0 {

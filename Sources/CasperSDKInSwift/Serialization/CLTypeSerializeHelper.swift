@@ -1,6 +1,13 @@
 import Foundation
-
+/**
+ class for CLType and CLValue serialization
+ */
 public class CLTypeSerializeHelper {
+    /**
+     Serialize for CLType
+     - Parameter : CLType
+     - Returns: String represent the serialization of the CLType of the input
+     */
     public static func CLTypeSerialize(input:CLType) -> String {
         switch input {
         case .Bool:
@@ -59,6 +66,13 @@ public class CLTypeSerializeHelper {
         }
        return "-1"
     }
+    /**
+     Serialize for CLValue
+     - Parameters:
+        - CLValue, wrapped in a CLValueWrapper object
+        - withPrefix0x - if set to true then the serialization String will be with prefix "0x", otherwise no prefix "0x" is added. The default value is false.
+     - Returns: String represent the serialization of the CLValue of the input
+     */
     public static func CLValueSerialize(input:CLValueWrapper,withPrefix0x:Bool = false)throws -> String {
         switch input {
         case .Bool(let bool):
@@ -261,14 +275,25 @@ public class CLTypeSerializeHelper {
         }
         return ""
     }
+    
+    /**
+     Serialize for CLValue of CLType Bool
+     - Parameters:bool value
+     - Returns: String with value "01" if input == true,  "00" if input == false
+     */
     public static func BoolSerialize(input:Bool)->String {
         if input == true {
             return "01"
         }
         return "00"
     }
+    /**
+     Serialize for CLValue of CLType Int32
+     - Parameters:Int32 value
+     - Returns: Serialization of UInt32 if input >= 0.
+     If input < 0 Serialization of UInt32.max complement to the input
+     */
     
-     //if the input is negative then the value is UInt32.max + input then UInt32 serialize with the value
     public static func Int32Serialize(input:Int32)->String {
         if input >= 0 {
             return CLTypeSerializeHelper.UInt32Serialize(input: UInt32(input))
@@ -278,6 +303,12 @@ public class CLTypeSerializeHelper {
             return CLTypeSerializeHelper.UInt32Serialize(input: UInt32(input3))
         }
     }
+    /**
+     Serialize for CLValue of CLType Int64
+     - Parameters:Int64 value
+     - Returns: Serialization of UInt64 if input >= 0.
+     If input < 0 Serialization of UInt64.max complement to the input
+     */
     public static func Int64Serialize(input:Int64)->String {
         if input >= 0 {
             return CLTypeSerializeHelper.UInt64Serialize(input: UInt64(input))
@@ -287,6 +318,11 @@ public class CLTypeSerializeHelper {
             return CLTypeSerializeHelper.UInt64Serialize(input: UInt64(input3))
         }
     }
+    /**
+     Serialize for CLValue of CLType UInt8
+     - Parameters:UInt8 value
+     - Returns: String represents the serialization of UInt8, which is a String of size 2. Example: Input UInt8(15) then output is "0f"
+     */
     public static func UInt8Serialize(input:UInt8,withPrefix0x:Bool = false)->String{
         let value = UInt8(bigEndian: input)
         if withPrefix0x {
@@ -295,10 +331,12 @@ public class CLTypeSerializeHelper {
             return String(format:"%02x",value.littleEndian)
         }
     }
-    public static func UInt8SerializeRaw(input:UInt8)->String{
-        let value = UInt8(bigEndian: input)
-        return String(format:"%02x",value.littleEndian)
-    }
+    /**
+     Serialize for CLValue of CLType UInt32
+     - Parameters:UInt32 value
+     - Returns: String represents the serialization of UInt32 in little endian, which is a String of size 8. Example: Input UInt32(15) then output is "0f000000"
+     */
+    
     public static func UInt32Serialize(input:UInt32,withPrefix0x:Bool = false)->String {
         let value = UInt32(bigEndian: input)
         if withPrefix0x {
@@ -307,7 +345,11 @@ public class CLTypeSerializeHelper {
             return String(format:"%08x",value.littleEndian)
         }
     }
-   
+    /**
+     Serialize for CLValue of CLType UInt64
+     - Parameters:UInt64 value
+     - Returns: String represents the serialization of UInt64 in little endian, which is a String of size 16. Example: Input UInt32(15) then output is "0f00000000000000"
+     */
     public static func UInt64Serialize(input:UInt64,withPrefix0x:Bool = false) -> String {
         return CLTypeSerializeHelper.SmallNumberSerialize(input: String(input), numBytes: 8,withPrefix0x : withPrefix0x)
     }
@@ -391,6 +433,12 @@ public class CLTypeSerializeHelper {
             
         }
     }
+    /**
+     Serialize for CLValue of CLType U512 - big number
+     - Parameters:U512 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U512 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U512("15") then output is "010f"
+     */
     public static func U512Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -399,6 +447,12 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for CLValue of CLType U256 - big number
+     - Parameters:U256 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U256 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U256("15") then output is "010f"
+     */
     public static func U256Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -407,6 +461,12 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for CLValue of CLType U128 - big number
+     - Parameters:U128 value in String format
+     - Throws:CasperError.invalidNumber if the input String can not convert to number
+     - Returns: String represents the serialization of U256 in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input U128("15") then output is "010f"
+     */
     public static func U128Serialize(input:String,withPrefix0x:Bool = false) throws -> String {
         do {
            let ret = try CLTypeSerializeHelper.BigNumberSerialize(input: input,withPrefix0x: withPrefix0x)
@@ -415,6 +475,12 @@ public class CLTypeSerializeHelper {
             throw CasperError.invalidNumber
         }
     }
+    /**
+     Serialize for  big number in general - this function is used to deal with U512, U256 and U128 Serialization
+     - Parameters:Big number value in String format
+     - Throws:CasperError.invalidNumber if the String can not convert to number
+     - Returns: String represents the serialization of big number in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input ("15") then output is "010f"
+     */
     public static func BigNumberSerialize(input:String,withPrefix0x:Bool = false) throws ->String {
         if input.isNumeric {
             let numberSerialize:String = CLTypeSerializeHelper.NumberSerialize(input: input)
@@ -430,6 +496,11 @@ public class CLTypeSerializeHelper {
         result = CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input: numberSerialize,numBytes: numBytes,withPrefix0x:withPrefix0x)
         return result
     }
+    /**
+     Serialize for big number to hexa String
+     - Parameters:Big number in String format
+     - Returns: String represents the serialization of Big number in little endian. Example: Input ("999888666555444999887988887777666655556666777888999666999") then output is "37f578fca55492f299ea354eaca52b6e9de47d592453c728"
+     */
     public static func NumberSerialize(input:String) ->  String {
         var result:String = "";
         if input.isNumeric {
@@ -521,16 +592,27 @@ public class CLTypeSerializeHelper {
         }
         return result
     }
+    /**
+     Serialize for CLValue of CLType String
+     - Parameters:String value
+     - Returns: String represents the serialization of the input String, with the Serialization of UInt32(String.length) of the input concatenated with the String serialization itself.
+     Example:input "Hello, World!" will be serialized as "0d00000048656c6c6f2c20576f726c6421"
+        or "lWJWKdZUEudSakJzw1tn" will be serialized as "140000006c574a574b645a5545756453616b4a7a7731746e"
+     */
     public static func StringSerialize(input:String,withPrefix0x:Bool = false)->String {
         var result = ""
         let strLength : UInt32 = UInt32(input.count)
         result = CLTypeSerializeHelper.UInt32Serialize(input: strLength, withPrefix0x: withPrefix0x)
         for v in input.utf8 {
-            let hexaCode =  CLTypeSerializeHelper.UInt8SerializeRaw(input: UInt8(exactly: v)!)
+            let hexaCode =  CLTypeSerializeHelper.UInt8Serialize(input: UInt8(exactly: v)!)
             result = result + hexaCode
         }
         return result
     }
+    /**
+     Serialize for CLValue of CLType String
+        Just return emtpy String
+     */
     public static func UnitSerialize()->String {
         return ""
     }
