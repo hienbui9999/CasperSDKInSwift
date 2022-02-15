@@ -3,7 +3,7 @@
 
 Swift sdk library for interacting with a CSPR node.
 
-## What is casper-swift-sdk ?
+## What is casper-swift-sdk?
 
 SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges & app developers. 
 
@@ -15,7 +15,7 @@ The SDK use Swift 5.0 and support device running IOS from 10.0, MacOS from 10.4.
 
 ## Build and test from terminal 
 
-Go to the SKD root folder.
+Go to the SDK root folder.
 
 - Build command in terminal, type this in terminal
 
@@ -25,7 +25,7 @@ swift build
 
 swift test
 
-- For a full build,test on the SKD, run the following command
+- For a full build,test on the SDK, run the following command
 
 swift package clean
 
@@ -280,7 +280,7 @@ Retrieves a StoredValue object.
 
 Here is some example of getting different kinds of StoredValue
 
-   #### 1. StoredValue as Contract :
+   #### 1. StoredValue as Contract
 
 call parameters :
 
@@ -298,7 +298,7 @@ do {
 }
 ```
 
-  #### 2. StoredValue as account  :
+  #### 2. StoredValue as account
 
 call parameters :
 
@@ -315,7 +315,7 @@ do {
     throw error
 }
 ```
-  #### 3. StoredValue as transfer  :
+  #### 3. StoredValue as transfer
 
 call parameters :
 
@@ -333,7 +333,7 @@ do {
 }
 ```
 
-  #### 4. StoredValue as DeployInfo  :
+  #### 4. StoredValue as DeployInfo
 
 call parameters :
 
@@ -351,7 +351,7 @@ do {
 }
 ```
 
-  #### 5. StoredValue as Bid  :
+  #### 5. StoredValue as Bid
 
 call parameters :
 
@@ -371,7 +371,7 @@ do {
 }
 ```
 
-  #### 6. StoredValue as Withdraw  :
+  #### 6. StoredValue as Withdraw
 
 call parameters :
 
@@ -410,7 +410,7 @@ call parameters :
 
 Call specification in detail for each type: 
 
-  #### 1. dictionary_identifier  parameter as  AccountNamedKey:
+  #### 1. dictionary_identifier  parameter as  AccountNamedKey
 
 ``` swift
  do {
@@ -423,7 +423,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 2. dictionary_identifier  parameter as  ContractNamedKey:
+   #### 2. dictionary_identifier  parameter as  ContractNamedKey
 
 ``` swift
  do {
@@ -436,7 +436,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 3. dictionary_identifier  parameter as  URef:
+   #### 3. dictionary_identifier  parameter as  URef
 
 ``` swift
  do {
@@ -449,7 +449,7 @@ Call specification in detail for each type:
  }
  ```
  
-   #### 4. dictionary_identifier  parameter as  Dictionary:
+   #### 4. dictionary_identifier  parameter as  Dictionary
 
 ``` swift
  do {
