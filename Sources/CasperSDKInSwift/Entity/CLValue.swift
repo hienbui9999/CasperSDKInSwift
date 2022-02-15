@@ -1,5 +1,9 @@
 import Foundation
+///a self-defined null value return when parse for CLValue but getting nil or no value
 let CONST_NULL_RETURN_VALUE: String = "______NULL______"
+/**
+ Enumeration for CLValue. The CLValue is wrapped in an enumeration structure with name CLValueWrapper, in which each value hold the CLValue and its corresponding CLType for the CLValue.
+ */
 public enum CLValueWrapper {
     case Bool(Bool)
     case I32(Int32)
@@ -28,10 +32,23 @@ public enum CLValueWrapper {
     case NULL
     case NONE
 }
+/**
+ Class for CLValue with 3 attributes:
+ - bytes - the serialization of the CLValue
+ - cl_type: of type CLType
+ - parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType
+ */
 public class CLValue {
     public var bytes:String = ""
     public var cl_type:CLType = .NONE
     public var parsed:CLValueWrapper = .NONE
+    /**
+     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter
+     - Parameter :
+        - from: AnyObject, in this case a Json holding the CLType and CLValue
+        - clType: of type CLType, used to determine how to parse the from parameter to retrieve the CLValue
+     - Returns: CLValueWrapper object
+     */
     public static func getCLValueWrapperDirect(from:AnyObject,clType:CLType) -> CLValueWrapper {
         var ret = getCLValueWrapperPrimitive(from: from, clType: clType)
         switch ret {
@@ -42,6 +59,14 @@ public class CLValue {
         }
         return ret;
     }
+    /**
+     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter
+     - Parameter :
+        - from: AnyObject, in this case a Json holding the CLType and CLValue
+        - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
+        - keyStr: get the Json object from first parameter with the call from[keyStr]
+     - Returns: CLValueWrapper object
+     */
     public static func getCLValueWrapper(from:AnyObject,clType:CLType,keyStr:String = "parsed") -> CLValueWrapper {
         if let parsedJson = from[keyStr] as? AnyObject {
             var ret = getCLValueWrapperPrimitive(from: parsedJson, clType: clType)
@@ -57,6 +82,13 @@ public class CLValue {
             return CLValueWrapper.NONE
         }
     }
+    /**
+     Get CLValue primitive from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
+     - Parameter :
+        - from: AnyObject, in this case a Json holding the CLType and CLValue
+        - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
+     - Returns: CLValueWrapper object
+     */
     public static func getCLValueWrapperPrimitiveFromRaw(input:AnyObject,clType:CLType)->CLValueWrapper {
         switch clType {
         case .Bool:
@@ -125,7 +157,13 @@ public class CLValue {
         }
         return .NONE
     }
-    
+    /**
+     Get CLValue primitive from  a parameter of type primitive (with no recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
+     - Parameter :
+        - from: AnyObject, in this case a Json holding the CLType and CLValue
+        - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
+     - Returns: CLValueWrapper object
+     */
     public static func getCLValueWrapperPrimitive(from:AnyObject,clType:CLType) -> CLValueWrapper {
         switch clType {
         case .Bool:
@@ -224,6 +262,13 @@ public class CLValue {
         return .NONE
     }
     
+    /**
+     Get CLValue primitive from  a parameter of type compound (with  recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType compound with recursive part in side that CLType, such as List, Map, Tuple1, Tuple2, Tuple3 ...
+     - Parameter :
+        - from: AnyObject, in this case a Json holding the CLType and CLValue
+        - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
+     - Returns: CLValueWrapper object
+     */
     public static func getCLValueWrapperCompound(from:AnyObject,clType:CLType) -> CLValueWrapper {
         switch clType {
         case .Result(let cLType1, let cLType2):
@@ -338,7 +383,12 @@ public class CLValue {
         }
         return .NONE
     }
-
+    /**
+     Get CLValue with full value: bytes, parsed and cl_type. This function do the task of retrieving information of bytes,parsed and cl_type from the string map [String:Any] from the input.
+     - Parameter :
+        - from: a map of [String:Any] to hold the 3 kinds of value: bytes, parsed and cl_type
+     - Returns: CLValue object, which hold the 3 kinds of value: bytes, parsed and cl_type
+     */
     public static func getCLValue(from:[String:Any]) -> CLValue {
         let clValue:CLValue = CLValue();
         if let bytes = from["bytes"] as? String {

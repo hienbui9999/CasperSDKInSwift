@@ -1,6 +1,7 @@
 import Foundation
 
 public class DeployInfo {
+    
     public var deploy_hash:String=""
     public var transfers: [String]=[String]()
     public var from:String=""

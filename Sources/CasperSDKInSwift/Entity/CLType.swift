@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ Enumeration for CLType
+ */
 public enum CLType {
     case Bool
     case I32
@@ -27,7 +29,15 @@ public enum CLType {
     case CLAny
     case NONE
 }
+/**
+ Class  for handling the  conversion from Json String to  CLType
+ */
 public class CLTypeHelper {
+    /**
+     Get CLType from Json string
+     - Parameter : a Json String represent the CLType object
+     - Returns: CLType object
+     */
     public static func jsonToCLType(from:AnyObject,keyStr:String = "cl_type")-> CLType {
         var ret :CLType = .NONE
         if let clTypeWrapper = from[keyStr] as? String {
@@ -40,6 +50,11 @@ public class CLTypeHelper {
         return ret;
     }
     
+    /**
+     Get CLType primitive (CLType with no recursive type inside) from Json string
+     - Parameter : a Json String represent the CLType object
+     - Returns: CLType object
+     */
     public static func jsonToCLTypePrimitive(from:AnyObject,keyStr:String="cl_type") -> CLType {
         var clType : CLType = .NONE
         //primitive type
@@ -96,6 +111,13 @@ public class CLTypeHelper {
         }
         return clType
     }
+    
+    /**
+     Get CLType compound from Json string, which are the recursive CLType such as List(CLType), Map(CLType,CLType), Tuple1(CLType), Tuple2(CLType,CLType),Tuple3(CLType,CLType,CLType)...
+     - Parameter : a Json String represent the CLType object
+     - Returns: CLType object
+     */
+    
     public static func jsonToCLTypeCompound(from:AnyObject,keyStr:String="cl_type")->CLType {
         var clType:CLType = .NONE
         if let listCLType = from["List"] as? String {
@@ -184,6 +206,11 @@ public class CLTypeHelper {
         }
         return .NONE
     }
+    /**
+     Get CLType  from Json string. If the Json string can convert to CLType primitive, then return the CLType primitive, otherwise return the CLType getting from the CLType compound
+     - Parameter : a Json String represent the CLType object
+     - Returns: CLType object
+     */
     public static func directJsonToCLType(from:AnyObject)->CLType {
         var ret :CLType = .NONE
         if let clTypeWrapper = from as? String {
@@ -195,6 +222,11 @@ public class CLTypeHelper {
         }
         return ret;
     }
+    /**
+     Get CLType primitive from String
+     - Parameter : a  String represent the CLType object
+     - Returns: CLType object
+     */
     public static func stringToCLTypePrimitive(input:String)->CLType {
         if input == "String" {
             return .String

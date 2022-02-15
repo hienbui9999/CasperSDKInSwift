@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ Class for Bid object
+ */
 public class Bid {
     public var validator_public_key:PublicKey!
     public var bonding_purse:URef!
