@@ -988,27 +988,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 42,
-      "symbol": "CLValue.bytes",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 43,
-      "symbol": "CLValue.cl_type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
-      "line": 44,
-      "symbol": "CLValue.parsed",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Contract.swift",
       "line": 2,
       "symbol": "Contract",
