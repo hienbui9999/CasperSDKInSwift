@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetEraInfoResult
+ Class represents the GetEraInfoResult
  */
 public class GetEraInfoResult {
     ///Casper api version

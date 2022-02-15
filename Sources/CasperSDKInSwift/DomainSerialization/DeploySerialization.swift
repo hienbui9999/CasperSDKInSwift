@@ -1,6 +1,6 @@
 import Foundation
 /**
- class for Deploy serialization
+ Class for Deploy serialization
  */
 public class DeploySerialization {
     /**
@@ -133,7 +133,7 @@ public class ExecutableDeployItemSerializaton {
     }
 }
 /**
- class for Approval serialization
+ Class for Approval serialization
  */
 
 public class DeployApprovalSerialization {

@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetEraInfoBySwitchBlock
+ Class represents the GetEraInfoBySwitchBlock
  */
 class GetEraInfoBySwitchBlock {
     /**

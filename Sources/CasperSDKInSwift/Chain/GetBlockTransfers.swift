@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetBlockTransfers
+ Class represents the GetBlockTransfers
  */
 public class GetBlockTransfers {
     /**

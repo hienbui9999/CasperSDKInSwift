@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetBlockTransfersParams
+ Class represents the GetBlockTransfersParams
  */
 public class GetBlockTransfersParams {
     ///The block identifier for getting GetBlockTransfersResult

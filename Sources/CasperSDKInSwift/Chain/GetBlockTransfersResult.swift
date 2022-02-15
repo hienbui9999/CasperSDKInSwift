@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetBlockTransfersResult
+ Class represents the GetBlockTransfersResult
  */
 public class GetBlockTransfersResult {
     ///the Casper api version

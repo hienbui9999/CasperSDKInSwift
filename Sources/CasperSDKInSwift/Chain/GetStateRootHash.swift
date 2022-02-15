@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetStateRootHashParam
+ Class represents the GetStateRootHashParam
  */
 public class GetStateRootHashParam{
     ///The block identifier for getting GetBlockTransfersResult

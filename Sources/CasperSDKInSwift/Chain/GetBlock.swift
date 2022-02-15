@@ -1,6 +1,6 @@
 import Foundation
 /**
- class for GetBlock from Json String
+ Class for GetBlock from Json String
  */
 class GetBlock {
     /**

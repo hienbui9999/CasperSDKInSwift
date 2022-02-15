@@ -1,6 +1,6 @@
 import Foundation
 /**
- class represent the GetBlockResult
+ Class represents the GetBlockResult
  */
 public class GetBlockResult {
     ///Casper api version
