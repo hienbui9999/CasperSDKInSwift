@@ -17,7 +17,7 @@
     <a title="CLTypeHelper Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (6% documented)</p>
+        <p><a href="../index.html"> Docs</a> (15% documented)</p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -403,7 +403,7 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Class  for handling the  conversion from Json String to  CLType</p>
 
           </section>
           <section class="section task-group-section">
@@ -422,7 +422,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLType from Json string</p>
 
                       </div>
                       <div class="declaration">
@@ -432,6 +432,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">jsonToCLType</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">keyStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"cl_type"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLType object</p>
                       </div>
                     </section>
                   </div>
@@ -449,7 +453,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLType primitive (CLType with no recursive type inside) from Json string</p>
 
                       </div>
                       <div class="declaration">
@@ -459,6 +463,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">jsonToCLTypePrimitive</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">keyStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"cl_type"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLType object</p>
                       </div>
                     </section>
                   </div>
@@ -476,7 +484,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLType compound from Json string, which are the recursive CLType such as List(CLType), Map(CLType,CLType), Tuple1(CLType), Tuple2(CLType,CLType),Tuple3(CLType,CLType,CLType)&hellip;</p>
 
                       </div>
                       <div class="declaration">
@@ -486,6 +494,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">jsonToCLTypeCompound</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">keyStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"cl_type"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLType object</p>
                       </div>
                     </section>
                   </div>
@@ -503,7 +515,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLType  from Json string. If the Json string can convert to CLType primitive, then return the CLType primitive, otherwise return the CLType getting from the CLType compound</p>
 
                       </div>
                       <div class="declaration">
@@ -513,6 +525,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">directJsonToCLType</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLType object</p>
                       </div>
                     </section>
                   </div>
@@ -530,7 +546,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLType primitive from String</p>
 
                       </div>
                       <div class="declaration">
@@ -540,6 +556,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">stringToCLTypePrimitive</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLType object</p>
                       </div>
                     </section>
                   </div>

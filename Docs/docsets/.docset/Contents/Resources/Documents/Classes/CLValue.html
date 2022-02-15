@@ -17,7 +17,7 @@
     <a title="CLValue Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (6% documented)</p>
+        <p><a href="../index.html"> Docs</a> (15% documented)</p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -403,7 +403,13 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Class for CLValue with 3 attributes:</p>
+
+<ul>
+<li>bytes - the serialization of the CLValue</li>
+<li>cl_type: of type CLType</li>
+<li>parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType</li>
+</ul>
 
           </section>
           <section class="section task-group-section">
@@ -503,7 +509,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the &ldquo;from&rdquo; parameter</p>
 
                       </div>
                       <div class="declaration">
@@ -513,6 +519,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperDirect</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -530,7 +540,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the &ldquo;from&rdquo; parameter</p>
 
                       </div>
                       <div class="declaration">
@@ -540,6 +550,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapper</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">,</span> <span class="nv">keyStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"parsed"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -557,7 +571,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue primitive from Json string, with given CLType for that CLValue. The Json string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the &ldquo;from&rdquo; parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int</p>
 
                       </div>
                       <div class="declaration">
@@ -567,6 +581,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperPrimitiveFromRaw</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -584,7 +602,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue primitive from  a parameter of type primitive (with no recursive part inside), with given CLType for that CLValue. The string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the &ldquo;from&rdquo; parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int</p>
 
                       </div>
                       <div class="declaration">
@@ -594,6 +612,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperPrimitive</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -611,7 +633,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue primitive from  a parameter of type compound (with  recursive part inside), with given CLType for that CLValue. The string is from the input with name &ldquo;from&rdquo;, and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the &ldquo;from&rdquo; parameter. This function deal with CLType compound with recursive part in side that CLType, such as List, Map, Tuple1, Tuple2, Tuple3 &hellip;</p>
 
                       </div>
                       <div class="declaration">
@@ -621,6 +643,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValueWrapperCompound</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLValueWrapper.html">CLValueWrapper</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValueWrapper object</p>
                       </div>
                     </section>
                   </div>
@@ -638,7 +664,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get CLValue with full value: bytes, parsed and cl_type. This function do the task of retrieving information of bytes,parsed and cl_type from the string map [String:Any] from the input.</p>
 
                       </div>
                       <div class="declaration">
@@ -648,6 +674,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getCLValue</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">CLValue</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CLValue object, which hold the 3 kinds of value: bytes, parsed and cl_type</p>
                       </div>
                     </section>
                   </div>
