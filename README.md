@@ -52,6 +52,10 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 - [CLValue declaration](#clvalue)
 
+- [Casper Domain Specific Objects](#casper-domain-specific-objects)
+
+- [Serialization](#serialization)
+
 # Documentation for classes and methods
 
 
