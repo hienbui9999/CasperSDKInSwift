@@ -519,7 +519,7 @@ do {
 }
 ```
 
-## M3: CLType primitives, Casper Domain Specific Objects, Serialization
+## CLType primitives, Casper Domain Specific Objects, Serialization
 
 ### CLType primitives:
  
