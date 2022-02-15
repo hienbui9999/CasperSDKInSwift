@@ -46,6 +46,10 @@ Just put the following code
 
 at the beginning of the file to refer for CasperSDK instance and call the method request
 
+#  Information for CLType, CLValue and Serialization
+
+- [CLType declaration](https://github.com/hienbui9999/CasperSDKInSwift)
+
 # Documentation for classes and methods
 
 
@@ -511,7 +515,9 @@ do {
 
 ## M3: CLType primitives, Casper Domain Specific Objects, Serialization
 
-### CLType primitives are implemented in enumeration type, declared as below code:
+### CLType primitives:
+ 
+ Implemented in enumeration type, declared as below code:
 
 ```swift
 public enum CLType {
@@ -543,7 +549,9 @@ public enum CLType {
 }
 ```
 
-### CLValue is implemented in enumeration type with name CLValueWrapper, declared as below code:
+### CLValue: 
+
+Implemented in enumeration type with name CLValueWrapper, declared as below code:
 
 ```swift
 public enum CLValueWrapper {
