@@ -48,9 +48,9 @@ at the beginning of the file to refer for CasperSDK instance and call the method
 
 # Information for CLType, CLValue and Serialization
 
-- [CLType declaration](./Docs/Help.md#cltype)
+- [CLType](./Docs/Help.md#cltype)
 
-- [CLValue declaration](./Docs/Help.md#clvalue)
+- [CLValue](./Docs/Help.md#clvalue)
 
 - [Casper Domain Specific Objects](./Docs/Help.md#casper-domain-specific-objects)
 
@@ -557,9 +557,9 @@ For CLType and CLValue, the serialization is done within class CLTypeSerializeHe
 
 For detail information please refer to this:
 
-- [CLType declaration](./Docs/Help.md#cltype)
+- [CLType](./Docs/Help.md#cltype)
 
-- [CLValue declaration](./Docs/Help.md#clvalue)
+- [CLValue](./Docs/Help.md#clvalue)
 
 - [Casper Domain Specific Objects](./Docs/Help.md#casper-domain-specific-objects)
 
