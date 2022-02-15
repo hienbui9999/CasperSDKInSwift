@@ -46,9 +46,11 @@ Just put the following code
 
 at the beginning of the file to refer for CasperSDK instance and call the method request
 
-#  Information for CLType, CLValue and Serialization
+# Information for CLType, CLValue and Serialization
 
-- [CLType declaration](https://github.com/hienbui9999/CasperSDKInSwift)
+- [CLType declaration](#cltype-primitives)
+
+- [CLValue declaration](#clvalue)
 
 # Documentation for classes and methods
 
@@ -588,7 +590,9 @@ This CLValue enumeration data structure contain both the type of CLType and the 
 
 If CLValueWrapper has the value of .ListWrapper([UInt32(1),UInt32(2),UInt32(3)]) then the CLType is List and the value is a list of 3 UInt32 elements with value [1,2,3]
 
-### Casper Domain Specific Objects: are built with corresponding Swift classes, and in Entity folder
+### Casper Domain Specific Objects: 
+
+Are built with corresponding Swift classes, and in Entity folder
 
 ### Serialization
 
