@@ -39,7 +39,7 @@ public enum CLValueWrapper {
  - parsed: of type CLValueWrapper, hold the CLValue and its corresponding CLType
  */
 public class CLValue {
-    ///the serialization of CLValue
+    ///The serialization of CLValue
     public var bytes:String = ""
     ///The CLType of the CLValue
     public var cl_type:CLType = .NONE
