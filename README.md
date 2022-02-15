@@ -521,78 +521,15 @@ do {
 
 ## CLType primitives, Casper Domain Specific Objects, Serialization
 
-### CLType primitives:
- 
- Implemented in enumeration type, declared as below code:
+### CLType primitives: 
 
-```swift
-public enum CLType {
-    case Bool
-    case I32
-    case I64
-    case U8
-    case U32
-    case U64
-    case U128
-    case U256
-    case U512
-    case Unit
-    case String
-    case Key
-    case URef
-    case PublicKey
-    case BytesArray(UInt32);
-    indirect case Result(CLType,CLType)
-    indirect case Option(CLType)
-    indirect case List(CLType)
-    indirect case FixedList(CLType)
-    indirect case Map(CLType,CLType)
-    indirect case Tuple1(CLType)
-    indirect case Tuple2(CLType,CLType)
-    indirect case Tuple3(CLType,CLType,CLType)
-    case CLAny
-    case NONE
-}
-```
+Are built with Swift enumeration type, which consisted of all the value described in this page:
 
-### CLValue: 
+https://docs.rs/casper-types/1.4.6/casper_types/enum.CLType.html
 
-Implemented in enumeration type with name CLValueWrapper, declared as below code:
+### CLValue
 
-```swift
-public enum CLValueWrapper {
-    case Bool(Bool)
-    case I32(Int32)
-    case I64(Int64)
-    case U8(UInt8)
-    case U32(UInt32)
-    case U64(UInt64)
-    case U128(U128Class)
-    case U256(U256Class)
-    case U512(U512Class)
-    case Unit(String)
-    case String(String)
-    case Key(String)
-    case URef(String)
-    case PublicKey(String)
-    case BytesArray(String)
-    indirect case OptionWrapper(CLValueWrapper)
-    indirect case ListWrapper([CLValueWrapper])
-    indirect case FixedListWrapper([CLValueWrapper])
-    indirect case ResultWrapper(String,CLValueWrapper)
-    indirect case MapWrapper([CLValueWrapper],[CLValueWrapper])
-    indirect case Tuple1Wrapper(CLValueWrapper)
-    indirect case Tuple2Wrapper(CLValueWrapper,CLValueWrapper)
-    indirect case Tuple3Wrapper(CLValueWrapper,CLValueWrapper,CLValueWrapper)
-    case AnyCLValue(AnyObject)
-    case NULL
-    case NONE
-}
-```
-
-This CLValue enumeration data structure contain both the type of CLType and the corresponding value for CLType. For example if CLValueWrapper has the value of .String("Hello, World!") then the CLType is String and the value is "Hello, World!"
-
-If CLValueWrapper has the value of .ListWrapper([UInt32(1),UInt32(2),UInt32(3)]) then the CLType is List and the value is a list of 3 UInt32 elements with value [1,2,3]
+Is the value corresponding to the CLType. In Swift it is built with enumeration type also, with two attributes: CLType and the value of CLType
 
 ### Casper Domain Specific Objects: 
 
@@ -617,3 +554,7 @@ For CLType and CLValue, the serialization is done within class CLTypeSerializeHe
 - ExecutableDeployItemSerializaton class is for Session and Payment Serialization
 
 - DeployApprovalSerialization class is for Approval Serialization
+
+For detail information please refer to this:
+
+

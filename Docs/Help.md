@@ -1,6 +1,9 @@
 
-# casper-swift-sdk manual on classes and methods
-This is the documentation for the following methods call for Casper RPC
+# casper-swift-sdk manual on classes and methods, serialization
+
+This is the documentation for the method call for Casper RPC and the serialization for Casper Domain Specific Objects
+
+The RPC methods are listed as below:
 
 1) chain_get_state_root_hash
 
@@ -24,6 +27,15 @@ This is the documentation for the following methods call for Casper RPC
 
 11) state_get_auction_info
 
+The serialization work is done with the following work:
+
+- Build CLType primitives structure
+
+- Build CLValue structure
+
+- Build Casper Domain Specific Objects
+
+- Serialization of Casper Domain Specific Objects
 
 # Classes and methods in detail 
 
@@ -554,3 +566,103 @@ You can then retrieve information such as:
 - getAuctionInfo.auction_state.block_height
 
 - getAuctionInfo.auction_state.era_validators
+
+
+# CLType, CLValue, Casper Domain Specific Objects and Serialization 
+
+## CLType
+
+ Implemented in enumeration type, declared as below code:
+
+```swift
+public enum CLType {
+    case Bool
+    case I32
+    case I64
+    case U8
+    case U32
+    case U64
+    case U128
+    case U256
+    case U512
+    case Unit
+    case String
+    case Key
+    case URef
+    case PublicKey
+    case BytesArray(UInt32);
+    indirect case Result(CLType,CLType)
+    indirect case Option(CLType)
+    indirect case List(CLType)
+    indirect case FixedList(CLType)
+    indirect case Map(CLType,CLType)
+    indirect case Tuple1(CLType)
+    indirect case Tuple2(CLType,CLType)
+    indirect case Tuple3(CLType,CLType,CLType)
+    case CLAny
+    case NONE
+}
+```
+
+## CLValue
+
+Implemented in enumeration type with name CLValueWrapper, declared as below code:
+
+```swift
+public enum CLValueWrapper {
+    case Bool(Bool)
+    case I32(Int32)
+    case I64(Int64)
+    case U8(UInt8)
+    case U32(UInt32)
+    case U64(UInt64)
+    case U128(U128Class)
+    case U256(U256Class)
+    case U512(U512Class)
+    case Unit(String)
+    case String(String)
+    case Key(String)
+    case URef(String)
+    case PublicKey(String)
+    case BytesArray(String)
+    indirect case OptionWrapper(CLValueWrapper)
+    indirect case ListWrapper([CLValueWrapper])
+    indirect case FixedListWrapper([CLValueWrapper])
+    indirect case ResultWrapper(String,CLValueWrapper)
+    indirect case MapWrapper([CLValueWrapper],[CLValueWrapper])
+    indirect case Tuple1Wrapper(CLValueWrapper)
+    indirect case Tuple2Wrapper(CLValueWrapper,CLValueWrapper)
+    indirect case Tuple3Wrapper(CLValueWrapper,CLValueWrapper,CLValueWrapper)
+    case AnyCLValue(AnyObject)
+    case NULL
+    case NONE
+}
+```
+
+This CLValue enumeration data structure contain both the type of CLType and the corresponding value for CLType. For example if CLValueWrapper has the value of .String("Hello, World!") then the CLType is String and the value is "Hello, World!"
+
+If CLValueWrapper has the value of .ListWrapper([UInt32(1),UInt32(2),UInt32(3)]) then the CLType is List and the value is a list of 3 UInt32 elements with value [1,2,3]
+
+### Casper Domain Specific Objects: 
+
+Are built with corresponding Swift classes, and in Entity folder
+
+### Serialization
+
+The serialization for CLType, CLValue and Deploy (which consists of Deploy Header, Deploy Session, Deploy Payment, Approvals) is implemented based on the document at this address: https://casper.network/docs/design/serialization-standard#serialization-standard-state-keys
+
+For CLType and CLValue, the serialization is done within class CLTypeSerializeHelper, which consists of two main methods:
+
+ - CLTypeSerialize is for CLType serialization
+ 
+ - CLValueSerialize is for CLValue serialization
+ 
+ For Deploy and Deploy related objects (Deploy Header, Deploy Session, Deploy Payment, Approvals) is done within file DeploySerialization.swift, in which there are classes for the serialization work
+  
+- DeploySerialization class is for Deploy Serialization
+
+- DeployHeaderSerialization class is for Deploy Header Serialization
+
+- ExecutableDeployItemSerializaton class is for Session and Payment Serialization
+
+- DeployApprovalSerialization class is for Approval Serialization
