@@ -4,7 +4,9 @@ import Foundation
  */
 
 public class JsonEraValidators {
+    ///Era id
     public var era_id:UInt64=0
+    ///List of Validator weight
     public var validator_weights:[ValidatorWeight] = [ValidatorWeight]()
     /**
         Get JsonEraValidators object from Json string
