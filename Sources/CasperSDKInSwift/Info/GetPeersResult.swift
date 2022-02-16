@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the GetPeersResult, in which the most important information is the PeerMap object contains the peer list of type PeerEntry
+ */
 
 public class GetPeersResult {
     var protocolVersion:ProtocolVersion=ProtocolVersion();

@@ -1,6 +1,17 @@
 import Foundation
+/**
+ Class supports the getting of GetStatusResult from Json String
+ */
+
 public class GetStatus {
     let methodStr : String = "info_get_status"
+    /**
+       Get GetStatusResult object from Json string
+       - Parameter : a Json String represents the GetStatusResult object
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+       - Returns: GetStatusResult object
+       */
+    
     public static func getStatus(from:[String:Any])  throws ->GetStatusResult {
         do {
             if let error = from["error"] as AnyObject? {
