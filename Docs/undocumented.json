@@ -365,267 +365,127 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlock.swift",
-      "line": 8,
-      "symbol": "JsonBlock.body",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlock.swift",
-      "line": 9,
-      "symbol": "JsonBlock.header",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlock.swift",
-      "line": 10,
-      "symbol": "JsonBlock.proofs",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockBody.swift",
-      "line": 3,
-      "symbol": "JsonBlockBody",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockBody.swift",
-      "line": 4,
-      "symbol": "JsonBlockBody.deployHash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockBody.swift",
-      "line": 5,
-      "symbol": "JsonBlockBody.proposer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockBody.swift",
-      "line": 6,
-      "symbol": "JsonBlockBody.transferHash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockBody.swift",
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
       "line": 7,
-      "symbol": "JsonBlockBody.getBlockBody(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 3,
-      "symbol": "JsonBlockHeader",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 4,
       "symbol": "JsonBlockHeader.parent_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "JsonBlockHeader.state_root_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "JsonBlockHeader.body_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 7,
+      "line": 10,
       "symbol": "JsonBlockHeader.random_bit",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 8,
+      "line": 11,
       "symbol": "JsonBlockHeader.accumulated_seed",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 9,
+      "line": 12,
       "symbol": "JsonBlockHeader.eraEnd",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 10,
+      "line": 13,
       "symbol": "JsonBlockHeader.eraID",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 11,
+      "line": 14,
       "symbol": "JsonBlockHeader.height",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 12,
+      "line": 15,
       "symbol": "JsonBlockHeader.protocolVersion",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 13,
+      "line": 16,
       "symbol": "JsonBlockHeader.timeStamp",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
-      "line": 15,
-      "symbol": "JsonBlockHeader.getBlockHeader(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraEnd.swift",
-      "line": 3,
-      "symbol": "JsonEraEnd",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraEnd.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "JsonEraEnd.era_report",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraEnd.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "JsonEraEnd.next_era_validator_weights",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraReport.swift",
-      "line": 3,
-      "symbol": "JsonEraReport",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraReport.swift",
-      "line": 4,
-      "symbol": "JsonEraReport.equivocators",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraReport.swift",
-      "line": 5,
-      "symbol": "JsonEraReport.inactiveValidators",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonEraReport.swift",
-      "line": 6,
-      "symbol": "JsonEraReport.rewards",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonProof.swift",
-      "line": 3,
-      "symbol": "JsonProof",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonProof.swift",
-      "line": 5,
-      "symbol": "JsonProof.publicKey",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonProof.swift",
-      "line": 6,
-      "symbol": "JsonProof.signature",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonProof.swift",
       "line": 8,
-      "symbol": "JsonProof.getJsonProofs(jsonProofs:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "symbol": "JsonProof.publicKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonProof.swift",
-      "line": 17,
-      "symbol": "JsonProof.getJsonProof(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "line": 9,
+      "symbol": "JsonProof.signature",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/Reward.swift",
-      "line": 3,
-      "symbol": "Reward",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/Reward.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "Reward.amount",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/Reward.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "Reward.validator",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/ValidatorWeight.swift",
-      "line": 3,
-      "symbol": "ValidatorWeight",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/ValidatorWeight.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "ValidatorWeight.public_key",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/ValidatorWeight.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "ValidatorWeight.weight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -1143,72 +1003,44 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Bytes.swift",
-      "line": 3,
-      "symbol": "Bytes",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Bytes.swift",
-      "line": 4,
-      "symbol": "Bytes.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Bytes.swift",
-      "line": 5,
-      "symbol": "Bytes.fromStrToBytes(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
-      "line": 3,
-      "symbol": "DeployInfo",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
-      "line": 5,
-      "symbol": "DeployInfo.deploy_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
-      "line": 6,
-      "symbol": "DeployInfo.transfers",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
       "line": 7,
-      "symbol": "DeployInfo.from",
+      "symbol": "Bytes.value",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
       "line": 8,
-      "symbol": "DeployInfo.source",
+      "symbol": "DeployInfo.deploy_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
       "line": 9,
-      "symbol": "DeployInfo.gas",
+      "symbol": "DeployInfo.transfers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
+      "line": 10,
+      "symbol": "DeployInfo.from",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
       "line": 11,
-      "symbol": "DeployInfo.fromJsonToDeployInfo(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "symbol": "DeployInfo.source",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/DeployInfo.swift",
+      "line": 12,
+      "symbol": "DeployInfo.gas",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
