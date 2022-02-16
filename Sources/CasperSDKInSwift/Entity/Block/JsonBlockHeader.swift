@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the JsonBlockHeader
+ */
 
 public class JsonBlockHeader {
     public var parent_hash:String = "";
@@ -11,42 +14,47 @@ public class JsonBlockHeader {
     public var height:UInt64 = 0;
     public var protocolVersion:ProtocolVersion = ProtocolVersion();
     public var timeStamp:String = "";
-    
+    /**
+       Get JsonBlockHeader object from Json string
+       - Parameter : a Json String represents the JsonBlockHeader object
+       - Returns: JsonBlockHeader object
+       */
+
     public static func getBlockHeader(from:[String:Any]) -> JsonBlockHeader {
         let getBlockHeader : JsonBlockHeader = JsonBlockHeader();
-        if let accumulatedSeed = from["accumulated_seed"] as? String {//1
+        if let accumulatedSeed = from["accumulated_seed"] as? String {
             getBlockHeader.accumulated_seed = accumulatedSeed;
         }
-        if let bodyHash = from["body_hash"] as? String {//2
+        if let bodyHash = from["body_hash"] as? String {
             getBlockHeader.body_hash = bodyHash;
         }
-        if let eraId = from["era_id"] as? UInt64 {//3
+        if let eraId = from["era_id"] as? UInt64 {
             getBlockHeader.eraID = eraId;
         }
-        if let Height = from["height"] as? UInt64 {//4
+        if let Height = from["height"] as? UInt64 {
             getBlockHeader.height = Height;
         }
-        if let parentHash = from["parent_hash"] as? String {//5
+        if let parentHash = from["parent_hash"] as? String {
             getBlockHeader.parent_hash = parentHash
         }
-        if let protocolVersion = from["protocol_version"] as? String {//6
+        if let protocolVersion = from["protocol_version"] as? String {
             let pVersion:ProtocolVersion = ProtocolVersion();
             pVersion.setProtolString(str: protocolVersion)
             getBlockHeader.protocolVersion = pVersion;
         }
-        if let randomBit = from["random_bit"] as? Bool {//7
+        if let randomBit = from["random_bit"] as? Bool {
             getBlockHeader.random_bit = randomBit;
         }
-        if let stateRootHash = from["state_root_hash"] as? String {//8
+        if let stateRootHash = from["state_root_hash"] as? String {
             getBlockHeader.state_root_hash = stateRootHash;
         }
-        if let timeStamp = from["timestamp"] as? String {//9
+        if let timeStamp = from["timestamp"] as? String {
             getBlockHeader.timeStamp = timeStamp
         }
-        if let eraEnd = from["era_end"] as? [String:Any] {//2 items
+        if let eraEnd = from["era_end"] as? [String:Any] {
             let getEraEnd:JsonEraEnd = JsonEraEnd();
             getBlockHeader.eraEnd = getEraEnd;
-            if let eraReport = eraEnd["era_report"] as? [String:Any] {//3 items
+            if let eraReport = eraEnd["era_report"] as? [String:Any] {
                 let getEraReport:JsonEraReport = JsonEraReport();
                 getEraEnd.era_report = getEraReport;
                
@@ -78,7 +86,7 @@ public class JsonBlockHeader {
                 
             }
             
-            //item 2: next_era_validator_weights
+            ///next_era_validator_weights
             if let nextEraValidatorWeights = eraEnd["next_era_validator_weights"] as? [AnyObject] {
                 getEraEnd.next_era_validator_weights = [ValidatorWeight]();
                 for nextEraValidatorWeight in nextEraValidatorWeights {

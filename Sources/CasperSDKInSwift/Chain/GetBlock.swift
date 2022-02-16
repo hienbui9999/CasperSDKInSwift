@@ -5,8 +5,8 @@ import Foundation
 class GetBlock {
     /**
      Get block from Json string
-     - Parameter : a Json String represent the Block object
-     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Parameter : a Json String represents the Block object
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
      - Returns: GetBlockResult object
      */
     public static func getBlock(from:[String:Any]) throws -> GetBlockResult {

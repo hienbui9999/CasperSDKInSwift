@@ -18,8 +18,8 @@ public class DeployHeader {
     ///Deploy Header list of dependencies
     public var dependencies:[String] = [String]();
     /**
-     Get deploy header from Json string
-     - Parameter : a Json String represent the deploy header object
+     Get DeployHeader object from Json string
+     - Parameter : a Json String represent the DeployHeader object
      - Returns: DeployHeader object
      */
     public static func getDeployHeader(from:[String:Any])->DeployHeader {

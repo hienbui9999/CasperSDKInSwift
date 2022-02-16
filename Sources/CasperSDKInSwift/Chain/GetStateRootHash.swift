@@ -13,7 +13,7 @@ class GetStateRootHash {
     /**
      Get state root hash from Json string
      - Parameter : a Json String represent the state root hash
-     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
      - Returns: state root hash string
      */
     public static func getStateRootHash(from:[String:Any]) throws ->String {

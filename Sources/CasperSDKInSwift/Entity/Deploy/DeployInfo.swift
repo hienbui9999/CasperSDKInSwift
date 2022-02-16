@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the DeployInfo
+ */
 
 public class DeployInfo {
     
@@ -8,6 +11,12 @@ public class DeployInfo {
     public var source: URef=URef()
     public var gas:U512Class=U512Class()
     
+    /**
+       Get DeployInfo object from Json string
+       - Parameter : a Json String represents the DeployInfo object
+       - Returns: DeployInfo object
+       */
+
     public static func fromJsonToDeployInfo(from:[String:Any]) -> DeployInfo {
         var oneDeployInfo : DeployInfo = DeployInfo();
         if let deployHash:String = from["deploy_hash"] as? String {

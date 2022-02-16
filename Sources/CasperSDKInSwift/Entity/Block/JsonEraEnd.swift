@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the JsonEraEnd
+ */
 
 public class JsonEraEnd {
     public var era_report:JsonEraReport = JsonEraReport();

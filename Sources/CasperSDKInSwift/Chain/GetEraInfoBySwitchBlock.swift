@@ -6,7 +6,7 @@ class GetEraInfoBySwitchBlock {
     /**
      Get GetEraInfoResult from Json string
      - Parameter : a Json String represent the GetEraInfoResult object
-     - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+     - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
      - Returns: GetEraInfoResult object
      */
     public static func getResult(from:[String:Any]) throws -> GetEraInfoResult {
