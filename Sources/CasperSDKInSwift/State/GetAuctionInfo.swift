@@ -1,6 +1,16 @@
 import Foundation
+/**
+ Class supports the getting of GetAuctionInfoResult from Json String
+ */
 
 public class GetAuctionInfo {
+    /**
+       Get GetAuctionInfoResult object from Json string
+       - Parameter : a Json String represents the GetAuctionInfoResult object
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+       - Returns: GetAuctionInfoResult object
+       */
+
     public static func getAuctionInfo(from:[String:Any])throws ->GetAuctionInfoResult {
         do {
             if let error = from["error"] as AnyObject? {

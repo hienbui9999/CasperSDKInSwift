@@ -1,7 +1,16 @@
 import Foundation
+/**
+ Class supports the getting of GetItemResult from Json String
+ */
 
 class GetItem {
-    
+    /**
+        Get GetItemResult object from Json string
+        - Parameter : a Json string represents the GetItemResult object
+        - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+        - Returns: GetItemResult object
+        */
+
     public static func getItem(from:[String:Any])throws -> GetItemResult {
         if let error = from["error"] as AnyObject? {
             var code:Int!

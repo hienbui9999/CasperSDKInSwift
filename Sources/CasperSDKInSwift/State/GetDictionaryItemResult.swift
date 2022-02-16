@@ -1,10 +1,21 @@
 import Foundation
 
+/**
+Class supports the getting of GetDictionaryItemResult from Json String
+*/
+
 class GetDictionaryItemResult {
     public var api_version:String!
     public var dictionary_key:String!
     public var stored_value:StoredValue!
     public var merkle_proof:String!
+    /**
+        Get GetDictionaryItemResult object from Json string
+        - Parameter : a Json string represents the GetDictionaryItemResult object
+        - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+        - Returns: GetDictionaryItemResult object
+        */
+
     public static func getResult(from:[String:Any]) throws -> GetDictionaryItemResult {
         do {
             if let error = from["error"] as AnyObject? {

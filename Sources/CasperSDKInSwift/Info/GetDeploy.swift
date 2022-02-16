@@ -7,6 +7,7 @@ class GetDeploy {
     /**
        Get GetDeployResult object from Json string
        - Parameter : a Json String represents the GetDeployResult object
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
        - Returns: GetDeployResult object
        */
 

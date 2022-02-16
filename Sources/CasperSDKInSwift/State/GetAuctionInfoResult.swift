@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the GetAuctionInfoResult
+ */
 
 public class GetAuctionInfoResult {
     public var api_version:ProtocolVersion = ProtocolVersion()

@@ -8,7 +8,7 @@ public class GetStatus {
     /**
        Get GetStatusResult object from Json string
        - Parameter : a Json String represents the GetStatusResult object
-       - Throws: CasperMethodCallError.CasperError with code and message according to the error return by the Casper system
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
        - Returns: GetStatusResult object
        */
     

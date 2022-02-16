@@ -1,11 +1,19 @@
 import Foundation
+/**
+ Class supports the getting of JsonDelegator from Json string
+ */
 
 public class JsonDelegator {
     public var bonding_purse:URef = URef()
     public var delegatee:PublicKey = PublicKey()
     public var public_key:PublicKey = PublicKey()
     public var staked_amount:U512Class = U512Class()
-    
+    /**
+       Get JsonDelegator object from Json string
+       - Parameter : a Json string represents the JsonDelegator object
+       - Returns: JsonDelegator object
+       */
+
     public static func toJsonDelegator(from:[String:Any]) -> JsonDelegator {
         let rJD:JsonDelegator = JsonDelegator()
         if let bonding_purse = from["bonding_purse"] as? String {

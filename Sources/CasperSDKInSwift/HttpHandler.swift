@@ -1,9 +1,28 @@
 import Foundation
 import XCTest
+/**
+ HttpHandler Class for handling sending request for RPC methods and retrieving data back
+ */
+
 class HttpHandler:XCTestCase {
+    ///Method URL for calling RPC method, can be local, test net or main net
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
+    ///RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
-    
+    /**
+     This function handle the request with specific RPC call and given parameter for each method
+        - Parameter :
+                - method: The RPC method to be called, such as chain_get_state_root_hash or info_get_peers or info_get_deploy ... as declared in enumeration type CasperMethodCall
+                - params: The parameter for the RPC method call. The parameter data is changed through a function for each RPC method call, for example with chain_get_block_transfers RPC method, the raw parameter is the BlockIdentifier. The BlockIdentifier is changed through a function like this:
+                let blockIdentifier : BlockIdentifier = .Height(1000)
+                let jsonData = JsonConversion.fromBlockIdentifierToJsonData(input:blockIdentifier,method: .chainGetBlockTransfer)
+                Then the jsonData can be passed to the HttpHandler class to call for chain_get_block_transfers RPC method like this:
+                try httpHandler.handleRequest(method: methodCall, params: jsonData)
+                -httpMethod: can be PUT, POST, GET, the default value is POST
+        - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+        - Returns: GetBlockResult object
+        */
+
     public func handleRequest(method:CasperMethodCall,params:Data,httpMethod:String="POST") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
@@ -234,6 +253,14 @@ class HttpHandler:XCTestCase {
         task.resume()
         self.waitForExpectations(timeout: 500, handler: nil)
     }
+    /**
+        This function facilitate the test of StoredValue only
+        - Parameter :
+            - methodCall: The RPC method call, such as chain_get_state_root_hash or info_get_peers or info_get_deploy ..., just for Log the information which method is called.
+            - value: of type StoredValue, used for XCTAssert the correctness of the result
+        - Returns: none
+        */
+
     public func XCTAssertForStoredValue(methodCall:String,value:StoredValue) {
         switch value {
         case .CLValue(let cLValue):

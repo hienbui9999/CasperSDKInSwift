@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the GetBalanceResult
+ */
 
 public class GetBalanceResult {
     public var  api_version: ProtocolVersion = ProtocolVersion();

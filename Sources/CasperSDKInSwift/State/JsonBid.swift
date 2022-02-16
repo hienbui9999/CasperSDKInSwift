@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class supports the getting of JsonBid from Json string
+ */
 
 public class JsonBid {
     public var bonding_purse:URef = URef()
@@ -6,6 +9,12 @@ public class JsonBid {
     public var delegators:[JsonDelegator] = [JsonDelegator]()
     public var inactive:Bool = false
     public var staked_amount:U512Class=U512Class()
+    /**
+       Get JsonBid object from Json string
+       - Parameter : a Json string represents the JsonBid object
+       - Returns: JsonBid object
+       */
+
     public static func toJsonBid(from:[String:Any]) -> JsonBid {
         let retJsonBid:JsonBid = JsonBid();
         if let bonding_purse = from["bonding_purse"] as? String {

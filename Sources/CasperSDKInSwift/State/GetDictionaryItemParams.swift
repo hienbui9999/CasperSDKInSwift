@@ -1,15 +1,30 @@
 import Foundation
 
+/**
+ Enumeration type represents the DictionaryIdentifier
+ */
 public enum DictionaryIdentifier : Codable {
     case AccountNamedKey(key:String,dictionary_name:String,dictionary_item_key:String)
     case ContractNamedKey(key:String,dictionary_name:String,dictionary_item_key:String)
     case URef(seed_uref:String,dictionary_item_key:String)
     case Dictionary(String)
 }
+/**
+ Class represents the GetDictionaryItemParams, used for sending parameter when call state_get_dictionary_item RPC method
+ */
 
 public class GetDictionaryItemParams : Codable {
+    ///The state root hash value
     var state_root_hash:String!;
+    ///DictionaryIdentifier value, which can be 1 among the 4 type of value declared in the DictionaryIdentifier enumeration: AccountNamedKey, ContractNamedKey, URef, Dictionary
     var dictionary_identifier: DictionaryIdentifier!;
+    /**
+        Get Data parameter  from DictionaryIdentifier object, used for sending POST method when call for state_get_dictionary_item RPC method
+        - Parameter : none
+        - Throws: Json serialization error
+        - Returns:  Data parameter  from DictionaryIdentifier object
+        */
+
     public func toJsonData()throws -> Data {
         var dicObj:[String:Any] = [:]
         switch dictionary_identifier {
@@ -32,7 +47,7 @@ public class GetDictionaryItemParams : Codable {
             break
         }
     
-        let objParam:[String:Any] = ["state_root_hash":"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8","dictionary_identifier":dicObj]
+        let objParam:[String:Any] = ["state_root_hash":state_root_hash!,"dictionary_identifier":dicObj]
         let obj:[String:Any] = ["jsonrpc":"2.0","id":1,"method":"state_get_dictionary_item","params":objParam]
         let encode = JSONEncoder()
         encode.outputFormatting = .prettyPrinted
@@ -42,7 +57,7 @@ public class GetDictionaryItemParams : Codable {
         }
         catch {
             NSLog("Error:\(error)")
+            throw error
         }
-        return Data()
     }
 }

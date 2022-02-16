@@ -1,5 +1,16 @@
 import Foundation
+/**
+ Class supports the getting of GetBalanceResult from Json String
+ */
+
 class GetBalance {
+    /**
+        Get GetBalanceResult object from Json string
+        - Parameter : a Json string represents the GetBalanceResult object
+        - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+        - Returns: GetBalanceResult object
+        */
+
     public static func getStateBalanceFromJson(from:[String:Any])throws -> GetBalanceResult {
         do {
             if let error = from["error"] as AnyObject? {
