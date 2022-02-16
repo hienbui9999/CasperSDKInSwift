@@ -204,55 +204,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 6,
-      "symbol": "Bid.validator_public_key",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 7,
-      "symbol": "Bid.bonding_purse",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 8,
-      "symbol": "Bid.staked_amount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 9,
-      "symbol": "Bid.delegation_rate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 10,
-      "symbol": "Bid.release_timestamp_millis",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 11,
-      "symbol": "Bid.vesting_schedule",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Bid.swift",
-      "line": 14,
-      "symbol": "Bid.inactive",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Block/JsonBlockHeader.swift",
       "line": 7,
       "symbol": "JsonBlockHeader.parent_hash",
@@ -736,83 +687,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Contract.swift",
-      "line": 7,
-      "symbol": "Contract.contract_package_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Contract.swift",
-      "line": 8,
-      "symbol": "Contract.contract_wasm_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Contract.swift",
-      "line": 13,
-      "symbol": "Contract.protocol_version",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/ContractVersion.swift",
-      "line": 7,
-      "symbol": "ContractVersion.protocol_version_major",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/ContractVersion.swift",
-      "line": 8,
-      "symbol": "ContractVersion.contract_version",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/ContractVersion.swift",
-      "line": 9,
-      "symbol": "ContractVersion.contract_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Delegator.swift",
-      "line": 7,
-      "symbol": "Delegator.delegator_public_key",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Delegator.swift",
-      "line": 8,
-      "symbol": "Delegator.validator_public_key",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Delegator.swift",
-      "line": 9,
-      "symbol": "Delegator.staked_amount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Delegator.swift",
-      "line": 10,
-      "symbol": "Delegator.bonding_purse",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Delegator.swift",
-      "line": 11,
-      "symbol": "Delegator.vesting_schedule",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Bytes.swift",
       "line": 7,
       "symbol": "Bytes.value",
@@ -858,90 +732,6 @@
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Digest.swift",
       "line": 7,
       "symbol": "Digest.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/DisableVersion.swift",
-      "line": 7,
-      "symbol": "DisableVersion.protocol_version_major",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/DisableVersion.swift",
-      "line": 8,
-      "symbol": "DisableVersion.contract_version",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EntryPoint.swift",
-      "line": 7,
-      "symbol": "EntryPoint.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EntryPoint.swift",
-      "line": 8,
-      "symbol": "EntryPoint.entry_point_type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EntryPoint.swift",
-      "line": 9,
-      "symbol": "EntryPoint.access",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EntryPoint.swift",
-      "line": 10,
-      "symbol": "EntryPoint.ret",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EntryPoint.swift",
-      "line": 11,
-      "symbol": "EntryPoint.args",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EraSummary.swift",
-      "line": 7,
-      "symbol": "EraSummary.block_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EraSummary.swift",
-      "line": 8,
-      "symbol": "EraSummary.era_id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EraSummary.swift",
-      "line": 9,
-      "symbol": "EraSummary.stored_value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EraSummary.swift",
-      "line": 10,
-      "symbol": "EraSummary.state_root_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/EraSummary.swift",
-      "line": 11,
-      "symbol": "EraSummary.merkle_proof",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
@@ -1240,64 +1030,22 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Groups.swift",
-      "line": 7,
-      "symbol": "Groups.group",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/JsonEraValidators.swift",
-      "line": 7,
-      "symbol": "JsonEraValidators.era_id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/JsonEraValidators.swift",
-      "line": 8,
-      "symbol": "JsonEraValidators.validator_weights",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 7,
-      "symbol": "MinimalBlockInfo.creatorHash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 8,
-      "symbol": "MinimalBlockInfo.era_id",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 9,
+      "line": 11,
       "symbol": "MinimalBlockInfo.hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 10,
+      "line": 12,
       "symbol": "MinimalBlockInfo.height",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 11,
-      "symbol": "MinimalBlockInfo.state_root_hash",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/MinimalBlockInfo.swift",
-      "line": 12,
+      "line": 15,
       "symbol": "MinimalBlockInfo.timestamp",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
