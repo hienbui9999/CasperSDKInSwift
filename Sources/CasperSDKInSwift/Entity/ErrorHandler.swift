@@ -1,10 +1,25 @@
 import Foundation
+/**
+ Enumeration type represents the ErrorCode, which takes two type of value
+ - REAL_ERROR: if the error does occur
+ - NONE: if no error appear at all
+ */
 public enum ErrorCode:Error {
     case REAL_ERROR(Int,String)
     case NONE
 }
+/**
+ Class represents the ErrorHandler. This class is used when call RPC methods to handle error.
+ */
+
 public class ErrorHandler {
-    public static func getError2(from:[String:Any]) -> ErrorCode {
+    /**
+       Get ErrorCode object from Json string
+       - Parameter : a Json String represents the ErrorCode object
+       - Returns: ErrorCode object
+       */
+
+    public static func getError(from:[String:Any]) -> ErrorCode {
         var ret:ErrorCode = .NONE
         if let result = from["error"] as? [String:Any] {
             var errorCode:Int?
@@ -21,25 +36,5 @@ public class ErrorHandler {
             return .REAL_ERROR(errorCode!, errorMessage!)
         }
         return .NONE
-    }
-    public static func getError(from:[String:Any]) -> CasperMethodError {
-        if let result = from["error"] as? [String:Any] {
-            if let code = result["code"] as? Int {
-                if code == -32005 {
-                    return CasperMethodError.parseError
-                } else if code == -32602 {
-                    return CasperMethodError.invalidParams
-                } else if code == -32001 {
-                    return CasperMethodError.invalidParams
-                }
-            }
-            if let data = result["data"] as? String {
-                
-            }
-            if let message = result["message"] as? String {
-                
-            }
-        }
-        return CasperMethodError.NONE
     }
 }

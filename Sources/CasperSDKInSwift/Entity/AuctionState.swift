@@ -3,9 +3,9 @@ import Foundation
  Class for AuctionState object
  */
 public class AuctionState {
-    ///state root hash
+    ///State root hash value
     public var state_root_hash:String=""
-    /// block height
+    /// Block height
     public var block_height:UInt64=0
     ///JsonBids list
     public var bids:[JsonBids] = [JsonBids]()

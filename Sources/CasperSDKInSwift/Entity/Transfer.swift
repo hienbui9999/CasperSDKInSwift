@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the Transfer
+ */
 
 public class Transfer{
     public var amount:U512Class!
@@ -9,6 +12,12 @@ public class Transfer{
     public var target:URef!
     public var to:String?
     public var id:UInt64?
+    /**
+       Get Transfer object from Json string
+       - Parameter : a Json String represents the Transfer object
+       - Returns: Transfer object
+       */
+
     public static func fromJsonToTransfer(from:[String:Any])->Transfer {
         let transfer:Transfer = Transfer();
         if let deploy_hash = from["deploy_hash"] as? String {

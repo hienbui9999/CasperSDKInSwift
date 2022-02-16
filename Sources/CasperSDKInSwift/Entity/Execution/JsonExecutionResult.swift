@@ -1,9 +1,18 @@
 import Foundation
+/**
+ Class represents the JsonExecutionResult
+ */
 
 public class JsonExecutionResult {
     public var block_hash:String = ""
     public var result:ExecutionResult = .None
-    
+    /**
+       Get JsonExecutionResult object list from Json string
+       - Parameter : a Json String represents the JsonExecutionResult object list
+       - Returns: JsonExecutionResult object list
+       */
+
+
     public static func getExecutionResult(from:[String:Any]) -> [JsonExecutionResult] {
         var retValue:[JsonExecutionResult] = [JsonExecutionResult]();
         if let executionResults = from["execution_results"] as? [AnyObject] {

@@ -1,4 +1,8 @@
 import Foundation
+/**
+ Class represents the EntryPoint
+ */
+
 public class EntryPoint {
     public var name:String!
     public var entry_point_type:String!

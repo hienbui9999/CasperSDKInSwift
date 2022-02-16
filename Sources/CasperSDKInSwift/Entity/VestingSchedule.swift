@@ -1,8 +1,17 @@
 import Foundation
+/**
+ Class represents the VestingSchedule
+ */
+
 public class VestingSchedule {
     public var initial_release_timestamp_millis:UInt64?
     public var locked_amounts:[U512Class]?//14 items in list
-   
+    /**
+       Get VestingSchedule object from Json string
+       - Parameter : a Json String represents the VestingSchedule object
+       - Returns: VestingSchedule object
+       */
+
     public static func jsonToVestingSchedule(from:[String:Any])->VestingSchedule {
         var ret:VestingSchedule = VestingSchedule();
         if let initial_release_timestamp_millis = from["initial_release_timestamp_millis"] as? UInt64 {

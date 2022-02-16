@@ -3,8 +3,8 @@ import Foundation
   Class for ActionThresholds object
   */
 public class ActionThresholds {
-    ///deployment
+    ///Deployment in UInt64 value
     public var deployment: UInt64!
-    ///key management
+    ///Key management in UInt64 value
     public var key_management:UInt64!
 }

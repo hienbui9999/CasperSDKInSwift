@@ -1,5 +1,9 @@
 import Foundation
 
+/**
+ Enumeration type represents the ExecutableDeployItem
+ */
+
 public enum ExecutableDeployItem {
     case ModuleBytes (module_bytes:Bytes, args: RuntimeArgs)
     case StoredContractByHash(hash:String,entry_point:String,args:RuntimeArgs)
@@ -9,7 +13,18 @@ public enum ExecutableDeployItem {
     case Transfer(args:RuntimeArgs)
     case NONE
 }
+
+/**
+ Class supports the getting of ExecutableDeployItem from Json String
+ */
+
 public class ExecutableDeployItemHelper {
+    /**
+       Get ExecutableDeployItem object from Json string
+       - Parameter : a Json String represents the ExecutableDeployItem object
+       - Returns: ExecutableDeployItem object
+       */
+
     public static func getExecutableDeployItem(from:[String:Any]) -> ExecutableDeployItem {
         var retExecutionDeployItem:ExecutableDeployItem = .NONE;
         if let argsType = from["ModuleBytes"] as? [String:Any] {

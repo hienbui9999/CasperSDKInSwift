@@ -46,7 +46,7 @@ public class CLValue {
     ///The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper
     public var parsed:CLValueWrapper = .NONE
     /**
-     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter
+     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
         - clType: of type CLType, used to determine how to parse the from parameter to retrieve the CLValue
@@ -63,7 +63,7 @@ public class CLValue {
         return ret;
     }
     /**
-     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter
+     Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
         - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
@@ -86,7 +86,7 @@ public class CLValue {
         }
     }
     /**
-     Get CLValue primitive from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
+     Get CLValue primitive from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
         - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
@@ -161,7 +161,7 @@ public class CLValue {
         return .NONE
     }
     /**
-     Get CLValue primitive from  a parameter of type primitive (with no recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
+     Get CLValue primitive from  a parameter of type primitive (with no recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType primitive of no recursive part in side that CLType, such as Bool, String, Int
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
         - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
@@ -266,7 +266,7 @@ public class CLValue {
     }
     
     /**
-     Get CLValue from  a parameter of type compound (with  recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the "from" parameter. This function deal with CLType compound with recursive part in side that CLType, such as List, Map, Tuple1, Tuple2, Tuple3 ...
+     Get CLValue from  a parameter of type compound (with  recursive part inside), with given CLType for that CLValue. The string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter. This function deal with CLType compound with recursive part in side that CLType, such as List, Map, Tuple1, Tuple2, Tuple3 ...
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
         - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue

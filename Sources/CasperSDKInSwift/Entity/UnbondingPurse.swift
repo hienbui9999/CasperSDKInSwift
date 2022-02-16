@@ -1,4 +1,8 @@
 import Foundation
+/**
+ Class represents the UnbondingPurse
+ */
+ 
 
 public class UnbondingPurse {
     public var bonding_purse : URef!

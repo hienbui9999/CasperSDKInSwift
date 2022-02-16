@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the Delegator
+ */
 
 public class Delegator {
     public var delegator_public_key : PublicKey = PublicKey()
@@ -6,6 +9,12 @@ public class Delegator {
     public var staked_amount        : U512Class = U512Class()
     public var bonding_purse        : URef      = URef()
     public var vesting_schedule     : VestingSchedule?
+    /**
+        Get Delegator object from Json string
+        - Parameter : a Json String represents the Delegator object
+        - Returns: Delegator object
+        */
+
     public static func jsonToDelegator(from:[String:Any])->Delegator {
         let delegator:Delegator = Delegator();
         if let delegator_public_key = from["delegator_public_key"] as? String {

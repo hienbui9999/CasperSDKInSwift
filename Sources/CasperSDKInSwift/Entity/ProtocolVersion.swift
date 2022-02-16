@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the ProtocolVersion
+ */
 
 public class ProtocolVersion {
     var protocolString = "";
@@ -18,6 +21,12 @@ public class ProtocolVersion {
     public func setProtolString(str:String) {
         protocolString = str;
     }
+    /**
+       Get ProtocolVersion object from  string
+       - Parameter : a  String represents the ProtocolVersion object
+       - Returns: ProtocolVersion object
+       */
+
     public static func strToProtocol(from:String)->ProtocolVersion {
         let protocolVersion:ProtocolVersion = ProtocolVersion();
         protocolVersion.protocolString = from;

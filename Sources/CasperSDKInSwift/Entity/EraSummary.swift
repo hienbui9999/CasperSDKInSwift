@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the EraSummary
+ */
 
 public class EraSummary {
     public var block_hash:String=""
@@ -6,6 +9,12 @@ public class EraSummary {
     public var stored_value:StoredValue = .None
     public var state_root_hash:String = ""
     public var merkle_proof:String = ""
+    /**
+        Get EraSummary object from Json string
+        - Parameter : a Json String represents the EraSummary object
+        - Returns: EraSummary object
+        */
+
     public static func getEraSummaryFromJson(from:[String:Any]) -> EraSummary {
         let retResult:EraSummary = EraSummary();
         if let block_hash = from["block_hash"] as? String {

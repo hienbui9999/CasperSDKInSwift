@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Enumeration type represents the OpKind
+ */
 
 public enum OpKind {
     case Read

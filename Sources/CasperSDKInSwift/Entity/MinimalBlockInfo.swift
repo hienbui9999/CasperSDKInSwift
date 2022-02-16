@@ -1,4 +1,7 @@
 import Foundation
+/**
+ Class represents the MinimalBlockInfo
+ */
 
 public class MinimalBlockInfo {
     public var creatorHash:String = "";

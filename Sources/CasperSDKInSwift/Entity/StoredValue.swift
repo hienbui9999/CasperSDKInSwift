@@ -1,4 +1,8 @@
 import Foundation
+/**
+ Enumeration type represents the StoredValue
+ */
+
 public enum StoredValue {
     case    CLValue(CLValue)
     case    Account(Account)
@@ -12,7 +16,17 @@ public enum StoredValue {
     case    Withdraw([UnbondingPurse])
     case    None
 }
+/**
+ Class supports the getting of StoredValue from Json String
+ */
+
 public class StoredValueHelper {
+    /**
+       Get StoredValue object from Json string
+       - Parameter : a Json String represents the StoredValue object
+       - Returns: StoredValue object
+       */
+
     public static func getStoredValue(from:[String:Any])->StoredValue {
         var retResult:StoredValue = .None
         if let accountJson = from["Account"] as? [String:Any] {

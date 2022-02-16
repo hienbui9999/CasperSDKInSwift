@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ Enumeration type represents the Transform
+ */
 public enum Transform {
     case Identity
     case WriteCLValue(CLValue)
@@ -21,7 +23,16 @@ public enum Transform {
     case Failure(String)
     case NONE
 }
+/**
+ Class provides the supported method for  getting the Transform value
+ */
 public class TransformHelper {
+    /**
+        Get Transform value from Json string
+        - Parameter : a Json String represents the Transform value
+        - Returns: Transform value
+        */
+
     public static func getTransform(from:[String:Any])-> Transform {
         var retValue:Transform = .NONE
         if let transformType = from["transform"] as? String {

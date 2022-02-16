@@ -1,5 +1,15 @@
 import Foundation
+/**
+ Class supports the getting of GetDeployResult from Json String
+ */
+
 class GetDeploy {
+    /**
+       Get GetDeployResult object from Json string
+       - Parameter : a Json String represents the GetDeployResult object
+       - Returns: GetDeployResult object
+       */
+
     public static func getDeploy(from:[String:Any]) throws -> GetDeployResult{
         let getDeploy:GetDeployResult = GetDeployResult();
         do {
