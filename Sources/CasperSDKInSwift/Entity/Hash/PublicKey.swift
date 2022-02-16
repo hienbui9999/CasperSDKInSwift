@@ -10,6 +10,7 @@ import Foundation
  Class represents the PublicKey
  */
 public class PublicKey {
+    ///The value of public key  in string
     public var value:String=""
     /**
        Build PublicKey object from string

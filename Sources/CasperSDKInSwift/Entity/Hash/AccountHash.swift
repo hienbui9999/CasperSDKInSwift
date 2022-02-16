@@ -4,7 +4,9 @@ import Foundation
  */
 
 public class AccountHash {
+    ///The value of account hash in string
     public var value:String?
+    ///Prefix of the account hash
     public let ACCOUNT_PREFIX:String="account-hash-"
     /**
        Build AccountHash object from string

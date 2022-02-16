@@ -19,6 +19,10 @@ public enum CasperMethodCallError:Error {
     case None
 }
 
+/**
+ Enumeration type represents the RPC method call
+ */
+
 public enum CasperMethodCall:String {
     case chainGetStateRootHash          = "chain_get_state_root_hash"
     case infoGetPeer                    = "info_get_peers"
@@ -35,19 +39,42 @@ public enum CasperMethodCall:String {
 }
 let CASPER_ID : Int32 = 1;
 let CASPER_RPC_VERSION:String = "2.0"
+/**
+ Class represents the CasperSDK. This class is the source for calling PRC methods
+ */
+
 public class CasperSDK {
+    ///Method URL of the RPC call
     var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
+    ///RPC method call name
     var methodCall:CasperMethodCall = .chainGetStateRootHash;
+    ///HttpHandler  for POST request when call RPC
     var httpHandler:HttpHandler = HttpHandler();
+    /**
+       Set the URL for RPC method call , which can be test net or main net
+       - Parameter : url for RPC method call
+       - Returns: none
+       */
+
     public func setMethodUrl(url:String) {
         methodURL = url;
         HttpHandler.methodURL = methodURL;
     }
+    /**
+       Init function with predefined  URL for RPC method call , which can be test net or main net
+       - Parameter : url for RPC method call
+       - Returns: none
+       */
     public init(url:String) {
         self.methodURL = url;
         HttpHandler.methodURL = methodURL;
     }
-    
+    /**
+       Get State Root Hash RPC call
+       - Parameter : GetStateRootHashParam, which contains a BlockIdentifier
+       - Returns: none. The actually process of getting State Root Hash is done in HttpHandler class
+       */
+
     public func getStateRootHash(getStateRootHashParam:GetStateRootHashParam) throws {
         let data = JsonConversion.fromBlockIdentifierToJsonData(input: getStateRootHashParam.block_identifier, method: .chainGetStateRootHash)
         do {
@@ -56,8 +83,12 @@ public class CasperSDK {
             throw error
         }
     }
+    /**
+     info_get_peers RPC call
+       - Parameter : none
+       - Returns: none. The actually process of getting peer list is done in HttpHandler class
+       */
     
-    //2.call for method info_get_peers
     public func getPeers() throws {
         methodCall = .infoGetPeer
         httpHandler.methodCall = .infoGetPeer
@@ -67,7 +98,11 @@ public class CasperSDK {
             throw error
         }
     }
-    //3.call for method info_get_deploy
+    /**
+     info_get_deploy RPC call
+       - Parameter : GetDeployParams
+       - Returns: none. The actually process of getting GetDeployResult is done in HttpHandler class
+       */
     public func getDeploy(getDeployParam:GetDeployParams) throws {
         methodCall = .infoGetDeploy
         httpHandler.methodCall = .infoGetDeploy
@@ -78,7 +113,11 @@ public class CasperSDK {
             throw error
         }
     }
-    //get status
+    /**
+     info_get_status RPC call
+       - Parameter : none
+       - Returns: none. The actually process of getting GetStatusResult is done in HttpHandler class
+       */
     public func getStatus() throws {
         methodCall = .infoGetStatus
         httpHandler.methodCall = .infoGetStatus
@@ -88,7 +127,11 @@ public class CasperSDK {
             throw error
         }
     }
-    //get state dictionary item
+    /**
+     state_get_dictionary_item RPC call
+       - Parameter : GetDictionaryItemParams
+       - Returns: none. The actually process of getting GetDictionaryItemResult is done in HttpHandler class
+       */
     public func getDictionaryItem(from:GetDictionaryItemParams) throws {
         methodCall = .stateGetDictionaryItem
         httpHandler.methodCall = .stateGetDictionaryItem
@@ -99,7 +142,12 @@ public class CasperSDK {
             throw error
         }
     }
-    //get era by switch block
+    /**
+     chain_get_era_info_by_switch_block RPC call
+       - Parameter : BlockIdentifier
+       - Returns: none. The actually process of getting GetEraInfoResult is done in HttpHandler class
+       */
+    
     public func getEraBySwitchBlock(input:BlockIdentifier) throws {
         methodCall = .chainGetEraInfoBySwitchBlock
         httpHandler.methodCall = .chainGetEraInfoBySwitchBlock
@@ -110,7 +158,13 @@ public class CasperSDK {
             throw error
         }
     }
-    //state_get_item
+    
+    /**
+     state_get_item RPC call
+       - Parameter : GetItemParams
+       - Returns: none. The actually process of getting GetItemResult is done in HttpHandler class
+       */
+    
     public func getItem(input:GetItemParams) throws {
         methodCall = .stateGetItem
         httpHandler.methodCall = .stateGetItem
@@ -121,7 +175,11 @@ public class CasperSDK {
             throw error
         }
     }
-    //chain_get_block_transfers
+    /**
+     chain_get_block_transfers RPC call
+       - Parameter : BlockIdentifier
+       - Returns: none. The actually process of getting GetBlockTransfersResult is done in HttpHandler class
+       */
     public func getBlockTransfers(input:BlockIdentifier) throws {
         methodCall = .chainGetBlockTransfer
         httpHandler.methodCall = .chainGetBlockTransfer
@@ -132,7 +190,11 @@ public class CasperSDK {
             throw error
         }
     }
-    //chain_get_block
+    /**
+     chain_get_block RPC call
+       - Parameter : BlockIdentifier
+       - Returns: none. The actually process of getting GetBlockResult is done in HttpHandler class
+       */
     public func getBlock(input:BlockIdentifier) throws {
         methodCall = .chainGetBlock
         httpHandler.methodCall = .chainGetBlock
@@ -143,6 +205,11 @@ public class CasperSDK {
             throw error
         }
     }
+    /**
+     state_get_balance RPC call
+       - Parameter : GetBalanceParams
+       - Returns: none. The actually process of getting GetBalanceResult is done in HttpHandler class
+       */
     public func getStateBalance(input:GetBalanceParams) throws {
         methodCall = .stateGetBalance
         httpHandler.methodCall = .stateGetBalance
@@ -152,7 +219,12 @@ public class CasperSDK {
         } catch {
             throw error
         }
-    } 
+    }
+    /**
+     state_get_auction_info RPC call
+       - Parameter : BlockIdentifier
+       - Returns: none. The actually process of getting GetAuctionInfoResult is done in HttpHandler class
+       */
     public func getAuctionInfo(input:BlockIdentifier) throws {
         methodCall = .stateGetAuctionInfo
         httpHandler.methodCall = .stateGetAuctionInfo
