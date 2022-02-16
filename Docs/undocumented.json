@@ -1884,311 +1884,199 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetAuctionInfo.swift",
-      "line": 3,
-      "symbol": "GetAuctionInfo",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetAuctionInfo.swift",
-      "line": 4,
-      "symbol": "GetAuctionInfo.getAuctionInfo(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetAuctionInfoResult.swift",
-      "line": 3,
-      "symbol": "GetAuctionInfoResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetAuctionInfoResult.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "GetAuctionInfoResult.api_version",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetAuctionInfoResult.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "GetAuctionInfoResult.auction_state",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceParams.swift",
-      "line": 3,
-      "symbol": "GetBalanceParams",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceParams.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "GetBalanceParams.state_root_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceParams.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "GetBalanceParams.purse_uref",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceResult.swift",
-      "line": 3,
-      "symbol": "GetBalanceResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceResult.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "GetBalanceResult.api_version",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceResult.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "GetBalanceResult.balance_value",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetBalanceResult.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "GetBalanceResult.merkle_proof",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 3,
-      "symbol": "DictionaryIdentifier",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "DictionaryIdentifier.AccountNamedKey(key:dictionary_name:dictionary_item_key:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "DictionaryIdentifier.ContractNamedKey(key:dictionary_name:dictionary_item_key:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "DictionaryIdentifier.URef(seed_uref:dictionary_item_key:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 7,
+      "line": 10,
       "symbol": "DictionaryIdentifier.Dictionary(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 10,
-      "symbol": "GetDictionaryItemParams",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetDictionaryItemParams.swift",
-      "line": 13,
-      "symbol": "GetDictionaryItemParams.toJsonData()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemParams.swift",
-      "line": 3,
-      "symbol": "GetItemParams",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemParams.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "GetItemParams.state_root_hash",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemParams.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "GetItemParams.key",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemParams.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "GetItemParams.path",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemResult.swift",
-      "line": 3,
-      "symbol": "GetItemResult",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemResult.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "GetItemResult.api_version",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemResult.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "GetItemResult.stored_value",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/GetItemResult.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "GetItemResult.merkle_proof",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 3,
-      "symbol": "JsonBid",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "JsonBid.bonding_purse",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "JsonBid.delegation_rate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 6,
+      "line": 9,
       "symbol": "JsonBid.delegators",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 7,
+      "line": 10,
       "symbol": "JsonBid.inactive",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 8,
+      "line": 11,
       "symbol": "JsonBid.staked_amount",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBid.swift",
-      "line": 9,
-      "symbol": "JsonBid.toJsonBid(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBids.swift",
-      "line": 3,
-      "symbol": "JsonBids",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBids.swift",
-      "line": 4,
+      "line": 7,
       "symbol": "JsonBids.bid",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBids.swift",
-      "line": 5,
+      "line": 8,
       "symbol": "JsonBids.public_key",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonBids.swift",
-      "line": 6,
-      "symbol": "JsonBids.toJsonBids(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
-      "line": 3,
-      "symbol": "JsonDelegator",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
-      "line": 4,
-      "symbol": "JsonDelegator.bonding_purse",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
-      "line": 5,
-      "symbol": "JsonDelegator.delegatee",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
-      "line": 6,
-      "symbol": "JsonDelegator.public_key",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
       "line": 7,
-      "symbol": "JsonDelegator.staked_amount",
+      "symbol": "JsonDelegator.bonding_purse",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
+      "line": 8,
+      "symbol": "JsonDelegator.delegatee",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
       "line": 9,
-      "symbol": "JsonDelegator.toJsonDelegator(from:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "symbol": "JsonDelegator.public_key",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/State/JsonDelegator.swift",
+      "line": 10,
+      "symbol": "JsonDelegator.staked_amount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
