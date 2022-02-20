@@ -204,6 +204,14 @@ final class TestCLValueSerialization: XCTestCase {
             let mapSeriallizaion32 = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValue32)
             XCTAssert(mapSeriallizaion32 == "030000000a00000006000000616d6f756e74140000004000000064333244453135326330624246446341466635623261363037304364373239466330463365614346333030613662356532616241423033353032374334396263640000004e0000004b65793a3a4163636f756e74283230354462454434383237324361303242343544396533644361383944366341343244343745356366383336633832363031313837363144614439323762376329")
             
+            //test map of type (key,value) = (U512,String)
+            let keyArrayU512:[CLValueWrapper] = [.U512(U512Class.fromStringToU512(from: "9900020009990098908090909089809")),.U512(U512Class.fromStringToU512(from: "123456789")),.U512(U512Class.fromStringToU512(from: "33"))]
+            let valueArrayString2:[CLValueWrapper] = [.String("sender"),.String("2394349025849241507"),.String("Key::Account(1000000000000000000)")];
+            let mapCLValueU512:CLValueWrapper = .MapWrapper(keyArrayU512, valueArrayString2);
+            let mapSeriallizaionU512 = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValueU512)
+            XCTAssert(mapSeriallizaionU512 == "030000000121210000004b65793a3a4163636f756e742831303030303030303030303030303030303030290415cd5b0713000000323339343334393032353834393234313530370d116064140541c00fbc9db0f47c0600000073656e646572")
+            
+           
             //test for Tuple1
             let tuple1CLValue : CLValueWrapper = .Tuple1Wrapper(.String("Hello, World!"))
             let tuple2CLValue : CLValueWrapper = .Tuple1Wrapper(.U32(1))

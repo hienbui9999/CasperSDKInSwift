@@ -64,6 +64,66 @@ class Utils {
         let ret :UInt64 = UInt64(date.millisecondsSince1970) + milisecondU64
         return ret;
     }
+    
+    ///Supporter method for sorting U128 Array
+    public static func sortU128Array( array:inout [U128Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Supporter method for sorting U256 Array
+    public static func sortU256Array( array:inout [U256Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Supporter method for sorting U512 Array
+    public static func sortU512Array( array:inout [U512Class]) {
+        let total = array.count;
+        for _ in 0...total {
+            for j in 0 ... total - 2 {
+                if !Utils.isBigNum1SmallerThanBigNum2(num1: array[j].valueInStr, num2: array[j+1].valueInStr) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+    ///Support function to compare two big number, such as U128 or U256 or U512, return true if num1 < num2 and vice versa
+    public static func isBigNum1SmallerThanBigNum2(num1:String,num2:String) -> Bool {
+        //if num1 < num2 return true
+        let num1Length = num1.count;
+        let num2Length = num2.count;
+        if num1Length > num2Length {
+           
+            return false
+        } else if num1Length < num2Length {
+           
+            return true
+        } else { //num1Length == num2Length
+            for i in 0 ... num1Length - 1 {
+                if UInt8(num1[i])! > UInt8(num2[i])! { //if num1>num2 at any index return false
+                    return false
+                }
+            }
+            return true;
+        }
+    }
 }
 
 extension Date {
@@ -104,5 +164,31 @@ extension String {
         let messageData = self.data(using: .nonLossyASCII)
         let text = String(data: messageData!, encoding: .utf8) ?? ""
         return text
+    }
+}
+extension String {
+
+    var length: Int {
+        return count
+    }
+
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
     }
 }

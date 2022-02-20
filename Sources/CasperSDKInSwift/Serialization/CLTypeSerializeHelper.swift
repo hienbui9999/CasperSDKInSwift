@@ -370,7 +370,7 @@ public class CLTypeSerializeHelper {
                     for i in 0...Int(mapSize-1) {
                         dict[listKey[i].valueInStr] = valueArray[i];
                     }
-                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    Utils.sortU128Array(array: &listKey);
                     for sortedKey in listKey {
                         do {
                             let keySerialize = try CLTypeSerializeHelper.U128Serialize(input: sortedKey.valueInStr);
@@ -392,7 +392,7 @@ public class CLTypeSerializeHelper {
                     for i in 0...Int(mapSize-1) {
                         dict[listKey[i].valueInStr] = valueArray[i];
                     }
-                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    Utils.sortU256Array(array:&listKey);
                     for sortedKey in listKey {
                         do {
                             let keySerialize = try CLTypeSerializeHelper.U256Serialize(input:sortedKey.valueInStr);
@@ -414,7 +414,7 @@ public class CLTypeSerializeHelper {
                     for i in 0...Int(mapSize-1) {
                         dict[listKey[i].valueInStr] = valueArray[i];
                     }
-                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    Utils.sortU512Array(array:&listKey);
                     for sortedKey in listKey {
                         do {
                             let keySerialize = try CLTypeSerializeHelper.U512Serialize(input: sortedKey.valueInStr);
