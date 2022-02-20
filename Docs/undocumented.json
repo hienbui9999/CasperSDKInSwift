@@ -1598,35 +1598,35 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 356,
+      "line": 387,
       "symbol": "CLTypeSerializeHelper.divideBy16(input:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 389,
+      "line": 420,
       "symbol": "CLTypeSerializeHelper.from10To16(input:lowerCase:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 493,
+      "line": 524,
       "symbol": "CLTypeSerializeHelper.SmallNumberSerialize(input:numBytes:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 538,
+      "line": 569,
       "symbol": "CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input:numBytes:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 566,
+      "line": 597,
       "symbol": "CLTypeSerializeHelper.fromBigToLittleEdian(input:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
