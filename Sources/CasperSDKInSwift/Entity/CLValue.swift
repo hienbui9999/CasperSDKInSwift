@@ -77,6 +77,119 @@ public class CLValue {
         }
     }
     /**
+     Get raw value for CLValueWrapper, of type .I32(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .I32(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the I32 value inside the clValue
+     */
+    public static func getRawValueOfI32(clValue:CLValueWrapper)->Int32 {
+        switch clValue {
+        case .I32(let int32):
+            return int32
+        default:
+            return Int32.min
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .I64(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .I64(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the I64 value inside the clValue
+     */
+    public static func getRawValueOfI64(clValue:CLValueWrapper) -> Int64 {
+        switch clValue {
+        case .I64(let int64):
+            return int64
+        default:
+            return Int64.min
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .UInt8(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt8(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the UInt8 value inside the clValue
+     */
+        
+    public static func getRawValueOfU8(clValue:CLValueWrapper)->UInt8 {
+        switch clValue {
+        case .U8(let uInt8):
+            return uInt8
+        default:
+            return 0
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .UInt32(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt32(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the UInt32 value inside the clValue
+     */
+    public static func getRawValueOfU32(clValue:CLValueWrapper)->UInt32 {
+        switch clValue {
+        case .U32(let uInt32):
+            return uInt32
+        default:
+            return 0
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .UInt64(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .UInt64(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the UInt64 value inside the clValue
+     */
+    public static func getRawValueOfU64(clValue:CLValueWrapper)->UInt64 {
+        switch clValue {
+        case .U64(let uInt64):
+            return uInt64
+        default:
+            return 0
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .U128(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U128(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the U128 value inside the clValue
+     */
+    public static func getRawValueOfU128(clValue:CLValueWrapper)->U128Class {
+        switch clValue {
+        case .U128(let u128Class):
+            return u128Class
+        default:
+            return U128Class.fromStringToU128(from: "0")
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .U256(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U256(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the U256 value inside the clValue
+     */
+    public static func getRawValueOfU256(clValue:CLValueWrapper)->U256Class {
+        switch clValue {
+        case .U256(let u256Class):
+            return u256Class
+        default:
+            return U256Class.fromStringToU256(from: "0")
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .U512(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .U512(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the U512 value inside the clValue
+     */
+    public static func getRawValueOfU512(clValue:CLValueWrapper)->U512Class {
+        switch clValue {
+        case .U512(let u512Class):
+            return u512Class
+        default:
+            return U512Class.fromStringToU512(from: "0")
+        }
+    }
+    /**
      Check if the clValue is comparable, for example Int, String can be compare to sort ascending, but List or Map or Tuple can not. Use this function for CLValue Map serialization.
      - Parameter :
         - clValue of CLValueWrapper type, to check if the clValue can be comparable
@@ -85,53 +198,53 @@ public class CLValue {
     public static func getComparableType(clValue:CLValueWrapper) -> String{
         let noneCompareType:String = "none"
         switch clValue {
-        case .Bool(let bool):
+        case .Bool(_):
             return noneCompareType
-        case .I32(let int32):
+        case .I32(_):
             return "I32"
-        case .I64(let int64):
+        case .I64(_):
             return "I64"
-        case .U8(let uInt8):
+        case .U8(_):
             return "UInt8"
-        case .U32(let uInt32):
+        case .U32(_):
             return "UInt32"
-        case .U64(let uInt64):
+        case .U64(_):
             return "UInt64"
-        case .U128(let u128Class):
+        case .U128(_):
             return "U128"
-        case .U256(let u256Class):
+        case .U256(_):
             return "U256"
-        case .U512(let u512Class):
+        case .U512(_):
             return "U512"
-        case .Unit(let _):
+        case .Unit( _):
             return noneCompareType
-        case .String(let _):
+        case .String( _):
             return "String"
-        case .Key(let _):
+        case .Key( _):
             return noneCompareType
-        case .URef(let _):
+        case .URef( _):
             return noneCompareType
-        case .PublicKey(let _):
+        case .PublicKey( _):
             return noneCompareType
-        case .BytesArray(let _):
+        case .BytesArray( _):
             return noneCompareType
-        case .OptionWrapper(let _):
+        case .OptionWrapper( _):
             return noneCompareType
-        case .ListWrapper(let _):
+        case .ListWrapper( _):
             return noneCompareType
-        case .FixedListWrapper(let _):
+        case .FixedListWrapper( _):
             return noneCompareType
-        case .ResultWrapper(let _, let _):
+        case .ResultWrapper( _,  _):
             return noneCompareType
-        case .MapWrapper(let array1, let array2):
+        case .MapWrapper(_, _):
             return noneCompareType
-        case .Tuple1Wrapper(let _):
+        case .Tuple1Wrapper( _):
             return noneCompareType
-        case .Tuple2Wrapper(let _, let _):
+        case .Tuple2Wrapper( _,  _):
             return noneCompareType
-        case .Tuple3Wrapper(let _, let _, let _):
+        case .Tuple3Wrapper( _,  _,  _):
             return noneCompareType
-        case .AnyCLValue(let anyObject):
+        case .AnyCLValue(_):
             return noneCompareType
         case .NULL:
             return noneCompareType

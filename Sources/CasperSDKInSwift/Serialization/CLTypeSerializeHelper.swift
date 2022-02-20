@@ -227,28 +227,203 @@ public class CLTypeSerializeHelper {
             let firstKeyItem : CLValueWrapper = keyArray[0];
             let comparableString =  CLValue.getComparableType(clValue:  firstKeyItem)
             if comparableString != "none" {
+                let mapSize:UInt32 = UInt32(keyArray.count);
+                //get the prefix of UInt32 serialization of the element number of the map
+                var result:String = CLTypeSerializeHelper.UInt32Serialize(input: mapSize);
                 if comparableString == "String" {
                     var listKey:[String]  = [];
-                    var listValue:[String] = [];
                     for key in keyArray {
                         listKey.append(CLValue.getRawValueOfStringType(clValue: key))
                     }
-                    for value in valueArray {
-                        listValue.append(CLValue.getRawValueOfStringType(clValue: value))
-                    }
-                    let mapSize:UInt32 = UInt32(listKey.count);
-                    //get the prefix of UInt32 serialization of the element number of the map
-                    var result:String = CLTypeSerializeHelper.UInt32Serialize(input: mapSize);
-                    var dict:[String:String] = [:];
+                    var dict:[String:CLValueWrapper] = [:]
                     for i in 0...Int(mapSize-1) {
-                        dict[listKey[i]] = listValue[i];
+                        dict[listKey[i]] = valueArray[i]
                     }
                     listKey = listKey.sorted{$0<$1}
                     for sortedKey in listKey {
                         let keySerialize = CLTypeSerializeHelper.StringSerialize(input: sortedKey);
                         let valueForKey = dict[sortedKey]!;
-                        let valueSeiralize = CLTypeSerializeHelper.StringSerialize(input: valueForKey);
-                        result = result + keySerialize + valueSeiralize
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                } else if comparableString == "I32" {
+                    var listKey:[Int32] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfI32(clValue: key))
+                    }
+                    var dict:[Int32:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.Int32Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "I64" {
+                    var listKey:[Int64] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfI64(clValue: key))
+                    }
+                    var dict:[Int64:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.Int64Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt8" {
+                    var listKey:[UInt8] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU8(clValue: key))
+                    }
+                    var dict:[UInt8:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt8Serialize(input:sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt32" {
+                    var listKey:[UInt32] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU32(clValue: key))
+                    }
+                    var dict:[UInt32:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt32Serialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "UInt64" {
+                    var listKey:[UInt64] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU64(clValue: key))
+                    }
+                    var dict:[UInt64:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.UInt64Serialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        do {
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U128" {
+                    var listKey:[U128Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU128(clValue: key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U128Serialize(input: sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U256" {
+                    var listKey:[U256Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU256(clValue: key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U256Serialize(input:sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
+                    }
+                    return result;
+                }
+                else if comparableString == "U512" {
+                    var listKey:[U512Class] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfU512(clValue:key))
+                    }
+                    var dict:[String:CLValueWrapper] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i].valueInStr] = valueArray[i];
+                    }
+                    listKey = listKey.sorted{$0.valueInStr<$1.valueInStr}
+                    for sortedKey in listKey {
+                        do {
+                            let keySerialize = try CLTypeSerializeHelper.U512Serialize(input: sortedKey.valueInStr);
+                            let valueForKey = dict[sortedKey.valueInStr]!;
+                            let valueSeiralize = try CLTypeSerializeHelper.CLValueSerialize(input: valueForKey)
+                            result = result + keySerialize + valueSeiralize
+                        } catch {
+                            NSLog("Error when serialize map:\(error)")
+                        }
                     }
                     return result;
                 }

@@ -190,11 +190,19 @@ final class TestCLValueSerialization: XCTestCase {
             XCTAssert(resultCLValueErrSerialization=="00050000005568206f68")
           
             //test for map
+            //test map of type (key,value) = (String,String)
             let keyArray:[CLValueWrapper] = [.String("event_type"),.String("recipient"),.String("token_id"),.String("contract_package_hash")];
             let valueArray:[CLValueWrapper] = [.String("cep47_mint_one"),.String("Key::Account(d0bc9ca1353597c4004b8f881b397a89c1779004f5e547e04b57c2e7967c6269)"),.String("2"),.String("a3b469a1e8b65b50e3c0c13e8f335de59203f7febe6ca41a95cdcb94c1c048e7")];
             let mapCLValue:CLValueWrapper = .MapWrapper(keyArray, valueArray);
             let mapSeriallizaion = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValue)
             XCTAssert(mapSeriallizaion == "0400000015000000636f6e74726163745f7061636b6167655f6861736840000000613362343639613165386236356235306533633063313365386633333564653539323033663766656265366361343161393563646362393463316330343865370a0000006576656e745f747970650e00000063657034375f6d696e745f6f6e6509000000726563697069656e744e0000004b65793a3a4163636f756e7428643062633963613133353335393763343030346238663838316233393761383963313737393030346635653534376530346235376332653739363763363236392908000000746f6b656e5f69640100000032")
+            
+            //test map of type (key,value) = (UInt32,String)
+            let keyArray32:[CLValueWrapper] = [.U32(10),.U32(20),.U32(100)];
+            let valueArrayString:[CLValueWrapper] = [.String("amount"),.String("d32DE152c0bBFDcAFf5b2a6070Cd729Fc0F3eaCF300a6b5e2abAB035027C49bc"),.String("Key::Account(205DbED48272Ca02B45D9e3dCa89D6cA42D47E5cf836c8260118761DaD927b7c)")];
+            let mapCLValue32:CLValueWrapper = .MapWrapper(keyArray32, valueArrayString);
+            let mapSeriallizaion32 = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValue32)
+            XCTAssert(mapSeriallizaion32 == "030000000a00000006000000616d6f756e74140000004000000064333244453135326330624246446341466635623261363037304364373239466330463365614346333030613662356532616241423033353032374334396263640000004e0000004b65793a3a4163636f756e74283230354462454434383237324361303242343544396533644361383944366341343244343745356366383336633832363031313837363144614439323762376329")
             
             //test for Tuple1
             let tuple1CLValue : CLValueWrapper = .Tuple1Wrapper(.String("Hello, World!"))
