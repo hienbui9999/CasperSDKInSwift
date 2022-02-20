@@ -44,8 +44,7 @@ public class CLTypeSerializeHelper {
         case .List(let cLType):
             return "0e"
         case .BytesArray(let uInt32):
-            return "0f"//review again
-            break;
+            return "0f"
         case .Result(let cLType1, let cLType2):
             return "10"
         case .Map(let cLType1, let cLType2):
@@ -59,8 +58,7 @@ public class CLTypeSerializeHelper {
         case .CLAny:
             return "15"
         case .NONE:
-            //no return
-            break;
+            return "-1"
         default:
             return "-1"
         }
@@ -142,10 +140,8 @@ public class CLTypeSerializeHelper {
             break
         case .PublicKey(let string):
             return string
-            break
         case .BytesArray(let string):
             return string
-            break
         case .OptionWrapper(let cLValueWrapper):
             switch cLValueWrapper {
             case .NONE:

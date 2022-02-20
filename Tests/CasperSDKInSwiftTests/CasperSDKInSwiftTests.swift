@@ -4,11 +4,7 @@ import XCTest
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
         let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()
-        do {
-            try testCLTypeSerialization.testAll()
-        } catch {
-            NSLog("Error test serialization:\(error)")
-        }
+        testCLTypeSerialization.testAll()
         let testCLValueSerialization: TestCLValueSerialization = TestCLValueSerialization()
         do {
             try testCLValueSerialization.testAll()
@@ -16,11 +12,7 @@ final class CasperSDKInSwiftTests: XCTestCase {
             NSLog("Error test serialization:\(error)")
         }
         let testDeploySerialization : TestDeploySerialization = TestDeploySerialization()
-        do {
-            try testDeploySerialization.testAll()
-        } catch {
-            NSLog("Error test deploy serialization:\(error)")
-        }
+        testDeploySerialization.testAll()
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
         //casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
         //-----------------------------------------------------------------------------

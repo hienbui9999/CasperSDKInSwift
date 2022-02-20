@@ -90,7 +90,7 @@ public class ExecutableDeployItemSerializaton {
             if module_bytes.value == "" {
                 ret = CLTypeSerializeHelper.UInt32Serialize(input: 0)
             } else {
-                let module_bytesLength = UInt32(module_bytes.value.count)
+               // let module_bytesLength = UInt32(module_bytes.value.count)
                 ret = "00" +  CLTypeSerializeHelper.StringSerialize(input: module_bytes.value)
             }
             let argStr = ExecutableDeployItemSerializaton.NameArgListSerialize(from: args.listNamedArg)
