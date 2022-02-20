@@ -223,8 +223,39 @@ public class CLTypeSerializeHelper {
                 }
             }
             
-        case .MapWrapper(let array1, let array2):
-            return ""
+        case .MapWrapper(let keyArray, let valueArray):
+            let firstKeyItem : CLValueWrapper = keyArray[0];
+            let comparableString =  CLValue.getComparableType(clValue:  firstKeyItem)
+            if comparableString != "none" {
+                if comparableString == "String" {
+                    var listKey:[String]  = [];
+                    var listValue:[String] = [];
+                    for key in keyArray {
+                        listKey.append(CLValue.getRawValueOfStringType(clValue: key))
+                    }
+                    for value in valueArray {
+                        listValue.append(CLValue.getRawValueOfStringType(clValue: value))
+                    }
+                    let mapSize:UInt32 = UInt32(listKey.count);
+                    //get the prefix of UInt32 serialization of the element number of the map
+                    var result:String = CLTypeSerializeHelper.UInt32Serialize(input: mapSize);
+                    var dict:[String:String] = [:];
+                    for i in 0...Int(mapSize-1) {
+                        dict[listKey[i]] = listValue[i];
+                    }
+                    listKey = listKey.sorted{$0<$1}
+                    for sortedKey in listKey {
+                        let keySerialize = CLTypeSerializeHelper.StringSerialize(input: sortedKey);
+                        let valueForKey = dict[sortedKey]!;
+                        let valueSeiralize = CLTypeSerializeHelper.StringSerialize(input: valueForKey);
+                        result = result + keySerialize + valueSeiralize
+                    }
+                    return result;
+                }
+            } else {
+                return "";
+            }
+            
             
         case .Tuple1Wrapper(let cLValueWrapper):
             do {

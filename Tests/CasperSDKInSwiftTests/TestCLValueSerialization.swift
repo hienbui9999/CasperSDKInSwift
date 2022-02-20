@@ -79,7 +79,7 @@ final class TestCLValueSerialization: XCTestCase {
             
             //test for string
             let str:String = "Hello, World!"
-            let strSerialize = CLTypeSerializeHelper.StringSerialize(input: "Hello, World!")
+            let strSerialize = CLTypeSerializeHelper.StringSerialize(input: str)
             XCTAssert(strSerialize == "0d00000048656c6c6f2c20576f726c6421")
             let str2:String = "lWJWKdZUEudSakJzw1tn"
             let strSerialize2 = CLTypeSerializeHelper.StringSerialize(input: str2)
@@ -189,6 +189,13 @@ final class TestCLValueSerialization: XCTestCase {
             let resultCLValueErrSerialization = try CLTypeSerializeHelper.CLValueSerialize(input: resultErrCLValue)
             XCTAssert(resultCLValueErrSerialization=="00050000005568206f68")
           
+            //test for map
+            let keyArray:[CLValueWrapper] = [.String("event_type"),.String("recipient"),.String("token_id"),.String("contract_package_hash")];
+            let valueArray:[CLValueWrapper] = [.String("cep47_mint_one"),.String("Key::Account(d0bc9ca1353597c4004b8f881b397a89c1779004f5e547e04b57c2e7967c6269)"),.String("2"),.String("a3b469a1e8b65b50e3c0c13e8f335de59203f7febe6ca41a95cdcb94c1c048e7")];
+            let mapCLValue:CLValueWrapper = .MapWrapper(keyArray, valueArray);
+            let mapSeriallizaion = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValue)
+            XCTAssert(mapSeriallizaion == "0400000015000000636f6e74726163745f7061636b6167655f6861736840000000613362343639613165386236356235306533633063313365386633333564653539323033663766656265366361343161393563646362393463316330343865370a0000006576656e745f747970650e00000063657034375f6d696e745f6f6e6509000000726563697069656e744e0000004b65793a3a4163636f756e7428643062633963613133353335393763343030346238663838316233393761383963313737393030346635653534376530346235376332653739363763363236392908000000746f6b656e5f69640100000032")
+            
             //test for Tuple1
             let tuple1CLValue : CLValueWrapper = .Tuple1Wrapper(.String("Hello, World!"))
             let tuple2CLValue : CLValueWrapper = .Tuple1Wrapper(.U32(1))

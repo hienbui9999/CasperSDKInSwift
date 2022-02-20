@@ -63,6 +63,83 @@ public class CLValue {
         return ret;
     }
     /**
+     Get raw value for CLValueWrapper, of type .String(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .String(value) to just value
+     - Parameter :
+        - clValue of CLValueWrapper type
+     - Returns: the string value inside the clValue
+     */
+    public static func getRawValueOfStringType(clValue:CLValueWrapper)->String {
+        switch clValue {
+        case .String(let string):
+            return string;
+        default:
+            return ""
+        }
+    }
+    /**
+     Check if the clValue is comparable, for example Int, String can be compare to sort ascending, but List or Map or Tuple can not. Use this function for CLValue Map serialization.
+     - Parameter :
+        - clValue of CLValueWrapper type, to check if the clValue can be comparable
+     - Returns: String represent the type of the comparable clValue, "none" if not.
+     */
+    public static func getComparableType(clValue:CLValueWrapper) -> String{
+        let noneCompareType:String = "none"
+        switch clValue {
+        case .Bool(let bool):
+            return noneCompareType
+        case .I32(let int32):
+            return "I32"
+        case .I64(let int64):
+            return "I64"
+        case .U8(let uInt8):
+            return "UInt8"
+        case .U32(let uInt32):
+            return "UInt32"
+        case .U64(let uInt64):
+            return "UInt64"
+        case .U128(let u128Class):
+            return "U128"
+        case .U256(let u256Class):
+            return "U256"
+        case .U512(let u512Class):
+            return "U512"
+        case .Unit(let _):
+            return noneCompareType
+        case .String(let _):
+            return "String"
+        case .Key(let _):
+            return noneCompareType
+        case .URef(let _):
+            return noneCompareType
+        case .PublicKey(let _):
+            return noneCompareType
+        case .BytesArray(let _):
+            return noneCompareType
+        case .OptionWrapper(let _):
+            return noneCompareType
+        case .ListWrapper(let _):
+            return noneCompareType
+        case .FixedListWrapper(let _):
+            return noneCompareType
+        case .ResultWrapper(let _, let _):
+            return noneCompareType
+        case .MapWrapper(let array1, let array2):
+            return noneCompareType
+        case .Tuple1Wrapper(let _):
+            return noneCompareType
+        case .Tuple2Wrapper(let _, let _):
+            return noneCompareType
+        case .Tuple3Wrapper(let _, let _, let _):
+            return noneCompareType
+        case .AnyCLValue(let anyObject):
+            return noneCompareType
+        case .NULL:
+            return noneCompareType
+        case .NONE:
+            return noneCompareType
+        }
+    }
+    /**
      Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter
      - Parameter :
         - from: AnyObject, in this case a Json holding the CLType and CLValue
