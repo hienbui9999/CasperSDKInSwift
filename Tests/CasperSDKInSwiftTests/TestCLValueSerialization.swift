@@ -197,6 +197,14 @@ final class TestCLValueSerialization: XCTestCase {
             let mapSeriallizaion = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValue)
             XCTAssert(mapSeriallizaion == "0400000015000000636f6e74726163745f7061636b6167655f6861736840000000613362343639613165386236356235306533633063313365386633333564653539323033663766656265366361343161393563646362393463316330343865370a0000006576656e745f747970650e00000063657034375f6d696e745f6f6e6509000000726563697069656e744e0000004b65793a3a4163636f756e7428643062633963613133353335393763343030346238663838316233393761383963313737393030346635653534376530346235376332653739363763363236392908000000746f6b656e5f69640100000032")
             
+            //test map of type (key,value) = (String,String) 2
+            
+            let keyArrayStr2:[CLValueWrapper] = [.String("amount1In"),.String("amount0In"),.String("amount0Out"),.String("contract_package_hash"),.String("amount1Out"),.String("event_type"),.String("sender"),.String("to")];
+            let valueArrayStr2:[CLValueWrapper] = [.String("0"),.String("1000000000000000000"),.String("0"),.String("d32DE152c0bBFDcAFf5b2a6070Cd729Fc0F3eaCF300a6b5e2abAB035027C49bc"),.String("2394349025849241507"),.String("swap"),.String("Key::Hash(dDE7472639058717A42e22D297D6Cf3E07906bB57Bc28EfcEac3677f8A3Dc83b)"),.String("Key::Account(205DbED48272Ca02B45D9e3dCa89D6cA42D47E5cf836c8260118761DaD927b7c)")];
+            let mapCLValueStr2:CLValueWrapper = .MapWrapper(keyArrayStr2, valueArrayStr2);
+            let mapSeriallizaionStr2 = try CLTypeSerializeHelper.CLValueSerialize(input: mapCLValueStr2)
+            XCTAssert(mapSeriallizaionStr2 == "0800000009000000616d6f756e7430496e13000000313030303030303030303030303030303030300a000000616d6f756e74304f7574010000003009000000616d6f756e7431496e01000000300a000000616d6f756e74314f7574130000003233393433343930323538343932343135303715000000636f6e74726163745f7061636b6167655f6861736840000000643332444531353263306242464463414666356232613630373043643732394663304633656143463330306136623565326162414230333530323743343962630a0000006576656e745f7479706504000000737761700600000073656e6465724b0000004b65793a3a4861736828644445373437323633393035383731374134326532324432393744364366334530373930366242353742633238456663456163333637376638413344633833622902000000746f4e0000004b65793a3a4163636f756e74283230354462454434383237324361303242343544396533644361383944366341343244343745356366383336633832363031313837363144614439323762376329")
+            
             //test map of type (key,value) = (UInt32,String)
             let keyArray32:[CLValueWrapper] = [.U32(10),.U32(20),.U32(100)];
             let valueArrayString:[CLValueWrapper] = [.String("amount"),.String("d32DE152c0bBFDcAFf5b2a6070Cd729Fc0F3eaCF300a6b5e2abAB035027C49bc"),.String("Key::Account(205DbED48272Ca02B45D9e3dCa89D6cA42D47E5cf836c8260118761DaD927b7c)")];
@@ -218,10 +226,10 @@ final class TestCLValueSerialization: XCTestCase {
             let tuple3CLValue : CLValueWrapper = .Tuple1Wrapper(.Bool(true))
             let tuple1Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple1CLValue)
             XCTAssert(tuple1Serialization == "0d00000048656c6c6f2c20576f726c6421")
-            let tuple2Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple2CLValue)
-            XCTAssert(tuple2Serialization == "01000000")
-            let tuple3Serialization = try CLTypeSerializeHelper.CLValueSerialize(input: tuple3CLValue)
-            XCTAssert(tuple3Serialization == "01")
+            let tuple1Serialization2 = try CLTypeSerializeHelper.CLValueSerialize(input: tuple2CLValue)
+            XCTAssert(tuple1Serialization2 == "01000000")
+            let tuple1Serialization3 = try CLTypeSerializeHelper.CLValueSerialize(input: tuple3CLValue)
+            XCTAssert(tuple1Serialization3 == "01")
            
             //test for Tuple2
             
