@@ -6,15 +6,15 @@ final class TestCLValueSerialization: XCTestCase {
             //Serialization test
             
             //test for bool
-            var bool_true:String = CLTypeSerializeHelper.BoolSerialize(input: true)
-            var bool_false:String = CLTypeSerializeHelper.BoolSerialize(input: false)
+            let bool_true:String = CLTypeSerializeHelper.BoolSerialize(input: true)
+            let bool_false:String = CLTypeSerializeHelper.BoolSerialize(input: false)
             XCTAssert(bool_true == "01")
             XCTAssert(bool_false == "00")
             
             //test for u8
-            var u8_1:String = CLTypeSerializeHelper.UInt8Serialize(input: 197)
-            var u8_2:String = CLTypeSerializeHelper.UInt8Serialize(input: 7)
-            var u8_3:String = CLTypeSerializeHelper.UInt8Serialize(input: 0)
+            let u8_1:String = CLTypeSerializeHelper.UInt8Serialize(input: 197)
+            let u8_2:String = CLTypeSerializeHelper.UInt8Serialize(input: 7)
+            let u8_3:String = CLTypeSerializeHelper.UInt8Serialize(input: 0)
             XCTAssert(u8_1 == "c5")
             XCTAssert(u8_2 == "07")
             XCTAssert(u8_3 == "00")
