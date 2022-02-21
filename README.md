@@ -108,7 +108,7 @@ You can change the method url by running this code line
 casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
 ```
 
-## M2: RPC Calls
+## RPC Calls
 
 ### I. Get State Root Hash  
 
