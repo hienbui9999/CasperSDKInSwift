@@ -321,5 +321,6 @@ final class CasperSDKInSwiftTests: XCTestCase {
         } catch {
             throw error
         }
+        
     }
 }

@@ -152,8 +152,6 @@ extension String {
         let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         return Set(self).isSubset(of: nums)
     }
-}
-extension String {
     func utf8DecodedString()-> String {
         let data = self.data(using: .utf8)
         let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
@@ -165,9 +163,6 @@ extension String {
         let text = String(data: messageData!, encoding: .utf8) ?? ""
         return text
     }
-}
-extension String {
-
     var length: Int {
         return count
     }
@@ -192,3 +187,5 @@ extension String {
         return String(self[start ..< end])
     }
 }
+
+

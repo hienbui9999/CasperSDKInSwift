@@ -9,6 +9,35 @@ class HttpHandler:XCTestCase {
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
     ///RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
+    public func putDeploy(method:CasperMethodCall,params:Data,httpMethod:String="POST") throws {
+        guard let url = URL(string: HttpHandler.methodURL) else {
+            throw CasperMethodError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpBody = params
+        let expectation = self.expectation(description: "Getting json data from casper")
+        let task = URLSession.shared.dataTask(with: request)  { data, response, error in
+            guard let data = data, error == nil else {
+                NSLog(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
+            print("put deploy responseJSON:\(responseJSON)");
+            if let responseJSON = responseJSON as? [String: Any] {
+                do {
+                    try DeployUtil.getDeployResult(from: responseJSON)
+                } catch {
+                    NSLog("Error get Deploy Result")
+                }
+            }
+            expectation.fulfill()
+        }
+        task.resume()
+        self.waitForExpectations(timeout: 500, handler: nil)
+    }
     /**
      This function handle the request with specific RPC call and given parameter for each method
         - Parameter :

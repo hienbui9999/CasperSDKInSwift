@@ -2,7 +2,7 @@ import Foundation
 /**
  Class for Deploy Header object
  */
-public class DeployHeader {
+public class DeployHeader : Codable {
     ///Deploy Header  account hash
     public var account:String = "";
     ///Deploy Header body hash

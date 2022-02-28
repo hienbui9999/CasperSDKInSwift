@@ -37,8 +37,7 @@ public class CLTypeSerializeHelper {
         case .Key:
             return "0c"
         case .PublicKey:
-            //no return
-            break;
+            return "16"//no value to return defined in this address https://casper.network/docs/design/serialization-standard
         case .Option(let cLType):
             return "0d"
         case .List(let cLType):
@@ -58,11 +57,11 @@ public class CLTypeSerializeHelper {
         case .CLAny:
             return "15"
         case .NONE:
-            return "-1"
+            return ""
         default:
-            return "-1"
+            return ""
         }
-       return "-1"
+       return ""
     }
     /**
      Serialize for CLValue

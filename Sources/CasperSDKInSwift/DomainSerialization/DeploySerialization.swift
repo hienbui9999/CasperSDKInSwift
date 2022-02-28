@@ -1,4 +1,6 @@
 import Foundation
+import CryptoKit
+import Blake2
 /**
  Class for Deploy serialization
  */
@@ -17,6 +19,38 @@ public class DeploySerialization {
         retStr = retStr + ExecutableDeployItemSerializaton.serialize(from: fromDeploy.session!)
         retStr = retStr + DeployApprovalSerialization.serialize(from: fromDeploy.approvals)
         return retStr
+    }
+    /**
+     Get body hash of a deploy
+     - Parameter : a deploy object
+     - Returns: String represent the body hash of the deploy.
+     */
+    public static func getBodyHash(fromDeploy:Deploy) -> String {
+        var bodySerializedStr:String = ExecutableDeployItemSerializaton.serialize(from: fromDeploy.payment!);
+        print("payment serialize:\(bodySerializedStr)")
+        bodySerializedStr = bodySerializedStr + ExecutableDeployItemSerializaton.serialize(from: fromDeploy.session!)
+        print("session serialize:\(ExecutableDeployItemSerializaton.serialize(from: fromDeploy.session!))")
+        //bodySerializedStr = bodySerializedStr + DeployApprovalSerialization.serialize(from: fromDeploy.approvals)
+        print("Approval serialilze:\(DeployApprovalSerialization.serialize(from: fromDeploy.approvals))")
+        print("bodySerializedStr:\(bodySerializedStr)")
+        let blake2Data = Data(bodySerializedStr.utf8)
+        let hash = try! Blake2.hash(.b2b,size:32,data:blake2Data)
+        print(hash.hexEncodedString())
+        return hash.hexEncodedString();
+    }
+    /**
+     Get header hash of a deploy
+     - Parameter : a deploy header
+     - Returns: String represent the body hash of the deploy header.
+     */
+    public static func getHeaderHash(fromDeployHeader:DeployHeader) -> String {
+        var headerSerialized:String = DeployHeaderSerialization.serialize(from: fromDeployHeader)
+        print("headerSerialized:\(headerSerialized)")
+        //let ret = SHA256.hash(data: headerSerialized.bytes)
+        let blake2Data = Data(headerSerialized.utf8)
+        let hash = try! Blake2.hash(.b2b,size:32,data:blake2Data)
+        print(hash.hexEncodedString())
+        return hash.hexEncodedString();
     }
 }
 /**
@@ -50,9 +84,13 @@ public class ExecutableDeployItemSerializaton {
      Serialization for NamedArg list
      - Parameter : NamedArg list
      - Returns: String represents the serialization of the NamedArg list
+     Serialize rule: if the args list is empty then just return the U32Serialize(0), which is 00000000
+        else if the args list is not empty then return value = UInt32.serialize(args.count) + each args.serialize
+        Rule for each args serialize:
+        args serialize return value = StringSerialize(args.name) + UInt32.seriallize(bytes.length) + bytes + CLType.tag
      */
     public static func NameArgListSerialize(from:[NamedArg])->String {
-        //if the args list is empty then just return the U32Serialize(0), which is 00000000
+        
         if from.count == 0 {
             return "00000000"
         }
@@ -64,7 +102,7 @@ public class ExecutableDeployItemSerializaton {
             do {
                 let clValueSerialize = try CLTypeSerializeHelper.CLValueSerialize(input: nameArg.argsItem.parsed)
                 let clValueSerializeSize = UInt32(clValueSerialize.count/2)
-                argStr = argStr + CLTypeSerializeHelper.UInt32Serialize(input: clValueSerializeSize)  + clValueSerialize
+                argStr = argStr + CLTypeSerializeHelper.UInt32Serialize(input: clValueSerializeSize)  + clValueSerialize //nameArg.argsItem.bytes 
                 argStr = argStr + CLTypeSerializeHelper.CLTypeSerialize(input: nameArg.argsItem.cl_type)
             } catch {
                 NSLog("Error serialize NameArgs \(error)")
@@ -85,10 +123,17 @@ public class ExecutableDeployItemSerializaton {
      */
     public static func serialize(from:ExecutableDeployItem)->String {
         switch from {
+///- Rule for serialization: for .ModuleBytes:
+///result = "00" + module_bytes.serialize + args.serialize
+/// - first value: module_bytes.serialize
+/// if the module_bytes is blank or "" then module_bytes.serialize = "00000000" (which equals UInt32.serialize(0))
+/// if the module_bytes is not blank, then module_bytes.serialize = CLValue.String.Serialize(module_bytes) - serialize module_bytes as type CLType.String
+/// - second value: args.serialize
+/// using NameArgListSerialize for the args list
         case .ModuleBytes(let module_bytes, let args):
-            var ret:String = ""
+            var ret:String = "00"
             if module_bytes.value == "" {
-                ret = CLTypeSerializeHelper.UInt32Serialize(input: 0)
+                ret = "00" + CLTypeSerializeHelper.UInt32Serialize(input: 0)
             } else {
                // let module_bytesLength = UInt32(module_bytes.value.count)
                 ret = "00" +  CLTypeSerializeHelper.StringSerialize(input: module_bytes.value)
@@ -134,7 +179,7 @@ public class ExecutableDeployItemSerializaton {
         case .Transfer(let args):
             return "05" + ExecutableDeployItemSerializaton.NameArgListSerialize(from: args.listNamedArg)
         case .NONE:
-            return "-1"
+            return ""
         }
     }
 }
@@ -147,6 +192,8 @@ public class DeployApprovalSerialization {
      Serialization for DeployApprovalItem list
      - Parameter : DeployApprovalItem list
      - Returns: String represents the serialization of the DeployApprovalItem list
+     - Rule for serialization: return value = UInt32.serialize(totalApproval) + signer + singnature
+     - If total approval = 0 then return UIn32.serialize(0) which mean "00000000"
      */
     public static func serialize(from:[DeployApprovalItem])->String {
         let totalApproval = from.count

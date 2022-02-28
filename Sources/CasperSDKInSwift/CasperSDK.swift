@@ -240,9 +240,10 @@ public class CasperSDK {
         methodCall = .putDeploy
         httpHandler.methodCall = .putDeploy
         do  {
-            //let data = DeployUtil.fromDeployToJson(deploy:input)
-           // try httpHandler.handleRequest(method: methodCall, params: data, httpMethod: "PUT")
+            let data = input.toJsonData();
+            try httpHandler.putDeploy(method: methodCall, params: data, httpMethod: "POST")
         } catch {
+            NSLog("Error:\(error)")
             throw error
         }
     }

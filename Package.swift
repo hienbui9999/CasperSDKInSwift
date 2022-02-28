@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "CasperSDKInSwift",
     platforms: [
-        .iOS(.v10),.tvOS(.v12),.watchOS(.v5),.macOS(.v10_10)
+        .iOS(.v13),.tvOS(.v14),.watchOS(.v7),.macOS(.v10_15)
         ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -15,6 +15,8 @@ let package = Package(
             targets: ["CasperSDKInSwift"]),
     ],
     dependencies: [
+        .package(name:"secp256k1",url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.0"),
+        .package(name:"Blake2",url: "https://github.com/tesseract-one/Blake2.swift.git", from: "0.1.0"),
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
@@ -23,9 +25,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CasperSDKInSwift",
-            dependencies: []),
+            dependencies: ["secp256k1","Blake2","secp256k1"]),
         .testTarget(
             name: "CasperSDKInSwiftTests",
-            dependencies: ["CasperSDKInSwift"]),
+            dependencies: ["CasperSDKInSwift","secp256k1","Blake2"]),
     ]
 )

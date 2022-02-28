@@ -90,7 +90,9 @@ final class TestCLValueSerialization: XCTestCase {
             let str4:String = "123456789123456789123456789123456789123456789123456789"
             let str4Serialize = CLTypeSerializeHelper.StringSerialize(input: str4)
             XCTAssert(str4Serialize=="36000000313233343536373839313233343536373839313233343536373839313233343536373839313233343536373839313233343536373839")
-            
+            let str5:String = "target"
+            let str5Serialize = CLTypeSerializeHelper.StringSerialize(input: str5)
+           XCTAssert(str5Serialize=="06000000746172676574")
             //test for Unit
             let unit : CLValueWrapper = .Unit("")
             let unitSerialize = try CLTypeSerializeHelper.CLValueSerialize(input: unit)

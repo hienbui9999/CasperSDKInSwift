@@ -9,6 +9,7 @@ final class TestDeploySerialization: XCTestCase {
             deployHeader.timestamp = "2020-11-17T00:39:24.072Z"
             deployHeader.ttl = "1h"
             deployHeader.gas_price = 1
+        //"19ead6b04eab817745a9c9860a395d45d34200a0a52e7bbab098ec6c6e0d5970"
             deployHeader.body_hash = "4811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f"
             deployHeader.dependencies = ["0101010101010101010101010101010101010101010101010101010101010101"]
             deployHeader.chain_name = "casper-example"
@@ -28,7 +29,7 @@ final class TestDeploySerialization: XCTestCase {
             let emptyByte:Bytes = Bytes()
             let edi:ExecutableDeployItem = .ModuleBytes(module_bytes: emptyByte, args: runtimeArgs)
             let ediSerialization = ExecutableDeployItemSerializaton.serialize(from: edi)
-            XCTAssert(ediSerialization == "000000000100000006000000616d6f756e74050000000400e1f50508")
+            XCTAssert(ediSerialization == "00000000000100000006000000616d6f756e74050000000400e1f50508")
             
             //Test 3: ExecutableDeployItem serialization test as ModuleBytes
             //module_bytes not blank
