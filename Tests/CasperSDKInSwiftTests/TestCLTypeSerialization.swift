@@ -17,7 +17,7 @@ final class TestCLTypeSerialization: XCTestCase {
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .String) == "0a")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .URef)   == "0b")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Key)    == "0c")
-        XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Option(clType))                 == "0d")
+        XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Option(clType))                 == "0d" + CLTypeSerializeHelper.CLTypeSerialize(input: clType))
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .List(clType))                   == "0e")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Result(clType, clType))         == "10")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Map(clType,clType))             == "11")
@@ -25,7 +25,7 @@ final class TestCLTypeSerialization: XCTestCase {
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Tuple2(clType, clType))         == "13")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .Tuple3(clType,clType,clType))   == "14")
         XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .CLAny)                          == "15")
-
+        XCTAssert(CLTypeSerializeHelper.CLTypeSerialize(input: .PublicKey)                      == "16")
        
     }
 }

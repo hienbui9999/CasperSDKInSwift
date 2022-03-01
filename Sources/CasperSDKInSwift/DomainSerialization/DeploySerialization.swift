@@ -27,15 +27,10 @@ public class DeploySerialization {
      */
     public static func getBodyHash(fromDeploy:Deploy) -> String {
         var bodySerializedStr:String = ExecutableDeployItemSerializaton.serialize(from: fromDeploy.payment!);
-        print("payment serialize:\(bodySerializedStr)")
         bodySerializedStr = bodySerializedStr + ExecutableDeployItemSerializaton.serialize(from: fromDeploy.session!)
-        print("session serialize:\(ExecutableDeployItemSerializaton.serialize(from: fromDeploy.session!))")
         //bodySerializedStr = bodySerializedStr + DeployApprovalSerialization.serialize(from: fromDeploy.approvals)
-        print("Approval serialilze:\(DeployApprovalSerialization.serialize(from: fromDeploy.approvals))")
-        print("bodySerializedStr:\(bodySerializedStr)")
-        let blake2Data = Data(bodySerializedStr.utf8)
+        let blake2Data = Data(bodySerializedStr.hexaBytes)
         let hash = try! Blake2.hash(.b2b,size:32,data:blake2Data)
-        print(hash.hexEncodedString())
         return hash.hexEncodedString();
     }
     /**
@@ -45,11 +40,8 @@ public class DeploySerialization {
      */
     public static func getHeaderHash(fromDeployHeader:DeployHeader) -> String {
         var headerSerialized:String = DeployHeaderSerialization.serialize(from: fromDeployHeader)
-        print("headerSerialized:\(headerSerialized)")
-        //let ret = SHA256.hash(data: headerSerialized.bytes)
-        let blake2Data = Data(headerSerialized.utf8)
+        let blake2Data = Data(headerSerialized.hexaBytes)
         let hash = try! Blake2.hash(.b2b,size:32,data:blake2Data)
-        print(hash.hexEncodedString())
         return hash.hexEncodedString();
     }
 }

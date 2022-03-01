@@ -16,7 +16,7 @@ public class Deploy {
     public func toJsonData()->Data {
         let headerJson:[String:Any] = ["account":header.account,"timestamp":header.timestamp,"ttl":header.ttl,"gas_price":header.gas_price,"body_hash":header.body_hash,"dependencies":[],"chain_name":header.chain_name]
         
-        let clValueJSon:[String:Any] = ["cl_type":"U512","bytes":"0400e1f505","parsed":"100000000"]
+        let clValueJSon:[String:Any] = ["cl_type":"U512","bytes":"0400ca9a3b","parsed":"1000000000"]
         let argJson:[AnyObject] = ["amount" as AnyObject,clValueJSon as AnyObject];
         let argsJson:[AnyObject] = [argJson as AnyObject];
 

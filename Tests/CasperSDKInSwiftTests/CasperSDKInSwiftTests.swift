@@ -1,6 +1,5 @@
 import XCTest
 @testable import CasperSDKInSwift
-
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
         let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()

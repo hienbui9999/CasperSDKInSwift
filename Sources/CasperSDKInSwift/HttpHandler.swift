@@ -25,7 +25,6 @@ class HttpHandler:XCTestCase {
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
-            print("put deploy responseJSON:\(responseJSON)");
             if let responseJSON = responseJSON as? [String: Any] {
                 do {
                     try DeployUtil.getDeployResult(from: responseJSON)

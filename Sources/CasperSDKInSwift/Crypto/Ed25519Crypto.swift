@@ -175,7 +175,6 @@ public class Ed25519Cryto {
                         throw GenerateKeyError.PublicKeyGenerateError
                     }
                 } else {
-                    print("base64DecodeShort error, Nothing is done")
                     throw PemFileHandlerError.InvalidPemKeyFormat
                 }
             }

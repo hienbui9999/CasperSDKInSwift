@@ -1,14 +1,35 @@
 import Foundation
 import secp256k1
 import CryptoKit
-//manual from this https://github.com/bitcoin-core/secp256k1/tree/master/include
 public class Secp256k1Crypto {
+    public func readPrivateKeyFromFile(pemFileName:String) throws {
+        let privateRawHexa:String = "0319c4479c7949ffdc5f8068a58c25b9d1146209fbcbf5a43c4a7f294c314913";
+        let privateSampleP256 = P256.Signing.PrivateKey.init();
+       
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent("/secp256k1/"+pemFileName)
+            guard let pem = try? String(contentsOf: fileURL) else {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            let pemBase64 = pem
+                .split(separator: "\n")
+                .dropFirst()
+                .dropLast()
+                .joined()
+           
+            guard let pemData = Data(base64Encoded: String(pemBase64)) else {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            do {
+                let privateKeyP256 = try P256.Signing.PrivateKey.init(pemRepresentation: pem)
+            } catch {
+                NSLog("Error load pem file to private key")
+            }
+        }
+    }
     public func secp256k1GenerateKey() {
         ///private generation using Swift built in library
         let privateKey = P256.Signing.PrivateKey.init(compactRepresentable: true).rawRepresentation;
-        //print("private key for P256 is:\(privateKey.base64EncodedString())")
-        //print("private key bytes count:\(privateKey.bytes.count)")
-        print(privateKey.bytes)
         ///context for handling public key generation and  signing
         let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN));
         let signature : UnsafeMutablePointer<secp256k1_ecdsa_signature> = UnsafeMutablePointer<secp256k1_ecdsa_signature>.allocate(capacity: 1);
@@ -29,7 +50,7 @@ public class Secp256k1Crypto {
                 ///print the public key back, now in tuple type
                 let publicKey = pk_secp256k1_pubkey.pointee.data;
                 ///public key from tuple to array
-                var array :[UInt8] = withUnsafeBytes(of:publicKey) {
+                var arrayPublicKey :[UInt8] = withUnsafeBytes(of:publicKey) {
                     buf in
                     [UInt8] (buf)
                 }
@@ -51,7 +72,6 @@ public class Secp256k1Crypto {
                 buf in
                 [UInt8] (buf)
             }
-           // print("02" + arraySignedMessage.data.hexEncodedString())
         }
         
     }
