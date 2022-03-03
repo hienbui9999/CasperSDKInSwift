@@ -87,7 +87,7 @@ final public class TestPutDeploy : XCTestCase {
             //sign with ed25519
             let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
             do {
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/Ed25519Key1_secret_key.pem")
+                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
                  let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
                  signatureValue = "01" + signedMessage.hexEncodedString()
             } catch {
@@ -96,7 +96,7 @@ final public class TestPutDeploy : XCTestCase {
             //sign for secp256k1
             do {
                 let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/privateKeySecp256k1.pem")
+                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
                 let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
                 let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
             } catch {

@@ -60,7 +60,8 @@ public class Deploy {
     }
 }
 public class DeployUtil {
-    public static func getDeployResult(from:[String:Any]) throws {
+    //return the deploy_hash
+    public static func getDeployResult(from:[String:Any]) throws -> String{
         if let error = from["error"] as AnyObject? {
             var code:Int!
             var message:String!
@@ -73,6 +74,12 @@ public class DeployUtil {
             }
             throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "account_put_deploy")
         }
+        if let result = from["result"] as? [String:Any] {
+            if let deploy_hash = result["deploy_hash"] as? String {
+               return deploy_hash
+            }
+        }
+        return "NONE"
     }
 }
 public class NamedArgJson :Codable {

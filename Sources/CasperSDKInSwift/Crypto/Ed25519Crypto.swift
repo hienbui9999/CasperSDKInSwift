@@ -53,9 +53,10 @@ public class Ed25519Cryto {
     public var privateKey:Curve25519.Signing.PrivateKey!
     public var publicKey:Curve25519.Signing.PublicKey!
     ///Generate key pair
-    public func generateKey() {
+    public func generateKey() -> (Curve25519.Signing.PrivateKey,Curve25519.Signing.PublicKey){
         privateKey = Curve25519.Signing.PrivateKey.init();
         publicKey = privateKey.publicKey;
+        return (privateKey,publicKey)
     }
     ///Write private key to pem file
     public func writePrivateKeyToPemFile(privateKeyToWrite:Curve25519.Signing.PrivateKey,fileName:String) throws {
@@ -63,14 +64,22 @@ public class Ed25519Cryto {
         var text = "-----BEGIN PRIVATE KEY-----"
         text = text + "\n" + privateKeyInBase64
         text = text + "\n" + "-----END PRIVATE KEY-----"
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(fileName)
+        let thisSourceFile = URL(fileURLWithPath: #file)
+        let thisDirectory = thisSourceFile.deletingLastPathComponent()
+        let fileURL = thisDirectory.appendingPathComponent(fileName)
+        if FileManager.default.fileExists(atPath: fileURL.path) {
             do {
-                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                try FileManager.default.removeItem(atPath: fileURL.path)
+            } catch {
+                NSLog("Ed25519 Private key file does not exist, about to create new one!")
             }
-            catch {
-                throw PemFileHandlerError.WritePemFileError
-            }
+            NSLog("Delete auto generated Ed25519 private file.")
+        }
+        do {
+            try text.write(to: fileURL, atomically: false, encoding: .utf8)
+        }
+        catch {
+            throw PemFileHandlerError.WritePemFileError
         }
     }
     ///Write public key to pem file
@@ -79,14 +88,23 @@ public class Ed25519Cryto {
         var text = "-----BEGIN PUBLIC KEY-----"
         text = text + "\n" + publicKeyInBase64
         text = text + "\n" + "-----END PUBLIC KEY-----"
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(fileName)
+        
+        let thisSourceFile = URL(fileURLWithPath: #file)
+        let thisDirectory = thisSourceFile.deletingLastPathComponent()
+        let fileURL = thisDirectory.appendingPathComponent(fileName)
+        if FileManager.default.fileExists(atPath: fileURL.path) {
             do {
-                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                try FileManager.default.removeItem(atPath: fileURL.path)
+            } catch {
+                NSLog("Ed25519 Private key file does not exist, about to create new one!")
             }
-            catch {
-                throw PemFileHandlerError.WritePemFileError
-            }
+            NSLog("Delete auto generated Ed25519 private file.")
+        }
+        do {
+            try text.write(to: fileURL, atomically: false, encoding: .utf8)
+        }
+        catch {
+            throw PemFileHandlerError.WritePemFileError
         }
     }
     
@@ -139,9 +157,6 @@ public class Ed25519Cryto {
     
     ///Read private key from pem file
     public func readPrivateKeyFromPemFile(pemFileName:String) throws -> Curve25519.Signing.PrivateKey {
-       
-        let bundleMain = Bundle.main
-        let bundleDoingTest = Bundle(for: type(of: self ))
         let thisSourceFile = URL(fileURLWithPath: #file)
         let thisDirectory = thisSourceFile.deletingLastPathComponent()
         let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
@@ -186,60 +201,63 @@ public class Ed25519Cryto {
     }
     ///Read public key from pem file
     public func readPublicKeyFromPemFile(pemFileName:String) throws -> Curve25519.Signing.PublicKey{
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(pemFileName)
-            do {
-                let text2 = try String(contentsOf: fileURL, encoding: .utf8)
-                if !text2.contains(prefixPemPublicStr) {
+       // if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+     //       let fileURL = dir.appendingPathComponent(pemFileName)
+     //       do {
+    //            let text2 = try String(contentsOf: fileURL, encoding: .utf8)
+        let thisSourceFile = URL(fileURLWithPath: #file)
+        let thisDirectory = thisSourceFile.deletingLastPathComponent()
+        let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
+        do {
+            let text2 = try String(contentsOf: resourceURL, encoding: .utf8)
+            if !text2.contains(prefixPemPublicStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            if !text2.contains(suffixPemPublicStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            let element = text2.components(separatedBy: prefixPemPublicStr)
+            let text1 = element[1];
+            let textE = text1.components(separatedBy:suffixPemPublicStr)
+            var pemStr = String(textE[0]);
+            pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
+            if pemStr.count > 60 {
+                let index = pemStr.index(pemStr.startIndex,offsetBy:65);
+                let realPemStr = String(pemStr[..<index]);
+                pemStr = realPemStr;
+            }
+            pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 16);
+            let publicBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
+           /* do {
+                guard let data = Data(base64EncodedURLSafe: publicBase64) else {
                     throw PemFileHandlerError.InvalidPemKeyFormat
                 }
-                if !text2.contains(suffixPemPublicStr) {
-                    throw PemFileHandlerError.InvalidPemKeyFormat
+                var publicBytesArray:[UInt8] = [];
+                for byte in data {
+                    publicBytesArray.append(byte)
                 }
-                let element = text2.components(separatedBy: prefixPemPublicStr)
-                let text1 = element[1];
-                let textE = text1.components(separatedBy:suffixPemPublicStr)
-                var pemStr = String(textE[0]);
-                pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
-                if pemStr.count > 60 {
-                    let index = pemStr.index(pemStr.startIndex,offsetBy:65);
-                    let realPemStr = String(pemStr[..<index]);
-                    pemStr = realPemStr;
-                }
-                pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
-                let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 16);
-                let publicBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
-               /* do {
-                    guard let data = Data(base64EncodedURLSafe: publicBase64) else {
-                        throw PemFileHandlerError.InvalidPemKeyFormat
-                    }
-                    var publicBytesArray:[UInt8] = [];
-                    for byte in data {
-                        publicBytesArray.append(byte)
-                    }
-                    let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: publicBytesArray)
+                let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: publicBytesArray)
+                return publicKeyFromPem
+            } catch {
+                throw GenerateKeyError.PublicKeyGenerateError
+            }*/
+            if let base64DecodeShort = publicBase64.base64Decoded {
+                do {
+                    let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: base64DecodeShort.bytes)
                     return publicKeyFromPem
                 } catch {
                     throw GenerateKeyError.PublicKeyGenerateError
-                }*/
-                if let base64DecodeShort = publicBase64.base64Decoded {
-                    do {
-                        let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: base64DecodeShort.bytes)
-                        return publicKeyFromPem
-                    } catch {
-                        throw GenerateKeyError.PublicKeyGenerateError
-                    }
-                } else {
-                    throw PemFileHandlerError.InvalidPemKeyFormat
                 }
+            } else {
+                throw PemFileHandlerError.InvalidPemKeyFormat
             }
-            catch {
-                throw error
-            }
-        } else {
+        }
+        catch {
             throw PemFileHandlerError.ReadPemFileNotFound
         }
     }
+    
     ///Sign message
     public func signMessage(messageToSign:Data,withPrivateKey:Curve25519.Signing.PrivateKey) throws -> Data {
         do {

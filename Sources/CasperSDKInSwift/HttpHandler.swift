@@ -9,7 +9,7 @@ class HttpHandler:XCTestCase {
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
     ///RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
-    public func putDeploy(method:CasperMethodCall,params:Data,httpMethod:String="POST") throws {
+    public func putDeploy(method:CasperMethodCall,params:Data,httpMethod:String="POST",deployHash:String="") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
         }
@@ -28,7 +28,8 @@ class HttpHandler:XCTestCase {
             if let responseJSON = responseJSON as? [String: Any] {
                 //print(responseJSON)
                 do {
-                    try DeployUtil.getDeployResult(from: responseJSON)
+                    let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
+                    XCTAssert(deployHash == deploy_hash)
                 } catch {
                     NSLog("Error get Deploy Result")
                 }
