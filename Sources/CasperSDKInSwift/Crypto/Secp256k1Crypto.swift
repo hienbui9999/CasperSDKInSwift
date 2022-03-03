@@ -1,78 +1,139 @@
 import Foundation
-import secp256k1
-import CryptoKit
+import SwiftECC
+/**
+ Secp256k1 wrapper class. This class allow user to do the following task in secp256k1 encryption:
+ - Generate private key, public key
+ - Load private key, public key from Pem file
+ - Write private key, public key to Pem file
+ - Sign message
+ - Verify message
+ */
 public class Secp256k1Crypto {
-    public func readPrivateKeyFromFile(pemFileName:String) throws {
-        let privateRawHexa:String = "0319c4479c7949ffdc5f8068a58c25b9d1146209fbcbf5a43c4a7f294c314913";
-        let privateSampleP256 = P256.Signing.PrivateKey.init();
-       
+/**
+   Read Private key from a Pem file.
+   - Parameter : Pem file name and URL
+   - Returns: ECPrivateKey of type secp256k1
+   */
+    public func readPrivateKeyFromFile2(pemFileName:String) throws -> ECPrivateKey{
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent("/secp256k1/"+pemFileName)
-            guard let pem = try? String(contentsOf: fileURL) else {
-                throw PemFileHandlerError.InvalidPemKeyFormat
-            }
-            let pemBase64 = pem
-                .split(separator: "\n")
-                .dropFirst()
-                .dropLast()
-                .joined()
-           
-            guard let pemData = Data(base64Encoded: String(pemBase64)) else {
-                throw PemFileHandlerError.InvalidPemKeyFormat
-            }
+            let fileURL = dir.appendingPathComponent(pemFileName)
             do {
-                let privateKeyP256 = try P256.Signing.PrivateKey.init(pemRepresentation: pem)
+                var text2 = try String(contentsOf: fileURL, encoding: .utf8)
+                if !text2.contains(prefixPemPrivateStr) && !text2.contains(prefixPemPrivateECStr){
+                    throw PemFileHandlerError.InvalidPemKeyPrefix
+                }
+                if !text2.contains(suffixPemPrivateStr) && !text2.contains(suffixPemPrivateECStr) {
+                    throw PemFileHandlerError.InvalidPemKeySuffix
+                }
+                if text2.contains(prefixPemPrivateStr) {
+                    text2 = text2.replacingOccurrences(of:prefixPemPrivateStr,with:prefixPemPrivateECStr)
+                    text2 = text2.replacingOccurrences(of:suffixPemPrivateStr,with:suffixPemPrivateECStr);
+                }
+                let privateKey = try ECPrivateKey.init(pem: text2)
+                return privateKey
             } catch {
-                NSLog("Error load pem file to private key")
+                throw PemFileHandlerError.InvalidPemKeyFormat
             }
+        } else {
+            NSLog("File not found")
+            throw PemFileHandlerError.ReadPemFileNotFound
         }
     }
-    public func secp256k1GenerateKey() {
-        ///private generation using Swift built in library
-        let privateKey = P256.Signing.PrivateKey.init(compactRepresentable: true).rawRepresentation;
-        ///context for handling public key generation and  signing
-        let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN));
-        let signature : UnsafeMutablePointer<secp256k1_ecdsa_signature> = UnsafeMutablePointer<secp256k1_ecdsa_signature>.allocate(capacity: 1);
-        var messageToSignInHexa : String = "020e0000006361737065722d6578616d706c65130000006578616d706c652d656e7472792d706f696e7401000000080000007175616e7469747904000000e803000001050100000006000000616d6f756e7404000000e803000001";
-        messageToSignInHexa = "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900ca856a4d37501000080ee36000000000001000000000000004811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f0100000001010101010101010101010101010101010101010101010101010101010101010e0000006361737065722d6578616d706c65";
-        let messageToSignHexaToArray:[UInt8] = messageToSignInHexa.hexaData.reversed()
-        let messageToSignArray = messageToSignInHexa.bytes;
-        let messageToSign : UnsafePointer<UInt8> = UnsafePointer(messageToSignArray);
-        ///public key generation
-          var pk_secp256k1_pubkey : UnsafeMutablePointer<secp256k1_pubkey> = UnsafeMutablePointer<secp256k1_pubkey>.allocate(capacity: 1);
-        if ctx != nil {
-            privateKey.withUnsafeBytes { (unsafeBytes) in
-                let privateKeyBytes = unsafeBytes.bindMemory(to: UInt8.self).baseAddress!
-                ///check private key valid
-                let validPrivateKey = secp256k1_ec_seckey_verify(ctx!,privateKeyBytes);
-                ///make the public key available through the call function
-                let result = secp256k1_ec_pubkey_create(ctx!,pk_secp256k1_pubkey,privateKeyBytes);
-                ///print the public key back, now in tuple type
-                let publicKey = pk_secp256k1_pubkey.pointee.data;
-                ///public key from tuple to array
-                var arrayPublicKey :[UInt8] = withUnsafeBytes(of:publicKey) {
-                    buf in
-                    [UInt8] (buf)
+    public func readPrivateKeyFromFile(pemFileName:String) throws -> ECPrivateKey{
+        let bundleMain = Bundle.main
+        let bundleDoingTest = Bundle(for: type(of: self ))
+        let thisSourceFile = URL(fileURLWithPath: #file)
+        let thisDirectory = thisSourceFile.deletingLastPathComponent()
+        let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
+        do {
+            var text2 = try String(contentsOf: resourceURL, encoding: .utf8)
+            if !text2.contains(prefixPemPrivateStr) && !text2.contains(prefixPemPrivateECStr){
+                throw PemFileHandlerError.InvalidPemKeyPrefix
+            }
+            if !text2.contains(suffixPemPrivateStr) && !text2.contains(suffixPemPrivateECStr) {
+                throw PemFileHandlerError.InvalidPemKeySuffix
+            }
+            if text2.contains(prefixPemPrivateStr) {
+                text2 = text2.replacingOccurrences(of:prefixPemPrivateStr,with:prefixPemPrivateECStr)
+                text2 = text2.replacingOccurrences(of:suffixPemPrivateStr,with:suffixPemPrivateECStr);
+            }
+            let privateKey = try ECPrivateKey.init(pem: text2)
+           
+            return privateKey
+        } catch {
+            throw PemFileHandlerError.InvalidPemKeyFormat
+        }
+       
+    }
+    public func readPublicKeyFromFile(pemFileName:String) throws -> ECPublicKey {
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(pemFileName)
+            do {
+                var text2 = try String(contentsOf: fileURL, encoding: .utf8)
+                if !text2.contains(prefixPemPublicStr) && !text2.contains(prefixPemPublicECStr){
+                    throw PemFileHandlerError.InvalidPemKeyPrefix
                 }
-                ///sign a message
-                var signatureSForm : UnsafeMutablePointer<secp256k1_ecdsa_signature> = UnsafeMutablePointer<secp256k1_ecdsa_signature>.allocate(capacity: 1);
-                let resultSign = secp256k1_ecdsa_sign(ctx!,signature,messageToSign,privateKeyBytes,nil,nil);
-                let changeSignatureToSFormSuccess =  secp256k1_ecdsa_signature_normalize(ctx!,signatureSForm,signature);
+                if !text2.contains(suffixPemPublicStr) && !text2.contains(suffixPemPublicECStr) {
+                    throw PemFileHandlerError.InvalidPemKeySuffix
+                }
+                if text2.contains(prefixPemPublicStr) {
+                    text2 = text2.replacingOccurrences(of:prefixPemPublicStr,with:prefixPemPublicECStr)
+                    text2 = text2.replacingOccurrences(of:suffixPemPublicStr,with:suffixPemPublicECStr);
+                }
+                let publicKey = try ECPublicKey.init(pem: text2)
+                return publicKey
+            } catch {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+        } else {
+            throw PemFileHandlerError.ReadPemFileNotFound
+        }
+    }
+    public func writePrivateKeyToPemFile(privateKeyToWrite:ECPrivateKey,fileName:String) throws -> Bool{
+        let text = privateKeyToWrite.pem
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(fileName)
+            do {
+                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                return true;
+            }
+            catch {
+                throw PemFileHandlerError.WritePemFileError
                
             }
-            
         } else {
-            NSLog("Context creation failed")
+            throw PemFileHandlerError.WritePemFileError
         }
-        let ctx2 = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_VERIFY))
-        if ctx2 != nil {
-         
-            let resultVerifyMessage = secp256k1_ecdsa_verify(ctx2!,signature,messageToSign,pk_secp256k1_pubkey);
-            var arraySignedMessage :[UInt8] = withUnsafeBytes(of:signature.pointee.data) {
-                buf in
-                [UInt8] (buf)
+    }
+    public func writePublicKeyToPemFile(publicKeyToWrite:ECPublicKey,fileName:String) throws -> Bool{
+        let text = publicKeyToWrite.pem
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(fileName)
+            do {
+                try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                return true
             }
+            catch {
+                throw PemFileHandlerError.WritePemFileError
+            }
+        } else {
+            throw PemFileHandlerError.WritePemFileError
         }
-        
+    }
+    public func secp256k1GenerateKey() -> (ECPrivateKey,ECPublicKey) {
+        let domain = Domain.instance(curve: .EC256k1)
+        let (publicKey,privateKey) = domain.makeKeyPair();
+        return (privateKey,publicKey);
+    }
+    public func signMessage(messageToSign:Data,withPrivateKey:ECPrivateKey) -> ECSignature {
+        let signature = withPrivateKey.sign(msg: messageToSign)
+        //print(signature.r.data.hexEncodedString() + signature.s.data.hexEncodedString())
+        return signature
+    }
+    public func verifyMessage(withPublicKey:ECPublicKey,signature:ECSignature,plainMessage:Data) -> Bool{
+        let trueMessage = withPublicKey.verify(signature: signature, msg: plainMessage.bytes);
+        return trueMessage
     }
 }
+
+

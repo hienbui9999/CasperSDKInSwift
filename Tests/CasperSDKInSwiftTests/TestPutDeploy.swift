@@ -2,8 +2,11 @@ import XCTest
 import Blake2
 @testable import CasperSDKInSwift
 final public class TestPutDeploy : XCTestCase {
+    
     var signatureValue:String = "";
-    let accountStr:String =  "01dbad8a77a1a00cd070412bee48dd690d3b0ad58933493ad01447a7ee2165b394"
+    //ed25519
+    var accountStr:String = "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
+   // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"// -- Account for secp256k1
     public func testAll() {
         do {
             let deploy:Deploy = Deploy();
@@ -81,12 +84,21 @@ final public class TestPutDeploy : XCTestCase {
             deploy.session = session;
             deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
+            //sign with ed25519
             let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
             do {
+                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/Ed25519Key1_secret_key.pem")
+                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                 signatureValue = "01" + signedMessage.hexEncodedString()
+            } catch {
                 
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "ValidSwiftPrivateKey.pem")
-                let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
-                signatureValue = "01" + signedMessage.hexEncodedString()
+            }
+            //sign for secp256k1
+            do {
+                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/privateKeySecp256k1.pem")
+                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
             } catch {
                 NSLog("Error:\(error)")
             }

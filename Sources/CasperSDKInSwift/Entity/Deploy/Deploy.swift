@@ -50,6 +50,7 @@ public class Deploy {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
             let jsonString = String(data: jsonData, encoding: String.Encoding.ascii)!
+            //print(jsonString);
             return jsonData
         }
         catch {

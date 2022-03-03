@@ -6,6 +6,8 @@ public enum PemFileHandlerError:Error {
     case ReadPemDirectoryNotFound
     case WritePemFileError
     case InvalidPemKeyFormat
+    case InvalidPemKeySuffix
+    case InvalidPemKeyPrefix
     case None
 }
 public enum SignActionError :Error {
@@ -19,12 +21,16 @@ public enum GenerateKeyError:Error {
 }
 ///prefix for private key in a pem file
 let prefixPemPrivateStr : String = "-----BEGIN PRIVATE KEY-----";
+let prefixPemPrivateECStr : String = "-----BEGIN EC PRIVATE KEY-----";
 ///suffix for private key in a pem file
 let suffixPemPrivateStr : String = "-----END PRIVATE KEY-----";
+let suffixPemPrivateECStr : String = "-----END EC PRIVATE KEY-----";
 ///prefix for public key in a pem file
 let prefixPemPublicStr : String = "-----BEGIN PUBLIC KEY-----";
+let prefixPemPublicECStr : String = "-----BEGIN EC PUBLIC KEY-----";
 ///suffix for public key in a pem file
 let suffixPemPublicStr : String = "-----END PUBLIC KEY-----";
+let suffixPemPublicECStr : String = "-----END EC PUBLIC KEY-----";
 
 ///Prefix to add for private key in Base64 String. Since the generated keys are in 32 bytes, they need to add prefix to make the full key stored in PEM file
 let prefixPrivateKeyStr:String = "MC4CAQAwBQYDK2VwBCIEI";
@@ -85,49 +91,98 @@ public class Ed25519Cryto {
     }
     
     ///Read private key from pem file
-    public func readPrivateKeyFromPemFile(pemFileName:String) throws -> Curve25519.Signing.PrivateKey {
+    public func readPrivateKeyFromPemFileFromLocal(pemFileName:String) throws -> Curve25519.Signing.PrivateKey {
+       
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(pemFileName)
-            do {
-                let text2 = try String(contentsOf: fileURL, encoding: .utf8)
-                if !text2.contains(prefixPemPrivateStr) {
-                    throw PemFileHandlerError.InvalidPemKeyFormat
-                }
-                if !text2.contains(suffixPemPrivateStr) {
-                    throw PemFileHandlerError.InvalidPemKeyFormat
-                }
-                let element = text2.components(separatedBy: prefixPemPrivateStr)
-                let text1 = element[1];
-                let textE = text1.components(separatedBy:suffixPemPrivateStr)
-                var pemStr = textE[0];
-                if pemStr.count > 64 {
-                    let index = pemStr.index(pemStr.startIndex,offsetBy:65);
-                    let realPemStr = String(pemStr[..<index]);
-                    pemStr = realPemStr;
-                }
-                pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
-                let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 21);
-                let privateBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
-                let fullPemKeyBase64 = prefixPrivateKeyStr + privateBase64;
-                if let privateBase64FromPem = fullPemKeyBase64.base64Decoded {
-                    let base64ToBytes = privateBase64FromPem.bytes
-                    let privateBytes = base64ToBytes[prefixPrivateKeyData.count..<base64ToBytes.count];
-                    do {
-                        let privateKey = try Curve25519.Signing.PrivateKey.init(rawRepresentation: privateBytes)
-                        return privateKey
-                    } catch {
-                        throw GenerateKeyError.PrivateKeyGenerateError
-                    }
-                } else {
+        do {
+            let text2 = try String(contentsOf: fileURL, encoding: .utf8)
+            if !text2.contains(prefixPemPrivateStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            if !text2.contains(suffixPemPrivateStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            let element = text2.components(separatedBy: prefixPemPrivateStr)
+            let text1 = element[1];
+            let textE = text1.components(separatedBy:suffixPemPrivateStr)
+            var pemStr = textE[0];
+            if pemStr.count > 64 {
+                let index = pemStr.index(pemStr.startIndex,offsetBy:65);
+                let realPemStr = String(pemStr[..<index]);
+                pemStr = realPemStr;
+            }
+            pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 21);
+            let privateBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
+            let fullPemKeyBase64 = prefixPrivateKeyStr + privateBase64;
+            if let privateBase64FromPem = fullPemKeyBase64.base64Decoded {
+                let base64ToBytes = privateBase64FromPem.bytes
+                let privateBytes = base64ToBytes[prefixPrivateKeyData.count..<base64ToBytes.count];
+                do {
+                    let privateKey = try Curve25519.Signing.PrivateKey.init(rawRepresentation: privateBytes)
+                    return privateKey
+                } catch {
                     throw GenerateKeyError.PrivateKeyGenerateError
                 }
+            } else {
+                throw GenerateKeyError.PrivateKeyGenerateError
             }
-            catch {
-                throw error
-            }
-        } else {
-            throw PemFileHandlerError.ReadPemFileNotFound
         }
+        catch {
+            throw GenerateKeyError.PrivateKeyGenerateError
+        }
+        } else {
+            throw GenerateKeyError.PrivateKeyGenerateError
+        }
+    }
+    
+    ///Read private key from pem file
+    public func readPrivateKeyFromPemFile(pemFileName:String) throws -> Curve25519.Signing.PrivateKey {
+       
+        let bundleMain = Bundle.main
+        let bundleDoingTest = Bundle(for: type(of: self ))
+        let thisSourceFile = URL(fileURLWithPath: #file)
+        let thisDirectory = thisSourceFile.deletingLastPathComponent()
+        let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
+        do {
+            let text2 = try String(contentsOf: resourceURL, encoding: .utf8)
+            if !text2.contains(prefixPemPrivateStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            if !text2.contains(suffixPemPrivateStr) {
+                throw PemFileHandlerError.InvalidPemKeyFormat
+            }
+            let element = text2.components(separatedBy: prefixPemPrivateStr)
+            let text1 = element[1];
+            let textE = text1.components(separatedBy:suffixPemPrivateStr)
+            var pemStr = textE[0];
+            if pemStr.count > 64 {
+                let index = pemStr.index(pemStr.startIndex,offsetBy:65);
+                let realPemStr = String(pemStr[..<index]);
+                pemStr = realPemStr;
+            }
+            pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
+            let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 21);
+            let privateBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
+            let fullPemKeyBase64 = prefixPrivateKeyStr + privateBase64;
+            if let privateBase64FromPem = fullPemKeyBase64.base64Decoded {
+                let base64ToBytes = privateBase64FromPem.bytes
+                let privateBytes = base64ToBytes[prefixPrivateKeyData.count..<base64ToBytes.count];
+                do {
+                    let privateKey = try Curve25519.Signing.PrivateKey.init(rawRepresentation: privateBytes)
+                    return privateKey
+                } catch {
+                    throw GenerateKeyError.PrivateKeyGenerateError
+                }
+            } else {
+                throw GenerateKeyError.PrivateKeyGenerateError
+            }
+        }
+        catch {
+            throw GenerateKeyError.PrivateKeyGenerateError
+        }
+       
     }
     ///Read public key from pem file
     public func readPublicKeyFromPemFile(pemFileName:String) throws -> Curve25519.Signing.PublicKey{

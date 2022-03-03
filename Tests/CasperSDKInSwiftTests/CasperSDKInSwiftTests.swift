@@ -2,6 +2,10 @@ import XCTest
 @testable import CasperSDKInSwift
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
+        let testPutDeploy:TestPutDeploy = TestPutDeploy();
+        testPutDeploy.testAll();
+        let test256k1:TestSecp256k1KeyWrapper = TestSecp256k1KeyWrapper();
+        test256k1.testAll()
         let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()
         testCLTypeSerialization.testAll()
         let testCLValueSerialization: TestCLValueSerialization = TestCLValueSerialization()
@@ -323,3 +327,4 @@ final class CasperSDKInSwiftTests: XCTestCase {
         
     }
 }
+
