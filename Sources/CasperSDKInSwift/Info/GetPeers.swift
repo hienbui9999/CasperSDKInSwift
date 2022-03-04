@@ -12,7 +12,7 @@ class GetPeers  {
 
     public static func getPeers(from:[String:Any]) throws -> GetPeersResult {
         do {
-            var getPeerResult:GetPeersResult = GetPeersResult();
+            let getPeerResult:GetPeersResult = GetPeersResult();
             if let result = from["result"] as? [String:Any] {
                 if let api_version = result["api_version"] as? String {
                     let protocolVersion:ProtocolVersion = ProtocolVersion();

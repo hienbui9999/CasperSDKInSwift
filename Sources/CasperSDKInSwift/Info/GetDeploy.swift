@@ -32,7 +32,6 @@ class GetDeploy {
                 }
                 if let deployJson = resultJson["deploy"] as? [String:Any] {
                     if let approvals = deployJson["approvals"] as? [AnyObject] {
-                        let totalApproval = approvals.count
                         for approval in approvals {
                             let oneApproval:DeployApprovalItem = DeployApprovalItem();
                             if let signature = approval["signature"] as? String {

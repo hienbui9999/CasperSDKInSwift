@@ -26,9 +26,6 @@ let package = Package(
             dependencies: ["Blake2","SwiftECC"]),
         .testTarget(
             name: "CasperSDKInSwiftTests",
-            dependencies: ["CasperSDKInSwift","Blake2","SwiftECC"],
-            resources: [
-                        .copy("Assets")
-                    ]),
+            dependencies: ["CasperSDKInSwift","Blake2","SwiftECC"]),
     ]
 )

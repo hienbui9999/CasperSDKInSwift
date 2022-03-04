@@ -17,7 +17,6 @@ public class ExecutionEffect {
     public static func getExecutionEffect(from:[String:Any]) -> ExecutionEffect {
         let retExecutionEffect:ExecutionEffect = ExecutionEffect();
         if let oJsons = from["operations"] as? [AnyObject] {
-            let totalOperations = oJsons.count
             for oJson in oJsons {
                 let oneOperation = Operation.getOperationFromJson(from: oJson);
                 retExecutionEffect.operations.append(oneOperation)

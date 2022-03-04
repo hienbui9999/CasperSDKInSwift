@@ -18,7 +18,7 @@ public class DeployInfo {
        */
 
     public static func fromJsonToDeployInfo(from:[String:Any]) -> DeployInfo {
-        var oneDeployInfo : DeployInfo = DeployInfo();
+        let oneDeployInfo : DeployInfo = DeployInfo();
         if let deployHash:String = from["deploy_hash"] as? String {
             oneDeployInfo.deploy_hash = deployHash
         }

@@ -227,7 +227,6 @@ public class CLValue {
         default:
             return ""
         }
-        return "";
     }
     /**
      Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter
@@ -528,7 +527,6 @@ public class CLValue {
             break
         case .NONE:
             return .NONE
-            break
         default:
             break;
         }
@@ -600,7 +598,7 @@ public class CLValue {
             break;
         case .Key:
             if let parsed = from as? [String:String] {
-                for (key,value) in parsed {
+                for (_,value) in parsed {
                     return .Key(value)
                 }
             }
@@ -614,12 +612,12 @@ public class CLValue {
                 return .PublicKey(parsed)
             }
             break
-        case .BytesArray(let uInt32):
+        case .BytesArray(_):
             if let parsed = from as? String {
                 return .BytesArray(parsed)
             }
         case .CLAny:
-        if let parsed = from as? AnyObject {
+l        if let parsed = from as? AnyObject {
             if parsed is NSNull != nil {
                 return .AnyCLValue(CONST_NULL_RETURN_VALUE as AnyObject)
             } else if (parsed as? String)?.lowercased() == "<null>" {
@@ -665,7 +663,6 @@ public class CLValue {
         case .Option(let cLType):
             let ret = CLValue.getCLValueWrapperDirect(from: from, clType: cLType)
             return .OptionWrapper(ret)
-            break;
         case .List(let cLTypeInList):
             var retList:[CLValueWrapper] = [CLValueWrapper]();
             if let parseds = from as? [AnyObject] {
@@ -694,7 +691,7 @@ public class CLValue {
                 for from1 in fromList {
                     counter += 1
                     let clValueType1 = CLValue.getCLValueWrapper(from: from1, clType: cLType1, keyStr: "key")
-                    let clValueType2 = CLValue.getCLValueWrapper(from: from1, clType: cLType1, keyStr: "value")
+                    let clValueType2 = CLValue.getCLValueWrapper(from: from1, clType: cLType2, keyStr: "value")
                     mapList1.append(clValueType1)
                     mapList2.append(clValueType2)
                     
@@ -705,7 +702,7 @@ public class CLValue {
         case .Tuple1(let cLType1):
             var clValueType1:CLValueWrapper = .NONE
             if let fromList = from as? [AnyObject] {
-                var counter : Int = 0;
+                let counter : Int = 0;
                 for from1 in fromList {
                     if counter == 0 {
                         clValueType1 = CLValue.getCLValueWrapperDirect(from: from1, clType: cLType1)
@@ -754,7 +751,6 @@ public class CLValue {
             break
         case .NONE:
             return .NONE
-            break
         default:
             break;
         }

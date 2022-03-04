@@ -99,6 +99,7 @@ final public class TestPutDeploy : XCTestCase {
                 let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
                 let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
                 let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                //use this signature if you use secp256k1 signing
             } catch {
                 NSLog("Error:\(error)")
             }

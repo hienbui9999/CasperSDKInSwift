@@ -20,7 +20,7 @@ public class ExecutionResultHelper {
        */
 
     public static func getExecutionResult(from:[String:Any])-> ExecutionResult {
-        var retExecutionResult:ExecutionResult = .None
+        let retExecutionResult:ExecutionResult = .None
         ///Check if the result is Success then return the ExecutionResult as Success type
         if let success = from["Success"] as? [String:Any] {
             var retCost:U512Class = U512Class();

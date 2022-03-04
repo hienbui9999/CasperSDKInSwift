@@ -20,15 +20,12 @@ public class ErrorHandler {
        */
 
     public static func getError(from:[String:Any]) -> ErrorCode {
-        var ret:ErrorCode = .NONE
+
         if let result = from["error"] as? [String:Any] {
             var errorCode:Int?
             var errorMessage:String?
             if let code = result["code"] as? Int {
                errorCode = code
-            }
-            if let data = result["data"] as? String {
-                
             }
             if let message = result["message"] as? String {
                 errorMessage = message

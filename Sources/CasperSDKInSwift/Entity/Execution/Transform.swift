@@ -46,7 +46,7 @@ public class TransformHelper {
                 retValue = .WriteContractPackage
             }
         }
-        if let transformType = from["transform"] as? AnyObject {
+        if let transformType = from["transform"] as AnyObject? {
             if let addUInt512 = transformType["AddUInt512"] as? String {
                retValue = .AddUInt512(U512Class.fromStringToU512(from: addUInt512))
            }
@@ -67,7 +67,7 @@ public class TransformHelper {
             } else if let transformTransfer = transformType["WriteTransfer"] as? [String:Any] {
                 retValue = .WriteTransfer(Transfer.fromJsonToTransfer(from: transformTransfer))
             } else if let bidJson = transformType["WriteBid"] as? [String:Any] {
-                var retBid:Bid = Bid();
+                let retBid:Bid = Bid();
                 if let validator_public_key = bidJson["validator_public_key"] as? String {
                     retBid.validator_public_key = PublicKey.strToPublicKey(from: validator_public_key)
                 }
@@ -90,10 +90,7 @@ public class TransformHelper {
                     retBid.vesting_schedule = VestingSchedule.jsonToVestingSchedule(from: vesting_schedule)
                 }
                 if let delegators = bidJson["delegators"] as? [String:Any] {
-                    let totalDelegator : Int = delegators.count;
-                    var counter : Int = 0 ;
                     for (key,value) in delegators {
-                        counter += 1;
                         let oneD = Delegator.jsonToDelegator(from: value as! [String:Any])
                         retBid.delegators[key] = Delegator()
                         retBid.delegators[key] = oneD
@@ -102,7 +99,6 @@ public class TransformHelper {
                 retValue = .WriteBid(retBid)
             } else if let WriteWithdraws = transformType["WriteWithdraw"] as? [AnyObject] {
                 var listWithDraw:[UnbondingPurse] = [UnbondingPurse]();
-                let totalWithDraw:Int = WriteWithdraws.count;
                 for withdraw in WriteWithdraws {
                     let oneUP : UnbondingPurse = UnbondingPurse();
                     if let bonding_purse = withdraw["bonding_purse"] as? String {

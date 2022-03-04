@@ -40,19 +40,19 @@ public class CLTypeSerializeHelper {
             return "16"
         case .Option(let cLType):
             return "0d" + CLTypeSerialize(input: cLType)
-        case .List(let cLType):
+        case .List(_):
             return "0e"
-        case .BytesArray(let uInt32):
+        case .BytesArray(_):
             return "0f"
-        case .Result(let cLType1, let cLType2):
+        case .Result(_, _):
             return "10"
-        case .Map(let cLType1, let cLType2):
+        case .Map(_, _):
             return "11"
-        case .Tuple1(let cLType):
+        case .Tuple1(_):
             return "12"
-        case .Tuple2(let cLType1, let cLType2):
+        case .Tuple2(_, _):
             return "13"
-        case .Tuple3(let cLType1, let cLType2, let cLType3):
+        case .Tuple3(_, _, _):
             return "14"
         case .CLAny:
             return "15"
@@ -61,7 +61,6 @@ public class CLTypeSerializeHelper {
         default:
             return ""
         }
-       return ""
     }
     /**
      Serialize for CLValue
@@ -105,7 +104,7 @@ public class CLTypeSerializeHelper {
             } catch (CasperError.invalidNumber) {
                 throw CasperError.invalidNumber
             }
-        case .Unit(let string):
+        case .Unit(_):
             return ""
         case .String(let string):
             return CLTypeSerializeHelper.StringSerialize(input: string,withPrefix0x:withPrefix0x)
@@ -136,7 +135,6 @@ public class CLTypeSerializeHelper {
                 let accessRight:String = String(elements[2].suffix(2))
                 return result + accessRight
             }
-            break
         case .PublicKey(let string):
             return string
         case .BytesArray(let string):
@@ -466,7 +464,7 @@ public class CLTypeSerializeHelper {
                 throw CasperError.invalidNumber
             }
             
-        case .AnyCLValue(let anyObject):
+        case .AnyCLValue(_):
             //non-serializable object
             break
         case .NULL:

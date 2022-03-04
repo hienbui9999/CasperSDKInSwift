@@ -25,7 +25,7 @@ class Utils {
             return "\(totalHour)h"
         } else if m>miniuteInMilisecond {
             let totalMinute = m/miniuteInMilisecond
-            return "\(miniuteInMilisecond)m"
+            return "\(totalMinute)m"
         } else if m>secondInMillisecond {
             let totalSecond = m/secondInMillisecond
             return "\(totalSecond)s"

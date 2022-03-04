@@ -115,11 +115,11 @@ public class JsonConversion {
         switch input{
         case .Hash(let hash):
             objParams =  ["block_identifier":["Hash":hash]];
-            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":objParams]
+            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":objParams as Any]
                 break;
         case .Height(let height):
             objParams =  ["block_identifier":["Height":height]];
-            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":objParams]
+            obj = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":objParams as Any]
                 break;
         case .None:
             obj =  ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":"[]"]
@@ -128,7 +128,7 @@ public class JsonConversion {
         let encode = JSONEncoder()
         encode.outputFormatting = .prettyPrinted
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: obj as Any, options: .prettyPrinted)
             return jsonData
         }
         catch {

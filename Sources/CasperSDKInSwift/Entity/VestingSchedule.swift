@@ -13,7 +13,7 @@ public class VestingSchedule {
        */
 
     public static func jsonToVestingSchedule(from:[String:Any])->VestingSchedule {
-        var ret:VestingSchedule = VestingSchedule();
+        let ret:VestingSchedule = VestingSchedule();
         if let initial_release_timestamp_millis = from["initial_release_timestamp_millis"] as? UInt64 {
             ret.initial_release_timestamp_millis = initial_release_timestamp_millis
         }
