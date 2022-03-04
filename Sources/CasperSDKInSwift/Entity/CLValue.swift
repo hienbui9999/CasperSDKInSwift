@@ -617,7 +617,7 @@ public class CLValue {
                 return .BytesArray(parsed)
             }
         case .CLAny:
-l        if let parsed = from as? AnyObject {
+        if let parsed = from as? AnyObject {
             if parsed is NSNull != nil {
                 return .AnyCLValue(CONST_NULL_RETURN_VALUE as AnyObject)
             } else if (parsed as? String)?.lowercased() == "<null>" {
