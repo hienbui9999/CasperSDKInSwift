@@ -13,6 +13,11 @@ public class Deploy {
     public var payment:ExecutableDeployItem?;
     ///Deploy Session, which is object of class ExecutableDeployItem
     public var session:ExecutableDeployItem?;
+    /**
+        Function to get  json data from Deploy object
+       - Parameter : none
+       - Returns: json data representing the current deploy object, in form of [String:Any], used to send to http method to implement the account_put_deploy RPC call
+     */
     public func toJsonData()->Data {
         let headerJson:[String:Any] = ["account":header.account,"timestamp":header.timestamp,"ttl":header.ttl,"gas_price":header.gas_price,"body_hash":header.body_hash,"dependencies":[],"chain_name":header.chain_name]
         
@@ -20,8 +25,8 @@ public class Deploy {
         let argJson:[AnyObject] = ["amount" as AnyObject,clValueJSon as AnyObject];
         let argsJson:[AnyObject] = [argJson as AnyObject];
 
-        let moduleBytesJsonPayment:[String:Any] = ["module_bytes":"","args":argsJson];
-        
+       // let moduleBytesJsonPayment:[String:Any] = ["module_bytes":"","args":argsJson];
+        let moduleBytesJsonPayment:[String:Any] = ExecutableDeployItemHelper.toJson(input:payment!)
         //for session
         //arg1
         let clValueJson1:[String:Any] =  ["cl_type":"U512","bytes":"04005ed0b2","parsed":"3000000000"];
@@ -36,10 +41,12 @@ public class Deploy {
         let clValueJson3:[String:Any] =  ["cl_type":optionJson,"bytes":"010000000000000000","parsed":0];
         let argJson3:[AnyObject] = ["id" as AnyObject,clValueJson3 as AnyObject];
         
-        let argsJsonSession:[AnyObject] = [argJson1 as AnyObject,argJson2 as AnyObject,argJson3 as AnyObject];
-        let sessionJsonAll:[String:Any] = ["args":argsJsonSession];
+       // let argsJsonSession:[AnyObject] = [argJson1 as AnyObject,argJson2 as AnyObject,argJson3 as AnyObject];
+        let argsJsonSession:[String:Any] = ExecutableDeployItemHelper.toJson(input:session!)
+       // print("session:\(argsJsonSession)")
+       // let sessionJsonAll:[String:Any] = ["args":argsJsonSession];
         let paymentJson = ["ModuleBytes":moduleBytesJsonPayment];
-        let sessionJson = ["Transfer":sessionJsonAll]
+        let sessionJson = ["Transfer":argsJsonSession]
         let approvalJson:[String:Any] = ["signer":approvals[0].signer,"signature":approvals[0].signature]//approvals[0].signature]
         let approvalJsons:[AnyObject] = [approvalJson as AnyObject]
         let params:[String:Any] = ["hash":hash,"header":headerJson,"payment":paymentJson,"session":sessionJson,"approvals":approvalJsons];

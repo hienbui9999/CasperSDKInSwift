@@ -235,7 +235,12 @@ public class CasperSDK {
             throw error
         }
     }
-    //M4 put deploy
+    /**
+     account_put_deploy RPC call
+       - Parameter : a Deploy object
+       - Returns: none. The actually process of getting GetDictionaryItemResult is done in HttpHandler class
+       - Throws: CasperMethodCallError.CasperError with code and message according to the error returned by the Casper system
+       */
     public func putDeploy(input:Deploy) throws {
         methodCall = .putDeploy
         httpHandler.methodCall = .putDeploy

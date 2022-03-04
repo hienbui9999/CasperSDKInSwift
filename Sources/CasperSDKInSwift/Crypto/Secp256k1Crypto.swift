@@ -15,8 +15,6 @@ public class Secp256k1Crypto {
    - Returns: ECPrivateKey of type secp256k1
    */
     public func readPrivateKeyFromFile(pemFileName:String) throws -> ECPrivateKey{
-        let bundleMain = Bundle.main
-        let bundleDoingTest = Bundle(for: type(of: self ))
         let thisSourceFile = URL(fileURLWithPath: #file)
         let thisDirectory = thisSourceFile.deletingLastPathComponent()
         let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
@@ -87,8 +85,6 @@ public class Secp256k1Crypto {
    
     public func writePublicKeyToPemFile(publicKeyToWrite:ECPublicKey,fileName:String) throws -> Bool{
         let text = publicKeyToWrite.pem
-        let bundleMain = Bundle.main
-        let bundleDoingTest = Bundle(for: type(of: self ))
         let thisSourceFile = URL(fileURLWithPath: #file)
         let thisDirectory = thisSourceFile.deletingLastPathComponent()
         let fileURL = thisDirectory.appendingPathComponent(fileName)

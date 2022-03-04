@@ -45,16 +45,113 @@ public class CLValue {
     public var cl_type:CLType = .NONE
     ///The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper
     public var parsed:CLValueWrapper = .NONE
+    public func getParsedValue() {
+        
+    }
+    /**
+        Function to get  json data from CLValue object
+       - Parameter : none
+       - Returns: json data representing the current CLValue object, in form of [String:Any]
+     Example returned value:
+     {
+         bytes = 0400ca9a3b;
+         "cl_type" = U512;
+         parsed = 0400ca9a3b;
+     }
+     */
     public func toJsonObj()throws -> [String:Any] {
         do {
-            let ret:[String:Any] = ["cl_type": CLValue.getCLTypeString(cl_type:cl_type),"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
-            return ret
+            if CLValue.isCLTypePrimitive(cl_type: cl_type) {
+                let clType : String = CLValue.getCLTypeString(cl_type:cl_type)
+                let ret:[String:Any] = ["cl_type": clType,"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
+                //print("Ret primitive:\(ret)")
+                return ret
+            } else {
+                let ret:[String:Any] = ["cl_type": CLValue.getCLTypeJsonCompound(cl_type: cl_type),"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
+               // print("Ret compound:\(ret)")
+                return ret
+            }
+            
         } catch {
             throw error
         }
     }
+    /**
+        Function to check if a CLType is primitive, which means no recursive call to CLType inside
+       - Parameter : a CLType object
+       - Returns: true if the CLType is primitive, false if not.
+     The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
+     The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result
+     */
+    public static func isCLTypePrimitive(cl_type:CLType)-> Bool {
+        var ret = true;
+        switch cl_type {
+        case .Bool:
+            break;
+        case .I32:
+            break;
+        case .I64:
+            break;
+        case .U8:
+            break;
+        case .U32:
+            break;
+        case .U64:
+            break;
+        case .U128:
+            break
+        case .U256:
+            break
+        case .U512:
+            break
+        case .Unit:
+            break
+        case .String:
+            break
+        case .Key:
+            break
+        case .URef:
+            break
+        case .PublicKey:
+            break
+        case .BytesArray(_):
+            ret = false
+        case .Result(_, _):
+            ret = false
+        case .Option(_):
+            ret = false
+        case .List(_):
+            ret = false
+        case .FixedList(_):
+            ret = false
+        case .Map(_, _):
+            ret = false
+        case .Tuple1(_):
+            ret = false
+        case .Tuple2(_, _):
+            ret = false
+        case .Tuple3(_, _, _):
+            ret = false
+        case .CLAny:
+            ret = true
+        case .NONE:
+            ret = true
+        }
+        return ret
+    }
+    /**
+        Function to get json data from CLType if the CLType is compound, which mean the CLType contains recursive declaration to other CLType
+       - Parameter : a CLType object
+       - Returns: json data of type [String:Any] for that CLType
+     This function is used to build the whole json generation for a CLValue
+     The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
+     The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result
+     */
     public static func getCLTypeJsonCompound(cl_type:CLType)->[String:Any] {
         switch cl_type {
+        case .BytesArray(let uInt32):
+            let retObj:[String:Any] = ["ByteArray":uInt32]
+            return retObj
             case .Result(let cLType1, let cLType2):
                 //return "Result"
             break;
@@ -85,6 +182,14 @@ public class CLValue {
         }
         return ["":"" as Any]
     }
+    /**
+        Function to get json data from CLType if the CLType is primitive, which mean the CLType does not contain recursive declaration to other CLType
+       - Parameter : a CLType object
+       - Returns: String representation for that CLType
+     This function is used to build the whole json generation for a CLValue
+     The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
+     The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result
+     */
     public static func getCLTypeString(cl_type:CLType)->String {
         switch cl_type {
         case .Bool:
@@ -115,8 +220,6 @@ public class CLValue {
             return "URef"
         case .PublicKey:
             return "PublicKey"
-        case .BytesArray(let uInt32):
-            return "BytesArray"
         case .CLAny:
             return "Any"
         case .NONE:

@@ -56,57 +56,57 @@ public class CLTypeHelper {
      - Returns: CLType object
      */
     public static func jsonToCLTypePrimitive(from:AnyObject,keyStr:String="cl_type") -> CLType {
-        var clType : CLType = .NONE
+        let clType : CLType = .NONE
         //primitive type
-        if let boolCLType = from["Bool"] as? Bool {
+        if (from["Bool"] as? Bool) != nil {
             return .Bool
         }
-        if let u8CLType = from["U8"] as? UInt8 {
+        if (from["U8"] as? UInt8) != nil {
             return .U8
         }
-        if let u32CLType = from["U32"] as? UInt32 {
+        if (from["U32"] as? UInt32) != nil {
             return .U32
         }
         if let _ = from["U64"] as? UInt64 {
             return .U64
         }
-        if let u128CLType = from["U128"] as? String {
+        if (from["U128"] as? String) != nil {
             return .U128
         }
-        if let u256CLType = from["U256"] as? String {
+        if (from["U256"] as? String) != nil {
             return .U256
         }
-        if let u512CLType = from["U512"] as? String {
+        if (from["U512"] as? String) != nil {
             return .U512
         }
-        if let stringCLType = from["String"] as? String {
+        if (from["String"] as? String) != nil {
             return .String
         }
-        if let keyMapCLType = from["key"] as? String {
+        if (from["key"] as? String) != nil {
             return .String
         }
-        if let valueMapCLType = from["value"] as? String {
+        if (from["value"] as? String) != nil {
             return .String
         }
-        if let okResult = from["ok"] as? String {
+        if (from["ok"] as? String) != nil {
             return .String
         }
-        if let errResult = from["err"] as? String {
+        if (from["err"] as? String) != nil {
             return .String
         }
         if let byteArrray = from["ByteArray"] as? UInt32 {
             return .BytesArray(byteArrray)
         }
-        if let keyCLType = from["Key"] as? String {
+        if (from["Key"] as? String) != nil {
             return .Key;
         }
-        if let publicKeyCLType = from["PublicKey"] as? String {
+        if (from["PublicKey"] as? String) != nil {
             return .PublicKey;
         }
-        if let URefClType = from["URef"] as? String {
+        if (from["URef"] as? String) != nil {
             return .URef
         }
-        if let UnitCLType = from["Unit"] as? String {
+        if (from["Unit"] as? String) != nil {
             return .Unit
         }
         return clType
@@ -147,6 +147,7 @@ public class CLTypeHelper {
                 if counter == 0 {
                     tuple1 = CLTypeHelper.directJsonToCLType(from: oneTuple)
                 }
+                counter += 1
             }
             return .Tuple1(tuple1!)
         }
@@ -167,23 +168,22 @@ public class CLTypeHelper {
         }
         
         if let tuple3CLType = from["Tuple3"] as? [AnyObject] {
-            if !(tuple3CLType is NSNull) {
-                var tuple1:CLType?
-                var tuple2:CLType?
-                var tuple3:CLType?
-                var counter : Int = 0;
-                for oneTuple in tuple3CLType {
-                    if counter == 0 {
-                        tuple1 = CLTypeHelper.directJsonToCLType(from: oneTuple)
-                    } else if counter == 1 {
-                        tuple2 = CLTypeHelper.directJsonToCLType(from: oneTuple)
-                    } else if counter == 2 {
-                        tuple3 = CLTypeHelper.directJsonToCLType(from: oneTuple)
-                    }
-                    counter += 1
+            var tuple1:CLType?
+            var tuple2:CLType?
+            var tuple3:CLType?
+            var counter : Int = 0;
+            for oneTuple in tuple3CLType {
+                if counter == 0 {
+                    tuple1 = CLTypeHelper.directJsonToCLType(from: oneTuple)
+                } else if counter == 1 {
+                    tuple2 = CLTypeHelper.directJsonToCLType(from: oneTuple)
+                } else if counter == 2 {
+                    tuple3 = CLTypeHelper.directJsonToCLType(from: oneTuple)
                 }
-                return .Tuple3(tuple1!, tuple2!,tuple3!)
+                counter += 1
             }
+            return .Tuple3(tuple1!, tuple2!,tuple3!)
+           
         }
         
         if let optionCLType = from["Option"] as? String {

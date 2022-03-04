@@ -71,7 +71,7 @@ public class JsonBlockHeader {
                 }
                
                 if let rewards = eraReport["rewards"] as? [AnyObject] {
-                    let totalRewards = rewards.count;
+                   
                     for reward in rewards {
                         let rewardItem : Reward = Reward();
                         if let amount = reward["amount"] as? UInt64 {

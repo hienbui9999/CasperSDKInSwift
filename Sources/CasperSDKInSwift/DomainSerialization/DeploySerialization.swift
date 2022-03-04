@@ -39,7 +39,7 @@ public class DeploySerialization {
      - Returns: String represent the body hash of the deploy header.
      */
     public static func getHeaderHash(fromDeployHeader:DeployHeader) -> String {
-        var headerSerialized:String = DeployHeaderSerialization.serialize(from: fromDeployHeader)
+        let headerSerialized:String = DeployHeaderSerialization.serialize(from: fromDeployHeader)
         let blake2Data = Data(headerSerialized.hexaBytes)
         let hash = try! Blake2.hash(.b2b,size:32,data:blake2Data)
         return hash.hexEncodedString();

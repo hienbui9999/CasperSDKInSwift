@@ -15,13 +15,14 @@ final class CasperSDKInSwiftTests: XCTestCase {
         testDeploySerialization.testAll()
         
         //M4 test cases
+       /* let testPutDeploy:TestPutDeploy = TestPutDeploy();
+        testPutDeploy.testAll();
         let testEd25519:TestEd25519KeyWrapper = TestEd25519KeyWrapper();
         testEd25519.testAll();
         let test256k1:TestSecp256k1KeyWrapper = TestSecp256k1KeyWrapper();
         test256k1.testAll()
-        let testPutDeploy:TestPutDeploy = TestPutDeploy();
-        testPutDeploy.testAll();
         
+        */
         //M1 & M2 test cases
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
         //casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")
