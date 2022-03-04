@@ -19,6 +19,9 @@ public enum ExecutableDeployItem {
  */
 
 public class ExecutableDeployItemHelper {
+    public static func ModuleBytesToJson(input:ExecutableDeployItem)->[String:Any] {
+        return ["a":"a" as Any]
+    }
     /**
        Get ExecutableDeployItem object from Json string
        - Parameter : a Json String represents the ExecutableDeployItem object

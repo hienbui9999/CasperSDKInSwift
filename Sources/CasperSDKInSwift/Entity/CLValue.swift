@@ -45,6 +45,87 @@ public class CLValue {
     public var cl_type:CLType = .NONE
     ///The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper
     public var parsed:CLValueWrapper = .NONE
+    public func toJsonObj()throws -> [String:Any] {
+        do {
+            let ret:[String:Any] = ["cl_type": CLValue.getCLTypeString(cl_type:cl_type),"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
+            return ret
+        } catch {
+            throw error
+        }
+    }
+    public static func getCLTypeJsonCompound(cl_type:CLType)->[String:Any] {
+        switch cl_type {
+            case .Result(let cLType1, let cLType2):
+                //return "Result"
+            break;
+            case .Option(let cLType):
+                let optionStr :[String:Any] = ["Option":CLValue.getCLTypeString(cl_type: cLType)]
+                return optionStr
+            case .List(let cLType):
+                //return "List"
+            break;
+            case .FixedList(let cLType):
+                //return "FixedList"
+            break
+            case .Map(let cLType1, let cLType2):
+               // return "Map"
+            break
+            case .Tuple1(let cLType):
+               // return "Tuple1"
+            break
+            case .Tuple2(let cLType1, let cLType2):
+                //return "Tuple2"
+            break
+            case .Tuple3(let cLType1, let cLType2, let cLType3):
+               // return "Tuple3"
+            break
+            default:
+                return ["":"" as Any]
+           
+        }
+        return ["":"" as Any]
+    }
+    public static func getCLTypeString(cl_type:CLType)->String {
+        switch cl_type {
+        case .Bool:
+            return "Bool"
+        case .I32:
+            return "I32"
+        case .I64:
+            return "I64"
+        case .U8:
+            return "U8"
+        case .U32:
+            return "U32"
+        case .U64:
+            return "U64"
+        case .U128:
+            return "U128"
+        case .U256:
+            return "U256"
+        case .U512:
+            return "U512"
+        case .Unit:
+            return "Unit"
+        case .String:
+            return "String"
+        case .Key:
+            return "Key"
+        case .URef:
+            return "URef"
+        case .PublicKey:
+            return "PublicKey"
+        case .BytesArray(let uInt32):
+            return "BytesArray"
+        case .CLAny:
+            return "Any"
+        case .NONE:
+            return ""
+        default:
+            return ""
+        }
+        return "";
+    }
     /**
      Get CLValue from Json string, with given CLType for that CLValue. The Json string is from the input with name "from", and you have to know what CLType to parse to get the corresponding CLValue for that such CLType, retrieve from the input parameter
      - Parameter :
