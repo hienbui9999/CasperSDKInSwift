@@ -2,6 +2,16 @@ import XCTest
 @testable import CasperSDKInSwift
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
+       // let testCLValueToJson:TestCLValueToJson = TestCLValueToJson();
+       // testCLValueToJson.testAll()
+        //M4 test cases
+        let testPutDeploy:TestPutDeploy = TestPutDeploy();
+        testPutDeploy.testAll();
+        let testEd25519:TestEd25519KeyWrapper = TestEd25519KeyWrapper();
+        testEd25519.testAll();
+        let test256k1:TestSecp256k1KeyWrapper = TestSecp256k1KeyWrapper();
+        test256k1.testAll()
+       
         //M3 test cases
         let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()
         testCLTypeSerialization.testAll()
@@ -14,15 +24,9 @@ final class CasperSDKInSwiftTests: XCTestCase {
         let testDeploySerialization : TestDeploySerialization = TestDeploySerialization()
         testDeploySerialization.testAll()
         
-        //M4 test cases
-       /* let testPutDeploy:TestPutDeploy = TestPutDeploy();
-        testPutDeploy.testAll();
-        let testEd25519:TestEd25519KeyWrapper = TestEd25519KeyWrapper();
-        testEd25519.testAll();
-        let test256k1:TestSecp256k1KeyWrapper = TestSecp256k1KeyWrapper();
-        test256k1.testAll()
+       
         
-        */
+        
         //M1 & M2 test cases
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
         //casperSDK.setMethodUrl(url: "https://node-clarity-mainnet.make.services/rpc")

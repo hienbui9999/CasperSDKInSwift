@@ -45,37 +45,131 @@ public class CLValue {
     public var cl_type:CLType = .NONE
     ///The actual value of CLValue, which is wrapped in an enumration object CLValueWrapper
     public var parsed:CLValueWrapper = .NONE
-    public func getParsedValue() {
-        
-    }
-    /**
-        Function to get  json data from CLValue object
-       - Parameter : none
-       - Returns: json data representing the current CLValue object, in form of [String:Any]
-     Example returned value:
-     {
-         bytes = 0400ca9a3b;
-         "cl_type" = U512;
-         parsed = 0400ca9a3b;
-     }
-     */
-    public func toJsonObj()throws -> [String:Any] {
-        do {
-            if CLValue.isCLTypePrimitive(cl_type: cl_type) {
-                let clType : String = CLValue.getCLTypeString(cl_type:cl_type)
-                let ret:[String:Any] = ["cl_type": clType,"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
-                //print("Ret primitive:\(ret)")
-                return ret
-            } else {
-                let ret:[String:Any] = ["cl_type": CLValue.getCLTypeJsonCompound(cl_type: cl_type),"bytes":bytes, "parsed": try CLTypeSerializeHelper.CLValueSerialize(input: parsed)]
-               // print("Ret compound:\(ret)")
-                return ret
-            }
-            
-        } catch {
-            throw error
+    
+    public static func getParsedValueBool(clValueWrapper:CLValueWrapper)->Bool {
+        switch clValueWrapper {
+        case .Bool(let bool):
+           return bool
+        default:
+            return false
         }
+        return false
     }
+    public static func getParsedValueString(clValueWrapper:CLValueWrapper) -> String {
+        switch clValueWrapper {
+        case .U128(let u128Class):
+            return u128Class.valueInStr
+        case .U256(let u256Class):
+            return u256Class.valueInStr
+        case .U512(let u512Class):
+            return u512Class.valueInStr
+        case .Unit(let string):
+            return string
+        case .String(let string):
+            return string
+        case .Key(let string):
+            return string
+        case .URef(let string):
+            return string
+        case .PublicKey(let string):
+            return string
+        case .BytesArray(let string):
+            return string
+        default:
+            return ""
+        }
+        return "";
+    }
+    public static func getParsedValue(clValueWrapper:CLValueWrapper)-> AnyObject {
+        var parsedValue:AnyObject!
+        switch clValueWrapper {
+        case .Bool(let bool):
+            parsedValue = bool as AnyObject
+            return bool as AnyObject
+        case .I32(let int32):
+            parsedValue = int32 as AnyObject
+        case .I64(let int64):
+            parsedValue = int64 as AnyObject
+        case .U8(let uInt8):
+            parsedValue = uInt8 as AnyObject
+        case .U32(let uInt32):
+            parsedValue = uInt32 as AnyObject
+        case .U64(let uInt64):
+            parsedValue = uInt64 as AnyObject
+        case .U128(let u128Class):
+            parsedValue = u128Class.valueInStr as AnyObject
+        case .U256(let u256Class):
+            parsedValue = u256Class.valueInStr as AnyObject
+        case .U512(let u512Class):
+            parsedValue = u512Class.valueInStr as AnyObject
+            return u512Class.valueInStr as AnyObject
+        case .Unit(let string):
+            parsedValue = string as AnyObject
+        case .String(let string):
+            parsedValue = string as AnyObject
+        case .Key(let string):
+            parsedValue = string as AnyObject
+        case .URef(let string):
+            parsedValue = string as AnyObject
+        case .PublicKey(let string):
+            parsedValue = string as AnyObject
+        case .BytesArray(let string):
+            parsedValue = string as AnyObject
+        case .OptionWrapper(let cLValueWrapper):
+            parsedValue = CLValue.getParsedValue(clValueWrapper: clValueWrapper)
+        case .ListWrapper(let array):
+            var ret:[AnyObject] = [];
+            for element in array{
+                let elementValue = CLValue.getParsedValue(clValueWrapper: element)
+                ret.append(elementValue)
+            }
+            return ret as AnyObject
+        case .FixedListWrapper(let array):
+             var ret:[AnyObject] = [];
+            for element in array{
+                let elementValue = CLValue.getParsedValue(clValueWrapper: element)
+                ret.append(elementValue)
+            }
+            return ret as AnyObject
+        case .ResultWrapper(let string, let cLValueWrapper):
+            let clValueParsed = CLValue.getParsedValue(clValueWrapper: clValueWrapper)
+            let ret:[String:Any] = [string:clValueParsed]
+            return ret as AnyObject
+        case .MapWrapper(let keyArray, let valueArray):
+            var clValueParsed:[AnyObject] = []
+            let totalKey = keyArray.count
+            for i in 0 ..< totalKey {
+                let oneItem : [String:AnyObject] = [CLValue.getParsedValue(clValueWrapper: keyArray[i]) as! String:CLValue.getParsedValue(clValueWrapper: valueArray[i]) as AnyObject]
+                clValueParsed.append(oneItem as AnyObject)
+            }
+            return clValueParsed as AnyObject
+        case .Tuple1Wrapper(let cLValueWrapper):
+            let elementValue = CLValue.getParsedValue(clValueWrapper: cLValueWrapper)
+            return elementValue as AnyObject
+        case .Tuple2Wrapper(let cLValueWrapper1, let cLValueWrapper2):
+            let elementValue1 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper1)
+            let elementValue2 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper2)
+            return [elementValue1,elementValue2] as AnyObject
+        case .Tuple3Wrapper(let cLValueWrapper1, let cLValueWrapper2, let cLValueWrapper3):
+            let elementValue1 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper1)
+            let elementValue2 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper2)
+            let elementValue3 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper3)
+            return [elementValue1,elementValue2,elementValue3] as AnyObject
+        case .AnyCLValue(let anyObject):
+            if anyObject != nil {
+                return anyObject as AnyObject
+            } else {
+                return "NULL" as AnyObject
+            }
+        case .NULL:
+            return "NULL" as AnyObject
+        case .NONE:
+            break
+        }
+        return "" as AnyObject
+    }
+    
+   
     /**
         Function to check if a CLType is primitive, which means no recursive call to CLType inside
        - Parameter : a CLType object
@@ -190,6 +284,13 @@ public class CLValue {
      The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
      The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result
      */
+    /**
+        Function to get  CLValueWrapper type in String
+       - Parameter : CLValueWrapper
+       - Returns: string represent the CLType of CLValueWrapper
+        Example: If the CLValueWrapper of CLType Bool, then the return value will be "Bool"
+        If the CLValueWrapper of CLType I32, then the return value will be "I32"
+     */
     public static func getCLTypeString(cl_type:CLType)->String {
         switch cl_type {
         case .Bool:
@@ -220,6 +321,22 @@ public class CLValue {
             return "URef"
         case .PublicKey:
             return "PublicKey"
+        case .Option:
+            return "Option"
+        case .List:
+            return "List"
+        case .FixedList:
+            return "FixedList"
+        case .Tuple1:
+            return "Tuple1"
+        case .Tuple2:
+            return "Tuple2"
+        case .Tuple3:
+            return "Tuple3"
+        case .BytesArray:
+            return "BytesArray"
+        case .Map:
+            return "Map"
         case .CLAny:
             return "Any"
         case .NONE:
@@ -248,7 +365,7 @@ public class CLValue {
     /**
      Get raw value for CLValueWrapper, of type .String(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .String(value) to just value
      - Parameter :
-        - clValue of CLValueWrapper type
+        - clValue of String CLValueWrapper type
      - Returns: the string value inside the clValue
      */
     public static func getRawValueOfStringType(clValue:CLValueWrapper)->String {
@@ -259,6 +376,51 @@ public class CLValue {
             return ""
         }
     }
+    /**
+     Get raw value for CLValueWrapper, of type .PublicKey(value). Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .PublicKey(value) to just value
+     - Parameter :
+        - clValue of PublicKey CLValueWrapper type
+     - Returns: the string value inside the PublicKey
+     */
+    public static func getRawValueOfPublicKeyType(clValue:CLValueWrapper)->String {
+        switch clValue {
+        case .PublicKey(let pk):
+            return pk;
+        default:
+            return ""
+        }
+    }
+    /**
+     Get raw value for CLValueWrapper, of type .URef(value). Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .URef(value) to just value
+     - Parameter :
+        - clValue of URef CLValueWrapper type
+     - Returns: the string value inside the URef
+     */
+    public static func getRawValueOfURef(clValue:CLValueWrapper)->String {
+        switch clValue {
+        case .URef(let uref):
+            return uref;
+        default:
+            return ""
+        }
+    }
+    public static func getRawValueOfKey(clValue:CLValueWrapper)->[String:String] {
+        switch clValue {
+        case .Key(let keyValue):
+            //check if key is Account, Hash or URef
+            let elements = keyValue.components(separatedBy:"-")
+            if elements[0] == "hash" {
+                return ["Hash":keyValue]
+            } else if elements[0] == "account" {
+                return ["Account":keyValue]
+            } else {
+                return ["URef":keyValue]
+            }
+        default:
+            return ["":""]
+        }
+    }
+    
     /**
      Get raw value for CLValueWrapper, of type .I32(value). Use this function for CLValue Map serialization. This function unwrap the CLValueWrapper with value .I32(value) to just value
      - Parameter :

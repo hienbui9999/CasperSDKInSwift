@@ -20,11 +20,9 @@ public class Deploy {
      */
     public func toJsonData()->Data {
         let headerJson:[String:Any] = ["account":header.account,"timestamp":header.timestamp,"ttl":header.ttl,"gas_price":header.gas_price,"body_hash":header.body_hash,"dependencies":[],"chain_name":header.chain_name]
-        let moduleBytesJsonPayment:[String:Any] = ExecutableDeployItemHelper.toJson(input:payment!)
         //for session
-        let argsJsonSession:[String:Any] = ExecutableDeployItemHelper.toJson(input:session!)
-        let paymentJson = ["ModuleBytes":moduleBytesJsonPayment];
-        let sessionJson = ["Transfer":argsJsonSession]
+        let paymentJson = ExecutableDeployItemHelper.toJson(input:payment!)//["ModuleBytes":jsonPayment];
+        let sessionJson = ExecutableDeployItemHelper.toJson(input:session!)// ["Transfer":argsJsonSession]
         let approvalJson:[String:Any] = ["signer":approvals[0].signer,"signature":approvals[0].signature]//approvals[0].signature]
         let approvalJsons:[AnyObject] = [approvalJson as AnyObject]
         let params:[String:Any] = ["hash":hash,"header":headerJson,"payment":paymentJson,"session":sessionJson,"approvals":approvalJsons];
@@ -35,7 +33,7 @@ public class Deploy {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
            // let jsonString = String(data: jsonData, encoding: String.Encoding.ascii)!
-            //print(jsonString);
+           //print(jsonString);
             return jsonData
         }
         catch {

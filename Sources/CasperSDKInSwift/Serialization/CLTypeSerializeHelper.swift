@@ -147,6 +147,12 @@ public class CLTypeSerializeHelper {
                 } else {
                     return "00"
                 }
+            case .NULL:
+                if withPrefix0x {
+                    return "0x00"
+                } else {
+                    return "00"
+                }
             default:
                 do {
                     var ret = try CLTypeSerializeHelper.CLValueSerialize(input: cLValueWrapper,withPrefix0x:false)

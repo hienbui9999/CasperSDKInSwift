@@ -26,7 +26,7 @@ class HttpHandler:XCTestCase {
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
             if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
+                //print(responseJSON)
                 do {
                     let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
                     XCTAssert(deployHash == deploy_hash)

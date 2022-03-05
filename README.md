@@ -564,3 +564,14 @@ For detail information please refer to this:
 - [Casper Domain Specific Objects](./Docs/Help.md#casper-domain-specific-objects)
 
 - [Serialization](./Docs/Help.md#serialization)
+
+## External libraries/package
+
+This package use the following external packages from github
+
+- https://github.com/leif-ibsen/SwiftECC.git for implementing Secp256k1 key Wrapper
+
+- https://github.com/tesseract-one/Blake2.swift.git for implementing blake2b256 hash function
+
+All the packages are under MIT licence.
+ 
