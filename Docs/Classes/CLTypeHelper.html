@@ -17,7 +17,7 @@
     <a title="CLTypeHelper Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (52% documented)</p>
+        <p><a href="../index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="../Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -120,10 +126,16 @@
                 <a href="../Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/DeployUtil.html">DeployUtil</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/EntryPoint.html">EntryPoint</a>
@@ -261,6 +273,9 @@
                 <a href="../Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -289,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -368,16 +386,36 @@
                 <a href="../Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -400,6 +438,172 @@
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D12ToJsonString6clTypeSSAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypeToJsonString(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D12ToJsonString6clTypeSSAA0D0O_tFZ">CLTypeToJsonString(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypeToJsonString</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D6ToJson6clTypeyXlAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypeToJson(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D6ToJson6clTypeyXlAA0D0O_tFZ">CLTypeToJson(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypeToJson</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D21PrimitiveToJsonString6clTypeSSAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypePrimitiveToJsonString(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D21PrimitiveToJsonString6clTypeSSAA0D0O_tFZ">CLTypePrimitiveToJsonString(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypePrimitiveToJsonString</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D20CompoundToJsonString6clTypeSSAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypeCompoundToJsonString(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D20CompoundToJsonString6clTypeSSAA0D0O_tFZ">CLTypeCompoundToJsonString(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypeCompoundToJsonString</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D15PrimitiveToJson6clTypeSSAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypePrimitiveToJson(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D15PrimitiveToJson6clTypeSSAA0D0O_tFZ">CLTypePrimitiveToJson(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypePrimitiveToJson</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC0D14CompoundToJson6clTypeSDySSypGAA0D0O_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/CLTypeCompoundToJson(clType:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC0D14CompoundToJson6clTypeSDySSypGAA0D0O_tFZ">CLTypeCompoundToJson(clType:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Function to get  json object from CLType object</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="kt">CLTypeCompoundToJson</span><span class="p">(</span><span class="nv">clType</span><span class="p">:</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>json object representing the current deploy object, in form of [String:Any]</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -496,9 +700,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC012directJsonToD04fromAA0D0OyXl_tFZ"></a>
+                    <a name="/s:16CasperSDKInSwift12CLTypeHelperC012directJsonToD04fromAA0D0OyXlSg_tFZ"></a>
                     <a name="//apple_ref/swift/Method/directJsonToCLType(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC012directJsonToD04fromAA0D0OyXl_tFZ">directJsonToCLType(from:<wbr>)</a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12CLTypeHelperC012directJsonToD04fromAA0D0OyXlSg_tFZ">directJsonToCLType(from:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -513,7 +717,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">directJsonToCLType</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">directJsonToCLType</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/CLType.html">CLType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -560,7 +764,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-20)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

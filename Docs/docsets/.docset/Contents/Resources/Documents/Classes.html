@@ -17,7 +17,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (52% documented)</p>
+        <p><a href="index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -78,6 +78,12 @@
                 <a href="Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -120,10 +126,16 @@
                 <a href="Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/DeployUtil.html">DeployUtil</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/EntryPoint.html">EntryPoint</a>
@@ -261,6 +273,9 @@
                 <a href="Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -289,6 +304,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -368,16 +386,36 @@
                 <a href="Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -592,9 +630,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift19DeploySerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeploySerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift19DeploySerializationC">DeploySerialization</a>
+                    <a name="/s:16CasperSDKInSwift12Ed25519CrytoC"></a>
+                    <a name="//apple_ref/swift/Class/Ed25519Cryto" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12Ed25519CrytoC">Ed25519Cryto</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -602,15 +640,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class for Deploy serialization</p>
+                        <p>Class to handle the following actions on Ed25519 encryption:  key generation, read key from PEM file,  write key to PEM file, sign message, verify message</p>
 
-                        <a href="Classes/DeploySerialization.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/Ed25519Cryto.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeploySerialization</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Ed25519Cryto</span></code></pre>
 
                         </div>
                       </div>
@@ -620,9 +658,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:16CasperSDKInSwift25DeployHeaderSerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeployHeaderSerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift25DeployHeaderSerializationC">DeployHeaderSerialization</a>
+                    <a name="/s:16CasperSDKInSwift15Secp256k1CryptoC"></a>
+                    <a name="//apple_ref/swift/Class/Secp256k1Crypto" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift15Secp256k1CryptoC">Secp256k1Crypto</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -630,71 +668,23 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class for Deploy Header  serialization</p>
+                        <p>Secp256k1 wrapper class. This class allow user to do the following task in secp256k1 encryption:</p>
 
-                        <a href="Classes/DeployHeaderSerialization.html" class="slightly-smaller">See more</a>
+<ul>
+<li>Generate private key, public key</li>
+<li>Load private key, public key from Pem file</li>
+<li>Write private key, public key to Pem file</li>
+<li>Sign message</li>
+<li>Verify message</li>
+</ul>
+
+                        <a href="Classes/Secp256k1Crypto.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeaderSerialization</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC"></a>
-                    <a name="//apple_ref/swift/Class/ExecutableDeployItemSerializaton" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC">ExecutableDeployItemSerializaton</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class for ExecutableDeployItem  serialization</p>
-
-                        <a href="Classes/ExecutableDeployItemSerializaton.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ExecutableDeployItemSerializaton</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:16CasperSDKInSwift27DeployApprovalSerializationC"></a>
-                    <a name="//apple_ref/swift/Class/DeployApprovalSerialization" class="dashAnchor"></a>
-                    <a class="token" href="#/s:16CasperSDKInSwift27DeployApprovalSerializationC">DeployApprovalSerialization</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Class for Approval serialization</p>
-
-                        <a href="Classes/DeployApprovalSerialization.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployApprovalSerialization</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Secp256k1Crypto</span></code></pre>
 
                         </div>
                       </div>
@@ -1130,6 +1120,62 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:16CasperSDKInSwift13CLValueToJsonC"></a>
+                    <a name="//apple_ref/swift/Class/CLValueToJson" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift13CLValueToJsonC">CLValueToJson</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for turning CLValue to Json String</p>
+
+                        <a href="Classes/CLValueToJson.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLValueToJson</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift26CLValueWrapperToJsonStringC"></a>
+                    <a name="//apple_ref/swift/Class/CLValueWrapperToJsonString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift26CLValueWrapperToJsonStringC">CLValueWrapperToJsonString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CLValueWrapperToJsonString.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CLValueWrapperToJsonString</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:16CasperSDKInSwift8ContractC"></a>
                     <a name="//apple_ref/swift/Class/Contract" class="dashAnchor"></a>
                     <a class="token" href="#/s:16CasperSDKInSwift8ContractC">Contract</a>
@@ -1298,6 +1344,62 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:16CasperSDKInSwift10DeployUtilC"></a>
+                    <a name="//apple_ref/swift/Class/DeployUtil" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift10DeployUtilC">DeployUtil</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/DeployUtil.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployUtil</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift12NamedArgJsonC"></a>
+                    <a name="//apple_ref/swift/Class/NamedArgJson" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift12NamedArgJsonC">NamedArgJson</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/NamedArgJson.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NamedArgJson</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:16CasperSDKInSwift18DeployApprovalItemC"></a>
                     <a name="//apple_ref/swift/Class/DeployApprovalItem" class="dashAnchor"></a>
                     <a class="token" href="#/s:16CasperSDKInSwift18DeployApprovalItemC">DeployApprovalItem</a>
@@ -1344,7 +1446,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeader</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeader</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -2670,6 +2772,118 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:16CasperSDKInSwift19DeploySerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeploySerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift19DeploySerializationC">DeploySerialization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for Deploy serialization</p>
+
+                        <a href="Classes/DeploySerialization.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeploySerialization</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift25DeployHeaderSerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeployHeaderSerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift25DeployHeaderSerializationC">DeployHeaderSerialization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for Deploy Header  serialization</p>
+
+                        <a href="Classes/DeployHeaderSerialization.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployHeaderSerialization</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC"></a>
+                    <a name="//apple_ref/swift/Class/ExecutableDeployItemSerializaton" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift32ExecutableDeployItemSerializatonC">ExecutableDeployItemSerializaton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for ExecutableDeployItem  serialization</p>
+
+                        <a href="Classes/ExecutableDeployItemSerializaton.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ExecutableDeployItemSerializaton</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16CasperSDKInSwift27DeployApprovalSerializationC"></a>
+                    <a name="//apple_ref/swift/Class/DeployApprovalSerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16CasperSDKInSwift27DeployApprovalSerializationC">DeployApprovalSerialization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class for Approval serialization</p>
+
+                        <a href="Classes/DeployApprovalSerialization.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeployApprovalSerialization</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:16CasperSDKInSwift14GetAuctionInfoC"></a>
                     <a name="//apple_ref/swift/Class/GetAuctionInfo" class="dashAnchor"></a>
                     <a class="token" href="#/s:16CasperSDKInSwift14GetAuctionInfoC">GetAuctionInfo</a>
@@ -3117,7 +3331,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-20)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

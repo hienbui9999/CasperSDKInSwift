@@ -183,13 +183,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/CasperSDK.swift",
-      "line": 239,
-      "symbol": "CasperSDK.putDeploy(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Chain/GetBlockTransfersResult.swift",
       "line": 9,
       "symbol": "GetBlockTransfersResult.block_hash",
@@ -201,6 +194,195 @@
       "line": 11,
       "symbol": "GetBlockTransfersResult.transfers",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 5,
+      "symbol": "PemFileHandlerError.ReadPemFileNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 6,
+      "symbol": "PemFileHandlerError.ReadPemDirectoryNotFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 7,
+      "symbol": "PemFileHandlerError.WritePemFileError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 8,
+      "symbol": "PemFileHandlerError.InvalidPemKeyFormat",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 9,
+      "symbol": "PemFileHandlerError.InvalidPemKeySuffix",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 10,
+      "symbol": "PemFileHandlerError.InvalidPemKeyPrefix",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 11,
+      "symbol": "PemFileHandlerError.None",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 13,
+      "symbol": "SignActionError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 14,
+      "symbol": "SignActionError.SignMessageError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 15,
+      "symbol": "SignActionError.VerifyMessageError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 19,
+      "symbol": "GenerateKeyError.PrivateKeyGenerateError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 20,
+      "symbol": "GenerateKeyError.PublicKeyGenerateError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 53,
+      "symbol": "Ed25519Cryto.privateKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 54,
+      "symbol": "Ed25519Cryto.publicKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 271,
+      "symbol": "Ed25519Cryto.verify(signedMessage:pulicKeyToVerify:originalMessage:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 347,
+      "symbol": "Data.bytes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Ed25519Crypto.swift",
+      "line": 366,
+      "symbol": "String.bytes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 39,
+      "symbol": "Secp256k1Crypto.readPublicKeyFromFile(pemFileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 64,
+      "symbol": "Secp256k1Crypto.writePrivateKeyToPemFile(privateKeyToWrite:fileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 86,
+      "symbol": "Secp256k1Crypto.writePublicKeyToPemFile(publicKeyToWrite:fileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 108,
+      "symbol": "Secp256k1Crypto.secp256k1GenerateKey()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 113,
+      "symbol": "Secp256k1Crypto.signMessage(messageToSign:withPrivateKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 118,
+      "symbol": "Secp256k1Crypto.verifyMessage(withPublicKey:signature:plainMessage:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 123,
+      "symbol": "Secp256k1Crypto.readPrivateKeyFromFileLocalDocuments(pemFileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 148,
+      "symbol": "Secp256k1Crypto.writePrivateKeyToPemFileInDocumentsFolder(privateKeyToWrite:fileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 164,
+      "symbol": "Secp256k1Crypto.writePublicKeyToPemFileInDocumentsFolder(publicKeyToWrite:fileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Crypto/Secp256k1Crypto.swift",
+      "line": 179,
+      "symbol": "Secp256k1Crypto.readPublicKeyFromFileLocalDocuments(pemFileName:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -505,6 +687,41 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLType.swift",
+      "line": 37,
+      "symbol": "CLTypeHelper.CLTypeToJsonString(clType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLType.swift",
+      "line": 44,
+      "symbol": "CLTypeHelper.CLTypeToJson(clType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLType.swift",
+      "line": 52,
+      "symbol": "CLTypeHelper.CLTypePrimitiveToJsonString(clType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLType.swift",
+      "line": 91,
+      "symbol": "CLTypeHelper.CLTypeCompoundToJsonString(clType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLType.swift",
+      "line": 234,
+      "symbol": "CLTypeHelper.CLTypePrimitiveToJson(clType:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
       "line": 8,
       "symbol": "CLValueWrapper.Bool(_:)",
@@ -687,9 +904,135 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValue.swift",
+      "line": 49,
+      "symbol": "CLValue.getParsedValueBool(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 3,
+      "symbol": "CLValueWrapperToJsonString",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 5,
+      "symbol": "CLValueWrapperToJsonString.toJsonString(clValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 81,
+      "symbol": "CLValueWrapperToJsonString.isParsedStringPrimitive(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 139,
+      "symbol": "CLValueWrapperToJsonString.getParsedBool(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 145,
+      "symbol": "CLValueWrapperToJsonString.getParsedI32(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 151,
+      "symbol": "CLValueWrapperToJsonString.getParsedI64(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 157,
+      "symbol": "CLValueWrapperToJsonString.getParsedU8(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 163,
+      "symbol": "CLValueWrapperToJsonString.getParsedU32(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 169,
+      "symbol": "CLValueWrapperToJsonString.getParsedU64(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 176,
+      "symbol": "CLValueWrapperToJsonString.getParsedPrimitiveString(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/CLValueWrapperToJsonString.swift",
+      "line": 221,
+      "symbol": "CLValueWrapperToJsonString.getParsedCompound(clValueWrapper:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Bytes.swift",
       "line": 7,
       "symbol": "Bytes.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 52,
+      "symbol": "DeployUtil",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 54,
+      "symbol": "DeployUtil.getDeployResult(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 74,
+      "symbol": "NamedArgJson",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 75,
+      "symbol": "NamedArgJson.cl_type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 76,
+      "symbol": "NamedArgJson.bytes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/Deploy/Deploy.swift",
+      "line": 77,
+      "symbol": "NamedArgJson.parsed",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
@@ -747,6 +1090,13 @@
       "line": 9,
       "symbol": "ErrorCode.NONE",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/ExecutableDeployItem.swift",
+      "line": 7,
+      "symbol": "ExecutableDeployItem",
+      "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
@@ -1269,14 +1619,14 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/StoredValue.swift",
-      "line": 301,
+      "line": 300,
       "symbol": "StoredValueHelper.getBid(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Entity/StoredValue.swift",
-      "line": 344,
+      "line": 343,
       "symbol": "StoredValueHelper.getWithdraw(from:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
@@ -1598,35 +1948,35 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 562,
+      "line": 567,
       "symbol": "CLTypeSerializeHelper.divideBy16(input:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 595,
+      "line": 600,
       "symbol": "CLTypeSerializeHelper.from10To16(input:lowerCase:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 699,
+      "line": 707,
       "symbol": "CLTypeSerializeHelper.SmallNumberSerialize(input:numBytes:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 744,
+      "line": 752,
       "symbol": "CLTypeSerializeHelper.fromBigToLittleEdianU64AndLess(input:numBytes:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Serialization/CLTypeSerializeHelper.swift",
-      "line": 772,
+      "line": 780,
       "symbol": "CLTypeSerializeHelper.fromBigToLittleEdian(input:withPrefix0x:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
@@ -1892,49 +2242,35 @@
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 35,
-      "symbol": "JsonConversion.fromGetStateItemToJsonData(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 59,
-      "symbol": "JsonConversion.fromGetStateItemToJsonStr(input:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 100,
+      "line": 76,
       "symbol": "JsonConversion.generatePostDataNoParam(method:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 112,
+      "line": 88,
       "symbol": "JsonConversion.fromBlockIdentifierToJsonData(input:method:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 140,
+      "line": 116,
       "symbol": "JsonConversion.fromBlockIdentifierToJson(input:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 155,
+      "line": 131,
       "symbol": "JsonConversion.fromGetBalanceParamsToJsonData(input:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/hien/SwiftLibrary/CasperSDKInSwift/Sources/CasperSDKInSwift/Utils/JsonConversion.swift",
-      "line": 171,
+      "line": 147,
       "symbol": "JsonConversion.fromGetBalanceParamsToJson(input:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"

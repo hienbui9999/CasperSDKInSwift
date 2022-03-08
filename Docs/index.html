@@ -16,7 +16,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (52% documented)</p>
+        <p><a href="index.html"> Docs</a> (50% documented)</p>
         <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -77,6 +77,12 @@
                 <a href="Classes/CLValue.html">CLValue</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CLValueToJson.html">CLValueToJson</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CLValueWrapperToJsonString.html">CLValueWrapperToJsonString</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CasperSDK.html">CasperSDK</a>
               </li>
               <li class="nav-group-task">
@@ -119,10 +125,16 @@
                 <a href="Classes/DeploySerialization.html">DeploySerialization</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/DeployUtil.html">DeployUtil</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/Digest.html">Digest</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DisableVersion.html">DisableVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Ed25519Cryto.html">Ed25519Cryto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/EntryPoint.html">EntryPoint</a>
@@ -260,6 +272,9 @@
                 <a href="Classes/NamedArg.html">NamedArg</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/NamedArgJson.html">NamedArgJson</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/NamedCLTypeArg.html">NamedCLTypeArg</a>
               </li>
               <li class="nav-group-task">
@@ -288,6 +303,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/RuntimeArgs.html">RuntimeArgs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Secp256k1Crypto.html">Secp256k1Crypto</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/StoredValueHelper.html">StoredValueHelper</a>
@@ -367,16 +385,36 @@
                 <a href="Enums/ExecutionResult.html">ExecutionResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/GenerateKeyError.html">GenerateKeyError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/OpKind.html">OpKind</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/PemFileHandlerError.html">PemFileHandlerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SeigniorageAllocation.html">SeigniorageAllocation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SignActionError.html">SignActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/StoredValue.html">StoredValue</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/Transform.html">Transform</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/String.html">String</a>
               </li>
             </ul>
           </li>
@@ -389,7 +427,7 @@
             <h1 id='casper-swift-sdk' class='heading'>casper-swift-sdk</h1>
 
 <p>Swift sdk library for interacting with a CSPR node.</p>
-<h2 id='what-is-casper-swift-sdk' class='heading'>What is casper-swift-sdk ?</h2>
+<h2 id='what-is-casper-swift-sdk' class='heading'>What is casper-swift-sdk?</h2>
 
 <p>SDK  to streamline the 3rd party Swift client integration processes. Such 3rd parties include exchanges &amp; app developers. </p>
 <h2 id='system-requirement' class='heading'>System requirement</h2>
@@ -397,7 +435,7 @@
 <p>The SDK use Swift 5.0 and support device running IOS from 10.0, MacOS from 10.4.4, WatchOS from 5.3, tvOS from 12.3</p>
 <h2 id='build-and-test-from-terminal' class='heading'>Build and test from terminal</h2>
 
-<p>Go to the SKD root folder.</p>
+<p>Go to the SDK root folder.</p>
 
 <ul>
 <li>Build command in terminal, type this in terminal</li>
@@ -412,7 +450,7 @@
 <p>swift test</p>
 
 <ul>
-<li>For a full build,test on the SKD, run the following command</li>
+<li>For a full build,test on the SDK, run the following command</li>
 </ul>
 
 <p>swift package clean</p>
@@ -472,7 +510,7 @@
 <p>You can change the method url by running this code line</p>
 <pre class="highlight swift"><code><span class="n">casperSDK</span><span class="o">.</span><span class="nf">setMethodUrl</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://node-clarity-mainnet.make.services/rpc"</span><span class="p">)</span>
 </code></pre>
-<h2 id='m2-rpc-calls' class='heading'>M2: RPC Calls</h2>
+<h2 id='rpc-calls' class='heading'>RPC Calls</h2>
 <h3 id='i-get-state-root-hash' class='heading'>I. Get State Root Hash</h3>
 
 <p>Retrieves  the state root hash String. There are 3 cases for calling this method</p>
@@ -632,7 +670,7 @@
 
 <p>Here is some example of getting different kinds of StoredValue</p>
 
-<p>#### 1. StoredValue as Contract :</p>
+<p>#### 1. StoredValue as Contract</p>
 
 <p>call parameters :</p>
 
@@ -650,7 +688,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>#### 2. StoredValue as account  :</p>
+<p>#### 2. StoredValue as account</p>
 
 <p>call parameters :</p>
 
@@ -668,7 +706,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>#### 3. StoredValue as transfer  :</p>
+<p>#### 3. StoredValue as transfer</p>
 
 <p>call parameters :</p>
 
@@ -686,7 +724,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>#### 4. StoredValue as DeployInfo  :</p>
+<p>#### 4. StoredValue as DeployInfo</p>
 
 <p>call parameters :</p>
 
@@ -704,7 +742,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>#### 5. StoredValue as Bid  :</p>
+<p>#### 5. StoredValue as Bid</p>
 
 <p>call parameters :</p>
 
@@ -724,7 +762,7 @@ This example call the main net</li>
 <span class="p">}</span>
 </code></pre>
 
-<p>#### 6. StoredValue as Withdraw  :</p>
+<p>#### 6. StoredValue as Withdraw</p>
 
 <p>call parameters :</p>
 
@@ -764,7 +802,7 @@ This example call the test net</li>
 
 <p>Call specification in detail for each type: </p>
 
-<p>#### 1. dictionary_identifier  parameter as  AccountNamedKey:</p>
+<p>#### 1. dictionary_identifier  parameter as  AccountNamedKey</p>
 <pre class="highlight swift"><code> <span class="k">do</span> <span class="p">{</span>
      <span class="k">let</span> <span class="nv">getDic</span> <span class="p">:</span> <span class="kt">GetDictionaryItemParams</span> <span class="o">=</span> <span class="kt">GetDictionaryItemParams</span><span class="p">();</span>
      <span class="n">getDic</span><span class="o">.</span><span class="n">state_root_hash</span> <span class="o">=</span> <span class="s">"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8"</span><span class="p">;</span>
@@ -775,7 +813,7 @@ This example call the test net</li>
  <span class="p">}</span>
 </code></pre>
 
-<p>#### 2. dictionary_identifier  parameter as  ContractNamedKey:</p>
+<p>#### 2. dictionary_identifier  parameter as  ContractNamedKey</p>
 <pre class="highlight swift"><code> <span class="k">do</span> <span class="p">{</span>
      <span class="k">let</span> <span class="nv">getDic</span> <span class="p">:</span> <span class="kt">GetDictionaryItemParams</span> <span class="o">=</span> <span class="kt">GetDictionaryItemParams</span><span class="p">();</span>
      <span class="n">getDic</span><span class="o">.</span><span class="n">state_root_hash</span> <span class="o">=</span> <span class="s">"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8"</span><span class="p">;</span>
@@ -786,7 +824,7 @@ This example call the test net</li>
  <span class="p">}</span>
 </code></pre>
 
-<p>#### 3. dictionary_identifier  parameter as  URef:</p>
+<p>#### 3. dictionary_identifier  parameter as  URef</p>
 <pre class="highlight swift"><code> <span class="k">do</span> <span class="p">{</span>
      <span class="k">let</span> <span class="nv">getDic</span> <span class="p">:</span> <span class="kt">GetDictionaryItemParams</span> <span class="o">=</span> <span class="kt">GetDictionaryItemParams</span><span class="p">();</span>
      <span class="n">getDic</span><span class="o">.</span><span class="n">state_root_hash</span> <span class="o">=</span> <span class="s">"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8"</span><span class="p">;</span>
@@ -797,7 +835,7 @@ This example call the test net</li>
  <span class="p">}</span>
 </code></pre>
 
-<p>#### 4. dictionary_identifier  parameter as  Dictionary:</p>
+<p>#### 4. dictionary_identifier  parameter as  Dictionary</p>
 <pre class="highlight swift"><code> <span class="k">do</span> <span class="p">{</span>
      <span class="k">let</span> <span class="nv">getDic</span> <span class="p">:</span> <span class="kt">GetDictionaryItemParams</span> <span class="o">=</span> <span class="kt">GetDictionaryItemParams</span><span class="p">();</span>
      <span class="n">getDic</span><span class="o">.</span><span class="n">state_root_hash</span> <span class="o">=</span> <span class="s">"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8"</span><span class="p">;</span>
@@ -894,11 +932,21 @@ This example call the test net</li>
 <li><p><a href="./Docs/Help.md#casper-domain-specific-objects">Casper Domain Specific Objects</a></p></li>
 <li><p><a href="./Docs/Help.md#serialization">Serialization</a></p></li>
 </ul>
+<h2 id='external-libraries-package' class='heading'>External libraries/package</h2>
+
+<p>This package use the following external packages from github</p>
+
+<ul>
+<li><p><a href="https://github.com/leif-ibsen/SwiftECC.git">https://github.com/leif-ibsen/SwiftECC.git</a> for implementing Secp256k1 key Wrapper</p></li>
+<li><p><a href="https://github.com/tesseract-one/Blake2.swift.git">https://github.com/tesseract-one/Blake2.swift.git</a> for implementing blake2b256 hash function</p></li>
+</ul>
+
+<p>All the packages are under MIT licence.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-02-20)</p>
+          <p>&copy; 2022 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2022-03-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
