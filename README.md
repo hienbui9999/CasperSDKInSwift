@@ -19,20 +19,25 @@ Go to the SDK root folder.
 
 - Build command in terminal, type this in terminal
 
+```swift
 swift build
+```
 
 - Test command in terminal, type this in terminal
 
+```swift
 swift test
+```
 
 - For a full build,test on the SDK, run the following command
 
+```swift
 swift package clean
 
 swift build
 
 swift test
-
+```
 
 ## Build and test from Xcode IDE
 
@@ -40,11 +45,12 @@ In Project Targets select the project General setting, Scroll to “Frameworks, 
 
 Now you can call the Casper RPC methods through the CasperSDK class.
 
-Just put the following code
+Put the following code:
 
 "import CasperSDKInSwift"
 
-at the beginning of the file to refer for CasperSDK instance and call the method request
+at the beginning of the file to refer for CasperSDK instance and call the method request.
+
 
 # Information for CLType, CLValue and Serialization
 
