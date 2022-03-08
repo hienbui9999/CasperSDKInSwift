@@ -9,6 +9,7 @@ class HttpHandler:XCTestCase {
     static var methodURL:String = "https://node-clarity-testnet.make.services/rpc";
     ///RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall:CasperMethodCall = .chainGetStateRootHash;
+    
     public func putDeploy(method:CasperMethodCall,params:Data,httpMethod:String="POST",deployHash:String="") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
@@ -26,12 +27,25 @@ class HttpHandler:XCTestCase {
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options:[])
             if let responseJSON = responseJSON as? [String: Any] {
-                //print(responseJSON)
-                do {
-                    let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
-                    XCTAssert(deployHash == deploy_hash)
-                } catch {
-                    NSLog("Error get Deploy Result")
+                if let errorDeploy = responseJSON["error"] as? [String:Any] {
+                    var code:Int!
+                    var message:String!
+                    if let code1 = errorDeploy["code"] as? Int {
+                        code = code1
+                    }
+                    if let message1 = errorDeploy["message"] as? String {
+                        message = message1
+                    }
+                    NSLog("Error get Deploy Result, with Error message:")
+                    NSLog(message)
+                   // throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_block_transfers")
+                } else {
+                    do {
+                        let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
+                        XCTAssert(deployHash == deploy_hash)
+                    } catch {
+                        NSLog("Error get Deploy Result")
+                    }
                 }
             }
             expectation.fulfill()

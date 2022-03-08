@@ -53,6 +53,24 @@ final class TestSecp256k1KeyWrapper: XCTestCase {
             //check signature valid
             let isValidSignature = secp256k1.verifyMessage(withPublicKey: publicKey, signature: signature, plainMessage: Data(message.hexaBytes));
             XCTAssert(isValidSignature == true)
+            
+            //NEGATIVE PATH
+            
+            //Verify over a different message
+            let message2:String = "Hello world!"
+            let isValidSignature2 = secp256k1.verifyMessage(withPublicKey: publicKey, signature: signature, plainMessage: Data(message2.hexaBytes));
+            XCTAssert(isValidSignature2 == false)
+            
+            //Verify with wrong public key
+            let (privateKey2,publicKey2) = secp256k1.secp256k1GenerateKey()
+            let isValidSignature3 = secp256k1.verifyMessage(withPublicKey: publicKey2, signature: signature, plainMessage: Data(message.hexaBytes));
+            XCTAssert(isValidSignature3 == false)
+            
+            //Generate signature with wrong private key but verify with correct public key
+            let signature2 = secp256k1.signMessage(messageToSign: Data(message.hexaBytes),withPrivateKey: privateKey2)
+            let isValidSignature4 = secp256k1.verifyMessage(withPublicKey: publicKey, signature: signature2, plainMessage: Data(message.hexaBytes));
+            XCTAssert(isValidSignature4 == false)
+            
         } catch {
             NSLog("Error secp256k1:\(error)")
         }

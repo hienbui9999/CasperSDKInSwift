@@ -25,13 +25,11 @@ public class JsonParam2 : Codable {
     var params: GetDictionaryItemParams2!
 }
 public class JsonConversion {
-    /*public static func fromDictionaryItemToJsonStr(input:GetDictionaryItemParams) -> AnyObject {
-        let diJson = DictionaryIdentifierHelper.fromDictionaryIdentifierToJson(input: input.dictionary_identifier!) as AnyObject
-        let adiJson : [String:Any] = ["AccountNamedKey":diJson]
-        let adiJson2 = adiJson as AnyObject
-        let params:[String:Any] = ["state_root_hash" : input.state_root_hash!,"dictionary_identifier" : adiJson as AnyObject];
-        return params as AnyObject;
-    }*/
+    /**
+        Function to get  json data from GetItemParams object
+       - Parameter : GetItemParams object
+       - Returns: json data representing the GetItemParams object
+     */
     public static func fromGetStateItemToJsonData(input:GetItemParams) -> Data {
         var retJson:[Any]=[Any]();
         retJson.append(input.state_root_hash!)
@@ -56,7 +54,12 @@ public class JsonConversion {
         }
         return Data()
     }
-    public static func fromGetStateItemToJsonStr(input:GetItemParams) ->[Any] {
+    /**
+        Function to get  json data from GetItemParams object
+       - Parameter : GetItemParams object
+       - Returns: json data representing the GetItemParams object
+     */
+    public static func fromGetStateItemToJsonStr1(input:GetItemParams) ->[Any] {
         var retJson:[Any]=[Any]();
         retJson.append(input.state_root_hash!)
         retJson.append(input.key!)
@@ -70,33 +73,6 @@ public class JsonConversion {
         return retJson
        
     }
-    /*public static func fromBlockIdentifierToJsonData(input:BlockIdentifier,method:CasperMethodCall) -> Data {
-        var objParams:[[String:Any]]?;
-        switch input{
-        case .Hash(let hash):
-            objParams =  [["Hash":hash]] as [[String:Any]];
-                break;
-        case .Height(let height):
-            objParams =  [["Height":height]] as [[String:Any]];
-                break;
-        case .None:
-                objParams =  [["None":""]] as [[String:Any]];
-                break;
-        }
-        let objParam:[String:Any] = ["state_root_hash":"146b860f82359ced6e801cbad31015b5a9f9eb147ab2a449fd5cdb950e961ca8","dictionary_identifier":objParams]
-        let obj:[String:Any] = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":objParams]
-        let encode = JSONEncoder()
-        encode.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
-            return jsonData
-        }
-        catch {
-            NSLog("Error:\(error)")
-        }
-        return Data()
-        
-    }*/
     public static func generatePostDataNoParam(method: CasperMethodCall) -> Data {
         let  obj:[String:Any] = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":method.rawValue,"params":"[]"]
        let encode = JSONEncoder()

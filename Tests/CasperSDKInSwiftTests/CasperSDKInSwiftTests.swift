@@ -2,16 +2,18 @@ import XCTest
 @testable import CasperSDKInSwift
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
-       // let testCLValueToJson:TestCLValueToJson = TestCLValueToJson();
-       // testCLValueToJson.testAll()
+        
         //M4 test cases
-        let testPutDeploy:TestPutDeploy = TestPutDeploy();
-        testPutDeploy.testAll();
+        
         let testEd25519:TestEd25519KeyWrapper = TestEd25519KeyWrapper();
         testEd25519.testAll();
+        
         let test256k1:TestSecp256k1KeyWrapper = TestSecp256k1KeyWrapper();
         test256k1.testAll()
-       
+        
+        let testPutDeploy:TestPutDeploy = TestPutDeploy();
+        testPutDeploy.testAll();
+        
         //M3 test cases
         let testCLTypeSerialization: TestCLTypeSerialization = TestCLTypeSerialization()
         testCLTypeSerialization.testAll()
@@ -21,11 +23,9 @@ final class CasperSDKInSwiftTests: XCTestCase {
         } catch {
             NSLog("Error test serialization:\(error)")
         }
+        
         let testDeploySerialization : TestDeploySerialization = TestDeploySerialization()
         testDeploySerialization.testAll()
-        
-       
-        
         
         //M1 & M2 test cases
         let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
@@ -216,7 +216,11 @@ final class CasperSDKInSwiftTests: XCTestCase {
             //getStateItemParam.state_root_hash = "647C28545316E913969B032Cf506d5D242e0F857061E70Fb3DF55980611ace86"
             //getStateItemParam.key = "bid-24b6D5Aabb8F0AC17D272763A405E9CECa9166B75B745Cf200695E172857c2dD"
             //casperSDK.setMethodUrl(url: "https://node-clarity-testnet.make.services/rpc")
-          
+            
+            //CLValue
+           // getStateItemParam.state_root_hash = "340a09b06bae99d868c68111b691c70d9d5a253c0f2fd7ee257a04a198d3818e"
+           // getStateItemParam.key = "uref-ba620eee2b06c6df4cd8da58dd5c5aa6d42f3a502de61bb06dc70b164eee4119-007"
+            
             //ContractPagage
             //getStateItemParam.state_root_hash = "83f6dca28102ecf1cf79d2e32172044b2eacf527e47a8781cead3850d01e6328"
             //getStateItemParam.key = "hash-b36478fa545160796de902e61ac504b33bc14624eea245a9df525b4d92d150bc"

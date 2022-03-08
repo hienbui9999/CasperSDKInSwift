@@ -148,7 +148,7 @@ public class ExecutableDeployItemSerializaton {
             var ret : String = "03"
             ret = ret + hash
             if let realVersion = version {
-                if realVersion == versionMissing {
+                if realVersion == versionNullValue {
                     ret = ret + "00"
                 } else { //version with value # NONE
                     ret = ret + "01" + CLTypeSerializeHelper.UInt32Serialize(input: realVersion)
@@ -163,7 +163,11 @@ public class ExecutableDeployItemSerializaton {
             var ret : String = "04"
             ret = ret + CLTypeSerializeHelper.StringSerialize(input: name)
             if let realVersion = version {
-                ret = ret + "01" + CLTypeSerializeHelper.UInt32Serialize(input: realVersion)
+                if realVersion == versionNullValue {
+                    ret = ret + "00"
+                } else { //version with value # NONE
+                    ret = ret + "01" + CLTypeSerializeHelper.UInt32Serialize(input: realVersion)
+                }
             } else {
                 ret = ret + "00"
             }

@@ -39,6 +39,24 @@ public class TestEd25519KeyWrapper : XCTestCase  {
             //Signature verification
             let isSignCorrect = ed25519Cryto.verify(signedMessage: signature, pulicKeyToVerify: publicKey2, originalMessage: Data(message.bytes))
             XCTAssert(isSignCorrect == true)
+            
+            //NEGATIVE PATH
+            
+            //Verify over a different message
+            let message2:String = "Hello world!"
+            let isSignCorrect2 = ed25519Cryto.verify(signedMessage: signature, pulicKeyToVerify: publicKey2, originalMessage: Data(message2.bytes))
+            XCTAssert(isSignCorrect2 == false)
+            
+            //Verify with wrong public key
+            let (privateKey3,publicKey3) = ed25519Cryto.generateKey()
+            let isSignCorrect3 = ed25519Cryto.verify(signedMessage: signature, pulicKeyToVerify: publicKey3, originalMessage: Data(message.bytes))
+            XCTAssert(isSignCorrect3 == false)
+            
+            //Generate signature with wrong private key but verify with correct public key
+            let signature2 = try ed25519Cryto.signMessage(messageToSign: Data(message.bytes),withPrivateKey: privateKey3)
+            let isSignCorrect4 = ed25519Cryto.verify(signedMessage: signature2, pulicKeyToVerify: publicKey2, originalMessage: Data(message.bytes))
+            XCTAssert(isSignCorrect4 == false)
+            
         } catch {
             print("Error:\(error)")
         }

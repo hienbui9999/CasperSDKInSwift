@@ -57,7 +57,7 @@ final class TestCLValueSerialization: XCTestCase {
             let u128_3 =  try CLTypeSerializeHelper.U128Serialize(input:"0")
             XCTAssert(u128_1 == "0957ff1ada959f4eb106")
             XCTAssert(u128_2 == "020004")
-            XCTAssert(u128_3 == "0100")
+            XCTAssert(u128_3 == "00")
             
             //test for u256
             let u256_1 =  try CLTypeSerializeHelper.U256Serialize(input:"999988887777666655556666777888999")
@@ -65,7 +65,7 @@ final class TestCLValueSerialization: XCTestCase {
             let u256_3 =  try CLTypeSerializeHelper.U256Serialize(input:"0")
             XCTAssert(u256_1 == "0ee76837d2ca215879f7bc5ca24d31")
             XCTAssert(u256_2 == "020008")
-            XCTAssert(u256_3 == "0100")
+            XCTAssert(u256_3 == "00")
             
             //test for u512
             let u512_1 =  try CLTypeSerializeHelper.U512Serialize(input:"999888666555444999887988887777666655556666777888999666999")
@@ -74,7 +74,7 @@ final class TestCLValueSerialization: XCTestCase {
             let u512_4 =  try CLTypeSerializeHelper.U512Serialize(input: "100000000")
             XCTAssert(u512_1 == "1837f578fca55492f299ea354eaca52b6e9de47d592453c728")
             XCTAssert(u512_2 == "020010")
-            XCTAssert(u512_3 == "0100")
+            XCTAssert(u512_3 == "00")
             XCTAssert(u512_4 == "0400e1f505")
             
             //test for string

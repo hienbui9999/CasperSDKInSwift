@@ -4,14 +4,16 @@ import Blake2
 final public class TestPutDeploy : XCTestCase {
     
     var signatureValue:String = "";
-    //ed25519
-    var accountStr:String = "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
+    //current tested, account of type ed25519
+    var accountStr:String = "01b8974febf081e11ce4a4a4032c22baa056746c7beaf11319b60658aa9d42d505" //-insufficient money account
+    //"016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
    // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"// -- Account for secp256k1
     public func testAll() {
        
+        
         //test 1 put a deploy of transfer type
         testPutDeployTransfer()
-        
+       
         //test 2 put a deploy in which session is a StoredContractByHash
         testPutDeployStoredContractByHash()
         
@@ -20,11 +22,22 @@ final public class TestPutDeploy : XCTestCase {
         
         //test 4 put a deploy in which session is a StoredVersionedContractByHash
         testPutDeployStoredVersionedContractByHash()
-        
+       
         //test 5 put a deploy in which session is a StoredVersionedContractByName
         testPutDeployStoredVersionedContractByName();
         
+        //test 6, test with cl value list(string)
+        testPutDeployStoredContractByHash2()
+        
+        //NEGATIVE PATH
+        
+        //test7, try to make a transfer deploy to an account with insufficient money
+        testPutDeployTransfer(withAccountStr: "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a")
+        
+        //test8, try to make a transfer deploy to an invalid account
+        testPutDeployTransfer(withAccountStr: "026c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a")
     }
+    
     public func testPutDeployStoredVersionedContractByName() {
         do {
             let deploy:Deploy = Deploy();
@@ -80,7 +93,7 @@ final public class TestPutDeploy : XCTestCase {
             
             let runTimeArgsSession:RuntimeArgs = RuntimeArgs();
             runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2];
-            let session:ExecutableDeployItem = .StoredVersionedContractByName(name: "carbon_emissions_reward", version: versionMissing, entry_point: "flash_borrow", args: runTimeArgs)
+            let session:ExecutableDeployItem = .StoredVersionedContractByName(name: "carbon_emissions_reward", version: versionNullValue, entry_point: "flash_borrow", args: runTimeArgs)
             
             //Deploy initialization
             deploy.header = deployHeader;
@@ -97,8 +110,8 @@ final public class TestPutDeploy : XCTestCase {
             } catch {
                 
             }
-            //sign for secp256k1
-            do {
+            //sign for secp256k1, uncomment this code if you want to test with secp256k1, but you have to change the account to secp256k1 type also
+            /*do {
                 let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
                 let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
                 let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
@@ -106,7 +119,7 @@ final public class TestPutDeploy : XCTestCase {
                 //use this signature if you use secp256k1 signing
             } catch {
                 NSLog("Error:\(error)")
-            }
+            }*/
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
             dai1.signature = signatureValue;
@@ -177,7 +190,7 @@ final public class TestPutDeploy : XCTestCase {
             
             let runTimeArgsSession:RuntimeArgs = RuntimeArgs();
             runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2];
-            let session:ExecutableDeployItem = .StoredVersionedContractByHash(hash: "5daa83c7d18629fcdf3910ef4a284b6a3288e8879b24b199966857e857244844", version: versionMissing, entry_point: "flash_borrow", args: runTimeArgs)
+            let session:ExecutableDeployItem = .StoredVersionedContractByHash(hash: "5daa83c7d18629fcdf3910ef4a284b6a3288e8879b24b199966857e857244844", version: versionNullValue, entry_point: "flash_borrow", args: runTimeArgs)
             
             //Deploy initialization
             deploy.header = deployHeader;
@@ -419,12 +432,148 @@ final public class TestPutDeploy : XCTestCase {
             NSLog("Error put deploy:\(error)")
         }
     }
-    public func testPutDeployTransfer() {
+   
+    //test for CLValue of complex things, such as List(String)
+    public func testPutDeployStoredContractByHash2() {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
             deployHeader.account = accountStr;
+            deployHeader.body_hash = "";
+            deployHeader.gas_price = 1
+            deployHeader.ttl = "1h 30m"
+            let timestamp = NSDate().timeIntervalSince1970
+            let tE = String(timestamp).components(separatedBy:".");
+            let mili = tE[1];
+            let indexMili = mili.index(mili.startIndex,offsetBy: 3);
+            let miliStr = mili[..<indexMili]
+            let myTimeInterval = TimeInterval(timestamp)
+            let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+            let timeStr = String(time.description)
+            let timeElements = timeStr.components(separatedBy:" ");
+            let newTimeStr = timeElements[0] + "T" + timeElements[1] + ".\(miliStr)Z";
+            deployHeader.timestamp = newTimeStr
+            deployHeader.chain_name = "casper-test"
+            
+            //Deploy payment initialization
+            let clValue:CLValue = CLValue();
+            clValue.bytes = "0500eaa55a01";
+            clValue.cl_type = .U512
+            clValue.parsed = .U512(U512Class.fromStringToU512(from: "5815790080"))
+            let namedArg:NamedArg = NamedArg();
+            namedArg.name = "amount"
+            namedArg.argsItem = clValue
+            let runTimeArgs:RuntimeArgs = RuntimeArgs();
+            runTimeArgs.listNamedArg = [namedArg];
+            let payment = ExecutableDeployItem.ModuleBytes(module_bytes: Bytes.fromStrToBytes(from: ""), args: runTimeArgs)
+            
+            //1st namedArg
+            let clValueSession1:CLValue = CLValue();
+            clValueSession1.bytes = "08000064a7b3b6e00d";
+            clValueSession1.parsed = .U256(U256Class.fromStringToU256(from: "1000000000000000000"))
+            clValueSession1.cl_type = .U256
+            let namedArgSession1:NamedArg = NamedArg();
+            namedArgSession1.name = "amount_in"
+            namedArgSession1.argsItem = clValueSession1
+            //2nd namedArg
+            let clValueSession2:CLValue = CLValue();
+            clValueSession2.bytes = "08242358945d1d911f";
+            clValueSession2.parsed = .U256(U256Class.fromStringToU256(from: "2274631574556779300"))
+            clValueSession2.cl_type = .U256
+            let namedArgSession2:NamedArg = NamedArg();
+            namedArgSession2.name = "amount_out_min"
+            namedArgSession2.argsItem = clValueSession2
+            
+            //3rd namedArg
+            let clValueSession3:CLValue = CLValue();
+            clValueSession3.bytes = "0200000045000000686173682d3942323837663335623743313136353930343663463537354231333035354464453746394133303963616535464531634533636139383564383766303239623045000000686173682d43383932393034353233333230443962366665343041363135433630653446316363373165333335313531373362466366356536363030304430393736433430"
+            clValueSession3.cl_type = .List(.String)
+            clValueSession3.parsed = .ListWrapper([.String("hash-9B287f35b7C11659046cF575B13055DdE7F9A309cae5FE1cE3ca985d87f029b0"),.String("hash-C892904523320D9b6fe40A615C60e4F1cc71e33515173bFcf5e66000D0976C40")])
+            let namedArgSession3:NamedArg = NamedArg();
+            namedArgSession3.name = "path"
+            namedArgSession3.argsItem = clValueSession3
+            
+          
+             
+            //5th namedArg
+            let clValueSession5:CLValue = CLValue();
+            clValueSession5.bytes = "b75107567e010000";
+            clValueSession5.cl_type = .U64
+            clValueSession5.parsed =  .U64(1642120827319)
+            let namedArgSession5:NamedArg = NamedArg();
+            namedArgSession5.name = "deadline"
+            namedArgSession5.argsItem = clValueSession5
+            
+            //6th namedArg
+            let clValueSession6:CLValue = CLValue();
+            clValueSession6.bytes = "00";
+            clValueSession6.parsed = .U256(U256Class.fromStringToU256(from: "0"))
+            clValueSession6.cl_type = .U256
+            let namedArgSession6:NamedArg = NamedArg();
+            namedArgSession6.name = "amount"
+            namedArgSession6.argsItem = clValueSession6
+            
+            //8th namedArg
+            let clValueSession8:CLValue = CLValue();
+            clValueSession8.bytes = "e803000000000000";
+            clValueSession8.cl_type = .U64
+            clValueSession8.parsed =  .U64(1000)
+            let namedArgSession8:NamedArg = NamedArg();
+            namedArgSession8.name = "id"
+            namedArgSession8.argsItem = clValueSession8
+            let runTimeArgsSession:RuntimeArgs = RuntimeArgs();
+            runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2,namedArgSession3,namedArgSession5,namedArgSession6,namedArgSession8];
+            let session:ExecutableDeployItem = .StoredContractByHash(hash: "4f4da49a080efdf3a66ddc279f050c0700618db675507734a46a8a1bb784575f", entry_point: "swap_exact_tokens_for_tokens", args: runTimeArgsSession)
+            
+            //Deploy approvals
+            
+            //Deploy initialization
+            deploy.header = deployHeader;
+            deploy.payment = payment;
+            deploy.session = session;
+            deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
+            deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
+            //sign with ed25519
+            let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
+            do {
+                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
+                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                 signatureValue = "01" + signedMessage.hexEncodedString()
+            } catch {
+                
+            }
+            //sign for secp256k1
+            do {
+                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                //use this signature if you use secp256k1 signing
+            } catch {
+                NSLog("Error:\(error)")
+            }
+            let dai1 : DeployApprovalItem = DeployApprovalItem();
+            dai1.signer = accountStr
+            dai1.signature = signatureValue;
+            let approvals:[DeployApprovalItem] = [dai1];
+            deploy.approvals = approvals;
+            let casperSDK:CasperSDK = CasperSDK(url:"https://node-clarity-testnet.make.services/rpc");
+            try casperSDK.putDeploy(input: deploy)
+        } catch {
+            NSLog("Error put deploy:\(error)")
+        }
+    }
+    public func testPutDeployTransfer(withAccountStr:String = "") {
+        do {
+            let deploy:Deploy = Deploy();
+            //Deploy header initialization
+            let deployHeader:DeployHeader = DeployHeader();
+            if (withAccountStr != "") {
+                deployHeader.account = withAccountStr;
+            } else {
+                deployHeader.account = accountStr;
+            }
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h 30m"
@@ -515,7 +664,7 @@ final public class TestPutDeploy : XCTestCase {
                 NSLog("Error:\(error)")
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = deployHeader.account
             dai1.signature = signatureValue;
             let approvals:[DeployApprovalItem] = [dai1];
             deploy.approvals = approvals;

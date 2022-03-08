@@ -55,6 +55,11 @@ public class CLValue {
         }
         return false
     }
+    /**
+        Function to get  parsed value in form of string from CLValueWrapper object
+       - Parameter : CLValueWrapper object
+       - Returns: CLValueWrapper.parsed value in form of string
+     */
     public static func getParsedValueString(clValueWrapper:CLValueWrapper) -> String {
         switch clValueWrapper {
         case .U128(let u128Class):
@@ -80,96 +85,7 @@ public class CLValue {
         }
         return "";
     }
-    public static func getParsedValue(clValueWrapper:CLValueWrapper)-> AnyObject {
-        var parsedValue:AnyObject!
-        switch clValueWrapper {
-        case .Bool(let bool):
-            parsedValue = bool as AnyObject
-            return bool as AnyObject
-        case .I32(let int32):
-            parsedValue = int32 as AnyObject
-        case .I64(let int64):
-            parsedValue = int64 as AnyObject
-        case .U8(let uInt8):
-            parsedValue = uInt8 as AnyObject
-        case .U32(let uInt32):
-            parsedValue = uInt32 as AnyObject
-        case .U64(let uInt64):
-            parsedValue = uInt64 as AnyObject
-        case .U128(let u128Class):
-            parsedValue = u128Class.valueInStr as AnyObject
-        case .U256(let u256Class):
-            parsedValue = u256Class.valueInStr as AnyObject
-        case .U512(let u512Class):
-            parsedValue = u512Class.valueInStr as AnyObject
-            return u512Class.valueInStr as AnyObject
-        case .Unit(let string):
-            parsedValue = string as AnyObject
-        case .String(let string):
-            parsedValue = string as AnyObject
-        case .Key(let string):
-            parsedValue = string as AnyObject
-        case .URef(let string):
-            parsedValue = string as AnyObject
-        case .PublicKey(let string):
-            parsedValue = string as AnyObject
-        case .BytesArray(let string):
-            parsedValue = string as AnyObject
-        case .OptionWrapper(let cLValueWrapper):
-            parsedValue = CLValue.getParsedValue(clValueWrapper: clValueWrapper)
-        case .ListWrapper(let array):
-            var ret:[AnyObject] = [];
-            for element in array{
-                let elementValue = CLValue.getParsedValue(clValueWrapper: element)
-                ret.append(elementValue)
-            }
-            return ret as AnyObject
-        case .FixedListWrapper(let array):
-             var ret:[AnyObject] = [];
-            for element in array{
-                let elementValue = CLValue.getParsedValue(clValueWrapper: element)
-                ret.append(elementValue)
-            }
-            return ret as AnyObject
-        case .ResultWrapper(let string, let cLValueWrapper):
-            let clValueParsed = CLValue.getParsedValue(clValueWrapper: clValueWrapper)
-            let ret:[String:Any] = [string:clValueParsed]
-            return ret as AnyObject
-        case .MapWrapper(let keyArray, let valueArray):
-            var clValueParsed:[AnyObject] = []
-            let totalKey = keyArray.count
-            for i in 0 ..< totalKey {
-                let oneItem : [String:AnyObject] = [CLValue.getParsedValue(clValueWrapper: keyArray[i]) as! String:CLValue.getParsedValue(clValueWrapper: valueArray[i]) as AnyObject]
-                clValueParsed.append(oneItem as AnyObject)
-            }
-            return clValueParsed as AnyObject
-        case .Tuple1Wrapper(let cLValueWrapper):
-            let elementValue = CLValue.getParsedValue(clValueWrapper: cLValueWrapper)
-            return elementValue as AnyObject
-        case .Tuple2Wrapper(let cLValueWrapper1, let cLValueWrapper2):
-            let elementValue1 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper1)
-            let elementValue2 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper2)
-            return [elementValue1,elementValue2] as AnyObject
-        case .Tuple3Wrapper(let cLValueWrapper1, let cLValueWrapper2, let cLValueWrapper3):
-            let elementValue1 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper1)
-            let elementValue2 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper2)
-            let elementValue3 = CLValue.getParsedValue(clValueWrapper: cLValueWrapper3)
-            return [elementValue1,elementValue2,elementValue3] as AnyObject
-        case .AnyCLValue(let anyObject):
-            if anyObject != nil {
-                return anyObject as AnyObject
-            } else {
-                return "NULL" as AnyObject
-            }
-        case .NULL:
-            return "NULL" as AnyObject
-        case .NONE:
-            break
-        }
-        return "" as AnyObject
-    }
     
-   
     /**
         Function to check if a CLType is primitive, which means no recursive call to CLType inside
        - Parameter : a CLType object
@@ -232,49 +148,6 @@ public class CLValue {
             ret = true
         }
         return ret
-    }
-    /**
-        Function to get json data from CLType if the CLType is compound, which mean the CLType contains recursive declaration to other CLType
-       - Parameter : a CLType object
-       - Returns: json data of type [String:Any] for that CLType
-     This function is used to build the whole json generation for a CLValue
-     The following CLType is primitive: Bool, I32, I64, U8, U32, U64, U128, U256, U512, Unit, String, Key, URef, PublicKey, Any
-     The following CLType is compound: BytesArray, Option, List, FixedList,Map,Tuple1, Tuple2, Tuple3, Result
-     */
-    public static func getCLTypeJsonCompound(cl_type:CLType)->[String:Any] {
-        switch cl_type {
-        case .BytesArray(let uInt32):
-            let retObj:[String:Any] = ["ByteArray":uInt32]
-            return retObj
-            case .Result(let cLType1, let cLType2):
-                //return "Result"
-            break;
-            case .Option(let cLType):
-                let optionStr :[String:Any] = ["Option":CLValue.getCLTypeString(cl_type: cLType)]
-                return optionStr
-            case .List(let cLType):
-                //return "List"
-            break;
-            case .FixedList(let cLType):
-                //return "FixedList"
-            break
-            case .Map(let cLType1, let cLType2):
-               // return "Map"
-            break
-            case .Tuple1(let cLType):
-               // return "Tuple1"
-            break
-            case .Tuple2(let cLType1, let cLType2):
-                //return "Tuple2"
-            break
-            case .Tuple3(let cLType1, let cLType2, let cLType3):
-               // return "Tuple3"
-            break
-            default:
-                return ["":"" as Any]
-           
-        }
-        return ["":"" as Any]
     }
     /**
         Function to get json data from CLType if the CLType is primitive, which mean the CLType does not contain recursive declaration to other CLType
@@ -404,6 +277,14 @@ public class CLValue {
             return ""
         }
     }
+    /**
+     Get raw value for CLValueWrapper, of type .Key. Use this function for CLValue json exporter. This function unwrap the CLValueWrapper with value .Key(String) to just value inside of the Key
+     - Parameter :
+        - clValue of Key CLValueWrapper type
+     - Returns: the string value inside the Key. The value will be returned as [String:String], Depends on Key type, the key is "Account", "Hash" or "URef".
+     For example if the Key is .Key("account-hash-c6d93dd827202f3b37297382b1cb9269c07d71a79a49824bb1a008c650a04473") then the return value will be
+        "Account":"c6d93dd827202f3b37297382b1cb9269c07d71a79a49824bb1a008c650a04473"
+     */
     public static func getRawValueOfKey(clValue:CLValueWrapper)->[String:String] {
         switch clValue {
         case .Key(let keyValue):
@@ -779,7 +660,8 @@ public class CLValue {
                 return .BytesArray(parsed)
             }
         case .CLAny:
-        if let parsed = from as? AnyObject {
+            return .AnyCLValue(CONST_NULL_RETURN_VALUE as AnyObject)
+       /* if let parsed = from as? AnyObject {
             if parsed is NSNull != nil {
                 return .AnyCLValue(CONST_NULL_RETURN_VALUE as AnyObject)
             } else if (parsed as? String)?.lowercased() == "<null>" {
@@ -789,7 +671,7 @@ public class CLValue {
             return .AnyCLValue(parsed)
         } else {
             return .AnyCLValue(CONST_NULL_RETURN_VALUE as AnyObject)
-        }
+        }*/
         
         case .NONE:
             return .NONE

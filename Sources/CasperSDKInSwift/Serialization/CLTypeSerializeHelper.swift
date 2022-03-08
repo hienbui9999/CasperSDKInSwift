@@ -40,8 +40,8 @@ public class CLTypeSerializeHelper {
             return "16"
         case .Option(let cLType):
             return "0d" + CLTypeSerialize(input: cLType)
-        case .List(_):
-            return "0e"
+        case .List(let clType):
+            return "0e" + CLTypeSerialize(input: clType)
         case .BytesArray(_):
             return "0f"
         case .Result(_, _):
@@ -169,6 +169,9 @@ public class CLTypeSerializeHelper {
             
         case .ListWrapper(let array):
             let arraySize:UInt32 = UInt32(array.count)
+            if (arraySize == 0) {
+                return ""
+            }
             var result = CLTypeSerializeHelper.UInt32Serialize(input: arraySize)
             do {
                 for e in array {
@@ -223,6 +226,9 @@ public class CLTypeSerializeHelper {
             }
             
         case .MapWrapper(let keyArray, let valueArray):
+            if keyArray.count == 0 {
+                return "00000000"
+            }
             let firstKeyItem : CLValueWrapper = keyArray[0];
             let comparableString =  CLValue.getComparableType(clValue:  firstKeyItem)
             if comparableString != "none" {
@@ -687,6 +693,9 @@ public class CLTypeSerializeHelper {
      - Returns: String represents the serialization of big number in little endian, with first byte represent the length of the serialization string, next is the serialization string. Example: Input ("15") then output is "010f"
      */
     public static func BigNumberSerialize(input:String,withPrefix0x:Bool = false) throws ->String {
+        if input == "0" {
+            return "00"
+        }
         if input.isNumeric {
             let numberSerialize:String = CLTypeSerializeHelper.NumberSerialize(input: input)
             return CLTypeSerializeHelper.fromBigToLittleEdian(input: numberSerialize,withPrefix0x:withPrefix0x)

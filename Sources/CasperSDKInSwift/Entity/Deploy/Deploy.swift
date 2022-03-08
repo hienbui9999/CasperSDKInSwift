@@ -14,27 +14,34 @@ public class Deploy {
     ///Deploy Session, which is object of class ExecutableDeployItem
     public var session:ExecutableDeployItem?;
     /**
+        Function to get  json string from Deploy object
+       - Parameter : none
+       - Returns: json string representing the current deploy object
+     */
+    public func toJsonString()->String {
+        let headerString:String = "\"header\":{\"account\":\"\(header.account)\",\"timestamp\":\"\(header.timestamp)\",\"ttl\":\"\(header.ttl)\",\"gas_price\":\(header.gas_price),\"body_hash\":\"\(header.body_hash)\",\"dependencies\":[],\"chain_name\":\"\(header.chain_name)\"}";
+        let paymentJsonStr = "\"payment\":" + ExecutableDeployItemHelper.toJsonString(input:payment!);
+        let sessionJsonStr =  "\"session\":" +  ExecutableDeployItemHelper.toJsonString(input:session!);
+        let approvalJsonStr:String = "\"approvals\":[{\"signer\":\"\(approvals[0].signer)\",\"signature\":\"\(approvals[0].signature)\"}]";
+        let hashStr = "\"hash\":\"\(hash)\""
+        let deployJsonStr :String = "{\"id\":1,\"method\":\"account_put_deploy\",\"jsonrpc\":\"2.0\",\"params\":[{" + headerString + ","+paymentJsonStr + "," + sessionJsonStr + "," + approvalJsonStr + "," + hashStr + "}]}"
+        return deployJsonStr
+    }
+    /**
         Function to get  json data from Deploy object
        - Parameter : none
        - Returns: json data representing the current deploy object, in form of [String:Any], used to send to http method to implement the account_put_deploy RPC call
      */
+
     public func toJsonData()->Data {
-        let headerJson:[String:Any] = ["account":header.account,"timestamp":header.timestamp,"ttl":header.ttl,"gas_price":header.gas_price,"body_hash":header.body_hash,"dependencies":[],"chain_name":header.chain_name]
-        //for session
-        let paymentJson = ExecutableDeployItemHelper.toJson(input:payment!)//["ModuleBytes":jsonPayment];
-        let sessionJson = ExecutableDeployItemHelper.toJson(input:session!)// ["Transfer":argsJsonSession]
-        let approvalJson:[String:Any] = ["signer":approvals[0].signer,"signature":approvals[0].signature]//approvals[0].signature]
-        let approvalJsons:[AnyObject] = [approvalJson as AnyObject]
-        let params:[String:Any] = ["hash":hash,"header":headerJson,"payment":paymentJson,"session":sessionJson,"approvals":approvalJsons];
-        let paramReal:[AnyObject] = [params as AnyObject]
-        let obj:[String:Any] = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":"account_put_deploy","params":paramReal]
-        let encode = JSONEncoder()
-        encode.outputFormatting = .prettyPrinted
         do {
-            let jsonData = try JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
-           // let jsonString = String(data: jsonData, encoding: String.Encoding.ascii)!
-           //print(jsonString);
-            return jsonData
+            var jsonStr : String = toJsonString()
+            let data = Data(jsonStr.utf8)
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                //let jsonString = String(data: jsonData, encoding: String.Encoding.ascii)!
+                return jsonData
+            }
         }
         catch {
             NSLog("Error:\(error)")
