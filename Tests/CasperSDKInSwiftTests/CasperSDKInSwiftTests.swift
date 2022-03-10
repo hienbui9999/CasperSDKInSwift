@@ -4,13 +4,13 @@ final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
       
         //M4 test cases
-        //Test detail for M4 in following files
+        //Test detail for M4 in following files:
         //TestEd25519KeyWrapper.swift
         //TestSecp256k1KeyWrapper.swift
         //TestPutDeploy.swift
         
         //M3 test cases
-        //Test detail for M3 in following files
+        //Test detail for M3 in following files:
         //TestCLTypeSerialization.swift
         //TestCLValueSerialization.swift
         //TestDeploySerialization.swift
