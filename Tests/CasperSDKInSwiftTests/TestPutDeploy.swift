@@ -2,10 +2,9 @@ import XCTest
 import Blake2
 @testable import CasperSDKInSwift
 final public class TestPutDeploy : XCTestCase {
-    
     var signatureValue:String = "";
     //current tested, account of type ed25519
-    var accountStr:String = "01e50a952b03f26fb34afdd7bd4d2cf993526d79f193aa2d19af926518e0b29aca"
+    var accountStr:String = "01982c2b64dabfd2a51a635b7830859d13ffba67b575e6287d4854981eff83cff4"
     //try this account for insufficient money account of type Ed25519
     //"016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
    // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"// -- Account for secp256k1
@@ -15,7 +14,7 @@ final public class TestPutDeploy : XCTestCase {
         testPutDeployTransfer()
 
         //test 1.2 put a deploy of transfer type, with account of Secp256k1 type
-        testPutDeployTransfer(withAccountStr: "0203d5450ff2c381a5da59d2247fdba9096e4a238691547b6a5f1d78555bcd4ff788",ofTypeEd25519: false)
+        testPutDeployTransfer(withAccountStr: "0202b5de5274232d4ac88613f73f829d5f924ffbc748f54ae4f51578d21e9ed73cea",ofTypeEd25519: false)
 
         //test 2 put a deploy in which session is a StoredContractByHash
         testPutDeployStoredContractByHash()
@@ -419,9 +418,9 @@ final public class TestPutDeploy : XCTestCase {
             
             //Deploy payment initialization
             let clValue:CLValue = CLValue();
-            clValue.bytes = "0500eaa55a01";
+            clValue.bytes = "04005ed0b2";
             clValue.cl_type = .U512
-            clValue.parsed = .U512(U512Class.fromStringToU512(from: "5815790080"))
+            clValue.parsed = .U512(U512Class.fromStringToU512(from: "3000000000"))
             let namedArg:NamedArg = NamedArg();
             namedArg.name = "amount"
             namedArg.argsItem = clValue
@@ -431,16 +430,16 @@ final public class TestPutDeploy : XCTestCase {
             
             //1st namedArg
             let clValueSession1:CLValue = CLValue();
-            clValueSession1.bytes = "08000064a7b3b6e00d";
-            clValueSession1.parsed = .U256(U256Class.fromStringToU256(from: "1000000000000000000"))
+            clValueSession1.bytes = "04005ed0b2";
+            clValueSession1.parsed = .U256(U256Class.fromStringToU256(from: "3000000000"))
             clValueSession1.cl_type = .U256
             let namedArgSession1:NamedArg = NamedArg();
             namedArgSession1.name = "amount_in"
             namedArgSession1.argsItem = clValueSession1
             //2nd namedArg
             let clValueSession2:CLValue = CLValue();
-            clValueSession2.bytes = "08242358945d1d911f";
-            clValueSession2.parsed = .U256(U256Class.fromStringToU256(from: "2274631574556779300"))
+            clValueSession2.bytes = "04005ed0b2";
+            clValueSession2.parsed = .U256(U256Class.fromStringToU256(from: "3000000000"))
             clValueSession2.cl_type = .U256
             let namedArgSession2:NamedArg = NamedArg();
             namedArgSession2.name = "amount_out_min"
