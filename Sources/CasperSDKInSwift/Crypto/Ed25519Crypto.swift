@@ -71,9 +71,9 @@ public class Ed25519Cryto {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
             } catch {
-                NSLog("Ed25519 Private key file does not exist, about to create new one!")
+             //   NSLog("Ed25519 Private key file does not exist, about to create new one!")
             }
-            NSLog("Delete auto generated Ed25519 private file.")
+         //   NSLog("Delete auto generated Ed25519 private file.")
         }
         do {
             try text.write(to: fileURL, atomically: false, encoding: .utf8)
@@ -96,9 +96,9 @@ public class Ed25519Cryto {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
             } catch {
-                NSLog("Ed25519 Private key file does not exist, about to create new one!")
+                //NSLog("Ed25519 Private key file does not exist, about to create new one!")
             }
-            NSLog("Delete auto generated Ed25519 private file.")
+           // NSLog("Delete auto generated Ed25519 private file.")
         }
         do {
             try text.write(to: fileURL, atomically: false, encoding: .utf8)
@@ -229,19 +229,7 @@ public class Ed25519Cryto {
             pemStr = pemStr.trimmingCharacters(in: .whitespacesAndNewlines)
             let pemIndex = pemStr.index(pemStr.startIndex,offsetBy: 16);
             let publicBase64:String = String(pemStr[pemIndex..<pemStr.endIndex])
-           /* do {
-                guard let data = Data(base64EncodedURLSafe: publicBase64) else {
-                    throw PemFileHandlerError.InvalidPemKeyFormat
-                }
-                var publicBytesArray:[UInt8] = [];
-                for byte in data {
-                    publicBytesArray.append(byte)
-                }
-                let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: publicBytesArray)
-                return publicKeyFromPem
-            } catch {
-                throw GenerateKeyError.PublicKeyGenerateError
-            }*/
+        
             if let base64DecodeShort = publicBase64.base64Decoded {
                 do {
                     let publicKeyFromPem = try Curve25519.Signing.PublicKey.init(rawRepresentation: base64DecodeShort.bytes)

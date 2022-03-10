@@ -35,7 +35,7 @@ public class Deploy {
 
     public func toJsonData()->Data {
         do {
-            var jsonStr : String = toJsonString()
+            let jsonStr : String = toJsonString()
             let data = Data(jsonStr.utf8)
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)

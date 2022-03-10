@@ -337,7 +337,7 @@ public class CLValueWrapperToJsonString
                 tupleStr3 = CLValueWrapperToJsonString.getParsedCompound(clValueWrapper: cLValueWrapperTuple33);
             }
             ret = "[" + tupleStr1 + "," + tupleStr2 + "," + tupleStr3 + "]";
-        case .AnyCLValue(let anyObject):
+        case .AnyCLValue(_):
             return "NULL"
         case .NULL:
             return "NULL";

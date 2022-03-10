@@ -14,9 +14,9 @@ public class JsonEraValidators {
         - Returns: JsonEraValidators object
         */
 
-    public static func fromJsonToEraValidator(from:[String:Any])->JsonEraValidators {
+    public static func fromJsonToEraValidator(from:[String:Any]?)->JsonEraValidators {
         let ret : JsonEraValidators = JsonEraValidators();
-        if let from1 = from as? [String:Any] {
+        if let from1 = from {
             if let era_id = from1["era_id"] as? UInt64 {
                 ret.era_id = era_id
             }

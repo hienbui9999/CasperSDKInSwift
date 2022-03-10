@@ -23,7 +23,17 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CasperSDKInSwift",
-            dependencies: ["Blake2","SwiftECC"]),
+            dependencies: ["Blake2","SwiftECC"],
+            resources: [
+                        .process("Crypto/Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem"),
+                        .process("Crypto/Assets/Ed25519/WriteSwiftPrivateKeyEd25519.pem"),
+                        .process("Crypto/Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem"),
+                        .process("Crypto/Assets/Secp256k1/WriteSwiftPrivateKeySecp256k1.pem"),
+                        .process("Crypto/Assets/Ed25519/ReadSwiftPublicKeyEd25519.pem"),
+                        .process("Crypto/Assets/Ed25519/WriteSwiftPublicKeyEd25519.pem"),
+                        .process("Crypto/Assets/Secp256k1/ReadSwiftPublicKeySecp256k1.pem"),
+                        .process("Crypto/Assets/Secp256k1/WriteSwiftPublicKeySecp256k1.pem")]
+                ),
         .testTarget(
             name: "CasperSDKInSwiftTests",
             dependencies: ["CasperSDKInSwift","Blake2","SwiftECC"]),

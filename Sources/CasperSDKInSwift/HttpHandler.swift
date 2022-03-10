@@ -36,9 +36,8 @@ class HttpHandler:XCTestCase {
                     if let message1 = errorDeploy["message"] as? String {
                         message = message1
                     }
-                    NSLog("Error get Deploy Result, with Error message:")
+                    NSLog("Error get Deploy Result, with Error code:\(code!) and message:")
                     NSLog(message)
-                   // throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "chain_get_block_transfers")
                 } else {
                     do {
                         let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)

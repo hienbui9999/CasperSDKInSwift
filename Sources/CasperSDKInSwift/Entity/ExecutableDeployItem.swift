@@ -52,7 +52,7 @@ public class ExecutableDeployItemHelper {
                 return retStr;
             }
             else {
-                let innerJson  : String  = "[\"hash\":\"\(hash)\",\"version\": \(version), \"entry_point\":\"\(entry_point)\",\(argsString)]";
+                let innerJson  : String  = "[\"hash\":\"\(hash)\",\"version\": \(version!), \"entry_point\":\"\(entry_point)\",\(argsString)]";
                 retStr = "[\"StoredVersionedContractByHash\":\(innerJson)]";
             }
             return retStr
@@ -62,7 +62,7 @@ public class ExecutableDeployItemHelper {
                 let innerJson  : String = "{\"name\":\"\(name)\",\"version\":null, \"entry_point\":\"\(entry_point)\",\(argsString)}";
                 retStr = "{\"StoredVersionedContractByName\":\(innerJson)}";
             } else {
-                let innerJson  : String = "{\"name\":\"\(name)\",\"version\":\(version), \"entry_point\":\"\(entry_point)\",\(argsString)}";
+                let innerJson  : String = "{\"name\":\"\(name)\",\"version\":\(version!), \"entry_point\":\"\(entry_point)\",\(argsString)}";
                 retStr = "{\"StoredVersionedContractByName\":\(innerJson)}";
             }
             return retStr

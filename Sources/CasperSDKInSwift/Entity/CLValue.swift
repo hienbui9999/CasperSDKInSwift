@@ -53,7 +53,6 @@ public class CLValue {
         default:
             return false
         }
-        return false
     }
     /**
         Function to get  parsed value in form of string from CLValueWrapper object
@@ -83,7 +82,6 @@ public class CLValue {
         default:
             return ""
         }
-        return "";
     }
     
     /**
@@ -564,7 +562,7 @@ public class CLValue {
             break;
         case .PublicKey:
             break
-        case .BytesArray(let uInt32):
+        case .BytesArray(_):
             break
         case .CLAny :
             break
@@ -582,7 +580,7 @@ public class CLValue {
         - clType: of type String, used to determine how to parse the from parameter to retrieve the CLValue
      - Returns: CLValueWrapper object
      */
-    public static func getCLValueWrapperPrimitive(from:AnyObject,clType:CLType) -> CLValueWrapper {
+    public static func getCLValueWrapperPrimitive(from:AnyObject?,clType:CLType) -> CLValueWrapper {
         switch clType {
         case .Bool:
             if let parsed = from as? Bool {
@@ -621,19 +619,15 @@ public class CLValue {
                 return .U512(U512Class.fromStringToU512(from: parsed))
             }
         case .Unit:
-            if let parsed = from as? AnyObject {
-                if parsed is NSNull != nil {
-                    return .Unit(CONST_NULL_RETURN_VALUE)
-                }
-                else if let parsed = from as? String {
+                if let parsed = from as? String {
                     if parsed == "<null>" {
                         return .Unit(CONST_NULL_RETURN_VALUE)
                     } else {
                     }
                     return .Unit(parsed)
+                } else {
+                    return .Unit(CONST_NULL_RETURN_VALUE)
                 }
-            }
-            break;
         case .String:
             if let parsed = from as? String {
                 return .String(parsed)

@@ -5,15 +5,18 @@ final public class TestPutDeploy : XCTestCase {
     
     var signatureValue:String = "";
     //current tested, account of type ed25519
-    var accountStr:String = "01b8974febf081e11ce4a4a4032c22baa056746c7beaf11319b60658aa9d42d505" //-insufficient money account
+    var accountStr:String = "01e50a952b03f26fb34afdd7bd4d2cf993526d79f193aa2d19af926518e0b29aca"
+    //try this account for insufficient money account of type Ed25519
     //"016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
    // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"// -- Account for secp256k1
     public func testAll() {
-       
         
-        //test 1 put a deploy of transfer type
+        //test 1.1 put a deploy of transfer type, with account of Ed25519 type
         testPutDeployTransfer()
-       
+
+        //test 1.2 put a deploy of transfer type, with account of Secp256k1 type
+        testPutDeployTransfer(withAccountStr: "0203d5450ff2c381a5da59d2247fdba9096e4a238691547b6a5f1d78555bcd4ff788",ofTypeEd25519: false)
+
         //test 2 put a deploy in which session is a StoredContractByHash
         testPutDeployStoredContractByHash()
         
@@ -110,16 +113,6 @@ final public class TestPutDeploy : XCTestCase {
             } catch {
                 
             }
-            //sign for secp256k1, uncomment this code if you want to test with secp256k1, but you have to change the account to secp256k1 type also
-            /*do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
-            }*/
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
             dai1.signature = signatureValue;
@@ -207,16 +200,7 @@ final public class TestPutDeploy : XCTestCase {
             } catch {
                 
             }
-            //sign for secp256k1
-            do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
-            }
+            
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
             dai1.signature = signatureValue;
@@ -303,16 +287,6 @@ final public class TestPutDeploy : XCTestCase {
             } catch {
                 
             }
-            //sign for secp256k1
-            do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
-            }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
             dai1.signature = signatureValue;
@@ -393,9 +367,6 @@ final public class TestPutDeploy : XCTestCase {
             runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2,namedArgSession3];
             let session:ExecutableDeployItem = .StoredContractByHash(hash: "56c8e4ebb005e6679bb48887ca7e3c37768a85893f93cd7bcdbdd6bdc41acde5", entry_point: "testing_erc20_transfer", args: runTimeArgs)
             
-           
-            //Deploy approvals
-            
             //Deploy initialization
             deploy.header = deployHeader;
             deploy.payment = payment;
@@ -410,16 +381,6 @@ final public class TestPutDeploy : XCTestCase {
                  signatureValue = "01" + signedMessage.hexEncodedString()
             } catch {
                 
-            }
-            //sign for secp256k1
-            do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
@@ -526,8 +487,6 @@ final public class TestPutDeploy : XCTestCase {
             runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2,namedArgSession3,namedArgSession5,namedArgSession6,namedArgSession8];
             let session:ExecutableDeployItem = .StoredContractByHash(hash: "4f4da49a080efdf3a66ddc279f050c0700618db675507734a46a8a1bb784575f", entry_point: "swap_exact_tokens_for_tokens", args: runTimeArgsSession)
             
-            //Deploy approvals
-            
             //Deploy initialization
             deploy.header = deployHeader;
             deploy.payment = payment;
@@ -543,16 +502,7 @@ final public class TestPutDeploy : XCTestCase {
             } catch {
                 
             }
-            //sign for secp256k1
-            do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
-            }
+            
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = accountStr
             dai1.signature = signatureValue;
@@ -564,7 +514,7 @@ final public class TestPutDeploy : XCTestCase {
             NSLog("Error put deploy:\(error)")
         }
     }
-    public func testPutDeployTransfer(withAccountStr:String = "") {
+    public func testPutDeployTransfer(withAccountStr:String = "",ofTypeEd25519:Bool = true) {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
@@ -645,23 +595,26 @@ final public class TestPutDeploy : XCTestCase {
             deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
             //sign with ed25519
+            if (ofTypeEd25519 == true) {
             let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
-            do {
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
-                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
-                 signatureValue = "01" + signedMessage.hexEncodedString()
-            } catch {
-                
-            }
+                do {
+                    let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
+                     let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                     signatureValue = "01" + signedMessage.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Ed25519:\(error)")
+                }
+            } else {
             //sign for secp256k1
-            do {
-                let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
-                let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
-                let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
-                let signatureSecp256k1Full = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                //use this signature if you use secp256k1 signing
-            } catch {
-                NSLog("Error:\(error)")
+                do {
+                    let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                    let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                    let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                    signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                    //use this signature if you use secp256k1 signing
+                } catch {
+                    NSLog("Error sign Secp256k1:\(error)")
+                }
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
             dai1.signer = deployHeader.account

@@ -70,9 +70,9 @@ public class Secp256k1Crypto {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
             } catch {
-                NSLog("Secp256k1 Private key file does not exist, about to create new one!")
+               // NSLog("Secp256k1 Private key file does not exist, about to create new one!")
             }
-            NSLog("Delete auto generated Secp256k1 private file.")
+           // NSLog("Delete auto generated Secp256k1 private file.")
         }
         do {
             try text.write(to: fileURL, atomically: false, encoding: .utf8)
@@ -92,9 +92,9 @@ public class Secp256k1Crypto {
             do {
                 try FileManager.default.removeItem(atPath: fileURL.path)
             } catch {
-                NSLog("Secp256k1 Public key file does not exist, about to create new one!")
+              //  NSLog("Secp256k1 Public key file does not exist, about to create new one!")
             }
-            NSLog("Delete auto generated Secp256k1 public file.")
+           // NSLog("Delete auto generated Secp256k1 public file.")
         }
         do {
             try text.write(to: fileURL, atomically: false, encoding: .utf8)

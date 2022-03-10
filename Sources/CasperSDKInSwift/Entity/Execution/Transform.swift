@@ -63,7 +63,7 @@ public class TransformHelper {
             }
             else if let transformWriteDeployInfo = transformType["WriteDeployInfo"] as? [String:Any] {
                 retValue = .WriteDeployInfo(DeployInfo.fromJsonToDeployInfo(from: transformWriteDeployInfo))
-            } else if let writeEraInfo = transformType["WriteEraInfo"] as? [String:Any] {
+            } else if let _ = transformType["WriteEraInfo"] as? [String:Any] {
             } else if let transformTransfer = transformType["WriteTransfer"] as? [String:Any] {
                 retValue = .WriteTransfer(Transfer.fromJsonToTransfer(from: transformTransfer))
             } else if let bidJson = transformType["WriteBid"] as? [String:Any] {

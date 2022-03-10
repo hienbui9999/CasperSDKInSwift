@@ -105,6 +105,7 @@ public class JsonConversion {
         encode.outputFormatting = .prettyPrinted
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: obj as Any, options: .prettyPrinted)
+            //let convertedString:String = String(data: jsonData, encoding: String.Encoding.utf8) ?? ""
             return jsonData
         }
         catch {

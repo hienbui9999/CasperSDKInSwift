@@ -12,22 +12,22 @@ public class TestEd25519KeyWrapper : XCTestCase  {
         do {
             //Read public key from Pem file
             let publicKey = try ed25519Cryto.readPublicKeyFromPemFile(pemFileName: readPublicKeyPemFile)
-            print("Ed25519 PublicKey in hexa")
-            print(publicKey.rawRepresentation.hexEncodedString())
+            NSLog("Ed25519 PublicKey in hexa")
+            NSLog(publicKey.rawRepresentation.hexEncodedString())
             //Read private key from Pem file
             let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: readPrivateKeyPemFile)
-            print("Ed25519 PrivateKey in hexa")
-            print(privateKey.rawRepresentation.hexEncodedString())
+            NSLog("Ed25519 PrivateKey in hexa")
+            NSLog(privateKey.rawRepresentation.hexEncodedString())
             //Write public key to Pem file
             try ed25519Cryto.writePublicKeyToPemFile(publicKeyToWrite: publicKey, fileName: writePublicKeyPemFile)
             //Write private key to Pem file
             try ed25519Cryto.writePrivateKeyToPemFile(privateKeyToWrite: privateKey, fileName: writePrivateKeyPemFile)
             //Key pair generation
             let (privateKey2,publicKey2) = ed25519Cryto.generateKey()
-            print("Key pair generation, private key in hexa")
-            print(privateKey2.rawRepresentation.hexEncodedString())
-            print("Key pair generation, public key in hexa")
-            print(publicKey2.rawRepresentation.hexEncodedString())
+            NSLog("Key pair generation, private key in hexa")
+            NSLog(privateKey2.rawRepresentation.hexEncodedString())
+            NSLog("Key pair generation, public key in hexa")
+            NSLog(publicKey2.rawRepresentation.hexEncodedString())
             XCTAssert(privateKey2.rawRepresentation.hexEncodedString().count == 64)
             XCTAssert(publicKey2.rawRepresentation.hexEncodedString().count == 64)
             //Sign message
@@ -58,7 +58,7 @@ public class TestEd25519KeyWrapper : XCTestCase  {
             XCTAssert(isSignCorrect4 == false)
             
         } catch {
-            print("Error:\(error)")
+            NSLog("Error:\(error)")
         }
     }
 }

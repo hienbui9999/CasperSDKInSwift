@@ -2,7 +2,7 @@ import XCTest
 @testable import CasperSDKInSwift
 final class CasperSDKInSwiftTests: XCTestCase {
     func testAll() throws {
-        
+       
         //M4 test cases
         
         let testEd25519:TestEd25519KeyWrapper = TestEd25519KeyWrapper();
