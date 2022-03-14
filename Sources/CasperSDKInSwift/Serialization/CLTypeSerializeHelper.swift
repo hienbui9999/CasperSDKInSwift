@@ -44,16 +44,16 @@ public class CLTypeSerializeHelper {
             return "0e" + CLTypeSerialize(input: clType)
         case .BytesArray(_):
             return "0f"
-        case .Result(_, _):
-            return "10"
-        case .Map(_, _):
-            return "11"
-        case .Tuple1(_):
-            return "12"
-        case .Tuple2(_, _):
-            return "13"
-        case .Tuple3(_, _, _):
-            return "14"
+        case .Result(let clTypeResult1, let clTypeResult2):
+            return "10" + CLTypeSerialize(input: clTypeResult1) + CLTypeSerialize(input: clTypeResult2);
+        case .Map(let clTypeMap1, let clTypeMap2):
+            return "11" + CLTypeSerialize(input: clTypeMap1) + CLTypeSerialize(input: clTypeMap2);
+        case .Tuple1(let clTypeTuple1):
+            return "12" + CLTypeSerialize(input: clTypeTuple1)
+        case .Tuple2(let clTypeTuple1, let clTypeTuple2):
+            return "13" + CLTypeSerialize(input: clTypeTuple1) + CLTypeSerialize(input: clTypeTuple2);
+        case .Tuple3(let clTypeTuple1, let clTypeTuple2, let clTypeTuple3):
+            return "14"  + CLTypeSerialize(input: clTypeTuple1) + CLTypeSerialize(input: clTypeTuple2) + CLTypeSerialize(input: clTypeTuple3);
         case .CLAny:
             return "15"
         case .NONE:

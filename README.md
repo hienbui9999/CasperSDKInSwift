@@ -81,7 +81,7 @@ The put deploy RPC method implements the call "account_put_deploy". User needs t
 
 - The whole deploy with full information is then serialized to a Json string and sent with a POST request to Casper main or test net, or localhost to call account_put_deploy RPC method.
 
-###To call the Put Deploy correctly, remember to do the following thing:
+### To call the Put Deploy correctly, remember to do the following thing:
 
 - Know what your account type is, Ed25519 or Secp256k1.
 

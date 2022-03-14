@@ -132,7 +132,7 @@ public class CLTypeHelper {
                 let clTypeStr = CLTypeHelper.CLTypePrimitiveToJson(clType: clTypeList)
                 ret = "{\"List\":\"\(clTypeStr)\"}"
             } else {
-                let clTypeStr = CLTypeHelper.CLTypeCompoundToJson(clType: clTypeList)
+                let clTypeStr = CLTypeHelper.CLTypeCompoundToJsonString(clType: clTypeList)
                 ret = "{\"List\":\(clTypeStr)}"
             }
             return ret;
@@ -150,18 +150,18 @@ public class CLTypeHelper {
                 let clType1Str = CLTypeHelper.CLTypePrimitiveToJson(clType: clType1)
                 if CLValue.isCLTypePrimitive(cl_type: clType2) {
                     let clType2Str = CLTypeHelper.CLTypePrimitiveToJson(clType: clType2)
-                    let retResult:String = "{\"key\":\(clType1Str),\"value\":\(clType2Str)}";
+                    let retResult:String = "{\"key\":\"\(clType1Str)\",\"value\":\"\(clType2Str)\"}";
                     ret = "{\"Map\":\(retResult)}";
                 } else {
                     let clType2Str = CLTypeHelper.CLTypeCompoundToJson(clType: clType2)
-                    let retResult:String = "{\"key\":\(clType1Str),\"value\":\(clType2Str)}";
+                    let retResult:String = "{\"key\":\"\(clType1Str)\",\"value\":\(clType2Str)}";
                     ret = "{\"Map\":\(retResult)}";
                 }
             } else {
                 let clType1Str = CLTypeHelper.CLTypeCompoundToJson(clType: clType1)
                 if CLValue.isCLTypePrimitive(cl_type: clType2) {
                     let clType2Str = CLTypeHelper.CLTypePrimitiveToJson(clType: clType2)
-                    let retResult:String = "{\"key\":\(clType1Str),\"value\":\(clType2Str)}";
+                    let retResult:String = "{\"key\":\"\(clType1Str)\",\"value\":\"\(clType2Str)\"}";
                     ret = "{\"Map\":\(retResult)}";
                 } else {
                     let clType2Str = CLTypeHelper.CLTypeCompoundToJson(clType: clType2)
