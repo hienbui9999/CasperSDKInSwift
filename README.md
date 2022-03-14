@@ -41,15 +41,29 @@ swift test
 
 ## Build and test from Xcode IDE
 
-In Project Targets select the project General setting, Scroll to “Frameworks, Libraries, and Embedded Content”, choose “+”, then “Add Other…”, then “Add Package Dependency”, parse the link https://github.com/hienbui9999/CasperSDKInSwift to “Search or Enter package URL” search box, then press the “Add package” button.
+In order to build and test the SDK from Xcode, you need to have a Mac run MacOS and Xcode 13 (or above) installed.
 
-Now you can call the Casper RPC methods through the CasperSDK class.
+To install Xcode 13 go to this link: https://developer.apple.com/xcode/
 
-Put the following code:
+Once you have Xcode 13 or above installed in your Mac machine, download or clone the CasperSDKInSwift from Github. An easy way to clone the SDK is just to open XCode and choose "Clone an existing project" in the left panel like what it is in the image below
 
-"import CasperSDKInSwift"
+<img width="803" alt="Screen Shot 2022-03-14 at 11 16 26" src="https://user-images.githubusercontent.com/94465107/158104000-25f5ca27-93ea-4c51-886e-cdd4a2459703.png">
 
-at the beginning of the file to refer for CasperSDK instance and call the method request.
+Enter the Github url (for example "https://github.com/hienbui9999/CasperSDKInSwift.git")  for the Clone address, then hit "Clone"
+
+<img width="701" alt="Screen Shot 2022-03-14 at 11 18 20" src="https://user-images.githubusercontent.com/94465107/158104206-155bec32-2a66-459c-8b9c-a8faf1c9f4d2.png">
+
+When you have the SDK and all source code in your local machine, you can then Build or Test the SDK.
+
+To Build the project hit "Product->Build" like this
+
+<img width="1432" alt="Screen Shot 2022-03-14 at 11 22 11" src="https://user-images.githubusercontent.com/94465107/158104446-c31cce1d-f599-4b83-9345-27264f769c89.png">
+
+To Test the project hit "Product->Test" like this
+
+<img width="1440" alt="Screen Shot 2022-03-14 at 11 21 21" src="https://user-images.githubusercontent.com/94465107/158104483-f125952c-b1d2-4f20-8558-7795829acd8b.png">
+
+You can see log information by "View->Debug Area->Active Console" or just press the combination of Key "Cmd + Shift + C"
 
 # Information for Secp256k1, Ed25519 Key Wrapper and Put Deploy
 
