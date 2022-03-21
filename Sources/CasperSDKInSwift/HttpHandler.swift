@@ -36,14 +36,15 @@ class HttpHandler:XCTestCase {
                     if let message1 = errorDeploy["message"] as? String {
                         message = message1
                     }
-                    NSLog("Error get Deploy Result, with Error code:\(code!) and message:")
+                    NSLog("Error put deploy, with Error code:\(code!) and message:")
                     NSLog(message)
                 } else {
                     do {
                         let deploy_hash = try DeployUtil.getDeployResult(from: responseJSON)
                         XCTAssert(deployHash == deploy_hash)
+                        NSLog("Put deploy successful with deploy_hash:\(deploy_hash)");
                     } catch {
-                        NSLog("Error get Deploy Result")
+                        NSLog("Error put deploy")
                     }
                 }
             }
@@ -173,7 +174,6 @@ class HttpHandler:XCTestCase {
                                 let firstTransfer = getBlockTransferResult.transfers!.first!
                                 NSLog("First transfer deploy_hash:\(firstTransfer.deploy_hash!)")
                                 NSLog("First transfer from:\(firstTransfer.from!)")
-                                NSLog("First transfer to:\(firstTransfer.to!)")
                                 NSLog("First transfer source:\(firstTransfer.source.value!)")
                                 NSLog("First transfer target:\(firstTransfer.target.value!)")
                                 NSLog("First transfer gas:\(firstTransfer.gas.valueInStr)")

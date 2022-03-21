@@ -15,6 +15,7 @@ public class Secp256k1Crypto {
    - Returns: ECPrivateKey of type secp256k1
    */
     public func readPrivateKeyFromFile(pemFileName:String) throws -> ECPrivateKey{
+        //let domain = Domain.instance(curve: .EC256k1)
         let thisSourceFile = URL(fileURLWithPath: #file)
         let thisDirectory = thisSourceFile.deletingLastPathComponent()
         let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
@@ -111,9 +112,12 @@ public class Secp256k1Crypto {
         return (privateKey,publicKey);
     }
     public func signMessage(messageToSign:Data,withPrivateKey:ECPrivateKey) -> ECSignature {
-        let signature = withPrivateKey.sign(msg: messageToSign)
+        //let signature = ECSignature.init(domain: <#T##Domain#>, r: <#T##Bytes#>, s: <#T##Bytes#>)
+        let signature = withPrivateKey.sign(msg: messageToSign);
+        let domain = Domain.instance(curve: .EC256k1);
+        let signature2 = ECSignature.init(domain: domain, r: signature.r, s: signature.s)
         //print(signature.r.data.hexEncodedString() + signature.s.data.hexEncodedString())
-        return signature
+        return signature2;
     }
     public func verifyMessage(withPublicKey:ECPublicKey,signature:ECSignature,plainMessage:Data) -> Bool{
         let trueMessage = withPublicKey.verify(signature: signature, msg: plainMessage.bytes);

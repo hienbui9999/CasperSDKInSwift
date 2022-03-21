@@ -1,23 +1,26 @@
 import XCTest
 import Blake2
+import SwiftECC
 @testable import CasperSDKInSwift
 final public class TestPutDeploy : XCTestCase {
     var signatureValue:String = "";
     //current tested, account of type ed25519
-    var accountStr:String = "01fc01324cf44fcca53109f3c890ed391364372c5c82fca33268ee8f6ec5c6841b"
+    var accountStrEd25519:String = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b"
+    var accountStrSecp256k1:String = "0203b8cd9a768ea963de09f36e16df0532e3438feb947772c08df0d8a7250ca4ae8d"
     //try this account for insufficient money account of type Ed25519
     //"016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
    // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"// -- Account for secp256k1
     public func testAll() {
-        
+    
         //test 1.1 put a deploy of transfer type, with account of Ed25519 type
         testPutDeployTransfer()
-
+        
         //test 1.2 put a deploy of transfer type, with account of Secp256k1 type
-        testPutDeployTransfer(withAccountStr: "02034e4ff0e65c1e0cfe962e8342c406d1c5e01643dee93c860d2b227c301f5347d1",ofTypeEd25519: false)
-
-        //test 2 put a deploy in which session is a StoredContractByHash
-        testPutDeployStoredContractByHash()
+        testPutDeployTransfer(ofTypeEd25519: false)
+        
+        //test 2 put a deploy in which session is a StoredContractByHash, with account of Secp256k1 type
+        //if you just call this testPutDeployStoredContractByHash(), then the account is of type Ed25519
+        testPutDeployStoredContractByHash(withAccountStr: accountStrSecp256k1,ofTypeEd25519: false)
         
         //test3 put a deploy in which session is a StoredContractByName
         testPutDeployStoredContractByName();
@@ -28,19 +31,23 @@ final public class TestPutDeploy : XCTestCase {
         //test 5 put a deploy in which session is a StoredVersionedContractByName
         testPutDeployStoredVersionedContractByName();
         
-        //test 6, test with cl value list(string)
-        testPutDeployStoredContractByHash2()
+        //test 6, test with cl value list(string), with account of Secp256k1 type
+        //if you just call this testPutDeployStoredContractByHash2(), then the account is of type Ed25519
+        testPutDeployStoredContractByHash2(ofTypeEd25519: false)
         
-        //test 7, test with cl value list(map(string,string))
-        testPutDeployStoredContractByHash3()
+        //test 7, test with cl value list(map(string,string)), with account of Secp256k1 type
+        //if you just call this testPutDeployStoredContractByHash3(), then the account is of type Ed25519
+        testPutDeployStoredContractByHash3(ofTypeEd25519: false)
         
         //NEGATIVE PATH
         
         //test8, try to make a transfer deploy to an account with insufficient money
-        testPutDeployTransfer(withAccountStr: "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a")
+        accountStrEd25519 = "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a";
+        testPutDeployTransfer()
         
         //test9, try to make a transfer deploy to an invalid account
-        testPutDeployTransfer(withAccountStr: "026c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a")
+        accountStrSecp256k1 = "026c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a";
+        testPutDeployTransfer(ofTypeEd25519: false);
     }
     
     public func testPutDeployStoredVersionedContractByName() {
@@ -48,7 +55,7 @@ final public class TestPutDeploy : XCTestCase {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            deployHeader.account = accountStrEd25519;
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h"
@@ -116,7 +123,7 @@ final public class TestPutDeploy : XCTestCase {
                 
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = accountStrEd25519
             dai1.signature = signatureValue;
             
             //Deploy approvals
@@ -135,7 +142,7 @@ final public class TestPutDeploy : XCTestCase {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            deployHeader.account = accountStrEd25519;
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h"
@@ -204,7 +211,7 @@ final public class TestPutDeploy : XCTestCase {
             }
             
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = accountStrEd25519
             dai1.signature = signatureValue;
             
             //Deploy approvals
@@ -221,7 +228,7 @@ final public class TestPutDeploy : XCTestCase {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            deployHeader.account = accountStrEd25519;
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h"
@@ -290,7 +297,7 @@ final public class TestPutDeploy : XCTestCase {
                 
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = accountStrEd25519
             dai1.signature = signatureValue;
             
             //Deploy approvals
@@ -302,12 +309,16 @@ final public class TestPutDeploy : XCTestCase {
             NSLog("Error put deploy:\(error)")
         }
     }
-    public func testPutDeployStoredContractByHash() {
+    public func testPutDeployStoredContractByHash(withAccountStr:String = "",ofTypeEd25519:Bool = true) {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            if (ofTypeEd25519 == false) {
+                deployHeader.account = withAccountStr;
+            } else {
+                deployHeader.account = accountStrEd25519;
+            }
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h"
@@ -376,16 +387,28 @@ final public class TestPutDeploy : XCTestCase {
             deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
             //sign with ed25519
-            let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
-            do {
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
-                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
-                 signatureValue = "01" + signedMessage.hexEncodedString()
-            } catch {
-                
+            if (ofTypeEd25519 == true) {
+                let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
+                do {
+                    let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
+                     let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                     signatureValue = "01" + signedMessage.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Ed25519:\(error)")
+                }
+            } else {
+            //sign for secp256k1
+                do {
+                    let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                    let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                    let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                    signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Secp256k1:\(error)")
+                }
             }
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = deployHeader.account
             dai1.signature = signatureValue;
             let approvals:[DeployApprovalItem] = [dai1];
             deploy.approvals = approvals;
@@ -398,12 +421,16 @@ final public class TestPutDeploy : XCTestCase {
    
     
     //test for CLValue of complex things, such as List(String)
-    public func testPutDeployStoredContractByHash2() {
+    public func testPutDeployStoredContractByHash2(ofTypeEd25519:Bool = true) {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            if (ofTypeEd25519 == false) {
+                deployHeader.account = accountStrSecp256k1;
+            } else {
+                deployHeader.account = accountStrEd25519;
+            }
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h 30m"
@@ -497,17 +524,29 @@ final public class TestPutDeploy : XCTestCase {
             deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
             //sign with ed25519
-            let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
-            do {
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
-                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
-                 signatureValue = "01" + signedMessage.hexEncodedString()
-            } catch {
-                
+            if (ofTypeEd25519 == true) {
+                let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
+                do {
+                    let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
+                     let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                     signatureValue = "01" + signedMessage.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Ed25519:\(error)")
+                }
+            } else {
+            //sign for secp256k1
+                do {
+                    let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                    let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                    let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                    signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Secp256k1:\(error)")
+                }
             }
             
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = deployHeader.account
             dai1.signature = signatureValue;
             let approvals:[DeployApprovalItem] = [dai1];
             deploy.approvals = approvals;
@@ -518,12 +557,16 @@ final public class TestPutDeploy : XCTestCase {
         }
     }
     //test for CLValue of complex things, such as List(Map(String,String))
-    public func testPutDeployStoredContractByHash3() {
+    public func testPutDeployStoredContractByHash3(ofTypeEd25519:Bool = true) {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            deployHeader.account = accountStr;
+            if (ofTypeEd25519 == false) {
+                deployHeader.account = accountStrSecp256k1;
+            } else {
+                deployHeader.account = accountStrEd25519;
+            }
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
             deployHeader.ttl = "1h 30m"
@@ -577,8 +620,6 @@ final public class TestPutDeploy : XCTestCase {
             let namedArgSession3:NamedArg = NamedArg();
             namedArgSession3.name = "path"
             namedArgSession3.argsItem = clValueSession3
-            
-          
              
             //5th namedArg
             let clValueSession5:CLValue = CLValue();
@@ -617,17 +658,29 @@ final public class TestPutDeploy : XCTestCase {
             deployHeader.body_hash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
             //sign with ed25519
-            let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
-            do {
-                let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
-                 let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
-                 signatureValue = "01" + signedMessage.hexEncodedString()
-            } catch {
-                
+            if (ofTypeEd25519 == true) {
+                let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
+                do {
+                    let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
+                     let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
+                     signatureValue = "01" + signedMessage.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Ed25519:\(error)")
+                }
+            } else {
+            //sign for secp256k1
+                do {
+                    let secp256k1:Secp256k1Crypto = Secp256k1Crypto();
+                    let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                    let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
+                    signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                } catch {
+                    NSLog("Error sign Secp256k1:\(error)")
+                }
             }
             
             let dai1 : DeployApprovalItem = DeployApprovalItem();
-            dai1.signer = accountStr
+            dai1.signer = deployHeader.account
             dai1.signature = signatureValue;
             let approvals:[DeployApprovalItem] = [dai1];
             deploy.approvals = approvals;
@@ -638,15 +691,15 @@ final public class TestPutDeploy : XCTestCase {
         }
     }
    
-    public func testPutDeployTransfer(withAccountStr:String = "",ofTypeEd25519:Bool = true) {
+    public func testPutDeployTransfer(ofTypeEd25519:Bool = true) {
         do {
             let deploy:Deploy = Deploy();
             //Deploy header initialization
             let deployHeader:DeployHeader = DeployHeader();
-            if (withAccountStr != "") {
-                deployHeader.account = withAccountStr;
+            if (ofTypeEd25519 == false) {
+                deployHeader.account = accountStrSecp256k1;
             } else {
-                deployHeader.account = accountStr;
+                deployHeader.account = accountStrEd25519;
             }
             deployHeader.body_hash = "";
             deployHeader.gas_price = 1
@@ -689,8 +742,8 @@ final public class TestPutDeploy : XCTestCase {
             
             //2nd namedArg
             let clValueSession2:CLValue = CLValue();
-            clValueSession2.bytes = "02021172744b5e6bdc83a591b75765712e068e5d40a3be8ae360274fb26503b4ad38";
-            clValueSession2.parsed = .PublicKey("02021172744b5e6bdc83a591b75765712e068e5d40a3be8ae360274fb26503b4ad38")
+            clValueSession2.bytes = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b";
+            clValueSession2.parsed = .PublicKey("0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b")
             clValueSession2.cl_type = .PublicKey
             let namedArgSession2:NamedArg = NamedArg();
             namedArgSession2.name = "target"
@@ -705,8 +758,26 @@ final public class TestPutDeploy : XCTestCase {
             namedArgSession3.name = "id"
             namedArgSession3.argsItem = clValueSession3
             
+            //4rd namedArg of type Key
+            let clValueSession4:CLValue = CLValue();
+            clValueSession4.bytes = "01dde7472639058717a42e22d297d6cf3e07906bb57bc28efceac3677f8a3dc83b";
+            clValueSession4.parsed = .Key("hash-dde7472639058717a42e22d297d6cf3e07906bb57bc28efceac3677f8a3dc83b");
+            clValueSession4.cl_type = .Key
+            let namedArgSession4:NamedArg = NamedArg();
+            namedArgSession4.name = "spender"
+            namedArgSession4.argsItem = clValueSession4
+            
+            //5rd namedArg of type ByteArray
+            let clValueSession5:CLValue = CLValue();
+            clValueSession5.bytes = "006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc";
+            clValueSession5.parsed = .BytesArray("006d0be2fb64bcc8d170443fbadc885378fdd1c71975e2ddd349281dd9cc59cc");
+            clValueSession5.cl_type = .BytesArray(32)
+            let namedArgSession5:NamedArg = NamedArg();
+            namedArgSession5.name = "testBytesArray"
+            namedArgSession5.argsItem = clValueSession5
+            
             let runTimeArgsSession:RuntimeArgs = RuntimeArgs();
-            runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2,namedArgSession3];
+            runTimeArgsSession.listNamedArg = [namedArgSession1,namedArgSession2,namedArgSession3,namedArgSession4];
             let session:ExecutableDeployItem = .Transfer(args: runTimeArgsSession)
             
            
@@ -720,7 +791,7 @@ final public class TestPutDeploy : XCTestCase {
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader);
             //sign with ed25519
             if (ofTypeEd25519 == true) {
-            let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
+                let ed25519Cryto : Ed25519Cryto = Ed25519Cryto();
                 do {
                     let privateKey = try ed25519Cryto.readPrivateKeyFromPemFile(pemFileName: "Assets/Ed25519/ReadSwiftPrivateKeyEd25519.pem")
                      let signedMessage = try ed25519Cryto.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKey)
@@ -735,7 +806,6 @@ final public class TestPutDeploy : XCTestCase {
                     let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
                     let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes),withPrivateKey: privateKeySecp256k1)
                     signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                    //use this signature if you use secp256k1 signing
                 } catch {
                     NSLog("Error sign Secp256k1:\(error)")
                 }
@@ -751,5 +821,4 @@ final public class TestPutDeploy : XCTestCase {
             NSLog("Error put deploy:\(error)")
         }
     }
-   
 }

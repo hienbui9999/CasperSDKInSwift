@@ -31,31 +31,31 @@ public class CLTypeSerializeHelper {
         case .Unit:
             return "09"
         case .String:
-            return "0a"
-        case .URef:
-            return "0b"
+            return "0a"//10
         case .Key:
-            return "0c"
-        case .PublicKey:
-            return "16"
-        case .Option(let cLType):
+            return "0b"//11
+        case .URef:
+            return "0c"//12
+        case .Option(let cLType)://13
             return "0d" + CLTypeSerialize(input: cLType)
-        case .List(let clType):
+        case .List(let clType)://14
             return "0e" + CLTypeSerialize(input: clType)
-        case .BytesArray(_):
+        case .BytesArray(_)://same as FixedList//15
             return "0f"
-        case .Result(let clTypeResult1, let clTypeResult2):
+        case .Result(let clTypeResult1, let clTypeResult2)://16
             return "10" + CLTypeSerialize(input: clTypeResult1) + CLTypeSerialize(input: clTypeResult2);
-        case .Map(let clTypeMap1, let clTypeMap2):
+        case .Map(let clTypeMap1, let clTypeMap2)://17
             return "11" + CLTypeSerialize(input: clTypeMap1) + CLTypeSerialize(input: clTypeMap2);
-        case .Tuple1(let clTypeTuple1):
+        case .Tuple1(let clTypeTuple1)://18
             return "12" + CLTypeSerialize(input: clTypeTuple1)
-        case .Tuple2(let clTypeTuple1, let clTypeTuple2):
+        case .Tuple2(let clTypeTuple1, let clTypeTuple2)://19
             return "13" + CLTypeSerialize(input: clTypeTuple1) + CLTypeSerialize(input: clTypeTuple2);
-        case .Tuple3(let clTypeTuple1, let clTypeTuple2, let clTypeTuple3):
+        case .Tuple3(let clTypeTuple1, let clTypeTuple2, let clTypeTuple3)://20
             return "14"  + CLTypeSerialize(input: clTypeTuple1) + CLTypeSerialize(input: clTypeTuple2) + CLTypeSerialize(input: clTypeTuple3);
-        case .CLAny:
+        case .CLAny://21
             return "15"
+        case .PublicKey://22
+            return "16"
         case .NONE:
             return ""
         default:

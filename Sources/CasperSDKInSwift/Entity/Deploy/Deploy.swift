@@ -39,7 +39,6 @@ public class Deploy {
             let data = Data(jsonStr.utf8)
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                let jsonString = String(data: jsonData, encoding: String.Encoding.ascii)!
                 return jsonData
             }
         }
