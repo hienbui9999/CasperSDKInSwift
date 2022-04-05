@@ -4,8 +4,8 @@ import Foundation
  */
 
 public class Groups {
-    ///Group
+    /// Group
     public var group: String = ""
-    ///List of key in URef format
+    /// List of key in URef format
     public var keys: [URef] = [URef]()
 }

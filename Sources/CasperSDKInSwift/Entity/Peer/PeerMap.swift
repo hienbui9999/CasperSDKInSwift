@@ -1,8 +1,10 @@
 import Foundation
 
 public class PeerMap {
-    var peerEntryList : [PeerEntry] = [];
-    public func getPeerEntryList()->[PeerEntry] {
-        return peerEntryList;
+    var peerEntryList: [PeerEntry] = []
+
+    public func getPeerEntryList() -> [PeerEntry] {
+        return peerEntryList
     }
+
 }

@@ -4,8 +4,8 @@ import Foundation
  */
 
 public class DisableVersion {
-    ///Protocol version major
-    public var protocol_version_major: UInt32?
-    ///Contract version
-    public var contract_version: UInt32?
+    /// Protocol version major
+    public var protocolVersionMajor: UInt32?
+    /// Contract version
+    public var contractVersion: UInt32?
 }

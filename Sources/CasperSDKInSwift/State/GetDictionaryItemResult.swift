@@ -5,10 +5,10 @@ Class supports the getting of GetDictionaryItemResult from Json String
 */
 
 class GetDictionaryItemResult {
-    public var api_version:String!
-    public var dictionary_key:String!
-    public var stored_value:StoredValue!
-    public var merkle_proof:String!
+    public var apiVersion: String!
+    public var dictionaryKey: String!
+    public var storedValue: StoredValue!
+    public var merkleProof: String!
     /**
         Get GetDictionaryItemResult object from Json string
         - Parameter : a Json string represents the GetDictionaryItemResult object
@@ -16,32 +16,32 @@ class GetDictionaryItemResult {
         - Returns: GetDictionaryItemResult object
         */
 
-    public static func getResult(from:[String:Any]) throws -> GetDictionaryItemResult {
+    public static func getResult(from: [String: Any]) throws -> GetDictionaryItemResult {
         do {
             if let error = from["error"] as AnyObject? {
-                var code:Int!
-                var message:String!
+                var code: Int!
+                var message: String!
                 if let code1 = error["code"] as? Int {
                     code = code1
                 }
                 if let message1 = error["message"] as? String {
                     message = message1
                 }
-                throw CasperMethodCallError.CasperError(code: code, message: message,methodCall: "state_get_dictionary_item")
+                throw CasperMethodCallError.casperError(code: code, message: message, methodCall: "state_get_dictionary_item")
             }
-            let ret:GetDictionaryItemResult = GetDictionaryItemResult()
-            if let result = from["result"] as? [String:Any] {
-                if let api_version = result["api_version"] as? String {
-                    ret.api_version = api_version
+            let ret: GetDictionaryItemResult = GetDictionaryItemResult()
+            if let result = from["result"] as? [String: Any] {
+                if let apiVersion1 = result["api_version"] as? String {
+                    ret.apiVersion = apiVersion1
                 }
-                if let dictionary_key = result["dictionary_key"] as? String {
-                    ret.dictionary_key = dictionary_key
+                if let dictionaryKey1 = result["dictionary_key"] as? String {
+                    ret.dictionaryKey = dictionaryKey1
                 }
-                if let merkle_proof = result["merkle_proof"] as? String {
-                    ret.merkle_proof = merkle_proof
+                if let merkleProof1 = result["merkle_proof"] as? String {
+                    ret.merkleProof = merkleProof1
                 }
-                if let stored_value = result["stored_value"] as? [String:Any] {
-                    ret.stored_value = StoredValueHelper.getStoredValue(from: stored_value)
+                if let storedValue1 = result["stored_value"] as? [String: Any] {
+                    ret.storedValue = StoredValueHelper.getStoredValue(from: storedValue1)
                 }
             }
             return ret
@@ -49,4 +49,5 @@ class GetDictionaryItemResult {
             throw error
         }
     }
+
 }

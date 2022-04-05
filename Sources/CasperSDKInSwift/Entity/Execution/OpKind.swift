@@ -4,8 +4,8 @@ import Foundation
  */
 
 public enum OpKind {
-    case Read
-    case Write
-    case Add
-    case NoOp
+    case read
+    case write
+    case add
+    case noOp
 }

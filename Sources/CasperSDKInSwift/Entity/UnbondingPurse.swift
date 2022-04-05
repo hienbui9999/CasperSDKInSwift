@@ -2,14 +2,11 @@ import Foundation
 /**
  Class represents the UnbondingPurse
  */
- 
 
 public class UnbondingPurse {
-    public var bonding_purse : URef!
-    public var amount:U512Class!
-    public var validator_public_key:PublicKey!
-    public var unbonder_public_key:PublicKey!
-    public var era_of_creation:UInt64=0;
-   
+    public var bondingPurse: URef!
+    public var amount: U512Class!
+    public var validatorPublicKey: PublicKey!
+    public var unbonderPublicKey: PublicKey!
+    public var eraOfCreation: UInt64=0
 }
-

@@ -4,17 +4,17 @@ import Foundation
  */
 
 public class Digest {
-    public var value:String=""
-    
+    public var value: String=""
     /**
        Get Digest object from  string
-       - Parameter : a  String represents the Digest object
-       - Returns: Digest object
+       - Parameter :  a  String represents the Digest object
+       - Returns:  Digest object
        */
 
-    public static func fromStrToDigest(from:String)->Digest {
-        let digest:Digest = Digest();
-        digest.value = from;
-        return digest;
+    public static func fromStrToDigest(from: String) -> Digest {
+        let digest: Digest = Digest()
+        digest.value = from
+        return digest
     }
+
 }

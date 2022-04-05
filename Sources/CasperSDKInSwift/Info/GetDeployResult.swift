@@ -4,7 +4,7 @@ import Foundation
  */
 
 public class GetDeployResult {
-    public var deploy:Deploy = Deploy();
-    public var execution_results:[JsonExecutionResult] = [JsonExecutionResult]();
-    public var api_version:ProtocolVersion =  ProtocolVersion();//1.4.3
+    public var deploy: Deploy = Deploy()
+    public var executionResults: [JsonExecutionResult] = [JsonExecutionResult]()
+    public var apiVersion: ProtocolVersion =  ProtocolVersion()
 }

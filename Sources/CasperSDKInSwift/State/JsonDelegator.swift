@@ -4,30 +4,31 @@ import Foundation
  */
 
 public class JsonDelegator {
-    public var bonding_purse:URef = URef()
-    public var delegatee:PublicKey = PublicKey()
-    public var public_key:PublicKey = PublicKey()
-    public var staked_amount:U512Class = U512Class()
+    public var bondingPurse: URef = URef()
+    public var delegatee: PublicKey = PublicKey()
+    public var publicKey: PublicKey = PublicKey()
+    public var stakedAmount: U512Class = U512Class()
     /**
        Get JsonDelegator object from Json string
        - Parameter : a Json string represents the JsonDelegator object
        - Returns: JsonDelegator object
        */
 
-    public static func toJsonDelegator(from:[String:Any]) -> JsonDelegator {
-        let rJD:JsonDelegator = JsonDelegator()
-        if let bonding_purse = from["bonding_purse"] as? String {
-            rJD.bonding_purse = URef.fromStringToUref(from: bonding_purse)
+    public static func toJsonDelegator(from: [String: Any]) -> JsonDelegator {
+        let rJD: JsonDelegator = JsonDelegator()
+        if let bondingPurse1 = from["bonding_purse"] as? String {
+            rJD.bondingPurse = URef.fromStringToUref(from: bondingPurse1)
         }
-        if let delegatee = from["delegatee"] as? String {
-            rJD.delegatee = PublicKey.strToPublicKey(from: delegatee)
+        if let delegatee1 = from["delegatee"] as? String {
+            rJD.delegatee = PublicKey.strToPublicKey(from: delegatee1)
         }
-        if let public_key = from["public_key"] as? String {
-            rJD.public_key = PublicKey.strToPublicKey(from: public_key)
+        if let publicKey1 = from["public_key"] as? String {
+            rJD.publicKey = PublicKey.strToPublicKey(from: publicKey1)
         }
-        if let staked_amount = from["staked_amount"] as? String {
-            rJD.staked_amount = U512Class.fromStringToU512(from: staked_amount)
+        if let stakedAmount1 = from["staked_amount"] as? String {
+            rJD.stakedAmount = U512Class.fromStringToU512(from: stakedAmount1)
         }
         return rJD
     }
+
 }

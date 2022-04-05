@@ -4,16 +4,16 @@ import Foundation
  */
 
 public class GetDeployParams {
-    public var deploy_hash:String!
+    public var deployHash: String!
     /**
         Get param as Data  from deploy_hash atrribute
         - Parameter : none
         - Returns: Data  to  build the param for POST method sending to RPC method
         */
 
-    public func toJsonData()->Data {
-        let params:[String] = [deploy_hash]
-        let obj:[String:Any] = ["jsonrpc":CASPER_RPC_VERSION,"id":CASPER_ID,"method":"info_get_deploy","params":params]
+    public func toJsonData() -> Data {
+        let params: [String] = [deployHash]
+        let obj: [String: Any] = ["jsonrpc": casperRpcVersion, "id": casperId, "method": "info_get_deploy", "params": params]
         let encode = JSONEncoder()
         encode.outputFormatting = .prettyPrinted
         do {
@@ -21,8 +21,9 @@ public class GetDeployParams {
             return jsonData
         }
         catch {
-            NSLog("Error:\(error)")
+            NSLog("Error: \(error)")
         }
         return Data()
     }
+
 }

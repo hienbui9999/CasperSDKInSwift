@@ -4,6 +4,6 @@ import Foundation
  */
 
 public class NamedKey {
-    public var name:String=""
-    public var key:String=""
+    public var name: String=""
+    public var key: String=""
 }

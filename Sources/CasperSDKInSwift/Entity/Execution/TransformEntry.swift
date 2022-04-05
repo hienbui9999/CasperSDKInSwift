@@ -4,20 +4,21 @@ import Foundation
  */
 
 public class TransformEntry {
-    public var key:String = "";
-    public var transform:Transform = .NONE;
-    
+    public var key: String = ""
+    public var transform: Transform = .none
     /**
        Get TransformEntry object from Json string
        - Parameter : a Json String represents the TransformEntry object
        - Returns: TransformEntry object
        */
-    public static func getTransformEntry(from:[String:Any])->TransformEntry {
-        let transformEntry:TransformEntry = TransformEntry();
+
+    public static func getTransformEntry(from: [String: Any]) -> TransformEntry {
+        let transformEntry: TransformEntry = TransformEntry()
         if let key = from["key"] as? String {
-            transformEntry.key = key;
+            transformEntry.key = key
         }
-        transformEntry.transform = TransformHelper.getTransform(from: from);
-        return transformEntry;
+        transformEntry.transform = TransformHelper.getTransform(from: from)
+        return transformEntry
     }
+
 }

@@ -3,25 +3,25 @@ import Foundation
  Class represents the Transfer
  */
 
-public class Transfer{
-    public var amount:U512Class!
-    public var deploy_hash:String!
-    public var from:String!
-    public var gas:U512Class!
-    public var source:URef!
-    public var target:URef!
-    public var to:String?
-    public var id:UInt64?
+public class Transfer {
+    public var amount: U512Class!
+    public var deployHash: String!
+    public var from: String!
+    public var gas: U512Class!
+    public var source: URef!
+    public var target: URef!
+    public var to: String?
+    public var id: UInt64?
     /**
        Get Transfer object from Json string
        - Parameter : a Json String represents the Transfer object
        - Returns: Transfer object
        */
 
-    public static func fromJsonToTransfer(from:[String:Any])->Transfer {
-        let transfer:Transfer = Transfer();
-        if let deploy_hash = from["deploy_hash"] as? String {
-            transfer.deploy_hash = deploy_hash
+    public static func fromJsonToTransfer(from: [String: Any]) -> Transfer {
+        let transfer: Transfer = Transfer()
+        if let deployHash1 = from["deploy_hash"] as? String {
+            transfer.deployHash = deployHash1
         }
         if let fromHash = from["from"] as? String {
             transfer.from = fromHash
@@ -46,4 +46,5 @@ public class Transfer{
         }
         return transfer
     }
+
 }
