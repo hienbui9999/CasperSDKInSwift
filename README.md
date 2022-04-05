@@ -39,6 +39,18 @@ swift build
 swift test
 ```
 
+Note: The project is built and tested successfully without error and warning in Xcode. There are 2 warnings in Github automated script for building or when you run with build script "swift build" in Terminal. The warnings comes from the external package https://github.com/leif-ibsen/SwiftECC.git, which refers to the unused result of 2 function calls, in detail the two warnings are:
+
+1) SwiftECC/Sources/SwiftECC/Domain2/Domain2.swift, at line 196: result of call to 'add' is unused
+                seq1.add(ASN1Integer(BInt(self.rp.k1)))
+                
+2) SwiftECC/Sources/SwiftECC/Domain2/Domain2.swift, at line 198: result of call to 'add' is unused
+                seq1.add(ASN1Sequence()
+                
+The result maybe used for the next work of the external package. (More implementation or extenstion of the encrypting functions).
+
+It does not effect the overall performance or cause any problem to the SDK. 
+
 ## Build and test from Xcode IDE
 
 In order to build and test the SDK from Xcode, you need to have a Mac run MacOS and Xcode 13 (or above) installed.
@@ -632,3 +644,4 @@ This package use the following external packages from github
 
 All the packages are under MIT licence.
  
+
