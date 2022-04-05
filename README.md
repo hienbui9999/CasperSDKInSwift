@@ -644,4 +644,36 @@ This package use the following external packages from github
 
 All the packages are under MIT licence.
  
+##  Coding Standard
 
+The code in the SDK follows the coding standard defined at this tool address:
+
+https://github.com/sleekbyte/tailor
+
+Here are all the file and folder that contains Swift coding/configuration file, counting from the Swift SDK root folder:
+
+File: "Package.swift"
+Folder: "Sources"
+Folder: "Tests"
+
+To test the coding standard for the SDK source file, please install the "tailor" tool at this address: https://github.com/sleekbyte/tailor (follow the install instruction at the "tailor" project github readme file).
+
+To check for file/folder of the Swift SDK source code, please enter the root folder of the Swift SDK source code and just run the following command in Terminal:
+
+* To check coding standard for "Package.swift" file, run this command in Terminal:
+
+``` swift
+tailor Package.swift
+```
+
+* To check coding standard for main source code of the SDK, run this command in Terminal:
+
+``` swift
+tailor Sources
+```
+
+* To check coding standard for test folder of the SDK, run this command in Terminal:
+
+``` swift
+tailor Tests
+```
