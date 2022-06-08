@@ -3,6 +3,15 @@ import XCTest
 final class CasperSDKInSwiftTests: XCTestCase {
 
     func testAll() throws {
+        /*let testDeploy:TestDeploySerialization = TestDeploySerialization()
+        testDeploy.testAll()
+        let a:TestCLValueSerialization = TestCLValueSerialization()
+        do {
+            try a.testAll()
+        } catch {
+            
+        }
+        NSLog("Done")*/
         // M4 test cases
         // Test detail for M4 in following files:
         // TestEd25519KeyWrapper.swift
@@ -13,6 +22,8 @@ final class CasperSDKInSwiftTests: XCTestCase {
         // TestCLTypeSerialization.swift
         // TestCLValueSerialization.swift
         // TestDeploySerialization.swift
+        //let putDeploy:TestPutDeploy = TestPutDeploy()
+        //putDeploy.testAll()
         // M1 & M2 test cases
         let casperSDK: CasperSDK = CasperSDK(url: "https://node-clarity-testnet.make.services/rpc")
         // casperSDK.setMethodUrl(url: "https: // node-clarity-mainnet.make.services/rpc")

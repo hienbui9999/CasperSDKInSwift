@@ -257,7 +257,7 @@ public class CasperSDK {
             let data = input.toJsonData()
             try httpHandler.putDeploy(method: methodCall, params: data, httpMethod: "POST", deployHash: input.hash)
         } catch {
-            NSLog("Error: \(error)")
+            NSLog("Error put deploy: \(error)")
             throw error
         }
     }

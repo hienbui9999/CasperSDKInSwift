@@ -1,4 +1,5 @@
 import Foundation
+import SwiftECC
 let secondInMillisecond: UInt64 = UInt64(1000)
 let miniuteInMilisecond: UInt64 = UInt64(60 * 1000)
 let hourInMilisecond: UInt64 = UInt64(3600 * 1000)
@@ -7,7 +8,34 @@ let weekInMilisecond: UInt64 = dayInMilisecond * 7
 let monthInMilisecond: UInt64 = dayInMilisecond * 30
 let yearInMilisecond: UInt64 = dayInMilisecond * 365
 class Utils {
-
+    public static var deploy: Deploy = Deploy()
+    public static var isPutDeployUsingSecp256k1: Bool = false
+    public static var deployHash: String = ""
+    public static var privateKey: ECPrivateKey?
+    public static var putDeployCounter: Int = 0
+    public static func getSecp256k1Signature(fromDeployHash:String) -> String {
+        do {
+            let secp256k1: Secp256k1Crypto = Secp256k1Crypto()
+            let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(fromDeployHash.hexaBytes), withPrivateKey: Utils.privateKey!)
+            let signatureValue:String = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+            return signatureValue
+        } catch {
+        }
+    }
+    public static func putDeploy() {
+        let casperSDK: CasperSDK = CasperSDK(url: "https://node-clarity-testnet.make.services/rpc")
+        Utils.deploy.approvals[0].signature = Utils.getSecp256k1Signature(fromDeployHash: Utils.deployHash)
+        do {
+            Utils.putDeployCounter += 1
+            if(Utils.putDeployCounter > 10) {
+                Utils.putDeployCounter = 0
+            } else {
+                try casperSDK.putDeploy(input: Utils.deploy)
+            }
+        } catch {
+            
+        }
+    }
     public static func miliSecondToTTL(m: UInt64) -> String {
         if m > yearInMilisecond {
             let totalYear = m/yearInMilisecond

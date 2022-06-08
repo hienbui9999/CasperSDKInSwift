@@ -6,7 +6,7 @@ final class TestDeploySerialization: XCTestCase {
             // Test 1: deploy header serialization test
             let deployHeader: DeployHeader = DeployHeader()
             deployHeader.account = "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
-            deployHeader.timestamp = "2020-11-17T00: 39: 24.072Z"
+            deployHeader.timestamp = "2020-11-17T00:39:24.072Z"
             deployHeader.ttl = "1h"
             deployHeader.gasPrice = 1
         // "19ead6b04eab817745a9c9860a395d45d34200a0a52e7bbab098ec6c6e0d5970"

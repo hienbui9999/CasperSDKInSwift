@@ -51,8 +51,8 @@ public class ExecutableDeployItemHelper {
                 return retStr
             }
             else {
-                let innerJson: String  = "[\"hash\": \"\(hash)\",\"version\": \(version!), \"entry_point\": \"\(entryPoint)\",\(argsString)]"
-                retStr = "[\"StoredVersionedContractByHash\": \(innerJson)]"
+                let innerJson: String  = "{\"hash\": \"\(hash)\",\"version\": \(version!), \"entry_point\": \"\(entryPoint)\",\(argsString)}"
+                retStr = "{\"StoredVersionedContractByHash\": \(innerJson)}"
             }
             return retStr
         case .storedVersionedContractByName(let name, let version, let entryPoint, let args):

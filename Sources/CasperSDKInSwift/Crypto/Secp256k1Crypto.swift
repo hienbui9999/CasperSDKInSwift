@@ -16,7 +16,7 @@ public class Secp256k1Crypto {
    */
 
     public func readPrivateKeyFromFile(pemFileName: String) throws -> ECPrivateKey {
-        // let domain = Domain.instance(curve: .EC256k1)
+       
         let thisSourceFile = URL(fileURLWithPath: #file)
         let thisDirectory = thisSourceFile.deletingLastPathComponent()
         let resourceURL = thisDirectory.appendingPathComponent(pemFileName)
@@ -33,7 +33,10 @@ public class Secp256k1Crypto {
                 text2 = text2.replacingOccurrences(of: suffixPemPrivateStr, with: suffixPemPrivateECStr)
             }
             let privateKey = try ECPrivateKey.init(pem: text2)
-            return privateKey
+            let domain = Domain.instance(curve: .EC256k1)
+            
+            let privateKey2 = try ECPrivateKey.init(domain: domain, s: privateKey.s)
+            return privateKey2
         } catch {
             throw PemFileHandlerError.invalidPemKeyFormat
         }
@@ -114,7 +117,12 @@ public class Secp256k1Crypto {
     }
 
     public func signMessage(messageToSign: Data, withPrivateKey: ECPrivateKey) -> ECSignature {
-        let signature = withPrivateKey.sign(msg: messageToSign)
+     /*   let signatureF = withPrivateKey.sign(msg: messageToSign, deterministic: false)
+        let signatureF1 = withPrivateKey.sign(msg: messageToSign, deterministic: false)
+        let signatureF2 = withPrivateKey.sign(msg: messageToSign, deterministic: false)
+        let signatureT = withPrivateKey.sign(msg: messageToSign, deterministic: true)*/
+        let signature = withPrivateKey.sign(msg: messageToSign, deterministic: false)
+       // withPrivateKey.si
         let domain = Domain.instance(curve: .EC256k1)
         let signature2 = ECSignature.init(domain: domain, r: signature.r, s: signature.s)
         return signature2
@@ -146,7 +154,7 @@ public class Secp256k1Crypto {
                 throw PemFileHandlerError.invalidPemKeyFormat
             }
         } else {
-            NSLog("File not found")
+            NSLog("Pem file for Private key Secp256k1 not found")
             throw PemFileHandlerError.readPemFileNotFound
         }
     }
@@ -204,7 +212,7 @@ public class Secp256k1Crypto {
                 throw PemFileHandlerError.invalidPemKeyFormat
             }
         } else {
-            NSLog("File not found")
+            NSLog("Pem file for Public key Secp256k1 not found")
             throw PemFileHandlerError.readPemFileNotFound
         }
     }

@@ -177,10 +177,10 @@ public class CLTypeHelper {
         case .tuple1(let clTypeTuple):
             if CLValue.isCLTypePrimitive(clType1: clTypeTuple) {
                 let clTypeStr = CLTypeHelper.CLTypePrimitiveToJson(clType: clTypeTuple)
-                ret = "{\"Tuple\": \(clTypeStr)}"
+                ret = "{\"Tuple1\": \"\(clTypeStr)\"}"
             } else {
                 let clTypeStr = CLTypeHelper.CLTypeCompoundToJson(clType: clTypeTuple)
-                ret = "{\"Tuple\": \(clTypeStr)}"
+                ret = "{\"Tuple1\": \(clTypeStr)}"
             }
             return ret
         case .tuple2(let clTypeTuple1, let clTypeTuple2):

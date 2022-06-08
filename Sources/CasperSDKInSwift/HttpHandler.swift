@@ -9,7 +9,7 @@ class HttpHandler: XCTestCase {
     static var methodURL: String = "https: // node-clarity-testnet.make.services/rpc"
     /// RPC method, which can be chain_get_state_root_hash or info_get_peers or info_get_deploy ....
     public var methodCall: CasperMethodCall = .chainGetStateRootHash
-
+    public var isSuccess:Bool = true
     public func putDeploy(method: CasperMethodCall, params: Data, httpMethod: String="POST", deployHash: String="") throws {
         guard let url = URL(string: HttpHandler.methodURL) else {
             throw CasperMethodError.invalidURL
@@ -36,10 +36,14 @@ class HttpHandler: XCTestCase {
                     if let message1 = errorDeploy["message"] as? String {
                         message = message1
                     }
-                    NSLog("Error put deploy, with Error code: \(code!) and message: ")
-                    NSLog(message)
+                    //NSLog("Error put deploy, with Error code: \(code!) and message: ")
+                    //NSLog(message)
+                    if(message == "invalid deploy: the approval at index 0 is invalid: asymmetric key error: failed to verify secp256k1 signature: signature error") {
+                        self.isSuccess = false
+                    }
                 } else {
                     do {
+                        //NSLog("Put secp256k1 successfully after \(Utils.putDeployCounter) efforts")
                         let deployHash1 = try DeployUtil.getDeployResult(from: responseJSON)
                         XCTAssert(deployHash == deployHash1)
                         NSLog("Put deploy successful with deploy_hash: \(deployHash1)")
@@ -52,6 +56,9 @@ class HttpHandler: XCTestCase {
         }
         task.resume()
         self.waitForExpectations(timeout: 500, handler: nil)
+        if(self.isSuccess == false) {
+            Utils.putDeploy()
+        }
     }
     /**
      This function handle the request with specific RPC call and given parameter for each method

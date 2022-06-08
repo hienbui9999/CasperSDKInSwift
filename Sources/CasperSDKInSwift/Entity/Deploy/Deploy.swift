@@ -20,6 +20,7 @@ public class Deploy {
      */
 
     public func toJsonString() -> String {
+        //Dependency should change to take dependency value
         let headerString: String = "\"header\": {\"account\": \"\(header.account)\",\"timestamp\": \"\(header.timestamp)\",\"ttl\": \"\(header.ttl)\",\"gas_price\": \(header.gasPrice),\"body_hash\": \"\(header.bodyHash)\",\"dependencies\": [],\"chain_name\": \"\(header.chainName)\"}"
         let paymentJsonStr = "\"payment\": " + ExecutableDeployItemHelper.toJsonString(input: payment!)
         let sessionJsonStr =  "\"session\": " +  ExecutableDeployItemHelper.toJsonString(input: session!)

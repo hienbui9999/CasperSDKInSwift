@@ -4,18 +4,21 @@ import SwiftECC
 @testable import CasperSDKInSwift
 final public class TestPutDeploy: XCTestCase {
     var signatureValue: String = ""
-    // current tested, account of type ed25519
-    var accountStrEd25519: String = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b"
-    var accountStrSecp256k1: String = "0203b8cd9a768ea963de09f36e16df0532e3438feb947772c08df0d8a7250ca4ae8d"
+    // current tested, account of type ed25519, don't delete
+   // var accountStrEd25519: String = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b"
+   // var accountStrSecp256k1: String = "0203b8cd9a768ea963de09f36e16df0532e3438feb947772c08df0d8a7250ca4ae8d"
+    var accountStrEd25519: String = "01d12bf1e1789974fb288ca16fba7bd48e6ad7ec523991c3f26fbb7a3b446c2ea3"
+    var accountStrSecp256k1: String = "0202572ee4c44b925477dc7cd252f678e8cc407da31b2257e70e11cf6bcb278eb04b"
     // try this account for insufficient money account of type Ed25519
     // "016c0bd4cd54fa6d74e7831a5ed31b00d7fefac4231c7229eec7ac8f8a0800220a"
     // "02029e8e8ce2f7101643b98a5a56382c128ca65429e9b4d4ca7e8d7c9f0d10b21c4c"//  -- Account for secp256k1
 
     public func testAll() {
         // test 1.1 put a deploy of transfer type, with account of Ed25519 type
-        testPutDeployTransfer()
+      //  testPutDeployTransfer()
         // test 1.2 put a deploy of transfer type, with account of Secp256k1 type
         testPutDeployTransfer(ofTypeEd25519: false)
+        
         // test 2 put a deploy in which session is a StoredContractByHash, with account of Secp256k1 type
         // if you just call this testPutDeployStoredContractByHash(), then the account is of type Ed25519
         testPutDeployStoredContractByHash(withAccountStr: accountStrSecp256k1, ofTypeEd25519: false)
@@ -662,6 +665,7 @@ final public class TestPutDeploy: XCTestCase {
             let timeElements = timeStr.components(separatedBy: " ")
             let newTimeStr = timeElements[0] + "T" + timeElements[1] + ".\(miliStr)Z"
             deployHeader.timestamp = newTimeStr
+           // deployHeader.timestamp = "2022-05-22T04:38:44.768Z"
             deployHeader.chainName = "casper-test"
             // Deploy payment initialization
             let clValue: CLValue = CLValue()
@@ -686,8 +690,11 @@ final public class TestPutDeploy: XCTestCase {
             namedArgSession1.argsItem = clValueSession1
             // 2nd namedArg
             let clValueSession2: CLValue = CLValue()
-            clValueSession2.bytes = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b"
-            clValueSession2.parsed = .publicKey("0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b")
+            //Uncomment this line if you wish to transfer token to account 0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b
+            //clValueSession2.bytes = "0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b"
+            //clValueSession2.parsed = .publicKey("0107d5a566a17a9f638c8122ceace69647e4f293aacd44ed3347d1ae8446003a3b")
+            clValueSession2.bytes = "015f12b5776c66d2782a4408d3910f64485dd4047448040955573aa026256cfa0a"
+            clValueSession2.parsed = .publicKey("015f12b5776c66d2782a4408d3910f64485dd4047448040955573aa026256cfa0a")
             clValueSession2.clType = .publicKey
             let namedArgSession2: NamedArg = NamedArg()
             namedArgSession2.name = "target"
@@ -726,6 +733,9 @@ final public class TestPutDeploy: XCTestCase {
             deploy.session = session
             deployHeader.bodyHash = DeploySerialization.getBodyHash(fromDeploy: deploy)//
             deploy.hash = DeploySerialization.getHeaderHash(fromDeployHeader: deployHeader)
+           // print("Deploy hash:\(deploy.hash)")
+          //  print("Deploy hash hexa:\(deploy.hash.hexaBytes)")
+
             // sign with ed25519
             if ofTypeEd25519 == true {
                 let ed25519Cryto: Ed25519Cryto = Ed25519Cryto()
@@ -738,11 +748,27 @@ final public class TestPutDeploy: XCTestCase {
                 }
             } else {
             // sign for secp256k1
+                Utils.isPutDeployUsingSecp256k1 = true
                 do {
                     let secp256k1: Secp256k1Crypto = Secp256k1Crypto()
                     let privateKeySecp256k1 = try secp256k1.readPrivateKeyFromFile(pemFileName: "Assets/Secp256k1/ReadSwiftPrivateKeySecp256k1.pem")
+                    Utils.privateKey = privateKeySecp256k1
+                    Utils.deployHash = deploy.hash
+                    //With ECC
                     let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes), withPrivateKey: privateKeySecp256k1)
                     signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
+                    print("deploy.hash:\(deploy.hash)")
+                    print("deploy hexa bytes:\(deploy.hash.hexaBytes)")
+                   
+                   // print("signature r:\(signMessageSecp256k1.r.data.hexEncodedString()) and s:\(signMessageSecp256k1.s.data.hexEncodedString())")
+                 //   print("signature ECC is:\(signatureValue)")
+                    
+                    //With secp256k1
+                    let secp256K1CCC:Secp256k1C = Secp256k1C()
+                   // print("deploy.hash:\(deploy.hash)")
+                    let sm = try secp256K1CCC.signForMessage(message: deploy.hash)
+                   // signatureValue = "02" + sm
+                    print("signature secp256k1 is:\(signatureValue)")
                 } catch {
                     NSLog("Error sign Secp256k1: \(error)")
                 }
@@ -753,10 +779,10 @@ final public class TestPutDeploy: XCTestCase {
             let approvals: [DeployApprovalItem] = [dai1]
             deploy.approvals = approvals
             let casperSDK: CasperSDK = CasperSDK(url: "https://node-clarity-testnet.make.services/rpc")
+            Utils.deploy = deploy
             try casperSDK.putDeploy(input: deploy)
         } catch {
             NSLog("Error put deploy: \(error)")
         }
     }
-
 }
