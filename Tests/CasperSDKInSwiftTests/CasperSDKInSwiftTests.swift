@@ -3,15 +3,6 @@ import XCTest
 final class CasperSDKInSwiftTests: XCTestCase {
 
     func testAll() throws {
-        /*let testDeploy:TestDeploySerialization = TestDeploySerialization()
-        testDeploy.testAll()
-        let a:TestCLValueSerialization = TestCLValueSerialization()
-        do {
-            try a.testAll()
-        } catch {
-            
-        }
-        NSLog("Done")*/
         // M4 test cases
         // Test detail for M4 in following files:
         // TestEd25519KeyWrapper.swift

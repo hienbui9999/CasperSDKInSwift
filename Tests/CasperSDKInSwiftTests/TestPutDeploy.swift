@@ -18,7 +18,6 @@ final public class TestPutDeploy: XCTestCase {
       //  testPutDeployTransfer()
         // test 1.2 put a deploy of transfer type, with account of Secp256k1 type
         testPutDeployTransfer(ofTypeEd25519: false)
-        
         // test 2 put a deploy in which session is a StoredContractByHash, with account of Secp256k1 type
         // if you just call this testPutDeployStoredContractByHash(), then the account is of type Ed25519
         testPutDeployStoredContractByHash(withAccountStr: accountStrSecp256k1, ofTypeEd25519: false)
@@ -757,18 +756,6 @@ final public class TestPutDeploy: XCTestCase {
                     //With ECC
                     let signMessageSecp256k1 = secp256k1.signMessage(messageToSign: Data(deploy.hash.hexaBytes), withPrivateKey: privateKeySecp256k1)
                     signatureValue = "02" + signMessageSecp256k1.r.data.hexEncodedString() + signMessageSecp256k1.s.data.hexEncodedString()
-                    print("deploy.hash:\(deploy.hash)")
-                    print("deploy hexa bytes:\(deploy.hash.hexaBytes)")
-                   
-                   // print("signature r:\(signMessageSecp256k1.r.data.hexEncodedString()) and s:\(signMessageSecp256k1.s.data.hexEncodedString())")
-                 //   print("signature ECC is:\(signatureValue)")
-                    
-                    //With secp256k1
-                    let secp256K1CCC:Secp256k1C = Secp256k1C()
-                   // print("deploy.hash:\(deploy.hash)")
-                    let sm = try secp256K1CCC.signForMessage(message: deploy.hash)
-                   // signatureValue = "02" + sm
-                    print("signature secp256k1 is:\(signatureValue)")
                 } catch {
                     NSLog("Error sign Secp256k1: \(error)")
                 }
